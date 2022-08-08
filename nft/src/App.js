@@ -1,6 +1,6 @@
 import './App.css';
 import { Route,Routes} from "react-router-dom";
-import Index from './Components/Index';
+import Index from './pages/Index';
 
 function App() {
   return (
