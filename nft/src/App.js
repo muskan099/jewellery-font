@@ -1,14 +1,14 @@
 import './App.css';
 import { Route,Routes} from "react-router-dom";
-import Index from './pages/Index';
+import Homepage from './pages/Homepage';
 import Marketplace from './pages/Marketplace';
 
 function App() {
   return (
     <div className="App">
        <Routes>
-          <Route path="/index" element={<Index />} />
-          <Route path="/" element={<Marketplace />} />
+          <Route path="/" element={<Homepage />} />
+          <Route path="/market-place" element={<Marketplace />} />
 
         </Routes>
     </div>

@@ -4,13 +4,15 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
 function Header() {
+
+    
   return (
     <section className='custom-header'>
         <Container>
             <Navbar bg="dark" expand="lg" ms-auto fixed="top">
             <Container>
                 <Navbar.Brand href="#home"><img
-                    src="assets\img\logo\logo.png"
+                    src="assets/images/logo/logo.png"
                     width="30"
                     height="30"
                     className="d-inline-block align-top"

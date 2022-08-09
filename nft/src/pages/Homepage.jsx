@@ -1,11 +1,11 @@
 import React from 'react'
-import Header from '../Components/Header';
+import Header from '../Components/UI/Header';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import '../style/index.css'
 
-function Index() {
+function Homepage() {
+  
   return (
     <div>
       <Header/>
@@ -20,7 +20,7 @@ function Index() {
         </Col>
         <Col sm={6}>
           <div className="banner-img">
-            <img src="assets\img\banner-img.png"/>
+            <img src="assets\images\banner-img.png" alt="new" />
           </div>
         </Col>
       </Row>
@@ -30,4 +30,4 @@ function Index() {
   )
 }
 
-export default Index
+export default Homepage

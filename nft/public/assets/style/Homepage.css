@@ -7,15 +7,15 @@
 }
 @font-face{
     font-family: "NeueMachina-Light";
-    src: url('../assets/fonts/neue-mach/NeueMachina-Light.otf');
+    src: url('../fonts/neue-mach/NeueMachina-Light.otf');
   }
   @font-face{
     font-family: "NeueMachina-Regular";
-    src: url('../assets/fonts/neue-mach/NeueMachina-Regular.otf');
+    src: url('../fonts/neue-mach/NeueMachina-Regular.otf');
   }
   @font-face{
     font-family: "NeueMachina-Ultrabold";
-    src: url('../assets/fonts/neue-mach/NeueMachina-Ultrabold.otf');
+    src: url('../fonts/neue-mach/NeueMachina-Ultrabold.otf');
   }
 body{
     background-color: #000;
