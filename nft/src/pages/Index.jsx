@@ -3,6 +3,7 @@ import Header from '../Components/Header';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import '../style/index.css'
 
 function Index() {
   return (

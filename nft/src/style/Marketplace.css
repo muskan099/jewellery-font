@@ -1,0 +1,13 @@
+:root{
+    --linear-color: linear-gradient(90deg, #A77327 0%, #EFD67B 49.79%, #A77327 100%);
+    --NeueMachina-Light: 'NeueMachina-Light';
+    --NeueMachina-Regular: 'NeueMachina-Regular';
+    --NeueMachina-Ultrabold: 'NeueMachina-Light';
+    --Poppins: 'Poppins';
+}
+.marketplace_sidebar{
+    color: #A77327;
+    height: 100px;
+    width: 100px;
+    border: 1px solid red;
+}
