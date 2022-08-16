@@ -1,6 +1,7 @@
 :root{
     --linear-color: linear-gradient(90deg, #A77327 0%, #EFD67B 49.79%, #A77327 100%);
-    --NeueMachina-Light: 'NeueMachina-Light';
+    --linear-color2:linear-gradient(155.14deg, rgba(255, 255, 255, 0) -2.13%, rgba(255, 255, 255, 0.15) 136.58%);
+  --NeueMachina-Light: 'NeueMachina-Light';
     --NeueMachina-Regular: 'NeueMachina-Regular';
     --NeueMachina-Ultrabold: 'NeueMachina-Light';
     --Poppins: 'Poppins';
@@ -27,7 +28,7 @@ body{
     background-color: #000!important;
 }
 .custom-header .navbar-nav .nav-link{
-    color: #fff!important;
+    color: #fff;
     margin: 0 20px;
     font-size: 18px;
 }
@@ -50,6 +51,7 @@ body{
     cursor: pointer;
     transition: .3s;
     font-family: var(--Poppins);
+    
 }
 .navbar-toggler {
     padding: 0.25rem 0.75rem;
@@ -61,7 +63,7 @@ body{
     transition: box-shadow .15s ease-in-out;
 }
 #banner{
-    padding: 40px 0;
+    padding: 106px 0;
 }
 #banner .banner-txt h2{
     color: #fff;
@@ -71,6 +73,9 @@ body{
     line-height: 100%;
     text-align: left;
 }
+.banner-txt{
+    padding-top: 28px;
+}
 #banner .banner-txt h2 span{
     background: var(--linear-color);
     -webkit-background-clip: text;
@@ -79,4 +84,469 @@ body{
 }
 #banner .banner-img img{
     width: 100%;
+}
+.banner-img{
+    position: absolute;
+    top: -25px;
+    left: 584px;
+}
+.banner-content{
+    color: white;
+    text-align: left;
+    max-width: 33ch;
+}
+
+.nav-link{
+    font-family: var(--Poppins);
+    font-weight: 500;
+}
+.connect-wallet{
+    font-size: 20px !important; 
+    color: #000 !important;
+    width: 206px;
+    height: 60px;
+    text-align: center;
+}
+.banner-btn-gradient{
+    background: var(--linear-color);
+    color: black;
+    border-radius: 60px;
+    transition: box-shadow .15s ease-in-out;
+    text-decoration: none;
+    padding: 12px 52px;
+    font-weight: 600;
+    margin-right: 16px;
+}
+.banner-btn-simple{
+    border: 1px solid #A77327;
+    background-color: black;
+    color: #A77327;
+    border-radius: 60px;
+    transition: box-shadow .15s ease-in-out;
+    text-decoration: none;
+    padding: 12px 52px;
+    font-weight: 600;
+}
+.banner-btn-container{
+    padding-top: 67px;
+    gap: 16px;
+}
+.banner-analysis{
+    padding-top: 68px;
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 42px;
+}
+
+.banner-analysis-number{
+    font-weight: 36px;
+    font-weight: 400;
+    font-family: var(--NeueMachina-Regular);
+    color: white;
+}
+.banner-analysis-quantity{
+    font-weight: 16px;
+    font-weight: 500;
+    color: white;
+}
+.wallet-container{
+    padding-top: 176px;
+   
+}
+.wallet-container-rowTwo{
+    padding-top: 54px;
+}
+.homePage-slider{
+    padding-top: 388px;
+}
+.homePage-slider-heading{
+    background-image: var(--linear-color);
+font-size: 48px;
+font-weight: 800;
+font-family: var(--NeueMachina-Regular);
+    text-align: center;
+    padding-bottom: 68px;
+    background-size: 100%;
+    background-repeat: repeat;
+   -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+}
+.card-container{
+    background:  var(--linear-color2);
+    border-radius: 20px;
+    
+
+}
+.card-img-top {
+    width: 400px !important;
+    height: 400px;
+}
+.card-container-image{
+    margin: 20px;
+    margin-bottom: 0px;
+}
+.card-container-avatar{
+    width: 67px;
+    height: 52px;
+}
+.card-container-eth{
+    width: 67px;
+    height: 44px;
+}
+.card-container-title{
+    font-weight: 600;
+font-size: 22px;
+font-family: var(--Poppins);
+color: white;
+text-align: left;
+}
+
+.card-container-subTitle{
+    font-weight: 300;
+    font-size: 13px;
+    font-family: var(--Poppins);
+    color: white;
+    text-align: left;
+    margin: 0px !important;
+    padding: 0px !important;
+}
+.card-container-row{
+  align-items: center;
+}
+.eth-values{
+    padding-top: 50px;
+}
+.card-container-subTitle-price{
+    font-weight: 500;
+    font-size: 13px;
+    font-family: var(--Poppins);
+    color: white;
+    text-align: left;
+}
+.card-container-subTitle-red{
+    font-weight: 500;
+    font-size: 13px;
+    font-family: var(--Poppins);
+    color: #FF0000;
+    text-align: right;
+}
+.crousel-container{
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+.react-multi-carousel-item{
+    width: 480px !important;
+}
+.wallet-container-row1{
+    padding-bottom: 54px;
+}
+.react-multiple-carousel__arrow{
+    background: var(--linear-color) !important;
+    min-width: 70px !important;
+    min-height: 70px !important;
+}
+.card-active{
+   border-image: var(--linear-color)1 round;
+   place-items: center;
+   
+   
+}
+.card-container-button{
+    background: var(--linear-color) !important;
+    color: black;
+    text-decoration: none;
+    padding: 15px 139px;
+    border-radius: 60px;
+    margin: 20px 20px;
+    text-align: center;
+    width: 396px;
+}
+.eth-values-btn{
+  padding-top: 20px;
+}
+.text-right{
+    text-align: right;
+}
+.btn-container{
+    display: grid;
+    place-items: center;
+margin-top: 80px;
+}
+.top-collection{
+    margin-top: 250px;
+}
+.top-collection-selection-bar{
+display: grid;
+grid-auto-flow: column;
+gap: 16px;
+}
+.top-collection-active{
+    background: var(--linear-color) !important;
+    color: black;
+    text-decoration: none;
+    padding: 18px 55px;
+    border-radius: 60px;
+   text-align: center;
+   
+   
+}
+.top-collection-state{
+    border: 1px solid white;
+    background-color: black;
+    color: white;
+    border-radius: 60px;
+    transition: box-shadow .15s ease-in-out;
+    text-decoration: none;
+    padding: 18px 55px;
+    font-weight: 600;
+    text-align: center;
+}
+.card-container-topSelection-image{
+    width: 285px !important;
+    height: 281px !important;
+}
+.top-collection-nft{
+    margin-top: 65px;
+}
+.top-collection-nft-container{
+    width: 300px;
+}
+.card-background{
+   border: 1px solid white;
+  
+}
+.top-collection-container{
+    margin-top: 54px;
+    margin-bottom: 54px;
+}
+.top-collection-container-row{
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: flex-start;
+    margin-bottom: 48px;
+}
+.top-collection-container-row1{
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: flex-start;
+   
+}
+.container-grid{
+    display: grid;
+    place-items: center;
+}
+.top-category-smallImage{
+    width: 160px !important;
+    height: 144px !important;
+    padding-right: 0px !important;
+    border-radius: 10px;
+}
+.big-image-container{
+display: grid;
+grid-auto-flow: column;
+}
+.small-image-container{
+display: grid;
+padding-right: 0px !important;
+gap: 20px;
+}
+.top-category-card{
+    padding: 20px;
+    background: var(--linear-color2);
+    border: 1px solid white;
+    border-radius: 20px;
+}
+.category-card-title{
+    text-align: center;
+    color: white;
+    font-family: var(--Poppins);
+    font-weight: 600;
+    font-size: 20px;
+}
+.top-category-bigImage{
+    width: 250px;
+    height: 310px;
+    padding-left: 0px !important;
+    border-radius: 10px;
+}
+.sellYourNft{
+    margin-top: 230px;
+   background: linear-gradient(105.42deg, rgba(255, 255, 255, 0.11) -3.07%, rgba(255, 255, 255, 0.11) 49.04%, rgba(255, 255, 255, 0) 97.84%);
+   filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.25));
+   border-radius: 40px;
+   padding: 68px 60px;
+}
+.card{
+    background: linear-gradient(105.42deg, rgba(255, 255, 255, 0.11) -3.07%, rgba(255, 255, 255, 0.11) 49.04%, rgba(255, 255, 255, 0) 97.84%);;
+  display: grid;
+    place-items: center;
+}
+.card-title{
+    color: white;
+    font-weight: 600;
+    font-family: var(--Poppins);
+    font-size: 28px;
+    text-align: center;
+}
+.card-text{
+    color: white;
+    font-weight: 400;
+    font-family: var(--Poppins);
+    font-size: 18px;
+    text-align: center;
+}
+.sellYourNft-image{
+    width: 64px !important;
+    height: 60px !important;
+}
+.sellYourNft-card{
+    display: grid;
+    place-items: center;
+    justify-content: flex-start;
+}
+.sellYourNft-container{
+    display: grid;
+    grid-auto-flow: column;
+}
+.card-text{
+    max-width: 30ch;
+}
+.card-title{
+    padding-top: 30px;
+    padding-bottom: 28px;
+}
+.articles{
+    margin-top: 230px;
+    display: grid;
+   place-content: center;
+}
+.articles-cards{
+    display: grid;
+    grid-auto-flow: column;
+    gap: 100px;
+}
+.articles-card{
+    border-radius: 20px;
+    place-items: initial;
+}
+.articleText{
+    font-weight: 600 !important;
+    font-size: 22px !important;
+    text-align: left !important;
+}
+.article-footer{
+    color: white !important;
+    text-align: left !important;
+
+}
+.article-img{
+    width: 442px !important;
+    height: 275px !important;
+}
+.update-text{
+   font-size: 20px;
+    color: white;
+   text-align: center;
+   font-weight: 400;
+}
+.input-box{
+    margin-top: 35px;
+place-items: center;
+margin-top: 50px !important;
+margin-bottom: 108px !important;
+}
+.input-container{
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 100px;
+    border: none;
+    max-width: 846px !important;
+
+height: 70px;
+padding-left: 72px;
+
+}
+.input-container::placeholder{
+    font-size: 18px;
+    color: #828282;
+    font-weight: 400;
+    font-family: var(--Poppins);
+}
+.input-button{
+    background: var(--linear-color);
+    border-radius: 100px;
+    color: white;
+   width: 150px;
+height: 70px;
+display: grid;
+font-size: 22px;
+border: none;
+}
+.footer-homepage{
+    background: var(--linear-color);
+    height: 2px;
+}
+.footer-aboutUs{
+    font-family: var(--Poppins);
+    font-weight: 400;
+    font-size: 20px;
+    color: white;
+    max-width: 37ch;
+}
+.footer-logo-container{
+    display: grid;
+    gap: 24px;
+}
+.social-links{
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: flex-start;
+    gap: 40px;
+    place-items: center;
+}
+.footer-links-heading{
+    font-style: var(--Poppins);
+    font-size: 32px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 40px;
+}
+.footer-link{
+    font-style: var(--Poppins);
+    font-size: 20px;
+    font-weight: 400;
+    color: white;
+    text-decoration: none;
+}
+.footer-links-container{
+    display: grid;
+    gap: 20px;
+}
+.copyright{
+    font-weight: 700;
+    font-size: 16px;
+font-family: var(--Poppins);
+color: white;
+}
+.copyright-text{
+    background-image: var(--linear-color);
+font-size: 16px;
+font-weight: 700;
+font-family: var(--Poppins);
+    text-align: center;
+    padding-bottom: 68px;
+    background-size: 100%;
+    background-repeat: repeat;
+   -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+}
+.copyright-line-container{
+    margin-top: 116px;
+    margin-bottom: 24px;
+    display: grid;
+    place-items: center;
 }

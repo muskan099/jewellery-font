@@ -21,11 +21,11 @@ function Header() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ms-auto">
-                    <Nav.Link href="">Marketplace</Nav.Link>
-                    <Nav.Link href="">Collection</Nav.Link>
-                    <Nav.Link href="">Community</Nav.Link>
-                    <Nav.Link href="">Create</Nav.Link>
-                    <Nav.Link href="" className='nav-btn'>Connect Wallet</Nav.Link>
+                    <Nav.Link href="" className="nav-link">Marketplace</Nav.Link>
+                    <Nav.Link href="" className="nav-link">Collection</Nav.Link>
+                    <Nav.Link href="" className="nav-link">Community</Nav.Link>
+                    <Nav.Link href="" className="nav-link">Create</Nav.Link>
+                    <Nav.Link href="" className='nav-btn connect-wallet'>Connect Wallet</Nav.Link>
 
                 </Nav>
                 </Navbar.Collapse>
