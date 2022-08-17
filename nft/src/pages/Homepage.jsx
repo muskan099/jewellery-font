@@ -10,6 +10,7 @@ import 'react-multi-carousel/lib/styles.css';
 import CardGroup from 'react-bootstrap/CardGroup';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
+import Layout from "../Components/Layout"
 
 
 function Homepage() {
