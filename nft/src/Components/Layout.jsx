@@ -1,14 +1,22 @@
-import React from "react";
-import Header from "./UI/Header";
-import Footer from "./UI/Footer";
 
-const Layout = ({ children }) => {
+
+import React from "react";
+ import Header from "./UI/Header";
+ import Footer from "./UI/Footer";
+
+const Layout = (props) => {
   return (
-    <>
-      <Header />
-      {children}
-      <Footer />
-    </>
+   
+      <div>
+        <main >
+         
+            {/* <Sidebar/> */}
+            <Header />
+            <div >{props.children}</div>
+       
+        </main>
+      </div>
+    
   );
 };
 
