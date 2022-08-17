@@ -11,7 +11,7 @@ function Header() {
         <Container>
             <Navbar bg="dark" expand="lg" ms-auto fixed="top">
             <Container>
-                <Navbar.Brand href="#home"><img
+                <Navbar.Brand href="/"><img
                     src="assets/images/logo/logo.png"
                     width="30"
                     height="30"
@@ -20,12 +20,12 @@ function Header() {
                     /></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="ms-auto header-links">
-                    <Nav.Link href="" className="nav-link">Marketplace</Nav.Link>
-                    <Nav.Link href="" className="nav-link">Collection</Nav.Link>
-                    <Nav.Link href="" className="nav-link">Community</Nav.Link>
-                    <Nav.Link href="" className="nav-link">Create</Nav.Link>
-                    <Nav.Link href="" className='nav-btn connect-wallet'>Connect Wallet</Nav.Link>
+                <Nav className="ms-auto">
+                    <Nav.Link href="/marketplace">Marketplace</Nav.Link>
+                    <Nav.Link href="/overview">Collection</Nav.Link>
+                    <Nav.Link href="">Community</Nav.Link>
+                    <Nav.Link href="">Create</Nav.Link>
+                    <Nav.Link href="" className='nav-btn'>Connect Wallet</Nav.Link>
 
                 </Nav>
                 </Navbar.Collapse>

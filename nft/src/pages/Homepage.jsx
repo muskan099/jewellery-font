@@ -34,8 +34,8 @@ function Homepage() {
   };
   
   return (
-    <div>
-      <Header/>
+    <>
+      <Layout>
       <section id='banner'>
       <div>
       <Container>
@@ -691,8 +691,9 @@ function Homepage() {
       </div>
       </section>
       <Footer />
-    </div>
+      </Layout>
+    </>
   )
 }
 
-export default Homepage
+export default Homepage;
