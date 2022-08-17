@@ -83,7 +83,7 @@ function Homepage() {
         <img src="assets\images\trustWallet-img.png" alt="metamask" /></Col>
         <Col>  <img src="assets\images\WalletConnect-img.png" alt="metamask" /></Col>
       </Row>
-      <Row className="justify-content-md-center">
+      <Row className="justify-content-md-center wallet-container-row2">
         <Col xs lg="4">
         <img src="assets\images\exodus-img.png" alt="metamask" />
         </Col>
@@ -98,14 +98,14 @@ function Homepage() {
 <h2 className="homePage-slider-heading">Trending NFTs</h2>
     <Carousel responsive={responsive} className="crousel-container " >
   <div>
-  <Card style={{ width: '442px' }} className="card-container " onClick={() => {
+  <Card style={{ width: '350px' }} className="card-container " onClick={() => {
     console.log("second slide clicked")
   }}>
       <Card.Img variant="top" className="card-container-image" src="assets\images\nft-image-1.png" />
       <Card.Body>
         <Row lg={6} className="card-container-row">
         <img className="card-container-avatar"src="assets\images\avatar.png" alt="avatar"/>
-     <Col lg={8}>
+     <Col lg={10}>
      <h2 className="card-container-title">CryptoPunk 3D #13</h2>
      <p className="card-container-subTitle">3D cryptopunk</p>
      </Col>
@@ -129,12 +129,12 @@ function Homepage() {
       </Card.Body>
     </Card>
   </div>
-  <div><Card style={{ width: '442px' }} className="card-container card-active">
+  <div><Card style={{ width: '350px' }} className="card-container card-active">
       <Card.Img variant="top" className="card-container-image" src="assets\images\nft-image-2.png" />
       <Card.Body>
         <Row lg={6} className="card-container-row">
         <img className="card-container-avatar"src="assets\images\avatar.png" alt="avatar"/>
-     <Col lg={8}>
+     <Col lg={10}>
      <h2 className="card-container-title">CryptoPunk 3D #13</h2>
      <p className="card-container-subTitle">3D cryptopunk</p>
      </Col>
@@ -161,12 +161,12 @@ function Homepage() {
        </Row>
       </Card.Body>
     </Card></div>
-  <div><Card style={{ width: '442px' }} className="card-container">
+  <div><Card style={{ width: '350px' }} className="card-container">
       <Card.Img variant="top" className="card-container-image" src="assets\images\nft-image-3.png" />
       <Card.Body>
         <Row lg={6} className="card-container-row">
         <img className="card-container-avatar"src="assets\images\avatar.png" alt="avatar"/>
-     <Col lg={8}>
+     <Col lg={10}>
      <h2 className="card-container-title">CryptoPunk 3D #13</h2>
      <p className="card-container-subTitle">3D cryptopunk</p>
      </Col>
@@ -189,12 +189,12 @@ function Homepage() {
        </Row>
       </Card.Body>
     </Card></div>
-  <div><Card style={{ width: '442px' }} className="card-container">
+  <div><Card style={{ width: '350px' }} className="card-container">
       <Card.Img variant="top" className="card-container-image" src="assets\images\nft-image-1.png" />
       <Card.Body>
         <Row lg={6} className="card-container-row">
         <img className="card-container-avatar"src="assets\images\avatar.png" alt="avatar"/>
-     <Col lg={8}>
+     <Col lg={10}>
      <h2 className="card-container-title">CryptoPunk 3D #13</h2>
      <p className="card-container-subTitle">3D cryptopunk</p>
      </Col>
@@ -217,12 +217,12 @@ function Homepage() {
        </Row>
       </Card.Body>
     </Card></div>
-    <div><Card style={{ width: '442px' }} className="card-container">
+    <div><Card style={{ width: '350px' }} className="card-container">
       <Card.Img variant="top" className="card-container-image" src="assets\images\nft-image-1.png" />
       <Card.Body>
         <Row lg={6} className="card-container-row">
         <img className="card-container-avatar"src="assets\images\avatar.png" alt="avatar"/>
-     <Col lg={8}>
+     <Col lg={10}>
      <h2 className="card-container-title">CryptoPunk 3D #13</h2>
      <p className="card-container-subTitle">3D cryptopunk</p>
      </Col>

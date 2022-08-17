@@ -20,7 +20,7 @@ function Header() {
                     /></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="ms-auto">
+                <Nav className="ms-auto header-links">
                     <Nav.Link href="" className="nav-link">Marketplace</Nav.Link>
                     <Nav.Link href="" className="nav-link">Collection</Nav.Link>
                     <Nav.Link href="" className="nav-link">Community</Nav.Link>

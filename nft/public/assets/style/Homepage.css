@@ -28,9 +28,11 @@ body{
     background-color: #000!important;
 }
 .custom-header .navbar-nav .nav-link{
-    color: #fff;
+    color: #fff !important;
     margin: 0 20px;
-    font-size: 18px;
+    font-size: 16px !important;
+    display: grid;
+    place-content: center;
 }
 .custom-header img{
     width: 100%;
@@ -69,7 +71,7 @@ body{
     color: #fff;
     font-family: var(--NeueMachina-Light);
     font-weight: 400;
-    font-size: 72px;
+    font-size: 64px;
     line-height: 100%;
     text-align: left;
 }
@@ -100,10 +102,15 @@ body{
     font-family: var(--Poppins);
     font-weight: 500;
 }
+.header-links{
+    display: grid;
+    grid-auto-flow: column;
+    place-items: center;
+}
 .connect-wallet{
     font-size: 20px !important; 
     color: #000 !important;
-    width: 206px;
+    width: 185px;
     height: 60px;
     text-align: center;
 }
@@ -180,8 +187,8 @@ font-family: var(--NeueMachina-Regular);
 
 }
 .card-img-top {
-    width: 400px !important;
-    height: 400px;
+    width: 310px !important;
+    height: 378px;
 }
 .card-container-image{
     margin: 20px;
@@ -197,7 +204,7 @@ font-family: var(--NeueMachina-Regular);
 }
 .card-container-title{
     font-weight: 600;
-font-size: 22px;
+font-size: 16px;
 font-family: var(--Poppins);
 color: white;
 text-align: left;
@@ -214,6 +221,9 @@ text-align: left;
 }
 .card-container-row{
   align-items: center;
+  display: grid;
+    grid-auto-flow: column;
+
 }
 .eth-values{
     padding-top: 50px;
@@ -242,6 +252,13 @@ text-align: left;
 }
 .wallet-container-row1{
     padding-bottom: 54px;
+    display: grid;
+    grid-auto-flow: column;
+    place-content: center;
+}
+.wallet-container-row2{
+    display: grid;
+    grid-auto-flow: column;
 }
 .react-multiple-carousel__arrow{
     background: var(--linear-color) !important;
@@ -258,11 +275,13 @@ text-align: left;
     background: var(--linear-color) !important;
     color: black;
     text-decoration: none;
-    padding: 15px 139px;
-    border-radius: 60px;
-    margin: 20px 20px;
+  border-radius: 60px;
+    margin: 0 20px 20px 20px;
     text-align: center;
-    width: 396px;
+    width: 263px;
+    height: 36px;
+    display: grid;
+    place-content: center;
 }
 .eth-values-btn{
   padding-top: 20px;
