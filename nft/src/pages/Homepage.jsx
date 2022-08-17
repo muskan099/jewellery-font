@@ -529,7 +529,7 @@ function Homepage() {
       <Container>
       <h2 className="homePage-slider-heading">Top Categories</h2>
       <Carousel responsive={responsive}>
-  <div><Card style={{ width: '446px'  }} className="top-category-card">
+  <div><Card style={{ width: '356px'  }} className="top-category-card">
     <Row className="big-image-container">
     <Row className="small-image-container">
     <Card.Img variant="top" className="top-category-smallImage" src="assets\images\category-img-1.png" />
@@ -542,7 +542,7 @@ function Homepage() {
       
       </Card.Body>
     </Card></div>
-  <div><Card style={{ width: '446px'  }} className="top-category-card">
+  <div><Card style={{ width: '356px'  }} className="top-category-card">
     <Row className="big-image-container">
     <Row className="small-image-container">
     <Card.Img variant="top" className="top-category-smallImage" src="assets\images\category-img-1.png" />
@@ -555,7 +555,7 @@ function Homepage() {
       
       </Card.Body>
     </Card></div>
-  <div><Card style={{ width: '446px'  }} className="top-category-card">
+  <div><Card style={{ width: '356px'  }} className="top-category-card">
     <Row className="big-image-container">
     <Row className="small-image-container">
     <Card.Img variant="top" className="top-category-smallImage" src="assets\images\category-img-1.png" />
