@@ -6,7 +6,6 @@ import {
   getTransactionsStart,
   getTransactionsSuccess,
   getTransactionsFail,
-
   createTransactionsStart,
   createTransactionsSuccess,
   createTransactionsFail,

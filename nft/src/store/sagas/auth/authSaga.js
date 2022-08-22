@@ -26,6 +26,7 @@ import { toast } from "react-toastify";
 
 function* setItemToLocalStorage(key, value) {
   localStorage.setItem(key, value);
+  
 }
 
 // @ note := THis login saga is for connecting the wallet ,
