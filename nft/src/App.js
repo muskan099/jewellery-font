@@ -6,6 +6,9 @@ import StoreOverview from './pages/StoreOverview';
 import NftDetail from "./pages/NftDetail";
 import CreateNft from "./pages/CreateNft"
 import CreateStake from "./pages/CreateStake"
+import Meet from './pages/Meet';
+import Stakes from './pages/Stakes';
+import Transactions from './pages/Transactions';
 
 function App() {
   return (
@@ -17,6 +20,10 @@ function App() {
           <Route path="/nft-detail" element={<NftDetail/>} />
           <Route path="/create-nft" element={<CreateNft/>} />
           <Route path="/create-stake" element={<CreateStake/>} />
+          <Route path="/create-stake" element={<CreateStake/>} />
+          <Route path="/meet" element={<Meet/>} />
+          <Route path="/stakes" element={<Stakes/>} />
+          <Route path="/transactions" element={<Transactions/>} />
        \
 
 

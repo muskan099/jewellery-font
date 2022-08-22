@@ -1759,3 +1759,224 @@ filter: grayscale(0);
         margin-top: 25px;
     }
 }
+
+.profile-banner-meet{
+    background-image: url(../images/welcome-background.png);
+    
+}
+.baneer-text-meet h3{
+
+    color: white;
+    font-weight: bold;
+}
+
+.baneer-text-meet h4{
+
+    color: white;
+  
+}
+
+/* ishita css */
+
+.for-image-box1 {
+    margin: 30px 0 50px;
+}
+.for-image-box1 img {
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    border: 5px solid #a77327;
+}
+.stakes-section{
+    background-color:#000;
+    text-align: center;
+    padding: 65px 0 0;
+    height:100vh;
+}
+.transactions-table-new tbody .for-body-tr .success-green{
+    color:green;
+}
+.transactions-table-new .for-body-tr td .btn-active{
+    border: 2px solid transparent;
+    background-color: green;
+    color:#000;
+    padding: 5px;
+    font-size: 14px;
+    font-weight: 400;
+    margin:1px;
+    cursor: pointer;
+}
+ .transactions-table-new .for-body-tr td .btn-sell1{
+    border: 2px solid transparent;
+    border-image: linear-gradient(90deg,#a77327,#efd67b 49.79%,#a77327);
+    border-image-slice: 1;
+    padding: 5px;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 6px;
+    background: linear-gradient(90deg,#a77327,#efd67b 49.79%,#a77327);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin:1px;
+    cursor: pointer;
+}
+.paragraph-main1{
+    color:#fff;
+    font-size: 18px;
+    font-weight: 400;
+}
+.transactions-section{
+    padding: 65px 0 0;
+    background-color:#000;
+    text-align: center;
+    height:100vh;
+}
+.transactions-section .transaction-box{
+    padding: 60px 45px;
+    min-height:100vh;
+}
+.transactions-section .transaction-side-image{
+    height:100%;
+}
+.transactions-section .transaction-side-image img{
+    height:100%;
+    object-fit: cover;
+}
+.transactions-table-new {
+    border-collapse: separate;
+    border-spacing: 0 16px;
+    text-align: left;
+  }
+  .transactions-table-new thead{
+        background-color: #0000FF;
+  }
+  .transactions-table-new .for-back th:first-child {
+    /* border-left-style: solid; */
+    border-top-left-radius: 12px;
+}
+.transactions-table-new .for-back th:last-child {
+    /* border-right-style: solid; */
+    border-top-right-radius: 12px;
+}
+  .transactions-table-new thead th {
+    color: #fff;
+    font-weight: 500;
+    padding: 15px;
+    vertical-align: middle;
+  font-size: 18px;
+  line-height: 27px;
+  }
+  .transactions-table-new thead th:first-child{
+  border-radius: 12px 0 0px 0px;
+  }
+  .transactions-table-new thead th:last-child{
+    border-radius: 0 12px 0px 0px;
+  }
+  .transactions-table-new tbody td {
+    padding: 15px;
+    vertical-align: middle;
+    text-align: left;
+    font-style: 400;
+    font-size: 14px;
+  line-height: 24px;
+  color:#fff;
+  border:none;
+  }
+  .transactions-table-new tbody td:first-child{
+    border-radius: 12px 0 0px 12px;
+  }
+  .transactions-table-new tbody td:last-child{
+     border-radius: 0 12px 12px 0px;
+  }
+  .transactions-table-new tbody td .widget-content-center .widget-heading{
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #000000;
+  }
+  .transactions-table-new tbody td .widget-content-center .widget-subheading{
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #000000;
+  }
+  .transactions-table-new tbody td .status-failed{
+  color: #FF0404;
+  }
+  .transactions-table-new tbody td .status-pending{
+   color: #FF8A00; 
+  }
+  .transactions-table-new tbody td .status-success{
+    color: #43DC6E;
+  }
+  .transactions-table-new tbody td{
+    padding: 24px 14px !important;
+    font-size: 14px !important;
+    background-color: #1f1f1f;
+    border: none !important;
+  }
+  .transactions-table-new th, td {
+  text-align: left;
+  padding:24px 14px;
+  font-weight: 400;
+  font-size:16px ;
+  }
+  .transactions-table-new .for-back th{
+  font-size: 18px;
+  font-weight: 600;
+  }
+  .transactions-table-new .for-back{
+  background: linear-gradient(90deg,#a77327,#efd67b 49.79%,#a77327);
+  -webkit-background-clip: solid;
+  /* -webkit-text-fill-color: transparent; */
+  line-height:21px;
+  padding-left: 25px;
+  padding-right: 25px;
+  
+  }
+  .transactions-table-new thead{
+    background: linear-gradient(90deg, #A77327 0%, #EFD67B 49.79%, #A77327 100%);
+  }
+  .transactions-table-new .background-color-border{
+    background: linear-gradient(90deg, #A77327 0%, #EFD67B 49.79%, #A77327 100%);
+  }
+  .transactions-table-new .for-back th{
+  font-size: 14px;
+  font-weight: 600;
+  color:#000;
+  border:none;
+  }
+  
+  .transactions-table-new .successful{
+    background: linear-gradient(90deg,#a77327,#efd67b 49.79%,#a77327);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+  }
+  .transactions-table-new tr td .btn-view{
+    width: 400px;
+    border: 2px solid transparent;
+    border-image:  linear-gradient(90deg,#a77327,#efd67b 49.79%,#a77327);
+    border-image-slice: 1;
+    padding: 5px;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 6px;
+    background: linear-gradient(90deg,#a77327,#efd67b 49.79%,#a77327);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  @media (min-width: 320px) and (max-width: 767px){
+    .transactions-table-new  {
+        min-width: 1000px;
+    }
+    .transactions-table-new  {
+        overflow-x: auto;
+    }
+    }
+    @media (min-width: 767px) and (max-width: 991px){
+    .transactions-table-new {
+        min-width: 900px;
+    }
+    }
+/* ishita css */
