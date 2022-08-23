@@ -21,7 +21,7 @@ import { toast } from "react-toastify";
 export function* getNftSaga(action) {
   yield put(getNftStart());
   try {
-    const response = yield axios.post(`/explore-content`, action.payload);
+    const response = yield axios.get(`/NFTget`, action.payload);
     if (response.status === 200) {
       yield put(getNftSuccess(response.data));
     } else {

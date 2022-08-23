@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import StoreLayout from "../Components/StoreLayout";
 import { Row, Col, Container,Tab, Tabs,Button,Form,FormGroup,Table } from "react-bootstrap";
 import Layout from "../Components/Layout";
+import { useDispatch, useSelector } from "react-redux";
+import { getNftSaga } from "../store/reducers/nftReducer";
 
 const StoreOverview = () => {
+  const dispatch = useDispatch();
+  const { nft, isLoading, totalNfts } = useSelector((state) => state.nft);
+  useEffect(() => {
+
+    dispatch(getNftSaga());
+   
+  },[])
   return (
     <>
     
