@@ -21,7 +21,7 @@ function App() {
           <Route path="/nft-detail" element={<NftDetail/>} />
           <Route path="/create-nft" element={<CreateNft/>} />
           <Route path="/create-stake" element={<CreateStake/>} />
-<<<<<<< HEAD
+
           <Route path="/create-stake" element={<CreateStake/>} />
           <Route path="/meet" element={<Meet/>} />
           <Route path="/stakes" element={<Stakes/>} />
@@ -30,10 +30,10 @@ function App() {
 
 
         </Routes>
-=======
-       </Routes>
+
+    
        </BrowserRouter>
->>>>>>> b6d67e51e7ac265cb707a5889bf5b89cacc43979
+
     </div>
   );
 }
