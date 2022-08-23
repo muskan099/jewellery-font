@@ -100,6 +100,14 @@ function CreateNft() {
       setName(value);
     }
   };
+ 
+  const  handleMetaTag = (e) => {
+    let value = e.target.value;
+
+    if (value) {
+      setMetaTag(value);
+    }
+  };
   const handleChain = (e) => {
     let value = e.target.value;
 
@@ -145,12 +153,48 @@ function CreateNft() {
       }
     }
   };
+  const  handleCategory = (e) => {
+    let value = e.target.value;
 
+    if (value) {
+      setCategory(value);
+    }
+  };
   
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("handle submit called")
+    const pattern = /^[A-Za-z]+$/;
+    const space = /^[a-zA-Z\s]*$/;
+    const alphaNumeric = /[^a-zA-Z0-9\-\/]^[a-zA-Z\s]*$/;
+    if (file == null || file === "") {
+      toast.error("Please select NFT Image!");
+    } else if (metaTag === "") {
+      toast.error("Meta tag is required!");
+    } else if (alphaNumeric.test(metaTag)) {
+      toast.error("Meta tag is can only be alphabet and numbers");
+    } else if (name === "") {
+      toast.error("Name is required!");
+    } else if (!pattern.test(name) && pattern.test(space)) {
+      toast.error("Name can only be alphabets");
+    } else if (description == "") {
+      toast.error("Description is required!");
+    } else if (!pattern.test(description)&& pattern.test(space)) {
+      toast.error("Description can only be alphabets!");
+    } else if (price == "") {
+      toast.error("Price is required!");
+    } else if (isNaN(price)) {
+      toast.error("Please enter correct price!");
+    } else if (quantity == "") {
+      toast.error("Quantity is required!");
+    } else if (isNaN(quantity)) {
+      toast.error("Please enter correct quantity!");
+    } else if (category == "") {
+      toast.error("category is required!");
+    }  else{
+
+    
   setCreateStart(true);
 setPhoto({ ...photo, loading: true });
 const formData = new FormData();
@@ -174,7 +218,7 @@ console.log({formData})
       
 
       setCreateStart(false);
-
+    }
       // setTimeout(navigate("/explore"), 120000);
     
   };
@@ -299,7 +343,7 @@ console.log({formData})
               <h3>Metadata File</h3>
               <Form.Control
                           type="text"
-                          // onKeyUp={(e) => handleMetaTag(e)}
+                          onKeyUp={(e) => handleMetaTag(e)}
                           placeholder="Meta Tag"
                         />
               </Form.Group> 
@@ -372,7 +416,7 @@ console.log({formData})
                 <Col md={3}>
                    <FormGroup>
                   <Form.Label>Category</Form.Label>
-                  <Form.Control placeholder="" />
+                  <Form.Control placeholder=""   onKeyUp={(e) => handleCategory(e)}/>
                   </FormGroup>
                 </Col>
                 <Col md={3}>
