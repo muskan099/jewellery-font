@@ -6,6 +6,7 @@ import StoreOverview from './pages/StoreOverview';
 import NftDetail from "./pages/NftDetail";
 import CreateNft from "./pages/CreateNft"
 import CreateStake from "./pages/CreateStake"
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (

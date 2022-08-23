@@ -16,6 +16,7 @@ import {
   updateNftStatusSuccess,
   updateNftStatusStart,
 } from "../../reducers/nftReducer";
+import { toast } from "react-toastify";
 
 export function* getNftSaga(action) {
   yield put(getNftStart());
@@ -32,10 +33,17 @@ export function* getNftSaga(action) {
 }
 
 export function* createNftSaga(action) {
+  console.log(action.payload)
+  const {formData, toast} = action.payload;
+  
+  
   yield put(createNftStart());
   try {
-    const response = yield axios.post(`/create-content`, action.payload);
+    const response = yield axios.post(`/NFTCreate`, formData);
     if (response.status === 200) {
+      if(toast){
+        toast.success("NFT Created Successful")
+      }
       yield put(createNftSuccess(response.data.data));
     } else {
       yield put(createNftFail("Something went wrong! Please try again."));
