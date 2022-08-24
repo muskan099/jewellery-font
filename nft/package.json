@@ -17,6 +17,7 @@
     "ethereumjs-tx": "^2.1.2",
     "ethers": "^5.7.0",
     "ipfs-http-client": "^56.0.3",
+    "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
     "react-dom": "^18.2.0",
