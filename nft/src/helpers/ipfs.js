@@ -6,7 +6,22 @@ var Buffer = require("buffer/").Buffer;
 //const ipfs = IpfsAPI("ipfs.infura.io", "5001", { protocol: "https" });
 // note: the trailing slash is important!
 
-const ipfs = create("https://ipfs.infura.io:5001/api/v0");
+// const ipfs = create("https://ipfs.infura.io:5001/api/v0");
+const projectId = "2DRQNrOlePvTOQ38b5sTnUlImiA";
+const projectSecret  = "7bf4d1c25c5a6320d5358dce713e2373";
+
+
+const auth =
+    'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64');
+
+    const ipfs=create({
+        host: 'ipfs.infura.io',
+        port: 5001,
+        protocol: 'https',
+        headers: {
+            authorization: auth,
+        },
+      });
 
 export const ipfsMint = async (testFile, data) => {
   try {

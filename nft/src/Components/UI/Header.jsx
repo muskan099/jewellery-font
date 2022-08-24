@@ -122,11 +122,13 @@ useEffect(() => {
                     
                       <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ms-auto">
+                        <Nav.Link href="">About</Nav.Link>
                             <Nav.Link href="/marketplace">Marketplace</Nav.Link>
                             <Nav.Link href="/overview">Collection</Nav.Link>
                             <Nav.Link href="/nft-detail">Community</Nav.Link>
-                            <Nav.Link href="/create-nft">Create</Nav.Link>
-                            <Nav.Link href="/create-stake">Create Stake</Nav.Link>
+                            <Nav.Link href="/">Contact Us</Nav.Link>
+                           
+                          
                         </Nav>
                     </Navbar.Collapse>
                     { isAuthenticated ?  <>
@@ -158,7 +160,12 @@ useEffect(() => {
                       Create NFT
                     </Link>
                   </Dropdown.Item> */}
-
+ 
+ <Dropdown.Item>
+                    <Link to="/create-nft" className="dropdown-item">
+                      Create 
+                    </Link>
+                  </Dropdown.Item>
                   <Dropdown.Item>
                     <Link to="/create-stake" className="dropdown-item">
                       Create Stake

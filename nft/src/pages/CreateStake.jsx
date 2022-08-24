@@ -1,8 +1,190 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Container,Tab, Tabs,Button,Form,FormGroup,Table } from "react-bootstrap";
 import Layout from '../Components/Layout';
+import { toast } from "react-toastify";
+import axios from "axios";
+import { TabooBalance } from "../helpers/TabooHelper";
+import { TabooPunk } from "../helpers/TabooPunk";
+import { loginSaga, logout } from "../store/reducers/authReducer";
+import moment from 'moment';
+import { Transaction } from "../helpers/Transaction";
+import {makeStakeTransaction} from "../helpers/MakeStackTransactions"
 
 function CreateStake() {
+  const { isAuthenticated, walletAddress,balance ,tier} = useSelector((state) => state.auth);
+
+  const[tabooToken,setTabooToken]=useState('')
+
+  const [stakeTime,setStakeTime]=useState(3)
+
+  const [rate,setRate]=useState(12)
+const adminAddress = "0x8768EA5bB7144c39EC3Df69406DcA255d06ac4fC"
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+
+  const[isStart,setIsStart]=useState(false)
+
+  const handleBalance = async (address) => {
+    //let address = await Connect();
+
+    let punk= await TabooPunk(address);
+    // console.log("punks",punk)
+    let tier=punk>0?"3 Tier":"1 Tier"
+    let balance= await TabooBalance(address)
+    console.log("balance",balance)
+
+    if (address && address.length) {
+      dispatch(loginSaga({ address: address,balance:balance,tabooPunk:punk,tier:tier}));
+    }
+  };
+
+
+  useEffect(() => {
+    const asyncFunction = async() => {
+      if(isAuthenticated){
+        await handleBalance(walletAddress);
+
+       }else
+         {
+           navigate('/')
+         }
+        
+        }
+    
+  },[balance]);
+
+ 
+
+
+ 
+   const handleToken=(e)=>{
+     let value=e.target.value;
+     if(isNaN(value)){
+       e.target.value="";
+     }else
+      {
+        setTabooToken(value)
+      }
+   }
+
+
+
+   const handleStakeTime=(e)=>{
+
+         let value=e.target.value;
+
+         if(value=="3"){
+              setRate(12)
+             setStakeTime(3)
+
+          }else if(value=="6"){
+
+              setRate(16)
+
+               setStakeTime(6)
+
+          }else if(value=="12"){
+
+                  setRate(20)
+
+                setStakeTime(12)
+
+          }else
+            {
+              setRate(13);
+
+              setStakeTime(3)
+            }
+
+
+   }
+
+   
+
+  const handleSubmit=async()=>{
+    let taboo_balance=parseFloat(balance)
+     if(tabooToken==""){
+           toast.warn("Please enter amount to stake!")
+     }
+     else if(tabooToken<1000){
+       toast.warn("Stake min 1000 taboo tokens")
+     }else if(taboo_balance<tabooToken){
+       toast.warn("You do not have sufficient fund to stake!")
+     }else
+       {
+          setIsStart(true)
+
+          await handleBalance(walletAddress);
+
+          let today=new Date();
+          let rate=12;
+
+          if(stakeTime=="3"){
+
+            today=today.setDate(today.getDate()+90);
+
+          }else if(stakeTime=="6"){
+             rate=16;
+            today=today.setDate(today.getDate()+180);
+          }else if(stakeTime=="12"){
+              rate=20;
+            today=today.setDate(today.getDate()+365);
+          }
+
+         // today=today.setDate(today.getDate()+90);
+
+          today=new Date(today);
+
+
+          const end_date=moment(today,"YYYY-MM-DD HH:mm:ss",true).format()
+          let amount= '0x' + ((tabooToken*1000000000).toString(16));
+          const orderObj={status:true,amount:amount,finalprice:tabooToken,address:adminAddress};
+          
+          // const res=await axios.post('/make-stake',{
+
+          //                      address:walletAddress,
+          //                      taboo_amount:tabooToken
+               
+          //              });
+           
+          //   console.log('token',res)     
+          let tx = await makeStakeTransaction(orderObj,walletAddress);      
+
+             if(tx){
+               const hash=await Transaction(tx)
+
+                if(hash){
+
+                    const res=await axios.post('/create-stake',{
+                      address:walletAddress,
+                      amount:tabooToken,
+                      date:end_date,
+                      hash:hash,
+                      rate:rate
+                    })
+
+
+
+                   setIsStart(false)
+
+                   toast.success("Token staked successfully!")
+
+                   navigate('/stakes')
+
+                }else{
+
+                  setIsStart(false)
+                  toast.error("Transaction Failed")
+                }
+             }else
+              {
+                setIsStart(false)
+              }
+       }
+  }
   return (
     <Layout>
         <section className="profile-upper-banner">
@@ -41,7 +223,7 @@ function CreateStake() {
                                      
                                         <Form.Group className="mb-3">
                                                 <Form.Label>Stake Amount</Form.Label>
-                                                <Form.Control type="text"   placeholder="0.00" />
+                                                <Form.Control type="text" onKeyUp={(e)=>handleToken(e)}  placeholder="0.00" />
                                                 </Form.Group>
 
                                                 <Form.Group className="mb-3">
@@ -50,11 +232,12 @@ function CreateStake() {
                                                 <div className="radio-check-time">
                                                 <div class="radio">
                                                     <label>
-                                                      <input
+                                                    <input
                                                         type="radio"
                                                         name="mint_type"
                                                         value="3"
-                                                        
+                                                        checked={stakeTime==3?true:false}
+                                                        onChange={(e)=>handleStakeTime(e)}
                                                       />
                                                       <span class="cr">
                                                         <i class="cr-icon fa fa-check"></i>
@@ -66,11 +249,13 @@ function CreateStake() {
                                                   </div>
                                                   <div class="radio">
                                                     <label>
-                                                      <input
+                                                    <input
                                                         type="radio"
                                                         name="mint_type"
                                                         value="6"
-                                                       
+                                                        checked={stakeTime==6?true:false}
+                                                        onChange={(e)=>handleStakeTime(e)}
+                                                        
                                                       />
                                                       <span class="cr">
                                                         <i class="cr-icon fa fa-check"></i>
@@ -82,11 +267,12 @@ function CreateStake() {
                                                   </div>
                                                   <div class="radio">
                                                     <label>
-                                                      <input
+                                                    <input
                                                         type="radio"
                                                         name="mint_type"
                                                         value="12"
-                                                       
+                                                        checked={stakeTime==12?true:false}
+                                                        onChange={(e)=>handleStakeTime(e)}
                                                         
                                                       />
                                                       <span class="cr">
@@ -105,7 +291,7 @@ function CreateStake() {
                                                 <Form.Group className="mb-3">
 
                                                 <Form.Label>Balance</Form.Label>
-                                                <Form.Control type="text" placeholder="0.00" />
+                                                <Form.Control type="text" placeholder="0.00" value={balance} readOnly/>
                                                 
                                             </Form.Group>
 
@@ -114,7 +300,8 @@ function CreateStake() {
                                             
 
                                             <div>
-                                                <Button className="gradient-btn">Stake Now</Button>
+                                            <Button className="gradient-btn" onClick={handleSubmit} disabled={isStart}>{isStart?"Processing":"Stake Now"}</Button>
+                                                
                                             </div>
                                     </Col>
                                     <Col

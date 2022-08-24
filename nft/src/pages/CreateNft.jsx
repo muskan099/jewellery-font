@@ -4,9 +4,10 @@ import Layout from '../Components/Layout';
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { createNftSaga } from "../store/reducers/nftReducer";
-import { ipfsMint } from "../helpers/ipfs";
 import { Mint } from "../helpers/Mint";
 import { ToastContainer, toast } from 'react-toastify';
+import { ipfsMint } from "../helpers/ipfs";
+
 
 function CreateNft() {
   const dispatch = useDispatch();
@@ -38,6 +39,7 @@ function CreateNft() {
   const [createStart, setCreateStart] = useState(false);
 
   const [chain, setChain] = useState("");
+  
 
   const [availableTo, setAvailableTo] = useState({
     t1: false,
@@ -197,6 +199,9 @@ function CreateNft() {
     
   setCreateStart(true);
 setPhoto({ ...photo, loading: true });
+const data = { name: name, price: price, description: description };
+let ipfs_hash = await ipfsMint(contentImage, data);
+console.log({ipfs_hash})
 const formData = new FormData();
       console.log("file", file);
       formData.append("images", file);
@@ -209,7 +214,7 @@ const formData = new FormData();
       formData.append("isSale", isSale);
       // formData.append("quantity", quantity);
       
-      
+     
 console.log({formData})
       dispatch(createNftSaga({formData,toast}));
       console.log("nFT CREATED")
@@ -285,40 +290,7 @@ console.log({formData})
                             </label>
                           </div>
                         </li>
-                        <li>
-                          <div class="radio">
-                            <label>
-                              <input
-                                type="radio"
-                                onClick={(e) => handleChain(e)}
-                              />
-                              <span class="cr">
-                                <i class="cr-icon fa fa-check"></i>
-                              </span>
-                              <div class="bsc-block">
-                                <img src="assets/images/img-nft/polygon.png" />
-                                <span>BSC</span>
-                              </div>
-                            </label>
-                          </div>
-                        </li>
-                        <li>
-                          <div class="radio">
-                            <label>
-                              <input
-                                type="radio"
-                                onClick={(e) => handleChain(e)}
-                              />
-                              <span class="cr">
-                                <i class="cr-icon fa fa-check"></i>
-                              </span>
-                              <div class="bsc-block">
-                                <img src="assets/images/img-nft/ETH.png" />
-                                <span>BSC</span>
-                              </div>
-                            </label>
-                          </div>
-                        </li>
+                       
                       </ul>
              
 
@@ -340,7 +312,7 @@ console.log({formData})
 
             
               <Form.Group controlId="formFile" className="mb-3">
-              <h3>Metadata File</h3>
+              <h3>Meta Tag</h3>
               <Form.Control
                           type="text"
                           onKeyUp={(e) => handleMetaTag(e)}
