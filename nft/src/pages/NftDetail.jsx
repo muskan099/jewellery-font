@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../Components/Layout";
 import { Row, Col, Container } from "react-bootstrap";
 import StoreLayout from "../Components/StoreLayout";
 import Footer from "../Components/UI/Footer"
 
+import axiosMain from "../http/axios/axios_main";
+
 function NftDetail() {
+
+  const [nft, setnft] = useState([]);
+  const getnft = async () => {
+
+     let inputdata={
+      "wallet_address":"wwffvvvvvgdyymkf"
+       }
+       const api = await axiosMain.post("/TranssactionUser", inputdata);
+   
+    setnft(api.data.data[0].list);
+    console.log(api.data.data[0].list,'req');
+  };
+  useEffect(() => {
+    getnft();
+  }, []);
+
   return (
     <>
     <Layout>
@@ -56,7 +74,17 @@ function NftDetail() {
                         </tr>
                       </thead>
                       <tbody>
+                      {nft.map((items, index) => {
+                            return (
                         <tr>
+                          <td><span><img src="assets/images/img-nft/user.png" />Metamarse</span> </td>
+                          <td>{items.wallet_address}</td>
+                          <td>{items.created_at}</td>
+                          <td>{items.amount}</td>
+                        </tr>
+                          )
+                        })}
+                        {/* <tr>
                           <td><span><img src="assets/images/img-nft/user.png" />Metamarse</span> </td>
                           <td>21652cda2dcc4a1sc84a584dc</td>
                           <td>14 Mar 2022 12:03 PM</td>
@@ -73,13 +101,7 @@ function NftDetail() {
                           <td>21652cda2dcc4a1sc84a584dc</td>
                           <td>14 Mar 2022 12:03 PM</td>
                           <td>0.70ETH</td>
-                        </tr>
-                        <tr>
-                          <td><span><img src="assets/images/img-nft/user.png" />Metamarse</span> </td>
-                          <td>21652cda2dcc4a1sc84a584dc</td>
-                          <td>14 Mar 2022 12:03 PM</td>
-                          <td>0.70ETH</td>
-                        </tr>
+                        </tr> */}
 
                       </tbody>
                     </table>
