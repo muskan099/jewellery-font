@@ -5,12 +5,22 @@ import { Row, Col, Container } from "react-bootstrap";
 import Layout from "../Components/Layout";
 import { useDispatch, useSelector } from "react-redux";
 import { getNftSaga } from "../store/reducers/nftReducer";
+import { Link, useNavigate }  from "react-router-dom"
+import axiosMain from "../http/axios/axios_main";
 
 const Marketplace = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const inputRangeRef = useRef(null);
   const { nft, isLoading, totalNfts, tier } = useSelector((state) => state.nft);
   console.log({nft})
+
+  const single_nft_data =  (item) =>{
+    console.log(item, "items");
+    navigate("/nft-detail", {state:{id : item._id}})
+  }
+
+
   const [RecentlyAdded, setRecentlyAdded] = useState(false);
   const [filterSearch, setFilterSearch] = useState({
     A_TO_Z: false,
@@ -171,7 +181,7 @@ const Marketplace = () => {
                               </div>
                               <div className="radio">
                                 <label>
-                                  <input type="radio"   type="radio"
+                                  <input type="radio"   
                             name="o1"
                             value={"low_to_high"}
                             onChange={handleLikeFilter}></input>
@@ -183,7 +193,7 @@ const Marketplace = () => {
                               </div>
                               <div className="radio">
                                 <label>
-                                  <input type="radio"  type="radio"
+                                  <input type="radio"  
                             name="o1"
                             value={"A_TO_Z"}
                             onChange={handleLikeFilter}></input>
@@ -455,23 +465,26 @@ const Marketplace = () => {
                         {console.log("data inside nft is",nft)}
                         {nft.map((item,index) => (
                         <Col lg={4} md={6} key={index}>
-
-                          <div class="product-list-box" >
+                          {/* <Link to="/nft-detail"> */}
+                          <div class="product-list-box" onClick={()=>{
+                            single_nft_data(item)
+                          }}>
                             <img src={`http://3.110.179.4:3000/NFTImages/${item.images}`} class="img-fluid" />
                           
                             <div>
                               <h5> </h5>
                               <p>{item.name}</p>
                               <div class="d-flex justify-content-between">
-                                <h6>1.5 ETH</h6>
+                                {/* <h6>{item}</h6> */}
                                 <h6>{item.price}</h6>
                               </div>
-                              <div class="d-flex justify-content-between">
+                              {/* <div class="d-flex justify-content-between">
                                 <p>Floor Price </p>
                                 <p class="red-text"><span>+1.6%</span></p>
-                              </div>
+                              </div> */}
                             </div>
                           </div>
+                          {/* </Link> */}
                         </Col>
                         ))}
                       

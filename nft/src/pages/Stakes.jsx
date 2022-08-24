@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
+import { useDispatch, useSelector } from "react-redux";
+
 import { Row, Col, Modal, Button } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import Layout from "../Components/Layout";
@@ -7,17 +9,29 @@ import axiosMain from "../http/axios/axios_main";
 
 function Stakes() {
 
+  const {
+    isAuthenticated,
+    walletAddress,
+  } = useSelector((state) => state.auth);
+
   const [stakes, setstakes] = useState([]);
+const sliceWalletAddress = walletAddress.slice(0,6)+"..."+walletAddress.slice(-5)
   const getStakes = async () => {
-    const api = await axiosMain.get("/Stakeget");
-    setstakes(api.data.datas[0].list);
-    console.log(api.data.datas[0].list, "req");
+    const api = await axiosMain.post("/StakeUser",{wallet_address:"wertg"
+
+  });
+  console.log({api})
+    setstakes(api.data.data[0].list);
+    console.log(api.data.data[0].list, "req");
   };
   useEffect(() => {
-    getStakes();
-  }, []);
+    if( isAuthenticated){
 
-  
+      getStakes();
+    }
+  }, [ walletAddress]);
+
+
   return (
     <Layout>
       <div>
@@ -29,7 +43,7 @@ function Stakes() {
                   <div className="for-image-box1">
                     <img src="assets/images/detail-img.png" alt="" />
                     <p className="paragraph-main1 py-2">
-                      0x800d9250b9f8f46eef7317988c4b547b781f1af170f8b
+                      { isAuthenticated ? sliceWalletAddress:""}
                     </p>
                   </div>
                   <div className="table-responsive">
@@ -67,7 +81,7 @@ function Stakes() {
                               <td className="td-break">{items.start_date}</td>
                               <td className="td-break">{items.end_date}</td>
                               <td className="td-break">
-                                <button className="btn-active">Active</button>
+                                <button className="btn-active">{items.status}</button>
                               </td>
                               <td className="td-break">
                                 <button className="btn-sell1">Closed</button>
