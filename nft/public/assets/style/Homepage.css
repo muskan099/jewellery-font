@@ -577,3 +577,16 @@ font-family: var(--Poppins);
     display: grid;
     place-items: center;
 }
+.wallet-addressNew{
+    color: white !important;
+}
+.loginUserDisplay{
+    border-radius: 50%;
+    border: 5px solid #a77327;
+    background: black !important;
+}
+.loginUserDisplay-image{
+    height: 50px !important;
+    width: 38px !important;
+    border-radius: 50%;
+}
