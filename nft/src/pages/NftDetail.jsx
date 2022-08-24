@@ -5,10 +5,31 @@ import StoreLayout from "../Components/StoreLayout";
 import Footer from "../Components/UI/Footer"
 
 import axiosMain from "../http/axios/axios_main";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { toast ,ToastContainer } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { TokenApproval } from "../helpers/TokenApproval";
+import { BuyNFT } from "../helpers/BuyNFT";
+import { Transaction } from "../helpers/Transaction";
+import { updateNftStatusSaga } from "../store/reducers/nftReducer";
+import { Sale } from "../helpers/Sale";
+import { clearNftDetail, getNftDetailSaga } from "../store/reducers/nftReducer";
 
 function NftDetail() {
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate()
+
+  const {
+    isAuthenticated,
+    walletAddress,
+    balance,
+    hasWebsiteAccess: hasWebsiteAccessRedux,
+  } = useSelector((state) => state.auth);
+  const { nft, isLoading, totalNfts, tier } = useSelector((state) => state.nft);
+  let { transactions } = useSelector((state) => state.transactions);
+  console.log(nft , "nft ka data");
+  // console.log(totalNfts , "nft ka data");
   const { state } = useLocation("/marketplace");
   const { id } = state;
 const [nftId , setNftId] = useState()
@@ -19,19 +40,28 @@ const [nftId , setNftId] = useState()
   const handleCommonModel = () =>{
     setCommonModel(false)
   }
+
+  const getData = () => {
+    // let userTier = tier ? tier : "1 Tier";
+    const data = { id: id };
+
+    dispatch(getNftDetailSaga(data));
+  };
 //  console.log(id , "id yha aa rhi h");
 
   const [inputdata , setInputdata] = useState({
     id: id
   })
-
+  const [buyStart, setBuyStart] = useState(false);
+  const [nftHash, setNftHash] = useState("");
   const [nftName , setNftName] = useState("")
   const [nftDesc , setNftDesc] = useState("")
   const [nftPrice , setNftPrice] = useState("")
    const [nftImages , setNftImages] = useState("")
+   const [punk,setPunk]=useState(0);
   // const [nftName , setNftName] = useState("")
 
-const getData = async () =>{
+const getData1 = async () =>{
   try{
     const api =  await axiosMain.post("/nftDetailById", inputdata)
     if(api){
@@ -48,8 +78,143 @@ const getData = async () =>{
 }
 
 useEffect(()=>{
-  getData()
+  getData1()
 },[])
+
+
+
+const handleBuy = async (e) => {
+  let price = parseFloat(nft.price);
+
+  if (!isAuthenticated) {
+      toast.warn("Please connect wallet!");
+   } else if (balance<price) {
+     toast.warn("You don't have sufficient amount");
+  
+   } else {
+    setBuyStart(true);
+    const for_sale = nft.forsale == "no" ? true : false;
+
+    if (for_sale) {
+      
+      let approveData = await TokenApproval(
+        price,
+        walletAddress,
+        nft.forsale
+      );
+
+      let tx = await Transaction({ tx: approveData });
+      if (tx) {
+        console.log("tx", tx);
+        // let {tx}=transactions;
+        let taboo_hash = true;
+        try {
+          // taboo_hash = await Transaction(tx.data);
+        } catch (e) {
+          setBuyStart(false);
+          console.log(e);
+        }
+
+        if (taboo_hash) {
+          // let token = await NFTBalance();
+
+          // console.log("ss",token)
+
+          let hash = await BuyNFT(
+            nft.token_id,
+            nft.ipfs,
+            price,
+            nft.signature,
+            tier,
+            punk
+          );
+
+          if (hash) {
+            // token=token+1;
+            //toast.success("Order placed successfully!")
+            let hashNFT = hash;
+            let Nft_hash = hash.hash.transactionHash;
+            hash = hash.hash.transactionHash;
+            hash = hash.substring(0, 5) + "....." + hash.substring(38, 42);
+            setNftHash(hash);
+            let orderObj = { id: nft._id, status: "sold" };
+            dispatch(updateNftStatusSaga(orderObj));
+
+
+            let order = await axiosMain.post("/transactionCreater", {
+              content_id: nft._id,
+              wallet_address: walletAddress,
+              status : "",
+              refund_status:"",
+              total : price,
+              type :"",
+               to_account: "0x9632a9b8afe7CbA98236bCc66b4C019EDC1CD1Cc",
+              // amount: nft.price,
+              // tx_id: Nft_hash,
+              // nft_hash: Nft_hash,
+               tokenUrl: nft.ipfs,
+               token: hashNFT.token,
+            });
+
+            console.log("order", order);
+
+            // handleClose2();
+            // handleShow1();
+
+            setBuyStart(false);
+
+            getData();
+
+            // setTimeout(handleClose1, 3000);
+
+            navigate("/transactions");
+          }
+        } else {
+          setBuyStart(false);
+        }
+      }
+    } else 
+    {
+      let approveData = await TokenApproval(
+        price,
+        walletAddress,
+        nft.forsale
+      );
+
+      let tx = await Transaction({ tx: approveData });
+
+      console.log("nft token", nft.token_id);
+
+      if (tx) {
+      
+          let hash = await Sale(walletAddress, nft.token_id, "1");
+
+         if (hash) {
+          setNftHash(hash.transactionHash);
+          
+          let orderObj = { id: nft._id, status: "sold" };
+
+          dispatch(updateNftStatusSaga(orderObj));
+
+          let order = await axiosMain.post("/create-order", {
+            content_id: nft._id,
+            to_account: "0x9632a9b8afe7CbA98236bCc66b4C019EDC1CD1Cc",
+            amount: nft.price,
+            address: walletAddress,
+            hash: hash.transactionHash,
+            tokenUrl: nft.ipfs,
+            token: nft.token_id,
+          });
+          if (order) {
+             navigate("/transactions");
+           }
+        } else {
+          setBuyStart(false);
+        }
+      }
+    }
+  }
+};
 
 
   return (
@@ -283,7 +448,7 @@ useEffect(()=>{
               <div style={{display:"flex",justifyContent:"center"}}>
 
               <a class="gradient-btn p-2 m-1" onClick={()=>{
-                       toast.error("insufficient amount")
+                       handleBuy()
                       }}> continue</a>
                           <a class="gradient-btn p-2 m-1" onClick={()=>{
                             setCommonModel(false)
