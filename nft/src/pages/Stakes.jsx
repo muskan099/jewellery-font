@@ -15,14 +15,21 @@ function Stakes() {
   } = useSelector((state) => state.auth);
 
   const [stakes, setstakes] = useState([]);
+const sliceWalletAddress = walletAddress.slice(0,6)+"..."+walletAddress.slice(-5)
   const getStakes = async () => {
-    const api = await axiosMain.get("/Stakeget");
-    setstakes(api.data.datas[0].list);
-    console.log(api.data.datas[0].list, "req");
+    const api = await axiosMain.post("/StakeUser",{wallet_address:"wertg"
+
+  });
+  console.log({api})
+    setstakes(api.data.data[0].list);
+    console.log(api.data.data[0].list, "req");
   };
   useEffect(() => {
-    getStakes();
-  }, []);
+    if( isAuthenticated){
+
+      getStakes();
+    }
+  }, [ walletAddress]);
 
 
   return (
@@ -36,7 +43,7 @@ function Stakes() {
                   <div className="for-image-box1">
                     <img src="assets/images/detail-img.png" alt="" />
                     <p className="paragraph-main1 py-2">
-                      
+                      { isAuthenticated ? sliceWalletAddress:""}
                     </p>
                   </div>
                   <div className="table-responsive">
