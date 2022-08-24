@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
+import { useDispatch, useSelector } from "react-redux";
+
 import { Row, Col, Modal, Button } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import Layout from "../Components/Layout";
 import axiosMain from "../http/axios/axios_main";
 
 function Stakes() {
+
+  const {
+    isAuthenticated,
+    walletAddress,
+  } = useSelector((state) => state.auth);
 
   const [stakes, setstakes] = useState([]);
   const getStakes = async () => {
@@ -17,7 +24,7 @@ function Stakes() {
     getStakes();
   }, []);
 
-  
+
   return (
     <Layout>
       <div>
@@ -29,7 +36,7 @@ function Stakes() {
                   <div className="for-image-box1">
                     <img src="assets/images/detail-img.png" alt="" />
                     <p className="paragraph-main1 py-2">
-                      0x800d9250b9f8f46eef7317988c4b547b781f1af170f8b
+                      
                     </p>
                   </div>
                   <div className="table-responsive">
@@ -67,7 +74,7 @@ function Stakes() {
                               <td className="td-break">{items.start_date}</td>
                               <td className="td-break">{items.end_date}</td>
                               <td className="td-break">
-                                <button className="btn-active">Active</button>
+                                <button className="btn-active">{items.status}</button>
                               </td>
                               <td className="td-break">
                                 <button className="btn-sell1">Closed</button>
