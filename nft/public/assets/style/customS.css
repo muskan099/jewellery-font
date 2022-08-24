@@ -181,6 +181,7 @@ border-collapse: separate;
 	background: linear-gradient(90deg, #A77327 0%, #EFD67B 49.79%, #A77327 100%);
 border: none !important;
 padding: 15px;
+text-align: left;
 }
 .table.table-details tr th:first-child {
     border-left-style: solid;
@@ -318,7 +319,7 @@ margin-top: 0;
      width: 100%;
     }
     .table.table-details {
-        min-width: 900px;
+        min-width: 1200px;
     }
     .heading-box-new span {
         font-size: 22px;
@@ -328,6 +329,17 @@ margin-top: 0;
     }
     .heading-box-new a img {
         height: 10px;
+    }
+    .paragraph-main1 {
+        color: #fff;
+        font-size: 14px;
+        font-weight: 400;
+    }
+    .for-image-box1 img {
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        border: 3px solid #a77327;
     }
 }
 
@@ -1793,24 +1805,24 @@ filter: grayscale(0);
     padding: 65px 0 0;
     height:100vh;
 }
-.transactions-table-new tbody .for-body-tr .success-green{
+.table-details tbody .for-body-tr .success-green{
     color:green;
 }
-.transactions-table-new .for-body-tr td .btn-active{
+.table-details .for-body-tr td .btn-active{
     border: 2px solid transparent;
     background-color: green;
-    color:#000;
+    color:#fff;
     padding: 5px;
     font-size: 14px;
     font-weight: 400;
     margin:1px;
     cursor: pointer;
 }
- .transactions-table-new .for-body-tr td .btn-sell1{
+.table-details .for-body-tr td .btn-sell1{
     border: 2px solid transparent;
     border-image: linear-gradient(90deg,#a77327,#efd67b 49.79%,#a77327);
     border-image-slice: 1;
-    padding: 5px;
+    padding: 4px;
     font-size: 14px;
     font-weight: 400;
     border-radius: 6px;
@@ -1826,13 +1838,11 @@ filter: grayscale(0);
     font-weight: 400;
 }
 .transactions-section{
-    padding: 65px 0 0;
     background-color:#000;
     text-align: center;
-    height:100vh;
 }
 .transactions-section .transaction-box{
-    padding: 60px 45px;
+    padding: 15px 15px;
     min-height:100vh;
 }
 .transactions-section .transaction-side-image{
@@ -1861,7 +1871,7 @@ filter: grayscale(0);
   .transactions-table-new thead th {
     color: #fff;
     font-weight: 500;
-    padding: 15px;
+    padding: 12px;
     vertical-align: middle;
   font-size: 18px;
   line-height: 27px;
@@ -1910,7 +1920,7 @@ filter: grayscale(0);
     color: #43DC6E;
   }
   .transactions-table-new tbody td{
-    padding: 24px 14px !important;
+    padding: 22px 12px !important;
     font-size: 14px !important;
     background-color: #1f1f1f;
     border: none !important;
@@ -1965,6 +1975,18 @@ filter: grayscale(0);
     background: linear-gradient(90deg,#a77327,#efd67b 49.79%,#a77327);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+  .table-details .btn-flex-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0;
+  }
+  .table-details .btn-flex-btn .btn-sell1{
+    list-style: none;
+    width: 31.2%;
+    margin: 8px;
   }
   @media (min-width: 320px) and (max-width: 767px){
     .transactions-table-new  {
