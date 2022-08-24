@@ -4,7 +4,25 @@ import { Row, Col, Modal, Button} from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import Layout from '../Components/Layout';
 
+import axiosMain from "../http/axios/axios_main";
+
 function Transactions() {
+
+
+
+  const [transaction, settransaction] = useState([]);
+  const getTransaction = async () => {
+    const api = await axiosMain.get("/Transactionget");
+    settransaction(api.data.datas[0].list);
+    console.log(api.data.datas[0].list,'req');
+  };
+  useEffect(() => {
+    getTransaction();
+  }, []);
+
+
+
+
   return (
 
     <Layout>
@@ -52,19 +70,23 @@ function Transactions() {
                           </tr>
                           </thead>
                           <tbody>
+                          {transaction.map((items, index) => {
+                            return (
                                 <tr className="for-body-tr">
-                                  <td  className="td-break">1</td>
+                                  <td  className="td-break">{index + 1}</td>
                                   <td  className="td-break"><img  className="img-fluid" src="assets/images/detail-img.png" width="40px" alt=""/></td>
                                   <td className="td-break">Hello</td>
                                   <td  className="td-break">35000</td>
                                   <td  className="td-break">0*81021455545545</td>
-                                  <td  className="td-break">0*5654114444444555</td>
+                                  <td  className="td-break">{items.hash}</td>
                                   <td  className="td-break">9160</td>
                                   <td className="td-break success-green">success</td>
                                   <td className="td-break"><div className="btn-flex-btn"><button className="btn-sell1">Sell</button>
                                   <button className="btn-sell1">Cancel</button><button className="btn-sell1">Auction</button></div>
                                   </td>
                                 </tr>
+                                 )
+                                })}
                         </tbody>
                       </table>
                     </div>
