@@ -37,7 +37,7 @@ function Transactions() {
                         <p className="paragraph-main1 py-2">0x800d9250b9f8f46ef8b</p>
                     </div> */}
                     <div className="table-responsive">
-                      <table className="table table-order table-details">
+                      <table className="table table-details">
                         <thead>
                           <tr className="for-back">
                             <th>S.No</th>

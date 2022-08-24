@@ -319,7 +319,7 @@ margin-top: 0;
      width: 100%;
     }
     .table.table-details {
-        min-width: 900px;
+        min-width: 1200px;
     }
     .heading-box-new span {
         font-size: 22px;
@@ -329,6 +329,17 @@ margin-top: 0;
     }
     .heading-box-new a img {
         height: 10px;
+    }
+    .paragraph-main1 {
+        color: #fff;
+        font-size: 14px;
+        font-weight: 400;
+    }
+    .for-image-box1 img {
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        border: 3px solid #a77327;
     }
 }
 

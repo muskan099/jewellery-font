@@ -16,10 +16,10 @@ function stakes() {
                   <div className="stakes">
                     <div className="for-image-box1">
                         <img src="assets/images/detail-img.png" alt=""/>
-                        <p className="paragraph-main1 py-2">0x800d9250b9f8f46eef7317988c4b547b781f1af170f8b</p>
+                        <p className="paragraph-main1 py-2">0x800d9250b9f8f46eef7317988b</p>
                     </div>
                     <div className="table-responsive">
-                      <table className="table  table-details ">
+                      <table className="table  table-details">
                         <thead>
                           <tr className="for-back">
                             <th width="10%">Wallet Address</th>
