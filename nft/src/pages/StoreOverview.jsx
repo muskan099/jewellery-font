@@ -8,11 +8,13 @@ import { getNftSaga } from "../store/reducers/nftReducer";
 const StoreOverview = () => {
   const dispatch = useDispatch();
   const { nft, isLoading, totalNfts } = useSelector((state) => state.nft);
+ 
   useEffect(() => {
 
     dispatch(getNftSaga());
    
   },[])
+  console.log("the data obtained is",{nft})
   return (
     <>
     

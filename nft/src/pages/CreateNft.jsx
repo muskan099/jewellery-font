@@ -199,7 +199,7 @@ function CreateNft() {
 setPhoto({ ...photo, loading: true });
 const formData = new FormData();
       console.log("file", file);
-      formData.append("images", file.name);
+      formData.append("images", file);
       formData.append("name", name);
       formData.append("wallet_address",walletAddress);
    formData.append("description", description);
