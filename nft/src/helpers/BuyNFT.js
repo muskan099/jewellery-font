@@ -23,7 +23,7 @@ export const BuyNFT = async (token_id, uri, minPrice, signature,tier,punk) => {
 
     const creator = "0x0000000000000000000000000000000000000000";
 
-    let amount = "0x" + (minPrice*1000000000).toString(16);
+    let amount = "0x" + (minPrice*1000000000000000000).toString(16);
     minPrice = minPrice.toString();
     // let amount = new Web3.utils.toWei(minPrice, "GWei");
     
