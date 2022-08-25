@@ -1,7 +1,7 @@
 import React ,  { useEffect ,useState, useRef } from "react";
 import Accordion from "react-bootstrap/Accordion";
 import ProgressBar from "react-bootstrap/ProgressBar";
-import { Row, Col, Container } from "react-bootstrap";
+import { Row, Col, Container,FormControl,InputGroup,Button,Form } from "react-bootstrap";
 import Layout from "../Components/Layout";
 import { useDispatch, useSelector } from "react-redux";
 import { getNftSaga } from "../store/reducers/nftReducer";
@@ -12,6 +12,7 @@ const Marketplace = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const inputRangeRef = useRef(null);
+  const [meta, setMeta] = useState("");
   const { nft, isLoading, totalNfts, tier } = useSelector((state) => state.nft);
   console.log({nft})
 
@@ -97,6 +98,13 @@ const Marketplace = () => {
         $("#slider-range").slider("values", 1)
     );
   }
+  const handleSearch = async (e) => {
+    let value = e.target.value;
+
+    if (value) {
+      setMeta(value);
+    }
+  };
   useEffect(() => {
     enableSlider(jQuery, setFilterSearch);
   }, []);
@@ -158,6 +166,56 @@ const Marketplace = () => {
       <Layout>
          <section className="marketplace-list-sec">
             <Container>
+            <Row className="justify-content-between grid-display">
+                  <Col md={3} sm={6} xs={12}>
+                    <h3 className="heading-main mb-0">
+                      <a href="/">
+                        <div className="backward-arrow"></div>
+                      </a>{" "}
+                      Explore
+                    </h3>
+                  </Col>
+                  <Col lg={5} className="m-0">
+                    
+                        
+                         <InputGroup className="mb-3 " >
+                            <Form.Control
+                              placeholder="Search"
+                              className=" search-explore"
+                            />
+                              
+                          </InputGroup>
+                      
+                  </Col>
+                </Row>
+                <Row className=" pagination-row-explore">
+                  <Col
+                    className="set-limit"
+                    lg={4}
+                    md={6}
+                    sm={6}
+                    xs={12}
+                    style={{ display: "flex" }}
+                  >
+                    <Form.Label style={{ minWidth: "100px" }} className="set-limit">
+                      Set Limit
+                    </Form.Label>
+                    <Form.Select
+                    className="form-select-baclground"
+                      onChange={(e) => {
+                        setPaginationData((p) => ({
+                          ...p,
+                          limit: e.target.value,
+                        }));
+                        setCurrentPage(1);
+                      }}
+                    >
+                        <option value="25">25</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                    </Form.Select>
+                  </Col>
+                  </Row>
                 <Row>
                   <Col lg={3} md={4}>
                     <div className=" new-changes-filter">
@@ -217,61 +275,6 @@ const Marketplace = () => {
                               </div>
                             </Accordion.Body>
                           </Accordion.Item>
-                          <Accordion.Item eventKey="1" className="status">
-                            <Accordion.Header className="sidebar_names">
-                              Status
-                            </Accordion.Header>
-                            <Accordion.Body>
-                            <div>
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox" value=""></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Artist 1
-                                  </label>
-                                </div>
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox" value=""></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Artist 2
-                                  </label>
-                                </div>
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox" value=""></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Artist 3
-                                  </label>
-                                </div>
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox" value=""></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Artist 4
-                                  </label>
-                                </div>
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox" value=""></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Artist 5
-                                  </label>
-                                </div>
-
-                              </div>
-                            </Accordion.Body>
-                          </Accordion.Item>
                           <Accordion.Item eventKey="2" className="status">
                             <Accordion.Header className="sidebar_names">
                               Price
@@ -289,6 +292,31 @@ const Marketplace = () => {
                             </div>
                             </Accordion.Body>
                           </Accordion.Item>
+
+                          <Accordion.Item eventKey="5" className="status">
+                            <Accordion.Header className="sidebar_names">
+                              Categories
+                            </Accordion.Header>
+                            <Accordion.Body>
+                            <div>
+                                <div className="checkbox">
+                                  <label>
+                                    <input type="checkbox" value=""></input>
+                                    <span className="cr">
+                                      <i className="cr-icon fa fa-check"></i>
+                                    </span>
+                                  Azuki 3D
+                                  </label>
+                                </div>
+                              
+                              
+                            
+                              </div>
+                            </Accordion.Body>
+                          </Accordion.Item>
+
+
+                       
                           <Accordion.Item eventKey="3" className="status">
                             <Accordion.Header className="sidebar_names">
                               Artist
@@ -301,45 +329,10 @@ const Marketplace = () => {
                                     <span className="cr">
                                       <i className="cr-icon fa fa-check"></i>
                                     </span>
-                                    Artist 1
+                                  Quest
                                   </label>
                                 </div>
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox" value=""></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Artist 2
-                                  </label>
-                                </div>
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox" value=""></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Artist 3
-                                  </label>
-                                </div>
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox" value=""></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Artist 4
-                                  </label>
-                                </div>
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox" value=""></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Artist 5
-                                  </label>
-                                </div>
+                               
 
                               </div>
                             </Accordion.Body>
@@ -356,52 +349,22 @@ const Marketplace = () => {
                                     <span className="cr">
                                       <i className="cr-icon fa fa-check"></i>
                                     </span>
-                                    Artist 1
+                                    BSC 
                                   </label>
                                 </div>
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox" value=""></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Artist 2
-                                  </label>
-                                </div>
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox" value=""></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Artist 3
-                                  </label>
-                                </div>
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox" value=""></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Artist 4
-                                  </label>
-                                </div>
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox" value=""></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Artist 5
-                                  </label>
-                                </div>
+                              
+                             
+                          
 
                               </div>
                             </Accordion.Body>
                           </Accordion.Item>
-                          <Accordion.Item eventKey="5" className="status">
+                       
+                          
+
+                          <Accordion.Item eventKey="1" className="status">
                             <Accordion.Header className="sidebar_names">
-                              Categories
+                              Status
                             </Accordion.Header>
                             <Accordion.Body>
                             <div>
@@ -411,7 +374,7 @@ const Marketplace = () => {
                                     <span className="cr">
                                       <i className="cr-icon fa fa-check"></i>
                                     </span>
-                                    Artist 1
+                                    Auction
                                   </label>
                                 </div>
                                 <div className="checkbox">
@@ -420,36 +383,11 @@ const Marketplace = () => {
                                     <span className="cr">
                                       <i className="cr-icon fa fa-check"></i>
                                     </span>
-                                    Artist 2
+                                    Sell
                                   </label>
                                 </div>
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox" value=""></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Artist 3
-                                  </label>
-                                </div>
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox" value=""></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Artist 4
-                                  </label>
-                                </div>
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox" value=""></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Artist 5
-                                  </label>
-                                </div>
+                              
+                               
 
                               </div>
                             </Accordion.Body>
