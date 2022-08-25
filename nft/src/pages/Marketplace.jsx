@@ -108,7 +108,7 @@ const Marketplace = () => {
   };
   useEffect(() => {
     enableSlider(jQuery, setFilterSearch);
-  }, []);
+  }, );
   useEffect(() => {
     window.scrollTo(0, 0);
     // console.log("category", category);
