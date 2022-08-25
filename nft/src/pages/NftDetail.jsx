@@ -73,10 +73,10 @@ const getData1 = async () =>{
     const api =  await axiosMain.post("/nftDetailById", inputdata)
     if(api){
       console.log(api,"api data");
-      setNftName(api.data.datas.name)
-      setNftDesc(api.data.datas.description)
-      setNftPrice(api.data.datas.price)
-      setNftImages(api.data.datas.images)
+      setNftName(api.data.name)
+      setNftDesc(api.data.description)
+      setNftPrice(api.data.price)
+      setNftImages(api.data.images)
       setAllOffers(api.data.allOffer)
 
     }
