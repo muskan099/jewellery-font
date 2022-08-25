@@ -217,61 +217,6 @@ const Marketplace = () => {
                               </div>
                             </Accordion.Body>
                           </Accordion.Item>
-                          <Accordion.Item eventKey="1" className="status">
-                            <Accordion.Header className="sidebar_names">
-                              Status
-                            </Accordion.Header>
-                            <Accordion.Body>
-                            <div>
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox" value=""></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Artist 1
-                                  </label>
-                                </div>
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox" value=""></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Artist 2
-                                  </label>
-                                </div>
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox" value=""></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Artist 3
-                                  </label>
-                                </div>
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox" value=""></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Artist 4
-                                  </label>
-                                </div>
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox" value=""></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Artist 5
-                                  </label>
-                                </div>
-
-                              </div>
-                            </Accordion.Body>
-                          </Accordion.Item>
                           <Accordion.Item eventKey="2" className="status">
                             <Accordion.Header className="sidebar_names">
                               Price
@@ -289,6 +234,31 @@ const Marketplace = () => {
                             </div>
                             </Accordion.Body>
                           </Accordion.Item>
+
+                          <Accordion.Item eventKey="5" className="status">
+                            <Accordion.Header className="sidebar_names">
+                              Categories
+                            </Accordion.Header>
+                            <Accordion.Body>
+                            <div>
+                                <div className="checkbox">
+                                  <label>
+                                    <input type="checkbox" value=""></input>
+                                    <span className="cr">
+                                      <i className="cr-icon fa fa-check"></i>
+                                    </span>
+                                  Azuki 3D
+                                  </label>
+                                </div>
+                              
+                              
+                            
+                              </div>
+                            </Accordion.Body>
+                          </Accordion.Item>
+
+
+                       
                           <Accordion.Item eventKey="3" className="status">
                             <Accordion.Header className="sidebar_names">
                               Artist
@@ -301,45 +271,10 @@ const Marketplace = () => {
                                     <span className="cr">
                                       <i className="cr-icon fa fa-check"></i>
                                     </span>
-                                    Artist 1
+                                  Quest
                                   </label>
                                 </div>
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox" value=""></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Artist 2
-                                  </label>
-                                </div>
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox" value=""></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Artist 3
-                                  </label>
-                                </div>
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox" value=""></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Artist 4
-                                  </label>
-                                </div>
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox" value=""></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Artist 5
-                                  </label>
-                                </div>
+                               
 
                               </div>
                             </Accordion.Body>
@@ -356,52 +291,22 @@ const Marketplace = () => {
                                     <span className="cr">
                                       <i className="cr-icon fa fa-check"></i>
                                     </span>
-                                    Artist 1
+                                    BSC 
                                   </label>
                                 </div>
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox" value=""></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Artist 2
-                                  </label>
-                                </div>
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox" value=""></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Artist 3
-                                  </label>
-                                </div>
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox" value=""></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Artist 4
-                                  </label>
-                                </div>
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox" value=""></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Artist 5
-                                  </label>
-                                </div>
+                              
+                             
+                          
 
                               </div>
                             </Accordion.Body>
                           </Accordion.Item>
-                          <Accordion.Item eventKey="5" className="status">
+                       
+                          
+
+                          <Accordion.Item eventKey="1" className="status">
                             <Accordion.Header className="sidebar_names">
-                              Categories
+                              Status
                             </Accordion.Header>
                             <Accordion.Body>
                             <div>
@@ -411,7 +316,7 @@ const Marketplace = () => {
                                     <span className="cr">
                                       <i className="cr-icon fa fa-check"></i>
                                     </span>
-                                    Artist 1
+                                    Auction
                                   </label>
                                 </div>
                                 <div className="checkbox">
@@ -420,36 +325,11 @@ const Marketplace = () => {
                                     <span className="cr">
                                       <i className="cr-icon fa fa-check"></i>
                                     </span>
-                                    Artist 2
+                                    Sell
                                   </label>
                                 </div>
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox" value=""></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Artist 3
-                                  </label>
-                                </div>
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox" value=""></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Artist 4
-                                  </label>
-                                </div>
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox" value=""></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Artist 5
-                                  </label>
-                                </div>
+                              
+                               
 
                               </div>
                             </Accordion.Body>
