@@ -581,14 +581,21 @@ font-family: var(--Poppins);
     color: white !important;
 }
 .loginUserDisplay{
-    border-radius: 50%;
-    border: 5px solid #a77327;
+    color:#fff;
     background: black !important;
+    border: none;
+    box-shadow: none !important;
+}
+.loginUserDisplay:focus:hover:active, .loginUserDisplay.dropdown-toggle:focus:hover:active{
+    border-color: black;
+    border: none;
+    box-shadow: none !important;
 }
 .loginUserDisplay-image{
     height: 50px !important;
-    width: 38px !important;
+    width: 50px !important;
     border-radius: 50%;
+
 }
 
 .trending-sec-new{

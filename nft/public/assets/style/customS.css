@@ -64,6 +64,18 @@ color: #000000 !important;
 display: inline-block;
 text-decoration: none !important;
 }
+.gradient-btn1{
+    background: linear-gradient(90deg, #A77327 0%, #EFD67B 49.79%, #A77327 100%);
+    border-radius: 10px;
+    padding: 10px 55px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 30px;
+    color: #000000 !important;
+    display: inline-block;
+    text-decoration: none !important;
+    }
 .border-btn{
 font-style: normal;
 font-weight: 600;
@@ -76,6 +88,24 @@ border-radius: 60px;
 padding: 12px 55px;
 display: inline-block;
 }
+.border-btn1{
+    font-style: normal;
+    font-weight: 900;
+    font-size: 15px;
+    line-height: 30px;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid #A77327;
+    border-radius: 10px;
+    padding: 10px 30px;
+    display: inline-block;
+    color: #A77327;
+    background: linear-gradient(90deg, #A77327 0%, #EFD67B 49.79%, #A77327 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    }
 .border-btn span{
     background: linear-gradient(90deg, #A77327 0%, #EFD67B 49.79%, #A77327 100%);
     -webkit-background-clip: text;
@@ -182,6 +212,8 @@ border-collapse: separate;
 border: none !important;
 padding: 15px;
 text-align: left;
+vertical-align: middle;
+
 }
 .table.table-details tr th:first-child {
     border-left-style: solid;
@@ -1592,6 +1624,20 @@ filter: grayscale(0);
     border: none !important;
     font-size: 14px;
 }
+.nft-create-page .form-select, .nft-create-page .form-select:focus {
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #fff;
+    padding: 10px 15px;
+    box-shadow: none !important;
+    outline: none !important;
+    border: none !important;
+    font-size: 14px;
+}
+.nft-create-page .form-select option{
+    color:#000;
+}
 .nft-create-page .form-label {
     font-weight: 500;
     color: #fff;
@@ -1802,8 +1848,10 @@ filter: grayscale(0);
 .stakes-section{
     background-color:#000;
     text-align: center;
-    padding: 65px 0 0;
-    height:100vh;
+    padding: 45px 0 0;
+
+    
+
 }
 .table-details tbody .for-body-tr .success-green{
     color:green;
@@ -1843,7 +1891,7 @@ filter: grayscale(0);
 }
 .transactions-section .transaction-box{
     padding: 15px 15px;
-    min-height:100vh;
+    
 }
 .transactions-section .transaction-side-image{
     height:100%;
@@ -2039,7 +2087,43 @@ filter: grayscale(0);
     width: 37%;
 }
 
-
+.product-list-box .img-main-box {
+    width: 100%;
+    border-radius: 15px;
+    height: 290px;
+    object-fit: contain;
+}
+.heading-market{
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid rgb(171, 168, 168);
+    padding: 20px 0;
+    margin-bottom: 60px;
+}
+.heading-market .market-head{
+    font-size: 1.75rem;
+    background: linear-gradient(90deg, #A77327 0%, #EFD67B 49.79%, #A77327 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+.news-search-box .news-input{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid #ddd;
+    border-radius: 30px;
+    overflow: hidden;
+}
+.news-search-box .news-input .form-control {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    font-size: 14px;
+    color: #fff;
+}
 
 
 
@@ -2240,3 +2324,8 @@ filter: grayscale(0);
 
 
 /* calender */
+
+.modal-comming-soon .modal-content{
+    border-radius: 20px !important;
+    /* max-width: 400px; */
+}

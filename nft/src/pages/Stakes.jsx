@@ -6,6 +6,7 @@ import { Row, Col, Modal, Button } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import Layout from "../Components/Layout";
 import axiosMain from "../http/axios/axios_main";
+import moment from "moment";
 
 function Stakes() {
 
@@ -17,7 +18,7 @@ function Stakes() {
   const [stakes, setstakes] = useState([]);
 const sliceWalletAddress = walletAddress.slice(0,6)+"..."+walletAddress.slice(-5)
   const getStakes = async () => {
-    const api = await axiosMain.post("/StakeUser",{wallet_address:"wertg"
+    const api = await axiosMain.post("/StakeUser",{wallet_address:walletAddress
 
   });
   console.log({api})
@@ -47,7 +48,7 @@ const sliceWalletAddress = walletAddress.slice(0,6)+"..."+walletAddress.slice(-5
                     </p>
                   </div>
                   <div className="table-responsive">
-                    <table className="table table-borderless transactions-table-new table-order">
+                    <table className="table table-details">
                       <thead>
                         <tr className="for-back">
                           <th width="10%">Wallet Address</th>
@@ -78,8 +79,9 @@ const sliceWalletAddress = walletAddress.slice(0,6)+"..."+walletAddress.slice(-5
                               <td className="td-break">
                                 {items.deposit_amount}
                               </td>
-                              <td className="td-break">{items.start_date}</td>
-                              <td className="td-break">{items.end_date}</td>
+                              <td className="td-break">{moment(items.start_date).format("lll")}</td>
+                              
+                              <td className="td-break">{moment(items.end_date).format("lll")}</td>
                               <td className="td-break">
                                 <button className="btn-active">{items.status}</button>
                               </td>

@@ -122,11 +122,21 @@ useEffect(() => {
                     
                       <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ms-auto">
-                        <Nav.Link href="">About</Nav.Link>
-                            <Nav.Link href="/marketplace">Marketplace</Nav.Link>
-                            <Nav.Link href="/overview">Collection</Nav.Link>
-                            <Nav.Link href="/nft-detail">Community</Nav.Link>
-                            <Nav.Link href="/">Contact Us</Nav.Link>
+                        <Nav.Link  onClick={()=>{
+                          navigate("/")
+                        }}>About</Nav.Link>
+                            <Nav.Link onClick={()=>{
+                          navigate("/marketplace")
+                        }}>Marketplace</Nav.Link>
+                            <Nav.Link onClick={()=>{
+                          navigate("/overview")
+                        }}>Collection</Nav.Link>
+                            <Nav.Link onClick={()=>{
+                          navigate("/nft-detail")
+                        }}>Community</Nav.Link>
+                            <Nav.Link onClick={()=>{
+                          navigate("/")
+                        }}>Contact Us</Nav.Link>
                            
                           
                         </Nav>
