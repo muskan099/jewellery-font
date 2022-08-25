@@ -14,6 +14,7 @@ import { Transaction } from "../helpers/Transaction";
 import { updateNftStatusSaga } from "../store/reducers/nftReducer";
 import { Sale } from "../helpers/Sale";
 import { clearNftDetail, getNftDetailSaga } from "../store/reducers/nftReducer";
+import moment from "moment";
 
 function NftDetail() {
   const dispatch = useDispatch();
@@ -26,19 +27,22 @@ function NftDetail() {
     balance,
     hasWebsiteAccess: hasWebsiteAccessRedux,
   } = useSelector((state) => state.auth);
+
   const { nft, isLoading, totalNfts, tier } = useSelector((state) => state.nft);
+
   let { transactions } = useSelector((state) => state.transactions);
+
   console.log(nft , "nft ka data");
   // console.log(totalNfts , "nft ka data");
   const { state } = useLocation("/marketplace");
-  const { id } = state;
-const [nftId , setNftId] = useState()
-  useEffect(()=>{
-    setNftId(id)
-  },[])
+  const { id } = state || "";
   const [commonModel , setCommonModel] = useState(false)
+  const [commonModel1 , setCommonModel1] = useState(false)
   const handleCommonModel = () =>{
     setCommonModel(false)
+  }
+  const handleCommonModel1 = () =>{
+    setCommonModel1(false)
   }
 
   const getData = () => {
@@ -50,7 +54,7 @@ const [nftId , setNftId] = useState()
 //  console.log(id , "id yha aa rhi h");
 
   const [inputdata , setInputdata] = useState({
-    id: id
+    id: id || ""
   })
   const [buyStart, setBuyStart] = useState(false);
   const [nftHash, setNftHash] = useState("");
@@ -65,6 +69,7 @@ const getData1 = async () =>{
   try{
     const api =  await axiosMain.post("/nftDetailById", inputdata)
     if(api){
+      console.log(api,"api data");
       setNftName(api.data.datas.name)
       setNftDesc(api.data.datas.description)
       setNftPrice(api.data.datas.price)
@@ -84,14 +89,19 @@ useEffect(()=>{
 
 
 const handleBuy = async (e) => {
-  let price = parseFloat(nft.price);
+  console.log(nft.price," nft price");
+  let price = parseFloat(nftPrice);
+  console.log(price,"price");
+  console.log(balance , "balance");
 
   if (!isAuthenticated) {
       toast.warn("Please connect wallet!");
-   } else if (balance<price) {
+   }
+    else if (balance<price) {
      toast.warn("You don't have sufficient amount");
   
-   } else {
+   }
+    else {
     setBuyStart(true);
     const for_sale = nft.forsale == "no" ? true : false;
 
@@ -119,7 +129,7 @@ const handleBuy = async (e) => {
           // let token = await NFTBalance();
 
           // console.log("ss",token)
-
+          console.log(nft.token_id , "nftId");
           let hash = await BuyNFT(
             nft.token_id,
             nft.ipfs,
@@ -233,22 +243,22 @@ const handleBuy = async (e) => {
                 <Col lg={6} md={6} className="ms-auto">
                   <div class="details-side-content">
                     <h4>{nftName}</h4>
-                    <h6>{nftPrice}</h6>
+                    <h6>{nftPrice} JWL</h6>
                     <p>{nftDesc}</p>
                     <div>
                       <a class="gradient-btn" onClick={()=>{
                         setCommonModel(true)
                       }}>Buy Now</a>
                       <a class="border-btn" onClick={()=>{
-                        toast.error("Coming Soon")
+                        setCommonModel1(true)
                       }}><span>Make Offer</span></a>
                     </div>
                     <h5>About Creator :</h5>
                     <div class="fex-box-user">
                       <img src="assets/images/img-nft/user.png" />
                       <div>
-                        <h6>Metamarse</h6>
-                        <p>@marse_meta00</p>
+                        <h6>{nftName}</h6>
+                        <p>{walletAddress}</p>
                       </div>
                     </div>
                   </div>
@@ -276,10 +286,10 @@ const handleBuy = async (e) => {
                       {/* {nft.map((items, index) => {
                             return (
                         <tr>
-                          <td><span><img src="assets/images/img-nft/user.png" />Metamarse</span> </td>
+                          <td><span><img src="assets/images/img-nft/user.png" />{items.name}</span> </td>
                           <td>{items.wallet_address}</td>
-                          <td>{items.created_at}</td>
-                          <td>{items.amount}</td>
+                          <td>{moment(items.created_at).format("lll")}</td>
+                          <td>{items.price} JWL</td>
                         </tr>
                           )
                         })} */}
@@ -406,7 +416,7 @@ const handleBuy = async (e) => {
           keyboard={false}
           aria-labelledby="contained-modal-title-vcenter"
           centered
-          size="sm"
+          size="md"
           className="modal-comming-soon"
         >
           <Modal.Header style={{borderBottom:"1px solid #a77327"}} closeButton={handleCommonModel}></Modal.Header>
@@ -447,11 +457,70 @@ const handleBuy = async (e) => {
               </Table>
               <div style={{display:"flex",justifyContent:"center"}}>
 
-              <a class="gradient-btn p-2 m-1" onClick={()=>{
+              <a class="gradient-btn1 m-1" onClick={()=>{
                        handleBuy()
                       }}> continue</a>
-                          <a class="gradient-btn p-2 m-1" onClick={()=>{
+                          <a class="gradient-btn1 m-1" onClick={()=>{
                             setCommonModel(false)
+                      }}>cancel</a>
+                      </div>
+              </div>
+          </Modal.Body>
+        </Modal>
+
+        <Modal
+          show={commonModel1}
+          onHide={handleCommonModel1}
+          backdrop="static"
+          keyboard={false}
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+          size="md"
+          className="modal-comming-soon"
+        >
+          <Modal.Header style={{borderBottom:"1px solid #a77327"}} closeButton={handleCommonModel}></Modal.Header>
+          <Modal.Body>
+          <div class="bid-modal-box">
+              <h3>Checkout</h3>
+
+              <br />
+
+              <Table>
+                <thead>
+                  <tr>
+                    <th>Your Balance</th>
+                    <th>JWL</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Price</td>
+                    <td>{nftPrice} JWL</td>
+                  </tr>
+                  <tr>
+                    <td>Service Fee</td>
+                    <td> 0 %</td>
+                  </tr>
+                  <tr>
+                    <td>Total will Pay</td>
+
+                    <td>
+                      {/* {nft &&
+                        parseFloat(nft.price) +
+                          (parseFloat(nft.price) *fees) / 100}{" "} */}
+                    {nftPrice} JWL
+                      JWL
+                    </td>
+                  </tr>
+                </tbody>
+              </Table>
+              <div style={{display:"flex",justifyContent:"center"}}>
+
+              <a class="gradient-btn1 m-1" onClick={()=>{
+                       toast.warn("Coming Soon")
+                      }}> continue</a>
+                          <a class="gradient-btn1 m-1" onClick={()=>{
+                            setCommonModel1(false)
                       }}>cancel</a>
                       </div>
               </div>

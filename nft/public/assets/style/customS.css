@@ -64,6 +64,18 @@ color: #000000 !important;
 display: inline-block;
 text-decoration: none !important;
 }
+.gradient-btn1{
+    background: linear-gradient(90deg, #A77327 0%, #EFD67B 49.79%, #A77327 100%);
+    border-radius: 10px;
+    padding: 10px 55px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 30px;
+    color: #000000 !important;
+    display: inline-block;
+    text-decoration: none !important;
+    }
 .border-btn{
 font-style: normal;
 font-weight: 600;
@@ -76,6 +88,24 @@ border-radius: 60px;
 padding: 12px 55px;
 display: inline-block;
 }
+.border-btn1{
+    font-style: normal;
+    font-weight: 900;
+    font-size: 15px;
+    line-height: 30px;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid #A77327;
+    border-radius: 10px;
+    padding: 10px 30px;
+    display: inline-block;
+    color: #A77327;
+    background: linear-gradient(90deg, #A77327 0%, #EFD67B 49.79%, #A77327 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    }
 .border-btn span{
     background: linear-gradient(90deg, #A77327 0%, #EFD67B 49.79%, #A77327 100%);
     -webkit-background-clip: text;
@@ -2280,3 +2310,8 @@ filter: grayscale(0);
 
 
 /* calender */
+
+.modal-comming-soon .modal-content{
+    border-radius: 20px !important;
+    /* max-width: 400px; */
+}
