@@ -1,7 +1,7 @@
 import React ,  { useEffect ,useState, useRef } from "react";
 import Accordion from "react-bootstrap/Accordion";
 import ProgressBar from "react-bootstrap/ProgressBar";
-import { Row, Col, Container } from "react-bootstrap";
+import { Row, Col, Container,FormControl,InputGroup,Button,Form } from "react-bootstrap";
 import Layout from "../Components/Layout";
 import { useDispatch, useSelector } from "react-redux";
 import { getNftSaga } from "../store/reducers/nftReducer";
@@ -12,6 +12,7 @@ const Marketplace = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const inputRangeRef = useRef(null);
+  const [meta, setMeta] = useState("");
   const { nft, isLoading, totalNfts, tier } = useSelector((state) => state.nft);
   console.log({nft})
 
@@ -97,6 +98,13 @@ const Marketplace = () => {
         $("#slider-range").slider("values", 1)
     );
   }
+  const handleSearch = async (e) => {
+    let value = e.target.value;
+
+    if (value) {
+      setMeta(value);
+    }
+  };
   useEffect(() => {
     enableSlider(jQuery, setFilterSearch);
   }, []);
@@ -158,6 +166,56 @@ const Marketplace = () => {
       <Layout>
          <section className="marketplace-list-sec">
             <Container>
+            <Row className="justify-content-between grid-display">
+                  <Col md={3} sm={6} xs={12}>
+                    <h3 className="heading-main mb-0">
+                      <a href="/">
+                        <div className="backward-arrow"></div>
+                      </a>{" "}
+                      Explore
+                    </h3>
+                  </Col>
+                  <Col lg={5} className="m-0">
+                    
+                        
+                         <InputGroup className="mb-3 " >
+                            <Form.Control
+                              placeholder="Search"
+                              className=" search-explore"
+                            />
+                              
+                          </InputGroup>
+                      
+                  </Col>
+                </Row>
+                <Row className=" pagination-row-explore">
+                  <Col
+                    className="set-limit"
+                    lg={4}
+                    md={6}
+                    sm={6}
+                    xs={12}
+                    style={{ display: "flex" }}
+                  >
+                    <Form.Label style={{ minWidth: "100px" }} className="set-limit">
+                      Set Limit
+                    </Form.Label>
+                    <Form.Select
+                    className="form-select-baclground"
+                      onChange={(e) => {
+                        setPaginationData((p) => ({
+                          ...p,
+                          limit: e.target.value,
+                        }));
+                        setCurrentPage(1);
+                      }}
+                    >
+                        <option value="25">25</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                    </Form.Select>
+                  </Col>
+                  </Row>
                 <Row>
                   <Col lg={3} md={4}>
                     <div className=" new-changes-filter">
