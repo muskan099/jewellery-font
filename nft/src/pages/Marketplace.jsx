@@ -55,11 +55,7 @@ const Marketplace = () => {
     price: "",
     letest: false,
     startPrice: 0,
-    category: {
-      Ring: false,
-      Necklace: false,
-      Earing: false,
-    },
+    category: "",
     nftTier: {
       tier1: false,
       tier2: false,
@@ -153,6 +149,17 @@ const Marketplace = () => {
     meta,
     category
   ]);
+  const handleCategory = (e) =>{
+    let value = e.target.value
+    console.log(value, "radio");
+    if (value === "Ring") {
+      setFilterSearch((prev) => ({
+        ...prev,
+        category : value
+      }));
+    } 
+  }
+  console.log(category ,"category");
   const handleLikeFilter = (e) => {
     let value = e.target.value;
     console.log("the value of slider", value)
@@ -359,19 +366,13 @@ const Marketplace = () => {
                             </Accordion.Header>
                             <Accordion.Body>
                             <div>
-                                <div className="checkbox">
+                                <div className="radio">
                                   <label>
-                                    <input type="checkbox"
-                            value="Ring"
-                            checked={filterSearch.category.Ring}
-                            onChange={() =>
-                              setFilterSearch((prev) => ({
-                                ...prev,
-                                category: {
-                                  ...prev.category,
-                                  Ring: !prev.category.Ring,
-                                },
-                              }))
+                                    <input type="radio"
+                            value={"Ring"}
+                         
+                            onChange={
+                              handleCategory
                             }></input>
                                     <span className="cr">
                                       <i className="cr-icon fa fa-check"></i>
