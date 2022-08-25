@@ -20,7 +20,7 @@ function CreateStake() {
   const [stakeTime,setStakeTime]=useState(3)
 
   const [rate,setRate]=useState(12)
-const adminAddress = "0x8768EA5bB7144c39EC3Df69406DcA255d06ac4fC"
+  const adminAddress = "0x8768EA5bB7144c39EC3Df69406DcA255d06ac4fC"
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -110,7 +110,7 @@ const adminAddress = "0x8768EA5bB7144c39EC3Df69406DcA255d06ac4fC"
            toast.warn("Please enter amount to stake!")
      }
      else if(tabooToken<1000){
-       toast.warn("Stake min 1000 taboo tokens")
+       toast.warn("Stake min 1000 jwl tokens")
      }else if(taboo_balance<tabooToken){
        toast.warn("You do not have sufficient fund to stake!")
      }else

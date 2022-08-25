@@ -37,7 +37,8 @@ export const makeStakeTransaction=async(data,selectedAccount)=>{
         //'maxPriorityFeePerGas': 1999999987,
         'data': nftContract.methods.transfer(to_account,data.amount).encodeABI()
         };
-  
-      return tx;
+       
+        let stake={tx:tx}
+      return stake;
   }
  
