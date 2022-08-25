@@ -310,7 +310,7 @@ const handleBuy = async (e) => {
            </Container>
         </section>
 
-        <section className="details-table-sec">
+        <section className="details-table-sec d-none">
            <Container>
               <Row>
                 <Col md={12}>
@@ -324,7 +324,7 @@ const handleBuy = async (e) => {
         </section>
 
 
-        <section className="details-table-sec product-list-sec">
+        <section className="details-table-sec product-list-sec d-none">
            <Container>
            <h3 class="heading-box-new"><span>Releted NFTs</span> <a href="">See all <img src="assets/images/img-nft/arrow-gred.png" /></a></h3>
               <Row>

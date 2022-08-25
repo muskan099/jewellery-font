@@ -20,7 +20,7 @@ function CreateNft() {
 
   const { nft, isLoading } = useSelector((state) => state.nft);
 
-  const { isAuthenticated,  balance, tier } = useSelector(
+  const { isAuthenticated,  balance, tier, walletAddress } = useSelector(
     (state) => state.auth
   );
 
@@ -56,7 +56,7 @@ function CreateNft() {
 
   const { file, photoUrl, loading } = photo;
   const[field, setField] = useState('')
-  const[walletAddress,setWalletAddress] = useState('')
+  //const[walletAddress,setWalletAddress] = useState('')
   const[isSale,setIsSale] = useState('')
 
   const photoUploadHandler = (event, setState) => {
@@ -135,13 +135,7 @@ function CreateNft() {
       setPrice(value);
     }
   };
-  const handleWalletAddress = (e) => {
-    let value = e.target.value;
-
-    if (value) {
-      setWalletAddress(value);
-    }
-  };
+  
   
   const handleQuantity = (e) => {
     let value = e.target.value;
@@ -199,23 +193,38 @@ function CreateNft() {
     
   setCreateStart(true);
 setPhoto({ ...photo, loading: true });
-const data = { name: name, price: price, description: description };
-let ipfs_hash = await ipfsMint(contentImage, data);
-console.log({ipfs_hash})
-const formData = new FormData();
+    const data = { name: name, price: price, description: description };
+    let ipfs_hash = await ipfsMint(contentImage, data);
+    
+    console.log("ipfs hash",ipfs_hash);
+
+
+    let voucher = await Mint(ipfs_hash, price);
+
+    console.log("voucher", voucher.address);
+
+
+    
+     const formData = new FormData();
       console.log("file", file);
       formData.append("images", file);
       formData.append("name", name);
       formData.append("wallet_address",walletAddress);
-   formData.append("description", description);
-   formData.append("meta_tag", metaTag);
+      formData.append("description", description);
+      formData.append("meta_tag", metaTag);
       formData.append("price", price);
       formData.append("field", field);
       formData.append("isSale", isSale);
+      formData.append("ipfs", ipfs_hash);
+      formData.append("signature", voucher.voucher.signature);
+      formData.append("token_id", voucher.voucher.tokenId);
+
+      formData.append("user_id", "62733f0715eb380c440489ee");
+
       // formData.append("quantity", quantity);
       
      
-console.log({formData})
+      console.log({formData})
       dispatch(createNftSaga({formData,toast}));
       console.log("nFT CREATED")
       
@@ -328,15 +337,7 @@ console.log({formData})
                 <Form.Control type="email" placeholder="Your NFT Name" 
                            onKeyUp={(e) => handleName(e)}    />
               </Form.Group>
-              <h3>Wallet Address</h3>
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlInput1"
-              >
              
-                <Form.Control type="email" placeholder="Your Wallet Address" 
-                           onKeyUp={(e) => handleWalletAddress(e)}    />
-              </Form.Group>
            
               <h3>Description</h3>
               <Form.Group
@@ -348,7 +349,7 @@ console.log({formData})
               </Form.Group>
              
               <Row>
-                <Col xs={4}>
+                <Col md={4}>
                   <FormGroup>
                     <h3>Quantity</h3>
                     <Form.Control
@@ -361,10 +362,7 @@ console.log({formData})
                          
                   </FormGroup>
                 </Col>
-              </Row>
-              <br></br>
-              <Row>
-                <Col xs={4}>
+                <Col md={4}>
                  <FormGroup>
                   <h3>Price</h3>
                   <Form.Control
@@ -374,69 +372,14 @@ console.log({formData})
                             />
                   </FormGroup>
                 </Col>
-                <Col xs={4}>
-                <FormGroup>
-                  <h3>Royalities</h3>
-                  <Form.Control placeholder="Enter price for one" />
-                  </FormGroup> 
-                </Col>
-              </Row>
-              <br></br>
-             
-              <h3>Attributes</h3>
-              <Row>
-                <Col md={3}>
+                <Col md={4}>
                    <FormGroup>
                   <Form.Label>Category</Form.Label>
                   <Form.Control placeholder=""   onKeyUp={(e) => handleCategory(e)}/>
                   </FormGroup>
                 </Col>
-                <Col md={3}>
-                 <FormGroup>
-                  <Form.Label>Trait</Form.Label>
-                  <Form.Control placeholder="" />
-                  </FormGroup> 
-                </Col>
-                <Col md={3}>
-                 <FormGroup>
-                  <Form.Label>Percentage</Form.Label>
-                  <Form.Control placeholder="" />
-                  </FormGroup>
-                </Col>
-                <Col md={3}>
-                  <FormGroup>
-                  <br></br>
-                 
-              <a  className="gradient-btn add-attribute-btn" variant="primary" type="submit">
-                    Add Attributes
-                  </a>
-                  </FormGroup>
-                </Col>
               </Row>
-              <br></br>
-              <Row>
-                <Col md={12} className="pb-5">
-                  <Table striped bordered >
-                    <thead>
-                      <tr>
-                        <th>Category</th>
-                        <th>Trait</th>
-                        <th>%</th>
-                        <th>Option</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                       <tr>
-                          <td>xyz</td>
-                          <td>xyz</td>
-                          <td>xyz</td>
-                          <td>xyz</td>
-                       </tr>
-                    </tbody>
-                  </Table>
-                </Col>
-              </Row>
-              <br></br>
+              
               <div>
                         <button
                          className="gradient-btn"
