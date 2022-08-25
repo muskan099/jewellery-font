@@ -28,14 +28,16 @@ function NftDetail() {
     hasWebsiteAccess: hasWebsiteAccessRedux,
   } = useSelector((state) => state.auth);
 
-  const { nft, isLoading, totalNfts, tier } = useSelector((state) => state.nft);
+  const { nft,alloffer, isLoading, totalNfts, tier } = useSelector((state) => state.nft);
 
   let { transactions } = useSelector((state) => state.transactions);
 
   console.log(nft , "nft ka data");
+ console.log(alloffer , "all")
   // console.log(totalNfts , "nft ka data");
   const { state } = useLocation("/marketplace");
   const { id } = state || "";
+  console.log(id , "Id");
   const [commonModel , setCommonModel] = useState(false)
   const [commonModel1 , setCommonModel1] = useState(false)
   const handleCommonModel = () =>{
@@ -62,6 +64,7 @@ function NftDetail() {
   const [nftDesc , setNftDesc] = useState("")
   const [nftPrice , setNftPrice] = useState("")
    const [nftImages , setNftImages] = useState("")
+   const [allOffers , setAllOffers] = useState("")
    const [punk,setPunk]=useState(0);
   // const [nftName , setNftName] = useState("")
 
@@ -74,6 +77,7 @@ const getData1 = async () =>{
       setNftDesc(api.data.datas.description)
       setNftPrice(api.data.datas.price)
       setNftImages(api.data.datas.images)
+      setAllOffers(api.data.allOffer)
 
     }
     console.log(api);
@@ -283,16 +287,16 @@ const handleBuy = async (e) => {
                         </tr>
                       </thead>
                       <tbody>
-                      {/* {nft.map((items, index) => {
+                      {allOffers.length > 0 ? allOffers.map((items, index) => {
                             return (
                         <tr>
-                          <td><span><img src="assets/images/img-nft/user.png" />{items.name}</span> </td>
+                          <td><span><img src="assets/images/img-nft/user.png" />Quest</span> </td>
                           <td>{items.wallet_address}</td>
                           <td>{moment(items.created_at).format("lll")}</td>
-                          <td>{items.price} JWL</td>
+                          <td>{items.offer_price} JWL</td>
                         </tr>
                           )
-                        })} */}
+                        }) : <p style={{color:"white"}}>Not data found</p>}
                         {/* <tr>
                           <td><span><img src="assets/images/img-nft/user.png" />Metamarse</span> </td>
                           <td>21652cda2dcc4a1sc84a584dc</td>

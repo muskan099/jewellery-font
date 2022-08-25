@@ -10,10 +10,8 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Layout from "../Components/Layout"
 import Slider from "react-slick";
-
-
-
-
+import { toast, ToastContainer } from "react-toastify";
+import axiosMain from '../http/axios/axios_main';
 
 function Homepage() {
   const trendingslide = {
@@ -85,13 +83,61 @@ function Homepage() {
       items: 1
     }
   };
-  
+  const [formError, setFormError] = useState("")
+  const [inputdata, setInputdata] = useState({
+    email: "",
+  })
+  const formdata = (event) => {
+    const name = event.target.name
+    const value = event.target.value
+    setInputdata({ ...inputdata, [name]: value })
+  }
+
+  const HandleSubmit = async (e) => {
+    let regex = new RegExp("[a-z0-9]+@[a-z]+.[a-z]{2,3}");
+    if (!inputdata.email) {
+      setFormError("Please enter Email")
+    } else if (!regex.test(inputdata.email)) {
+      setFormError("please enter  valid email")
+    }
+
+    else {
+      setFormError("")
+      try {
+        const response = await axiosMain.post("/subscribNow", inputdata)
+
+        if (response?.data.status) {
+          console.log('true');
+          toast.success(response?.data.message);
+
+
+
+
+        } else {
+          toast.warning(response?.data.message);
+        }
+        setInputdata({
+
+          email: "",
+
+
+        })
+      } catch (error) {
+        console.log('false');
+        toast.error(error.response.message);
+        console.log(error);
+
+      }
+    }
+  }
+
   return (
     <>
       <Layout>
 
         <div className="home-outer-div">
         <section className="banner-home-page">
+        <ToastContainer />
            <Container>
               <Row>
                 
@@ -100,8 +146,8 @@ function Homepage() {
                   <h2>Discover collect, & sell <span>Extraordinary</span> NFTs </h2>
                   <p className="banner-content">the leading NFT Marketplace on Ethereum Home to the next generation of digital creators. Discover the best NFT collections.</p>
                      <div className='banner-btn'>
-                        <a href="/"className='gradient-btn'>Explore</a>
-                        <a href="/" className='border-btn'><span>Create</span></a>
+                        <a href="/marketplace"className='gradient-btn'>Explore</a>
+                        <a href="/create-nft" className='border-btn'><span>Create</span></a>
                     </div>
                     <Row >
                       <Col md={4} sm={4} xs={4}>
@@ -1396,8 +1442,14 @@ function Homepage() {
                          <InputGroup className="mb-3">
                             <Form.Control
                               placeholder="Your Email..."
+                              type="email"
+                      name="email"
+                      onChange={formdata}
+                      value={inputdata.email}
+
+                      id="subscribe"
                             />
-                               <Button className="gradient-btn">
+                               <Button className="gradient-btn" onClick={() => { HandleSubmit() }}>
                                I’m In
                               </Button>
                           </InputGroup>
