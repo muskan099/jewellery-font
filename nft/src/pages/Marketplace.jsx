@@ -37,9 +37,11 @@ const Marketplace = () => {
   const navigate = useNavigate()
   const inputRangeRef = useRef(null);
   const [meta, setMeta] = useState("");
-  const { nft, isLoading, totalNfts, tier } = useSelector((state) => state.nft);
+  const { nft, isLoading, totalNfts } = useSelector((state) => state.nft);
   console.log({nft})
-
+  const { isAuthenticated, walletAddress, tier } = useSelector(
+    (state) => state.auth
+  );
   const single_nft_data =  (item) =>{
     console.log(item, "items");
     navigate("/nft-detail", {state:{id : item._id}})
@@ -47,11 +49,17 @@ const Marketplace = () => {
 
 
   const [RecentlyAdded, setRecentlyAdded] = useState(false);
+ 
   const [filterSearch, setFilterSearch] = useState({
     A_TO_Z: false,
     price: "",
     letest: false,
     startPrice: 0,
+    category: {
+      Ring: false,
+      Necklace: false,
+      Earing: false,
+    },
     nftTier: {
       tier1: false,
       tier2: false,
@@ -61,7 +69,7 @@ const Marketplace = () => {
   });
   
   console.log({jQuery})
-  const { startPrice, endPrice, A_TO_Z, price, letest, nftTier } = filterSearch;
+  const { startPrice, endPrice, A_TO_Z, price, letest, category,nftTier } = filterSearch;
   const getData = (
     page,
     limit = 25,
@@ -72,7 +80,8 @@ const Marketplace = () => {
     endPrice,
     A_TO_Z,
     price,
-    letest
+    letest,
+    category,
   ) => {
     // console.log("get nft saga function \n");
     // console.log("nft tier inside getNftSaga \n", nftTier);
@@ -87,6 +96,8 @@ const Marketplace = () => {
       A_TO_Z,
       price,
       letest,
+      tier: tier,
+      category,
       nftTier,
     };
 
@@ -119,14 +130,15 @@ const Marketplace = () => {
       currentPage,
       paginationData.limit,
       paginationData.skip,
-     tier,
+      tier,
       RecentlyAdded,
       startPrice,
       endPrice,
       A_TO_Z,
       price,
       letest,
-      meta
+      meta,
+      category
     );
   }, [
     RecentlyAdded,
@@ -138,7 +150,8 @@ const Marketplace = () => {
     nftTier,
     currentPage,
     paginationData.limit,
-    meta
+    meta,
+    category
   ]);
   const handleLikeFilter = (e) => {
     let value = e.target.value;
@@ -348,11 +361,22 @@ const Marketplace = () => {
                             <div>
                                 <div className="checkbox">
                                   <label>
-                                    <input type="checkbox" value=""></input>
+                                    <input type="checkbox"
+                            value="Ring"
+                            checked={filterSearch.category.Ring}
+                            onChange={() =>
+                              setFilterSearch((prev) => ({
+                                ...prev,
+                                category: {
+                                  ...prev.category,
+                                  Ring: !prev.category.Ring,
+                                },
+                              }))
+                            }></input>
                                     <span className="cr">
                                       <i className="cr-icon fa fa-check"></i>
                                     </span>
-                                  Azuki 3D
+                                    Ring
                                   </label>
                                 </div>
                               

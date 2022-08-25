@@ -214,6 +214,7 @@ function CreateNft() {
       formData.append("price", price);
       formData.append("field", field);
       formData.append("isSale", isSale);
+      formData.append("category",category)
       formData.append("ipfs", ipfs_hash);
       formData.append("signature", voucher.voucher.signature);
       formData.append("token_id", voucher.voucher.tokenId);
@@ -364,10 +365,10 @@ function CreateNft() {
                     <FormGroup>
                       <h3>Category</h3>
                       <Form.Select aria-label="Default select example"   onChange={(e) => handleCategory(e)}>
-                        <option>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <option>Select Category</option>
+                        <option value="Ring">Ring</option>
+                        <option value="Necklaces">Necklaces</option>
+                        <option value="Earings">Earings</option>
                       </Form.Select>
                     </FormGroup>
                   </Col>
