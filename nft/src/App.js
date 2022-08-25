@@ -10,11 +10,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import Meet from './pages/Meet';
 import Stakes from './pages/Stakes';
 import Transactions from './pages/Transactions';
+import ScrollToTop from './Components/ScrollToTop';
 
 function App() {
   return (
     <div className="App">
          <BrowserRouter>
+         <ScrollToTop>
        <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/marketplace" element={<Marketplace />} />
@@ -31,6 +33,8 @@ function App() {
 
 
         </Routes>
+        </ScrollToTop>
+        
 
     
        </BrowserRouter>
