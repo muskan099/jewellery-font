@@ -158,12 +158,13 @@ function CreateStake() {
 
                 if(hash){
 
-                    const res=await axios.post('/create-stake',{
-                      address:walletAddress,
-                      amount:tabooToken,
-                      date:end_date,
-                      hash:hash,
-                      rate:rate
+                    const res=await axios.post('http://3.110.179.4:3000/stake',{
+                      wallet_address:walletAddress,
+                      deposit_amount:tabooToken,
+                      end_date:end_date,
+                      start_date: today,
+                      // hash:hash.transactionHash,
+                      // rate:rate
                     })
 
 

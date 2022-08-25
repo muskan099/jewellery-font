@@ -128,9 +128,9 @@ useEffect(() => {
                             <Nav.Link onClick={()=>{
                           navigate("/marketplace")
                         }}>Marketplace</Nav.Link>
-                            <Nav.Link onClick={()=>{
+                            {/* <Nav.Link onClick={()=>{
                           navigate("/overview")
-                        }}>Collection</Nav.Link>
+                        }}>Collection</Nav.Link> */}
                             <Nav.Link onClick={()=>{
                           navigate("/nft-detail")
                         }}>Community</Nav.Link>

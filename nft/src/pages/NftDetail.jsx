@@ -61,6 +61,7 @@ function NftDetail() {
   const [buyStart, setBuyStart] = useState(false);
   const [nftHash, setNftHash] = useState("");
   const [nftName , setNftName] = useState("")
+  const [nftStatus , setNftStatus] = useState("")
   const [nftDesc , setNftDesc] = useState("")
   const [nftPrice , setNftPrice] = useState("")
    const [nftImages , setNftImages] = useState("")
@@ -78,6 +79,7 @@ const getData1 = async () =>{
       setNftPrice(api.data.price)
       setNftImages(api.data.images)
       setAllOffers(api.data.allOffer)
+      setNftStatus(api.data.status)
 
     }
     console.log(api);
@@ -143,7 +145,8 @@ const handleBuy = async (e) => {
             price,
             nft.signature,
             tier,
-            punk
+            punk,
+            nft.wallet_address
           );
 
           if (hash) {
@@ -164,13 +167,14 @@ const handleBuy = async (e) => {
               status : "",
               refund_status:"",
               total : price,
-              type :"",
-               to_account: "0x9632a9b8afe7CbA98236bCc66b4C019EDC1CD1Cc",
+              type :"creator",
+               to_address: "0x9632a9b8afe7CbA98236bCc66b4C019EDC1CD1Cc",
               // amount: nft.price,
               // tx_id: Nft_hash,
-              // nft_hash: Nft_hash,
+              hash: Nft_hash,
                tokenUrl: nft.ipfs,
                token: hashNFT.token,
+               
             });
 
             console.log("order", order);
@@ -253,9 +257,19 @@ const handleBuy = async (e) => {
                     <h6>{nftPrice} JWL</h6>
                     <p>{nftDesc}</p>
                     <div>
-                      <a class="gradient-btn" onClick={()=>{
+                    {console.log(nftStatus == 'sold')}
+                      <button class="gradient-btn"  
+                      disabled={
+                          isLoading ||
+                          nft.status == "sold" ||
+                          nft.status == "auction"
+                            ? true
+                            : false
+                        }
+                      
+                      onClick={()=>{
                         setCommonModel(true)
-                      }}>Buy Now</a>
+                      }}>    {nft.status == "sold" ? "Sold Out" : "Buy Now"}</button>
                       <a class="border-btn" onClick={()=>{
                         setCommonModel1(true)
                       }}><span>Make Offer</span></a>
@@ -463,10 +477,11 @@ const handleBuy = async (e) => {
                 </tbody>
               </Table>
               <div style={{display:"flex",justifyContent:"center"}}>
+              
 
-              <a class="gradient-btn1 m-1" onClick={()=>{
+              <a class="gradient-btn1 m-1" disabled={buyStart ? true : false} onClick={()=>{
                        handleBuy()
-                      }}> continue</a>
+                      }}>{buyStart ? "Processing" : "Continue"}</a>
                           <a class="gradient-btn1 m-1" onClick={()=>{
                             setCommonModel(false)
                       }}>cancel</a>

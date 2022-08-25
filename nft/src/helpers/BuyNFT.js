@@ -1,6 +1,6 @@
 import { web3 } from "./Web3Helper";
 import {NFTBalance} from "./NFTBalance"
-export const BuyNFT = async (token_id, uri, minPrice, signature,tier,punk) => {
+export const BuyNFT = async (token_id, uri, minPrice, signature,tier,punk, creator) => {
 
 
   const Web3 = await web3();
@@ -21,7 +21,7 @@ export const BuyNFT = async (token_id, uri, minPrice, signature,tier,punk) => {
 
     const tabooAddress = "0x01b609d990C97514BCE6F67eE28972Fe1E26fc5f";
 
-    const creator = "0x0000000000000000000000000000000000000000";
+    const creator1 = "0x0000000000000000000000000000000000000000";
 
     let amount = "0x" + (minPrice*1000000000000000000).toString(16);
     minPrice = minPrice.toString();
@@ -94,7 +94,7 @@ export const BuyNFT = async (token_id, uri, minPrice, signature,tier,punk) => {
           adminPercent,
           royaltyPercent,
           platformPercent,
-          tabooAddress
+          // tabooAddress
         )
         .encodeABI(),
     });
@@ -122,7 +122,7 @@ export const BuyNFT = async (token_id, uri, minPrice, signature,tier,punk) => {
           adminPercent,
           royaltyPercent,
           platformPercent,
-          tabooAddress
+          // tabooAddress
         )
         .encodeABI(),
     };

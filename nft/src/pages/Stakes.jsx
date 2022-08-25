@@ -74,21 +74,21 @@ const sliceWalletAddress = walletAddress.slice(0,6)+"..."+walletAddress.slice(-5
                                 {items.current_balance}
                               </td>
                               <td className="td-break">
-                                {items.interest_rate}
+                                {items.total_intrest}
                               </td>
                               <td className="td-break">
                                 {items.deposit_amount}
                               </td>
-                              <td className="td-break">{moment(items.start_date).format("lll")}</td>
+                              <td className="td-break">{moment(items.start_date).format("YYYY-MM-DD")}</td>
                               
-                              <td className="td-break">{moment(items.end_date).format("lll")}</td>
+                              <td className="td-break">{moment(items.end_date).format("YYYY-MM-DD")}</td>
                               <td className="td-break">
                                 <button className="btn-active">{items.status}</button>
                               </td>
                               <td className="td-break">
-                                <button className="btn-sell1">Closed</button>
+                                <button className="btn-sell1">Withdraw</button>
                               </td>
-                              <td className="td-break">12</td>
+                              <td className="td-break">{items.interest_rate}</td>
                             </tr>
                           );
                         })}
