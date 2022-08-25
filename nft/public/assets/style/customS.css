@@ -1624,6 +1624,20 @@ filter: grayscale(0);
     border: none !important;
     font-size: 14px;
 }
+.nft-create-page .form-select, .nft-create-page .form-select:focus {
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #fff;
+    padding: 10px 15px;
+    box-shadow: none !important;
+    outline: none !important;
+    border: none !important;
+    font-size: 14px;
+}
+.nft-create-page .form-select option{
+    color:#000;
+}
 .nft-create-page .form-label {
     font-weight: 500;
     color: #fff;
