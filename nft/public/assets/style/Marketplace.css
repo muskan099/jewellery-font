@@ -189,3 +189,17 @@
 .search-explore::placeholder{
   color: white;
 }
+.sidebar-names-border{
+  height: auto;
+    border-radius: 10px !important;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 140%;
+    color: #000000;
+    box-shadow: none !important;
+    outline: none !important;
+    background: linear-gradient(90deg, #A77327 0%, #EFD67B 49.79%, #A77327 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

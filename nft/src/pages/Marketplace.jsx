@@ -9,6 +9,7 @@ import { Link, useNavigate }  from "react-router-dom"
 import axiosMain from "../http/axios/axios_main";
 const jQuery = window.jQuery;
 function enableSlider($, changeStateFn) {
+  
   $("#slider-range").slider({
     range: true,
     min: 0,
@@ -21,13 +22,13 @@ function enableSlider($, changeStateFn) {
         endPrice: Number(ui.values[1]),
       }));
       //   console.log({ range: `${ui.values[0]} - ${ui.values[1]}` });
-      $("#amount").val("Taboo " + ui.values[0] + " - Taboo " + ui.values[1]);
+      $("#amount").val("Jewellery" + ui.values[0] + " - Jewellery" + ui.values[1]);
     },
   });
   $("#amount").val(
-    "Taboo " +
+    "Jewellery" +
       $("#slider-range").slider("values", 0) +
-      " - Taboo " +
+      " - Jewellery" +
       $("#slider-range").slider("values", 1)
   );
 }
@@ -324,24 +325,20 @@ const Marketplace = () => {
                               </div>
                             </Accordion.Body>
                           </Accordion.Item>
-                          <Accordion.Item eventKey="2" className="status">
-                            <Accordion.Header className="sidebar_names">
-                              Price
-                            </Accordion.Header>
-                            <Accordion.Body>
-                              <div class="slider-box">
-                                
-                                  
-                                  <div id="price-range" class="slider">
-                                  <input  type="text"
+                          <div className="status">
+                <label className="sidebar_names sidebar-names-border">Price</label>
+                <div class="slider-box">
+                  <div id="slider-range" class="slider"></div>
+                  <p>
+                    <input
+                      type="text"
                       id="amount"
                       onChange={(e) => console.log(e.target.value)}
-                     
-                      ref={inputRangeRef} ></input>
-                                </div>
-                            </div>
-                            </Accordion.Body>
-                          </Accordion.Item>
+                      ref={inputRangeRef}
+                    ></input>
+                  </p>
+                </div>
+                          </div>
 
                           <Accordion.Item eventKey="5" className="status">
                             <Accordion.Header className="sidebar_names">
