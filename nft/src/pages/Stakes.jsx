@@ -47,7 +47,7 @@ const sliceWalletAddress = walletAddress.slice(0,6)+"..."+walletAddress.slice(-5
                     </p>
                   </div>
                   <div className="table-responsive">
-                    <table className="table table-borderless transactions-table-new table-order">
+                    <table className="table table-details">
                       <thead>
                         <tr className="for-back">
                           <th width="10%">Wallet Address</th>

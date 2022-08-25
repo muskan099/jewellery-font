@@ -56,7 +56,7 @@ const Marketplace = () => {
     page: page,
       skip,
       limit: limit,
-      search_tag: search_tag,
+      search_tag: meta,
      startPrice,
       endPrice,
       A_TO_Z,
@@ -103,6 +103,7 @@ const Marketplace = () => {
 
     if (value) {
       setMeta(value);
+     
     }
   };
   useEffect(() => {
@@ -121,11 +122,10 @@ const Marketplace = () => {
       endPrice,
       A_TO_Z,
       price,
-      letest
+      letest,
+      meta
     );
   }, [
-    
-  
     RecentlyAdded,
     startPrice,
     endPrice,
@@ -135,6 +135,7 @@ const Marketplace = () => {
     nftTier,
     currentPage,
     paginationData.limit,
+    meta
   ]);
   const handleLikeFilter = (e) => {
     let value = e.target.value;
@@ -166,7 +167,42 @@ const Marketplace = () => {
       <Layout>
          <section className="marketplace-list-sec">
             <Container>
-            <Row className="justify-content-between grid-display">
+            <Row>
+              <Col>
+                <div className="heading-market">
+                  <Row className="justify-content-between">
+                    <Col md="6" sm="6">
+                      <h2 className="market-head">
+                        <a>
+                         <i class="fa fa-arrow-left"></i>
+                        </a> 
+                        Marketplace
+                      </h2>
+                    </Col>
+                    <Col md="4" sm="6">
+                      <div className="news-search-box m-0">
+                        <InputGroup className="news-input">
+                          <FormControl
+                            placeholder="Search....."
+                            aria-label="Recipient's username"
+                            aria-describedby="basic-addon2"
+                            onKeyUp={(e) => handleSearch(e)}
+                            className=" search-explore"
+                          />
+                          <Button
+                            variant="outline-secondary"
+                            id="button-addon2"
+                          >
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                          </Button>
+                        </InputGroup>
+                      </div>
+                    </Col>
+                  </Row>
+                </div>
+              </Col>
+            </Row>
+            {/* <Row className="justify-content-between grid-display">
                   <Col md={3} sm={6} xs={12}>
                     <h3 className="heading-main mb-0">
                       <a href="/">
@@ -180,15 +216,25 @@ const Marketplace = () => {
                         
                          <InputGroup className="mb-3 " >
                             <Form.Control
-                              placeholder="Search"
+                              placeholder="Search....."
+                              aria-label="Recipient's username"
+                              aria-describedby="basic-addon2"
+                              onKeyUp={(e) => handleSearch(e)}
                               className=" search-explore"
                             />
+                               {/* <Button>
+                          <img
+                            className="search-icon"
+                            src={"images/icons-Search-Line.png"}
+                            alt="logo"
+                          />
+                        </Button> */}
                               
-                          </InputGroup>
+                          {/* </InputGroup>
                       
                   </Col>
-                </Row>
-                <Row className=" pagination-row-explore">
+                </Row> */} 
+                {/* <Row className=" pagination-row-explore">
                   <Col
                     className="set-limit"
                     lg={4}
@@ -215,7 +261,7 @@ const Marketplace = () => {
                       <option value="100">100</option>
                     </Form.Select>
                   </Col>
-                  </Row>
+                  </Row> */}
                 <Row>
                   <Col lg={3} md={4}>
                     <div className=" new-changes-filter">
@@ -407,7 +453,7 @@ const Marketplace = () => {
                           <div class="product-list-box" onClick={()=>{
                             single_nft_data(item)
                           }}>
-                            <img src={`http://3.110.179.4:3000/NFTImages/${item.images}`} class="img-fluid" />
+                            <img src={`http://3.110.179.4:3000/NFTImages/${item.images}`} class="img-fluid img-main-box" />
                           
                             <div>
                               <h5> </h5>

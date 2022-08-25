@@ -182,6 +182,8 @@ border-collapse: separate;
 border: none !important;
 padding: 15px;
 text-align: left;
+vertical-align: middle;
+
 }
 .table.table-details tr th:first-child {
     border-left-style: solid;
@@ -1802,8 +1804,10 @@ filter: grayscale(0);
 .stakes-section{
     background-color:#000;
     text-align: center;
-    padding: 65px 0 0;
-    height:100vh;
+    padding: 45px 0 0;
+
+    
+
 }
 .table-details tbody .for-body-tr .success-green{
     color:green;
@@ -1843,7 +1847,7 @@ filter: grayscale(0);
 }
 .transactions-section .transaction-box{
     padding: 15px 15px;
-    min-height:100vh;
+    
 }
 .transactions-section .transaction-side-image{
     height:100%;
@@ -2039,7 +2043,43 @@ filter: grayscale(0);
     width: 37%;
 }
 
-
+.product-list-box .img-main-box {
+    width: 100%;
+    border-radius: 15px;
+    height: 290px;
+    object-fit: contain;
+}
+.heading-market{
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid rgb(171, 168, 168);
+    padding: 20px 0;
+    margin-bottom: 60px;
+}
+.heading-market .market-head{
+    font-size: 1.75rem;
+    background: linear-gradient(90deg, #A77327 0%, #EFD67B 49.79%, #A77327 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+.news-search-box .news-input{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid #ddd;
+    border-radius: 30px;
+    overflow: hidden;
+}
+.news-search-box .news-input .form-control {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    font-size: 14px;
+    color: #fff;
+}
 
 
 
