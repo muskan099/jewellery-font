@@ -87,7 +87,10 @@ const getData1 = async () =>{
 }
 
 useEffect(()=>{
-  getData1()
+  getData1();
+
+  getData();
+  
 },[])
 
 
