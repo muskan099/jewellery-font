@@ -590,3 +590,7 @@ font-family: var(--Poppins);
     width: 38px !important;
     border-radius: 50%;
 }
+
+.trending-sec-new{
+    display: none;
+}
