@@ -7,7 +7,30 @@ import { useDispatch, useSelector } from "react-redux";
 import { getNftSaga } from "../store/reducers/nftReducer";
 import { Link, useNavigate }  from "react-router-dom"
 import axiosMain from "../http/axios/axios_main";
-
+const jQuery = window.jQuery;
+function enableSlider($, changeStateFn) {
+  $("#slider-range").slider({
+    range: true,
+    min: 0,
+    max: 3000000,
+    values: [0, 3000000],
+    slide: function (event, ui) {
+      changeStateFn((p) => ({
+        ...p,
+        startPrice: Number(ui.values[0]),
+        endPrice: Number(ui.values[1]),
+      }));
+      //   console.log({ range: `${ui.values[0]} - ${ui.values[1]}` });
+      $("#amount").val("Taboo " + ui.values[0] + " - Taboo " + ui.values[1]);
+    },
+  });
+  $("#amount").val(
+    "Taboo " +
+      $("#slider-range").slider("values", 0) +
+      " - Taboo " +
+      $("#slider-range").slider("values", 1)
+  );
+}
 const Marketplace = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate()
@@ -35,7 +58,8 @@ const Marketplace = () => {
     },
     endPrice: 100000000,
   });
-  const jQuery = window.jQuery;
+  
+  console.log({jQuery})
   const { startPrice, endPrice, A_TO_Z, price, letest, nftTier } = filterSearch;
   const getData = (
     page,
@@ -75,29 +99,7 @@ const Marketplace = () => {
     pages: [],
   });
 
-  function enableSlider($, changeStateFn) {
-    $("#slider-range").slider({
-      range: true,
-      min: 0,
-      max: 3000000,
-      values: [0, 3000000],
-      slide: function (event, ui) {
-        changeStateFn((p) => ({
-          ...p,
-          startPrice: Number(ui.values[0]),
-          endPrice: Number(ui.values[1]),
-        }));
-        //   console.log({ range: `${ui.values[0]} - ${ui.values[1]}` });
-        $("#amount").val("Taboo " + ui.values[0] + " - Taboo " + ui.values[1]);
-      },
-    });
-    $("#amount").val(
-      "Taboo " +
-        $("#slider-range").slider("values", 0) +
-        " - Taboo " +
-        $("#slider-range").slider("values", 1)
-    );
-  }
+ 
   const handleSearch = async (e) => {
     let value = e.target.value;
 
@@ -108,7 +110,7 @@ const Marketplace = () => {
   };
   useEffect(() => {
     enableSlider(jQuery, setFilterSearch);
-  }, );
+  }, []);
   useEffect(() => {
     window.scrollTo(0, 0);
     // console.log("category", category);
@@ -139,6 +141,7 @@ const Marketplace = () => {
   ]);
   const handleLikeFilter = (e) => {
     let value = e.target.value;
+    console.log("the value of slider", value)
     if (value === "A_TO_Z") {
       setFilterSearch((prev) => ({
         ...prev,
@@ -333,6 +336,7 @@ const Marketplace = () => {
                                   <input  type="text"
                       id="amount"
                       onChange={(e) => console.log(e.target.value)}
+                     
                       ref={inputRangeRef} ></input>
                                 </div>
                             </div>

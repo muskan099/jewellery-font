@@ -363,7 +363,7 @@ function CreateNft() {
                   <Col md={4}>
                     <FormGroup>
                       <h3>Category</h3>
-                      <Form.Select aria-label="Default select example">
+                      <Form.Select aria-label="Default select example"   onChange={(e) => handleCategory(e)}>
                         <option>Open this select menu</option>
                         <option value="1">One</option>
                         <option value="2">Two</option>
