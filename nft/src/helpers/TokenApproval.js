@@ -33,7 +33,7 @@ export const TokenApproval = async (price, address,forsale) => {
 
   price=parseInt(price)+parseInt(price);
 
-  price = "0x" + (price * 1000000000).toString(16);
+  price = "0x" + (price * 1000000000000000000).toString(16);
 
   let tx = false;
 

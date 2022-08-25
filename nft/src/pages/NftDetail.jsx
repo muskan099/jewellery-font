@@ -28,7 +28,7 @@ function NftDetail() {
     hasWebsiteAccess: hasWebsiteAccessRedux,
   } = useSelector((state) => state.auth);
 
-  const { nft,alloffer, isLoading, totalNfts, tier } = useSelector((state) => state.nft);
+  const { nftDetail: nft,alloffer, isLoading, totalNfts, tier } = useSelector((state) => state.nft);
 
   let { transactions } = useSelector((state) => state.transactions);
 
@@ -110,7 +110,7 @@ const handleBuy = async (e) => {
    }
     else {
     setBuyStart(true);
-    const for_sale = nft.forsale == "no" ? true : false;
+    const for_sale = nft.isSale == "false" ? true : false;
 
     if (for_sale) {
       
@@ -213,7 +213,7 @@ const handleBuy = async (e) => {
 
           dispatch(updateNftStatusSaga(orderObj));
 
-          let order = await axiosMain.post("/create-order", {
+          let order = await axiosMain.post("/transactionCreater", {
             content_id: nft._id,
             to_account: "0x9632a9b8afe7CbA98236bCc66b4C019EDC1CD1Cc",
             amount: nft.price,

@@ -5,7 +5,8 @@ import Web3 from "web3";
 
 const web3js = new Web3(
     new Web3.providers.HttpProvider(
-      "https://bsc-dataseed.binance.org/"
+      // "https://bsc-dataseed.binance.org/"
+    "https://data-seed-prebsc-1-s1.binance.org:8545/"
     )
 );
 
@@ -28,7 +29,7 @@ export const TabooBalance=async(address)=>{
          balance=await nftContract.methods.balanceOf(address).call({
             from :contractAddress
             });
-            balance=balance/1000000000;
+            balance=balance/1000000000000000000;
           // let usd_balance= await tabooRate(balance)
           return balance;
        }catch(e){
