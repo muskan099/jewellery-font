@@ -257,7 +257,7 @@ const handleBuy = async (e) => {
                     <div class="fex-box-user">
                       <img src="assets/images/img-nft/user.png" />
                       <div>
-                        <h6>{nftName}</h6>
+                        {/* <h6>{nftName}</h6> */}
                         <p>{walletAddress}</p>
                       </div>
                     </div>
