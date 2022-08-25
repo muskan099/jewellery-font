@@ -102,7 +102,7 @@ function CreateStake() {
 
    }
 
-   
+   console.log({walletAddress})
 
   const handleSubmit=async()=>{
     let taboo_balance=parseFloat(balance)

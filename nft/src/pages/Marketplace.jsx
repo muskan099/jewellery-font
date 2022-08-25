@@ -33,6 +33,26 @@ function enableSlider($, changeStateFn) {
   );
 }
 const Marketplace = () => {
+  
+  const [filterSearch, setFilterSearch] = useState({
+    A_TO_Z: false,
+    price: "",
+    letest: false,
+    startPrice: 0,
+    typeCategory: {
+      Ring: false,
+      Necklace:false,
+      Earings:false
+      
+    },
+    nftTier: {
+      tier1: false,
+      tier2: false,
+      tier3: false,
+    },
+    endPrice: 100000000,
+  });
+  const { startPrice, endPrice, A_TO_Z, price, letest, typeCategory,nftTier } = filterSearch;
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const inputRangeRef = useRef(null);
@@ -49,23 +69,12 @@ const Marketplace = () => {
 
 
   const [RecentlyAdded, setRecentlyAdded] = useState(false);
- 
-  const [filterSearch, setFilterSearch] = useState({
-    A_TO_Z: false,
-    price: "",
-    letest: false,
-    startPrice: 0,
-    category: "",
-    nftTier: {
-      tier1: false,
-      tier2: false,
-      tier3: false,
-    },
-    endPrice: 100000000,
-  });
   
-  console.log({jQuery})
-  const { startPrice, endPrice, A_TO_Z, price, letest, category,nftTier } = filterSearch;
+ 
+  
+  
+  console.log({typeCategory})
+  
   const getData = (
     page,
     limit = 25,
@@ -77,7 +86,7 @@ const Marketplace = () => {
     A_TO_Z,
     price,
     letest,
-    category,
+   
   ) => {
     // console.log("get nft saga function \n");
     // console.log("nft tier inside getNftSaga \n", nftTier);
@@ -93,7 +102,7 @@ const Marketplace = () => {
       price,
       letest,
       tier: tier,
-      category,
+      typeCategory,
       nftTier,
     };
 
@@ -121,7 +130,7 @@ const Marketplace = () => {
   }, []);
   useEffect(() => {
     window.scrollTo(0, 0);
-    // console.log("category", category);
+    // console.log("typeCategory", typeCategory);
     getData(
       currentPage,
       paginationData.limit,
@@ -134,7 +143,7 @@ const Marketplace = () => {
       price,
       letest,
       meta,
-      category
+      typeCategory
     );
   }, [
     RecentlyAdded,
@@ -147,19 +156,56 @@ const Marketplace = () => {
     currentPage,
     paginationData.limit,
     meta,
-    category
+    typeCategory
   ]);
-  const handleCategory = (e) =>{
-    let value = e.target.value
-    console.log(value, "radio");
+  
+  
+  const handleTypeCategory = (e) => {
+    let value = e.target.value;
+    console.log("the value of slider", value)
     if (value === "Ring") {
       setFilterSearch((prev) => ({
         ...prev,
-        category : value
+        A_TO_Z: false,
+        letest: false,
+        price: "",
+        typeCategory:{
+          Ring:true,
+          Necklace:false,
+          Earings:false
+        }
+        
+      }));
+    } else  if (value === "Ring") {
+      setFilterSearch((prev) => ({
+        ...prev,
+        A_TO_Z: false,
+        letest: false,
+        price: "",
+        typeCategory:{
+          Ring:true,
+          Necklace:true,
+          Earings:false
+          
+        }
+        
+      }));
+    } else  if (value === "Ring") {
+      setFilterSearch((prev) => ({
+        ...prev,
+        A_TO_Z: false,
+        letest: false,
+        price: "",
+        typeCategory:{
+          Ring:false,
+          Necklace:false,
+          Earings:true
+        }
+        
       }));
     } 
   }
-  console.log(category ,"category");
+  console.log(typeCategory ,"typeCategory");
   const handleLikeFilter = (e) => {
     let value = e.target.value;
     console.log("the value of slider", value)
@@ -169,6 +215,7 @@ const Marketplace = () => {
         A_TO_Z: true,
         letest: false,
         price: "",
+        
       }));
     } else if (value === "letest") {
       setFilterSearch((prev) => ({
@@ -182,6 +229,7 @@ const Marketplace = () => {
         ...prev,
         A_TO_Z: false,
         letest: false,
+       
         price: value,
       }));
     }
@@ -368,16 +416,48 @@ const Marketplace = () => {
                             <div>
                                 <div className="radio">
                                   <label>
-                                    <input type="radio"
-                            value={"Ring"}
+                                    <input     checked={filterSearch.typeCategory.Ring}name="o1" type="radio"
+                            value="Ring"
                          
-                            onChange={
-                              handleCategory
-                            }></input>
+                            onChange={handleTypeCategory}></input>
                                     <span className="cr">
                                       <i className="cr-icon fa fa-check"></i>
                                     </span>
                                     Ring
+                                  </label>
+                                </div>
+                              
+                              
+                            
+                              </div>
+                              <div>
+                                <div className="radio">
+                                  <label>
+                                    <input     checked={filterSearch.typeCategory.Necklace}name="o1" type="radio"
+                            value="Necklace"
+                         
+                            onChange={handleTypeCategory}></input>
+                                    <span className="cr">
+                                      <i className="cr-icon fa fa-check"></i>
+                                    </span>
+                                    Necklace
+                                  </label>
+                                </div>
+                              
+                              
+                            
+                              </div>
+                              <div>
+                                <div className="radio">
+                                  <label>
+                                    <input     checked={filterSearch.typeCategory.Earings}name="o1" type="radio"
+                            value="Earings"
+                         
+                            onChange={handleTypeCategory}></input>
+                                    <span className="cr">
+                                      <i className="cr-icon fa fa-check"></i>
+                                    </span>
+                                    Earings
                                   </label>
                                 </div>
                               
