@@ -15,7 +15,7 @@ import {makeStakeTransaction} from "../helpers/MakeStackTransactions"
 function CreateStake() {
   const { isAuthenticated, walletAddress,balance ,tier} = useSelector((state) => state.auth);
 
-  const[tabooToken,setTabooToken]=useState('')
+  const[tabooToken,setTabooToken]=useState(0)
 
   const [stakeTime,setStakeTime]=useState(3)
 
@@ -105,17 +105,25 @@ function CreateStake() {
    console.log({walletAddress})
 
   const handleSubmit=async()=>{
-    console.log("handle submit is called")
+ 
     let taboo_balance=parseFloat(balance)
+    console.log({tabooToken})
      if(tabooToken==""){
            toast.warn("Please enter amount to stake!")
+           console.log({taboo_balance})
+          
      }
+    
      else if(tabooToken<1000){
        toast.warn("Stake min 1000 jwl tokens")
+       console.log({taboo_balance})
+      
      }else if(taboo_balance<tabooToken){
        toast.warn("You do not have sufficient fund to stake!")
+       console.log({taboo_balance})
      }else
        {
+        console.log({taboo_balance})
           setIsStart(true)
 
           await handleBalance(walletAddress);
@@ -142,6 +150,7 @@ function CreateStake() {
 
           const end_date=moment(today,"YYYY-MM-DD HH:mm:ss",true).format()
           let amount= '0x' + ((tabooToken*1000000000).toString(16));
+        
           const orderObj={status:true,amount:amount,finalprice:tabooToken,address:adminAddress};
           
           // const res=await axios.post('/make-stake',{
