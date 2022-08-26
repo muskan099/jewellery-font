@@ -105,6 +105,7 @@ function CreateStake() {
    console.log({walletAddress})
 
   const handleSubmit=async()=>{
+    console.log("handle submit is called")
     let taboo_balance=parseFloat(balance)
      if(tabooToken==""){
            toast.warn("Please enter amount to stake!")

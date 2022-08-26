@@ -36,13 +36,13 @@ function Footer() {
                       <h6 className="footer-links-heading">Marketplace</h6>
                       <div className="footer-links">
                           <a
-                            href="/explore"
+                            href="/marketplace"
                             className="footer-link"
                           >
                             Discover
                           </a>
                           <a
-                            href="/explore"
+                            href="#Articles"
                             className="footer-link"
                           >
                             Articles

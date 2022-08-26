@@ -176,21 +176,21 @@ const Marketplace = () => {
         }
         
       }));
-    } else  if (value === "Ring") {
+    } else  if (value === "Necklace") {
       setFilterSearch((prev) => ({
         ...prev,
         A_TO_Z: false,
         letest: false,
         price: "",
         typeCategory:{
-          Ring:true,
+          Ring:false,
           Necklace:true,
           Earings:false
           
         }
         
       }));
-    } else  if (value === "Ring") {
+    } else  if (value === "Earings") {
       setFilterSearch((prev) => ({
         ...prev,
         A_TO_Z: false,

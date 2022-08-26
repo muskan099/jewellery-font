@@ -140,9 +140,7 @@ const handleModalClose1 = () => {
                             {/* <Nav.Link onClick={()=>{
                           navigate("/overview")
                         }}>Collection</Nav.Link> */}
-                            <Nav.Link onClick={()=>{
-                          navigate("/nft-detail")
-                        }}>Community</Nav.Link>
+                            <Nav.Link onClick={handleShow}>Community</Nav.Link>
                             <Nav.Link onClick={handleShow}>Contact Us</Nav.Link>
                            
                           
@@ -180,7 +178,7 @@ const handleModalClose1 = () => {
  
  <Dropdown.Item>
                     <Link to="/create-nft" className="dropdown-item">
-                      Create 
+                      Create Nft
                     </Link>
                   </Dropdown.Item>
                   <Dropdown.Item>

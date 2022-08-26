@@ -20,7 +20,9 @@ function NftDetail() {
   const dispatch = useDispatch();
 
   const navigate = useNavigate()
-
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   const {
     isAuthenticated,
     walletAddress,
@@ -270,10 +272,24 @@ const handleBuy = async (e) => {
                       onClick={()=>{
                         setCommonModel(true)
                       }}>    {nft.status == "sold" ? "Sold Out" : "Buy Now"}</button>
-                      <a class="border-btn" onClick={()=>{
-                        setCommonModel1(true)
-                      }}><span>Make Offer</span></a>
+                      <a class="border-btn" onClick={handleShow}><span>Make Offer</span></a>
                     </div>
+                    <Modal
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        className="modal-comming-soon "
+        show={show}
+        onHide={handleClose}
+      >
+        <Modal.Header closeButton className="border-none"></Modal.Header>
+        <Modal.Body>
+          <div className="outer-div">
+            <img src="assets/images/coming-soon.png" className="img-fluid" />
+            <h5>This page will be Added Soon</h5>
+          </div>
+        </Modal.Body>
+      </Modal>
                     <h5>About Creator :</h5>
                     <div class="fex-box-user">
                       <img src="assets/images/img-nft/user.png" />

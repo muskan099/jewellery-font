@@ -1387,7 +1387,7 @@ function Homepage() {
            </Container>
         </section>
 
-        <section className="articles-new-sec">
+        <section className="articles-new-sec" id="Articles">
            <Container>
               <Row>
                   <Col>

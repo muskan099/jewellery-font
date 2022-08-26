@@ -9,7 +9,9 @@ import axiosMain from "../http/axios/axios_main";
 
 function Transactions() {
 
-
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
 
   const {
@@ -61,7 +63,7 @@ function Transactions() {
                     <img src="assets/images/image 3.png" class="img-fluid artist-img" />
                     <div>
                       <h2>Metamarse</h2>
-                      <p>{isAuthenticated ? walletAddress : ''}</p>
+                      <p>{isAuthenticated ? walletAddress.slice(0,6)+"...."+walletAddress.slice(-6) : ''}</p>
                     </div>
                   </div>
                 </div>
@@ -101,18 +103,34 @@ function Transactions() {
                               <td className="td-break"><img className="img-fluid" src={items.nftImage} width="40px" alt="" /></td>
                               <td className="td-break">{items.nftName}</td>
                               <td className="td-break">{items.buying_Price}</td>
-                              <td className="td-break">{items.wallet_address}</td>
-                              <td className="td-break">{items.hash}</td>
+                              <td className="td-break">{items.wallet_address.slice(0,3)}....  {items.wallet_address.slice(-3)}</td>
+                              <td className="td-break">{items.hash.slice(0,3)}....  {items.hash.slice(-3)}</td>
                               <td className="td-break">{items.token}</td>
                               <td className="td-break success-green">{items.status ? 'success' : 'pending'}</td>
-                              <td className="td-break"><div className="btn-flex-btn"><button className="btn-sell1">Sell</button>
-                                <button className="btn-sell1">Cancel</button><button className="btn-sell1">Auction </button></div>
+                              <td className="td-break"><div className="btn-flex-btn"><button className="btn-sell1" onClick={handleShow}>Sell</button>
+                                <button className="btn-sell1" onClick={handleShow}>Cancel</button><button className="btn-sell1" onClick={handleShow}>Auction </button></div>
                               </td>
                             </tr>
                           )
                         })}
                       </tbody>
                     </table>
+                    <Modal
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        className="modal-comming-soon "
+        show={show}
+        onHide={handleClose}
+      >
+        <Modal.Header closeButton className="border-none"></Modal.Header>
+        <Modal.Body>
+          <div className="outer-div">
+            <img src="assets/images/coming-soon.png" className="img-fluid" />
+            <h5>This page will be Added Soon</h5>
+          </div>
+        </Modal.Body>
+      </Modal>
                   </div>
                 </div>
               </Col>
