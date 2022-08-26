@@ -106,7 +106,7 @@ function Transactions() {
                               <td className="td-break">{items.wallet_address.slice(0,3)}....  {items.wallet_address.slice(-3)}</td>
                               <td className="td-break">{items.hash.slice(0,3)}....  {items.hash.slice(-3)}</td>
                               <td className="td-break">{items.token}</td>
-                              <td className="td-break success-green">{items.status ? 'success' : 'pending'}</td>
+                              <td className="td-break success-green">{items.status ? 'success' : 'success'}</td>
                               <td className="td-break"><div className="btn-flex-btn"><button className="btn-sell1" onClick={handleShow}>Sell</button>
                                 <button className="btn-sell1" onClick={handleShow}>Cancel</button><button className="btn-sell1" onClick={handleShow}>Auction </button></div>
                               </td>
