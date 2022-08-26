@@ -102,7 +102,8 @@ const Marketplace = () => {
       price,
       letest,
       tier: tier,
-      typeCategory,
+      typeCategory ,
+      category :  category,
       nftTier,
     };
 
@@ -110,6 +111,7 @@ const Marketplace = () => {
     console.log({ data });
   };
   const [currentPage, setCurrentPage] = useState(1);
+  const[category,setCategory] = useState("")
   const [paginationData, setPaginationData] = useState({
     skip: 0,
     limit: 60,
@@ -164,12 +166,14 @@ const Marketplace = () => {
     let value = e.target.value;
     console.log("the value of slider", value)
     if (value === "Ring") {
+      setCategory("Ring");
+     
       setFilterSearch((prev) => ({
         ...prev,
         A_TO_Z: false,
         letest: false,
         price: "",
-        typeCategory:{
+         typeCategory:{
           Ring:true,
           Necklace:false,
           Earings:false
@@ -177,6 +181,8 @@ const Marketplace = () => {
         
       }));
     } else  if (value === "Necklace") {
+      setCategory("Necklace");
+     
       setFilterSearch((prev) => ({
         ...prev,
         A_TO_Z: false,
@@ -191,6 +197,7 @@ const Marketplace = () => {
         
       }));
     } else  if (value === "Earings") {
+      setCategory("Earings");
       setFilterSearch((prev) => ({
         ...prev,
         A_TO_Z: false,
