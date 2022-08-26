@@ -139,9 +139,9 @@ function Homepage() {
         <section className="banner-home-page">
         <ToastContainer />
            <Container>
-              <Row>
+              <Row className="banner-margin">
                 
-                <Col lg={5} md={6}>
+                <Col lg={5} md={6} >
                 <div className="banner-txt">
                   <h2>Discover collect, & sell <span>Extraordinary</span> NFTs </h2>
                   <p className="banner-content">the leading NFT Marketplace on Ethereum Home to the next generation of digital creators. Discover the best NFT collections.</p>

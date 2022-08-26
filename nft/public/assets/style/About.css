@@ -1,0 +1,24 @@
+.profile-upper-banner{
+    padding: 50px 0;
+  }
+  .profile-upper-banner .profile-banner{
+    width: 100%;
+  }
+  .profile-upper-banner .profile-banner img{
+    max-height: 350px;
+    width: 100%;
+    object-fit: cover;
+  }
+  .about-heading{
+    margin-top: 2.5rem;
+   background: linear-gradient(90deg, #A77327 0%, #EFD67B 49.79%, #A77327 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+   }
+   .text-color-white{
+     color: white;
+   }
+
+
+  

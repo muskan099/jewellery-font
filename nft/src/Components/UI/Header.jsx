@@ -1,4 +1,4 @@
-import { Row, Col, Container,Nav,Button,Navbar,NavDropdown } from "react-bootstrap";
+import { Row, Col, Container,Nav,Button,Navbar,NavDropdown,Modal } from "react-bootstrap";
 import Connect from "../../helpers/Connect";
 import { useDispatch, useSelector } from "react-redux";
 import { TabooBalance } from "../../helpers/TabooHelper";
@@ -26,6 +26,9 @@ function Header() {
     walletAddress,
     hasWebsiteAccess: hasWebsiteAccessRedux,
   } = useSelector((state) => state.auth);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   const [hasWebsiteAccess, setHasWebsiteAccess] = useState(
     hasWebsiteAccessRedux ? true : true
   );
@@ -106,6 +109,12 @@ useEffect(() => {
   }
 }
 );
+const [showModal1, setShowModal1] = useState(false);
+
+const handleModalClose1 = () => {
+  setShowModal1(false);
+};
+
   return (
     <header className='custom-header' fixed="top">
         <Container>
@@ -123,7 +132,7 @@ useEffect(() => {
                       <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ms-auto">
                         <Nav.Link  onClick={()=>{
-                          navigate("/")
+                          navigate("/about")
                         }}>About</Nav.Link>
                             <Nav.Link onClick={()=>{
                           navigate("/marketplace")
@@ -134,9 +143,7 @@ useEffect(() => {
                             <Nav.Link onClick={()=>{
                           navigate("/nft-detail")
                         }}>Community</Nav.Link>
-                            <Nav.Link onClick={()=>{
-                          navigate("/")
-                        }}>Contact Us</Nav.Link>
+                            <Nav.Link onClick={handleShow}>Contact Us</Nav.Link>
                            
                           
                         </Nav>
@@ -203,7 +210,23 @@ useEffect(() => {
                 </Dropdown.Menu>
               </Dropdown>
             </>:  <Button className="nav-btn gradient-btn" onClick={handleLogin}>Connect Wallet</Button>}
-                
+            <Modal
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        className="modal-comming-soon "
+        show={show}
+        onHide={handleClose}
+      >
+        <Modal.Header closeButton className="border-none"></Modal.Header>
+        <Modal.Body>
+          <div className="outer-div">
+            <img src="assets/images/coming-soon.png" className="img-fluid" />
+            <h5>This page will be Added Soon</h5>
+          </div>
+        </Modal.Body>
+      </Modal>
+
                  <Navbar.Toggle aria-controls="basic-navbar-nav" />
             </Navbar>
                </Col>

@@ -2,7 +2,7 @@ body{
 	background-color: #000;
 	min-height: 100vh;
     font-family: 'Poppins', sans-serif !important;
-    padding-top: 120px;
+    padding-top: 120px !important;
 }
 header.custom-header {
     position: fixed;
@@ -2099,6 +2099,7 @@ filter: grayscale(0);
     border-bottom: 1px solid rgb(171, 168, 168);
     padding: 20px 0;
     margin-bottom: 60px;
+    
 }
 .heading-market .market-head{
     font-size: 1.75rem;

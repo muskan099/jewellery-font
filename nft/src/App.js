@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Meet from './pages/Meet';
 import Stakes from './pages/Stakes';
 import Transactions from './pages/Transactions';
+import About from './pages/About';
 import ScrollToTop from './Components/ScrollToTop';
 
 function App() {
@@ -29,7 +30,7 @@ function App() {
           <Route path="/meet" element={<Meet/>} />
           <Route path="/stakes" element={<Stakes/>} />
           <Route path="/transactions" element={<Transactions/>} />
-       \
+        <Route path="/about" element={<About />}/>
 
 
         </Routes>

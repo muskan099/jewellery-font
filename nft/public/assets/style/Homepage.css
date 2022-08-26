@@ -124,6 +124,9 @@ body{
     font-weight: 600;
     margin-right: 16px;
 }
+.banner-margin{
+    margin-top: 5rem;
+}
 .banner-btn-simple{
     border: 1px solid #A77327;
     background-color: black;
@@ -600,4 +603,41 @@ font-family: var(--Poppins);
 
 .trending-sec-new{
     display: none;
+}
+.modal-comming-soon {
+  
+}
+body {
+  padding: 0 !important;
+}
+.modal-comming-soon .border-none {
+  border: none;
+}
+.modal-comming-soon .modal-dialog {
+  max-width: 600px;
+}
+.modal-comming-soon .modal-header .btn-close {
+  position: absolute;
+  color: #871333;
+  right: 15px;
+  top: 15px;
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  opacity: 1;
+}
+.modal-comming-soon .modal-body {
+}
+.modal-comming-soon .outer-div {
+  text-align: center;
+}
+
+.modal-comming-soon .outer-div img {
+  height: 200px;
+}
+.modal-comming-soon .outer-div h5 {
+  font-size: 20px;
+  color: #871333;
+  text-transform: uppercase;
+  margin: 30px 0;
 }
