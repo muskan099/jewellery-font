@@ -566,7 +566,10 @@ const Marketplace = () => {
                           <div class="product-list-box" onClick={()=>{
                             single_nft_data(item)
                           }}>
-                            <img src={`http://3.110.179.4:3001/NFTImages/${item.images}`} class="img-fluid img-main-box" />
+                            <img src={`https://jewellery.donative.in/NFTImages/${item.images}`} class="img-fluid img-main-box" onError={({ currentTarget }) => {
+    currentTarget.onerror = null; // prevents looping
+    currentTarget.src="assets/images/img-nft/list-img.png";
+  }} />
                           
                             <div>
                               <h5> </h5>

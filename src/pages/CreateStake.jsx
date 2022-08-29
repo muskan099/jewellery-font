@@ -168,7 +168,7 @@ function CreateStake() {
 
                 if(hash){
 
-                    const res=await axios.post('http://3.110.179.4:3001/stake',{
+                    const res=await axios.post('https://jewellery.donative.in/stake',{
                       wallet_address:walletAddress,
                       deposit_amount:tabooToken,
                       end_date:end_date,
