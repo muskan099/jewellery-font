@@ -225,8 +225,9 @@ function CreateNft() {
 
       console.log({ formData });
       dispatch(createNftSaga({ formData, toast }));
-      console.log("nFT CREATED");
-      navigate("/marketplace");
+      // toast.success("NFT created");
+      // console.log("nFT CREATED");
+      // navigate("/marketplace");
       // toast.success("Nft Created Succesfully");
 
       setCreateStart(false);

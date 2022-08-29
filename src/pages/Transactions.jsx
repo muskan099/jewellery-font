@@ -107,7 +107,7 @@ function Transactions() {
                               <td className="td-break">{items.hash.slice(0,3)}....  {items.hash.slice(-3)}</td>
                               <td className="td-break">{items.token}</td>
                               <td className="td-break success-green">{items.status ? 'success' : 'success'}</td>
-                              <td className="td-break"><div className="btn-flex-btn"><button className="btn-sell1" onClick={handleShow}>Sell</button>
+                              <td className="td-break"><div className="btn-flex-btn"><button className="btn-sell1" onClick={()=>handleCreateSale(item)}>{item.isOwner=="no"?"Sold":"Sell"}</button>
                                 <button className="btn-sell1" onClick={handleShow}>Cancel</button><button className="btn-sell1" onClick={handleShow}>Auction </button></div>
                               </td>
                             </tr>
@@ -116,21 +116,96 @@ function Transactions() {
                       </tbody>
                     </table>
                     <Modal
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-        className="modal-comming-soon "
-        show={show}
-        onHide={handleClose}
-      >
-        <Modal.Header closeButton className="border-none"></Modal.Header>
-        <Modal.Body>
-          <div className="outer-div">
-            <img src="assets/images/coming-soon.png" className="img-fluid" />
-            <h5>This page will be Added Soon</h5>
-          </div>
-        </Modal.Body>
-      </Modal>
+          show={show}
+          className="modal-comming-soon bid-modal"
+          backdrop="static"
+          keyboard={false}
+          onHide={handleClose}
+          centered
+        >
+          <Modal.Header
+            closeButton
+            className="border-none p-0"
+            style={{ zIndex: "10000000" }}
+          ></Modal.Header>
+          <Modal.Body>
+            <div class="bid-modal-box">
+              <h3>Create a Sell</h3>
+
+              <Form>
+                <Form.Group className="mb-3">
+                  <Form.Label>Min Price (in taboo)</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="min price"
+                    name="minPrice"
+                    onChange={(e) => handleMinPrice(e)}
+                    value={minPrice}
+                  />
+                </Form.Group>
+              </Form>
+
+              <Form>
+                <Form.Group className="mb-3 d-none">
+                  <Form.Label>Platform Fee(%)</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Platform Fee"
+                    name="minPrice"
+                    value="15"
+                    readOnly
+                  />
+                </Form.Group>
+              </Form>
+
+              <Form>
+                <Form.Group className="mb-3">
+                  <Form.Label>Royalty(%)</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="min price"
+                    name="minPrice"
+                    value="2"
+                    readOnly
+                  />
+                </Form.Group>
+              </Form>
+
+              <Form>
+                <Form.Group className="mb-3">
+                  <Form.Label>You get</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="min price"
+                    name="minPrice"
+                    value={total}
+                  />
+                </Form.Group>
+              </Form>
+
+              <div>
+                <a
+                  href="#"
+                  className="blue-btn"
+                  onClick={() => {
+                    if (!isLoading) {
+                      submitSale();
+                    }
+                  }}
+                  disabled={isLoading}
+                  style={{ cursor: isLoading ? "no-drop" : "pointer" }}
+                >
+                  {isLoading ? "Processing" : "Submit"}
+                </a>
+
+                <a href="" className="border-btn">
+                  Cancel
+                </a>
+              </div>
+            </div>
+          </Modal.Body>
+        </Modal>
+
                   </div>
                 </div>
               </Col>

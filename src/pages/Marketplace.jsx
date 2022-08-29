@@ -566,7 +566,7 @@ const Marketplace = () => {
                           <div class="product-list-box" onClick={()=>{
                             single_nft_data(item)
                           }}>
-                            <img src={`http://3.110.179.4:3000/NFTImages/${item.images}`} class="img-fluid img-main-box" />
+                            <img src={`http://3.110.179.4:3001/NFTImages/${item.images}`} class="img-fluid img-main-box" />
                           
                             <div>
                               <h5> </h5>

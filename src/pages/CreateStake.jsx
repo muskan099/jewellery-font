@@ -168,7 +168,7 @@ function CreateStake() {
 
                 if(hash){
 
-                    const res=await axios.post('http://3.110.179.4:3000/stake',{
+                    const res=await axios.post('http://3.110.179.4:3001/stake',{
                       wallet_address:walletAddress,
                       deposit_amount:tabooToken,
                       end_date:end_date,
@@ -230,7 +230,7 @@ function CreateStake() {
                                     xs={12}
                                     className=""
                                 >
-                                    <h4 className="heading-main">Stake NFT</h4>
+                                    <h4 className="heading-main">Create Stake</h4>
                                      
                                         <Form.Group className="mb-3">
                                                 <Form.Label>Stake Amount</Form.Label>
