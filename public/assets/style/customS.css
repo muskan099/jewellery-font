@@ -2495,6 +2495,7 @@ body {
 .contact-form .form-control {
     border: none !important;
     box-shadow: none !important;
+    height: 42px;
 }
 .contact-form .submit-btn {
     background: linear-gradient(90deg, #A77327 0%, #EFD67B 49.79%, #A77327 100%) !important;

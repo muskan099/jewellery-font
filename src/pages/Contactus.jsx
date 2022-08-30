@@ -1,35 +1,119 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {Form, Button} from 'react-bootstrap'
 import Layout from "../Components/Layout";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+
 
 const Contactus = () => {
-  return (
-    
+
+    const [formerror,setFormError] =useState('')
+    const [inputdata,setInputdata ] =useState({
+        email:"" ,
+        mobile_no:"",
+        firstName:"",
+        lastName: "",
+        country:"",
+        message:""
+    });
+
+
+    const formdata = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+        setInputdata({...inputdata,[name]:value})
+
+    }
+
+const handlesubmit = async() =>{
+    let regex = new RegExp("[a-z0-9]+@[a-z]+.[a-z]{2,3}");
+    if (!inputdata.firstName) {
+        setFormError("Please enter FirstName ")
+    }
+    else  if (!inputdata.lastName) {
+        setFormError("Please enter LastName ")
+      }
+      else  if (!inputdata.email) {
+        setFormError("Please enter Email ")
+      }
+      else  if (!regex.test(inputdata.email)) {
+        setFormError("Please enter Valid Email ")
+      }
+
+      else if (!inputdata.mobile_no) {
+        setFormError("Please enter Mobile_No ")
+      }
+      else if (!inputdata.country) {
+        setFormError("Please enter Country ")
+      }
+      else if (!inputdata.message) {
+        setFormError("Please enter Message ")
+      } 
+     
+
+      
+    else {
+        setFormError("")
+        try {
+          const response = await axios.post("https://jewellery.donative.in/contactus", inputdata);
+          toast.success(response?.data.message);
+
+          setInputdata({
+            email:"" ,
+            mobile_no:"",
+            firstName:"",
+            lastName: "",
+            country:"",
+            message:""
+          })
+        } catch (error) {
+          toast.error(error.response.message)
+          console.log(error);
+        }
+      }
+}
+
+
+
+
+
+return (
+
+ 
+
       <Layout>
       <div className='pb-5 pt-5 mt-5 mb-5 '>
       <div className="container">
+      <ToastContainer />
           <div className="row align-items-center">
-            <div className="col-md-8 col-lg-8 m-auto">
+            <div className="col-md-7 col-lg-7 m-auto">
               <Form  className="login-form-box2">
              
                 <h4 className="text-center pb-4">Contact us</h4>
+                
+
                 <div className="contact-form">
+                <div style={{textAlign:"center",color:"red"}}> <p>{formerror}</p></div>
                   <div className="mb-3">
                     <div className="row">
                       <div className="col-md-6">
                         <Form.Label>First Name</Form.Label>
                         <Form.Control
+                            value={inputdata.firstName}
                           type="text"
                           name="firstName"
                           placeholder="Enter First Name"
+                          onChange={formdata}
                         />
                       </div>
                       <div className="col-md-6">
-                        <Form.Label>Last Name</Form.Label>
+                        <Form.Label >Last Name</Form.Label>
                         <Form.Control
+                        value={inputdata.lastName}
                           type="text"
                           name="lastName"
                           placeholder="Enter Last Name"
+                          onChange={formdata}
                         />
                       </div>
                     </div>
@@ -38,14 +122,16 @@ const Contactus = () => {
                   <Form.Group className="mb-3">
                     <div className="row">
                       <div className="col-md-6">
-                        <Form.Label>country Code</Form.Label>
+                        <Form.Label >country Code</Form.Label>
                         <select
                           style={{
                             padding: "5px",
                             borderRadius: "5px",
                           }}
-                          name="countryCode" 
+                          value={inputdata.country}
+                          name="country" 
                           className="form-control"
+                          onChange={formdata}
                         >
                           <option data-countryCode="AE" value="971" selected>
                             UAE (+971)
@@ -700,11 +786,15 @@ const Contactus = () => {
                         </select>
                       </div>
                       <div className="col-md-6">
-                        <Form.Label>phone no.</Form.Label>
+                        <Form.Label >phone no.</Form.Label>
                         <Form.Control
+                        value={inputdata.mobile_no}
+
+                       
                           type="text"
-                          name="phone"
+                          name="mobile_no"
                           placeholder="Enter Phone"
+                          onChange={formdata}
                         />
                       </div>
                     </div>
@@ -713,30 +803,37 @@ const Contactus = () => {
                   <Form.Group className="mb-3">
                      <div className="row">
                       <div className="col-md-6">
-                    <Form.Label>Email address</Form.Label>
+                    <Form.Label >Email address</Form.Label>
                     <Form.Control
+                      value={inputdata.email}
+
                       type="email"
                       name="email"
                       placeholder="Enter Email"
+                      onChange={formdata}
                     />
                   </div>
                       <div className="col-md-6">
-                    <Form.Label>
+                    <Form.Label >
                      Message
                     </Form.Label>
                     <Form.Control
+                     value={inputdata.message}
                       type="text"
-                      name="comments"
+                      name="message"
                       placeholder="Enter Message"
+                      onChange={formdata}
                     />
                      </div>
                     </div>
                   </Form.Group>
                  
                     <Button
+                    onClick= {()=>{
+                        handlesubmit()
+                    }} 
                     className="submit-btn"
-                   
-                    type="submit"
+                    type="button"
                   >
                     Submit
                   </Button>
