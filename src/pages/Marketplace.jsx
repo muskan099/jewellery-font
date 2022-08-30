@@ -58,6 +58,7 @@ const Marketplace = () => {
   const inputRangeRef = useRef(null);
   const [meta, setMeta] = useState("");
   const { nft, isLoading, totalNfts } = useSelector((state) => state.nft);
+  console.log(totalNfts)
   console.log({nft})
   const { isAuthenticated, walletAddress, tier } = useSelector(
     (state) => state.auth
@@ -159,7 +160,7 @@ const Marketplace = () => {
     paginationData.limit,
     meta,
     typeCategory
-  ]);
+  ],[]);
   
   
   const handleTypeCategory = (e) => {
@@ -560,7 +561,12 @@ const Marketplace = () => {
                     <Row >
                      
                         {console.log("data inside nft is",nft)}
-                        {nft.map((item,index) => (
+                       
+                  {!isLoading && nft?.length === 0 && (
+                    <div className="text-center">No Record Found</div>
+                  )}
+                  {!isLoading && nft?.length > 0
+                    ?nft.map((item,index) => (
                         <Col lg={4} md={6} key={index}>
                           {/* <Link to="/nft-detail"> */}
                           <div class="product-list-box" onClick={()=>{
@@ -586,7 +592,7 @@ const Marketplace = () => {
                           </div>
                           {/* </Link> */}
                         </Col>
-                        ))}
+                        ))  : ""}
                       
                         
                     </Row>
