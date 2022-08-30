@@ -141,8 +141,10 @@ const handleModalClose1 = () => {
                           navigate("/overview")
                         }}>Collection</Nav.Link> */}
                             <Nav.Link onClick={handleShow}>Community</Nav.Link>
-                            <Nav.Link onClick={handleShow}>Contact Us</Nav.Link>
-                           
+                            {/* <Nav.Link onClick={handleShow}>Contact Us</Nav.Link> */}
+                            <Nav.Link onClick={()=>{
+                              navigate("/contact")
+                            }}>Contact Us</Nav.Link>
                           
                         </Nav>
                     </Navbar.Collapse>
