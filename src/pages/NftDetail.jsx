@@ -277,7 +277,7 @@ useEffect(() => {
                     <p>{nftDesc}</p>
                     <div>
                     {console.log(nftStatus == 'sold')}
-                    {time ? <CountDownTimer expiryTimestamp={time} /> : ""}
+                    {time && nft.status == "auction" ? <CountDownTimer expiryTimestamp={time} /> : ""}
                       <button class="gradient-btn"  
                       disabled={
                           isLoading ||
