@@ -3,7 +3,7 @@ import Layout from "../Components/Layout";
 import { Row, Col, Container, Modal, Table } from "react-bootstrap";
 import StoreLayout from "../Components/StoreLayout";
 import Footer from "../Components/UI/Footer"
-
+import CountDownTimer from "../Components/UI/CountDownTimer";
 import axiosMain from "../http/axios/axios_main";
 import { useLocation, useNavigate } from "react-router";
 import { toast ,ToastContainer } from "react-toastify";
@@ -238,7 +238,24 @@ const handleBuy = async (e) => {
     }
   }
 };
+const [time, setTime] = useState(false);
 
+useEffect(() => {
+  console.log("inside use effect", nft);
+
+  if (nft && nft.bid_end) {
+    let end_Date = nft.bid_end;
+
+    // let time = new Date(end_Date);
+    console.log(`end date is ${end_Date}`);
+    let current_time = moment(end_Date, "YYYY-MM-DD HH:mm:ss").format();
+    // current_time.setSeconds(current_time.getSeconds() + 600); // 10 minutes timer
+    current_time = new Date(current_time);
+    current_time.setSeconds(current_time.getSeconds() + 600);
+    setTime(current_time);
+    console.log(`time is ${current_time}`);
+  }
+}, [nft]);
 
   return (
     <>
@@ -256,10 +273,11 @@ const handleBuy = async (e) => {
                 <Col lg={6} md={6} className="ms-auto">
                   <div class="details-side-content">
                     <h4>{nftName}</h4>
-                    <h6>{nftPrice} JWL</h6>
+                    <h6> Price: {nftPrice} JWL</h6>
                     <p>{nftDesc}</p>
                     <div>
                     {console.log(nftStatus == 'sold')}
+                    {time ? <CountDownTimer expiryTimestamp={time} /> : ""}
                       <button class="gradient-btn"  
                       disabled={
                           isLoading ||
@@ -326,7 +344,7 @@ const handleBuy = async (e) => {
                           <td><span><img src="assets/images/img-nft/user.png" />Quest</span> </td>
                           <td>{items.wallet_address}</td>
                           <td>{moment(items.created_at).format("lll")}</td>
-                          <td>{items.offer_price} JWL</td>
+                          <td>Price:{items.offer_price} JWL</td>
                         </tr>
                           )
                         }) : <p style={{color:"white"}}>Not data found</p>}

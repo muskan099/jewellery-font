@@ -311,10 +311,12 @@ console.log("this is tx",tx)
             closeButton
             className="border-none p-0"
             style={{ zIndex: "10000000" }}
-          ></Modal.Header>
-          <Modal.Body>
+          >
+               <h3 className="modal-header-h3">Create a Sell</h3>
+          </Modal.Header>
+          <Modal.Body className="modal-background">
             <div class="bid-modal-box">
-              <h3>Create a Sell</h3>
+           
 
               <Form>
                 <Form.Group className="mb-3">
@@ -325,6 +327,7 @@ console.log("this is tx",tx)
                     name="minPrice"
                     onChange={(e) => handleMinPrice(e)}
                     value={minPrice}
+                    className="input-box-auction"
                   />
                 </Form.Group>
               </Form>
@@ -338,6 +341,7 @@ console.log("this is tx",tx)
                     name="minPrice"
                     value="15"
                     readOnly
+                    className="input-box-auction"
                   />
                 </Form.Group>
               </Form>
@@ -351,6 +355,7 @@ console.log("this is tx",tx)
                     name="minPrice"
                     value="2"
                     readOnly
+                    className="input-box-auction"
                   />
                 </Form.Group>
               </Form>
@@ -363,11 +368,12 @@ console.log("this is tx",tx)
                     placeholder="min price"
                     name="minPrice"
                     value={total}
+                    className="input-box-auction"
                   />
                 </Form.Group>
               </Form>
 
-              <div>
+              <div class="btn-sell-container">
                 <a
                   href="#"
                   className="blue-btn"
@@ -403,12 +409,12 @@ console.log("this is tx",tx)
             className="border-none p-0"
             style={{ zIndex: "10000000" }}
           ></Modal.Header>
-          <Modal.Body>
+          <Modal.Body className="modal-background">
             <div class="bid-modal-box">
               <h3>Create an Auction</h3>
-              <p> you will not be able to edit the price, start and end date once auction is created.</p>
+              <p className="bid-modal-box-p"> you will not be able to edit the price, start and end date once auction is created.</p>
 
-              <p>You should have bnb for gas fee in the wallet</p>
+              <p className="bid-modal-box-p">You should have bnb for gas fee in the wallet</p>
 
               <Form>
                 <Form.Group className="mb-3">
@@ -419,6 +425,7 @@ console.log("this is tx",tx)
                     name="minPrice"
                     onChange={handleAuctionInput}
                     value={auctionData.minPrice}
+                    className="input-box-auction"
                   />
                 </Form.Group>
 
@@ -430,6 +437,7 @@ console.log("this is tx",tx)
                     name="startTime"
                     onChange={handleAuctionInput}
                     value={auctionData.startTime}
+                    className="input-box-auction"
                   />
                 </Form.Group>
 
@@ -441,11 +449,12 @@ console.log("this is tx",tx)
                     name="endTime"
                     onChange={handleAuctionInput}
                     value={auctionData.endTime}
+                    className="input-box-auction"
                   />
                 </Form.Group>
               </Form>
 
-              <div>
+              <div class="btn-sell-container">
                 <button
                   className="blue-btn"
                   onClick={() => {

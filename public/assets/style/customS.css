@@ -23,14 +23,29 @@ header.custom-header {
     text-align: left;
     padding: 20px 0;
   }
-  
+  .modal-header-h3{
+    font-size: 1.75rem;
+    background: linear-gradient(90deg, #A77327 0%, #EFD67B 49.79%, #A77327 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 13px;
+  }
   .bid-modal-box h3{
-    font-weight: 500;
-    font-family: 'Poppins', sans-serif !important;
+    font-size: 1.75rem;
+    background: linear-gradient(90deg, #A77327 0%, #EFD67B 49.79%, #A77327 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
   }
   .bid-modal-box p{
+    font-size: 16px !important;
+    margin: 15px 0 !important;
+    color: white !important;
+  }
+  .bid-modal-box label{
     font-size: 16px;
     margin: 15px 0;
+    color: white;
   }
   .bid-modal-box h5{
     font-weight: 600;
@@ -54,6 +69,9 @@ header.custom-header {
   .bid-modal-box.success-bid-box{
     text-align: center;
     padding: 20px 0;
+  }
+  .bid-modal-box-p{
+      color: white;
   }
   
   .bid-modal-box.success-bid-box h3{
@@ -130,6 +148,9 @@ line-height: 150%;
 display: flex;
 align-items: center;
 color: #FFFFFF;
+}
+.auction-btn-container{
+    display: grid;
 }
 .details-side-content p{
 font-style: normal;
@@ -2187,6 +2208,7 @@ filter: grayscale(0);
     border-bottom: 1px solid rgb(171, 168, 168);
     padding: 20px 0;
     margin-bottom: 60px;
+   
     
 }
 .heading-market .market-head{
@@ -2216,26 +2238,36 @@ filter: grayscale(0);
 
 .modal-comming-soon {
 }
-body {
-  padding: 0 !important;
-}
+
 .modal-comming-soon .border-none {
   border: none;
+  background: black;
 }
 .modal-comming-soon .modal-dialog {
   max-width: 600px;
 }
 .modal-comming-soon .modal-header .btn-close {
   position: absolute;
-  color: #871333;
+  color: #fff;
   right: 15px;
   top: 15px;
   outline: none !important;
   border: none !important;
   box-shadow: none !important;
   opacity: 1;
+  background-color: #a77327;
+}
+.color-p-timer span {
+    color: #fff;
 }
 .modal-comming-soon .modal-body {
+   
+}
+.modal-background{
+    background: #000;
+}
+.background-color-modal{
+    background: #000 !important;
 }
 .modal-comming-soon .outer-div {
   text-align: center;
@@ -2250,31 +2282,42 @@ body {
   text-transform: uppercase;
   margin: 30px 0;
 }
+.btn-sell-container{
+    display: grid;
+    grid-auto-flow: column;
+    margin-top: 10px;
+}
 .blue-btn {
-    background-color: #871434 !important;
+    background: linear-gradient(90deg, #A77327 0%, #EFD67B 49.79%, #A77327 100%);
     box-shadow: none !important;
     padding: 8px 25px;
-    color: #fff !important;
+    color: #000 !important;
     text-decoration: none;
     border-radius: 30px;
     display: inline-block;
-    border: 1px solid #871434 !important;
+    border: 1px solid #A77327;
     margin: 10px 5px 0;
-    font-weight: 600;
+     font-weight: 600;
+     font-size: 20px;
+}
+a {
+
 }
 .border-btn{
     background-color: transparent !important;
     box-shadow: none !important;
       padding: 8px 25px;
-      color: #871434 !important;
+      color: #fff !important;
       text-decoration: none;
       border-radius: 30px;
       display: inline-block;
-      border: 1px solid #871434 !important;
+      border: 1px solid #A77327;
       margin: 10px 5px 0;
        font-weight: 600;
   }
-
+.input-box-auction{
+    border-radius: 17px;
+}
 
 
 

@@ -582,7 +582,8 @@ const Marketplace = () => {
                               <p>{item.name}</p>
                               <div class="d-flex justify-content-between">
                                 {/* <h6>{item}</h6> */}
-                                <h6>{item.price}</h6>
+                                <h6>Price:{item.price}JWL</h6>
+                                <h6>{item.status == "sold"? "Sold" : "InStock" }</h6>
                               </div>
                               {/* <div class="d-flex justify-content-between">
                                 <p>Floor Price </p>
