@@ -62,7 +62,7 @@ function Footer() {
                       <a href="/" className="footer-link">
                         How it Works
                       </a>
-                      <a href="/" className="footer-link">
+                      <a href="/contact" className="footer-link">
                         Help
                       </a>
                     </div>

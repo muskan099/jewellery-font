@@ -149,7 +149,7 @@ function CreateStake() {
 
 
           const end_date=moment(today,"YYYY-MM-DD HH:mm:ss",true).format()
-          let amount= '0x' + ((tabooToken*1000000000).toString(16));
+          let amount= '0x' + ((tabooToken*1000000000000000000).toString(16));
         
           const orderObj={status:true,amount:amount,finalprice:tabooToken,address:adminAddress};
           
