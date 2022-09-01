@@ -12,6 +12,7 @@ import Stakes from './pages/Stakes';
 import Transactions from './pages/Transactions';
 import About from './pages/About';
 import ScrollToTop from './Components/ScrollToTop';
+import Contactus from './pages/Contactus';
 
 function App() {
   return (
@@ -31,7 +32,7 @@ function App() {
           <Route path="/stakes" element={<Stakes/>} />
           <Route path="/transactions" element={<Transactions/>} />
         <Route path="/about" element={<About />}/>
-
+        <Route path="/contact" element={<Contactus />}/>
 
         </Routes>
         </ScrollToTop>
