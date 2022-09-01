@@ -338,7 +338,7 @@ useEffect(() => {
                         </tr>
                       </thead>
                       <tbody>
-                      {allOffers.length > 0 ? allOffers.map((items, index) => {
+                      {/* { nft.map((items, index) => {
                             return (
                         <tr>
                           <td><span><img src="assets/images/img-nft/user.png" />Quest</span> </td>
@@ -347,7 +347,8 @@ useEffect(() => {
                           <td>Price:{items.offer_price} JWL</td>
                         </tr>
                           )
-                        }) : <p style={{color:"white"}}>Not data found</p>}
+                        }) } */}
+                        {/* <p style={{color:"white"}}>Not data found</p */}
                         {/* <tr>
                           <td><span><img src="assets/images/img-nft/user.png" />Metamarse</span> </td>
                           <td>21652cda2dcc4a1sc84a584dc</td>
