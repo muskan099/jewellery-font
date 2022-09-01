@@ -34,13 +34,13 @@ function Footer() {
                           width={"40"}
                         />
                       </a>
-                      <a href="" target={"_blank"} className="telegram-link">
+                      <a href="/" target={"_blank"} className="telegram-link">
                         <img src="assets/images/instagram.png" width={"40"} />
                       </a>
-                      <a href="" target={"_blank"} className="insta-link">
+                      <a href="/" target={"_blank"} className="insta-link">
                         <img src="assets/images/youtube.png" width={"40"} />
                       </a>
-                      <a href="" target={"_blank"} className="insta-link">
+                      <a href="/" target={"_blank"} className="insta-link">
                         <img
                           src="assets/images/social-media-icon-1.png"
                           width={"40"}
@@ -59,10 +59,10 @@ function Footer() {
                       <a href="#Articles" className="footer-link">
                         Articles
                       </a>
-                      <a href="/explore" className="footer-link">
+                      <a href="/" className="footer-link">
                         How it Works
                       </a>
-                      <a href="/explore" className="footer-link">
+                      <a href="/" className="footer-link">
                         Help
                       </a>
                     </div>
@@ -73,16 +73,16 @@ function Footer() {
                     <h6 className="footer-links-heading">Links</h6>
 
                     <div className="footer-links">
-                      <a href="#" className="footer-link">
+                      <a href="/" className="footer-link">
                         Tokens
                       </a>
-                      <a href="#" className="footer-link">
+                      <a href="/" className="footer-link">
                         API
                       </a>
-                      <a href="#" className="footer-link">
+                      <a href="/" className="footer-link">
                         Big Bounty
                       </a>
-                      <a href="#" className="footer-link">
+                      <a href="/" className="footer-link">
                         Become Partners
                       </a>
                     </div>
