@@ -13,6 +13,7 @@ import Transactions from './pages/Transactions';
 import About from './pages/About';
 import ScrollToTop from './Components/ScrollToTop';
 import Contactus from './pages/Contactus';
+import Articles from './pages/Articles';
 
 function App() {
   return (
@@ -33,7 +34,7 @@ function App() {
           <Route path="/transactions" element={<Transactions/>} />
         <Route path="/about" element={<About />}/>
         <Route path="/contact" element={<Contactus />}/>
-
+        <Route path="/articles" element={<Articles />}/>
         </Routes>
         </ScrollToTop>
         

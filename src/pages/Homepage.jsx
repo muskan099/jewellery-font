@@ -1829,7 +1829,7 @@ function Homepage() {
                   </div>
             
                   <div className="text-center">
-                    <a href="/" className="border-btn">
+                    <a href="/articles" className="border-btn">
                       <span>see more</span>
                     </a>
                   </div>
