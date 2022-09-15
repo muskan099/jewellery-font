@@ -179,6 +179,7 @@ console.log("this is tx",tx)
 
           toast.success("Auction Started Successfully!");
           setAuctionData((p) => ({ ...p, isLoading: false, buttonMessage: "" }));
+          setShowAuction(false)
           handleClose();
         }else
           {
