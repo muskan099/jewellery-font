@@ -227,9 +227,9 @@ function CreateNft() {
       dispatch(createNftSaga({ formData, toast }));
       // toast.success("NFT created");
       // console.log("nFT CREATED");
-      // navigate("/marketplace");
+  
       // toast.success("Nft Created Succesfully");
-
+      navigate("/marketplace");
       setCreateStart(false);
     }
     // setTimeout(navigate("/explore"), 120000);
@@ -390,18 +390,9 @@ function CreateNft() {
                   <img className="img-main" src={photo.photoUrl} width={200} />
                 )}
                 <div>
-                  <h5>Azuki 3D </h5>
-                  <p>AZUKI.JP</p>*{" "}
-                  <div class="d-flex justify-content-between">
-                    <h6>1.5 ETH</h6>
-                    <h6>$1907</h6>
-                  </div>
-                  <div class="d-flex justify-content-between">
-                    <p>Floor Price </p>
-                    <p class="green-color">
-                      <span>+1.6%</span>
-                    </p>
-                  </div>
+                
+                 
+                  
                 </div>
               </div>
             </Col>

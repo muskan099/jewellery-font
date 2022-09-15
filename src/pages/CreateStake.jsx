@@ -11,6 +11,8 @@ import { loginSaga, logout } from "../store/reducers/authReducer";
 import moment from 'moment';
 import { Transaction } from "../helpers/Transaction";
 import {makeStakeTransaction} from "../helpers/MakeStackTransactions"
+import {web3} from "../helpers/Web3Helper";
+import VerifyTransactions from "../helpers/VerifyTransactions";
 
 function CreateStake() {
   const { isAuthenticated, walletAddress,balance ,tier} = useSelector((state) => state.auth);
@@ -165,8 +167,9 @@ function CreateStake() {
 
              if(tx){
                const hash=await Transaction(tx)
-
-                if(hash){
+             
+             let hash1 = await VerifyTransactions(hash,tabooToken)   
+                if(hash1){
 
                     const res=await axios.post('https://jewellery.donative.in/stake',{
                       wallet_address:walletAddress,
@@ -183,7 +186,7 @@ function CreateStake() {
 
                    toast.success("Token staked successfully!")
 
-                   navigate('/stakes')
+                  //  navigate('/stakes')
 
                 }else{
 
