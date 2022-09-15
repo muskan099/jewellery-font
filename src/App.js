@@ -14,6 +14,7 @@ import About from "./pages/About";
 import ScrollToTop from "./Components/ScrollToTop";
 import Contactus from "./pages/Contactus";
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import Articles from "./pages/Articles";
 
 function App() {
   return (
@@ -27,14 +28,14 @@ function App() {
             <Route path="/nft-detail" element={<NftDetail />} />
             <Route path="/create-nft" element={<CreateNft />} />
             <Route path="/create-stake" element={<CreateStake />} />
-
+            <Route path="/admin-dashboard" element={<AdminDashboard />} />
             <Route path="/create-stake" element={<CreateStake />} />
             <Route path="/meet" element={<Meet />} />
             <Route path="/stakes" element={<Stakes />} />
             <Route path="/transactions" element={<Transactions />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contactus />} />
-            <Route path="/admin-dashboard" element={<AdminDashboard />} />
+            <Route path="/articles" element={<Articles />} />
           </Routes>
         </ScrollToTop>
       </BrowserRouter>
