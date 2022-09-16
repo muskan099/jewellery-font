@@ -9,6 +9,7 @@ import { useLocation, useNavigate } from "react-router";
 import { toast ,ToastContainer } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { TokenApproval } from "../helpers/TokenApproval";
+import { MakeOffer } from "../helpers/MakeOffer";
 import { BuyNFT } from "../helpers/BuyNFT";
 import { Transaction } from "../helpers/Transaction";
 import { updateNftStatusSaga } from "../store/reducers/nftReducer";
@@ -23,6 +24,18 @@ function NftDetail() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const [auctionData, setAuctionData] = useState({
+    offerPrice: "",
+    auctionProcessing: false,
+    buttonMessage: "",
+  });
+
+  const { offerPrice, auctionProcessing, buttonMessage } = auctionData;
+
+   
+  const [offerStart, setOfferStart] = useState(false);
+
   const {
     isAuthenticated,
     walletAddress,
@@ -257,6 +270,75 @@ useEffect(() => {
   }
 }, [nft]);
 
+
+
+const handleOfferPrice = (e) => {
+  let value = e.target.value;
+
+  if (isNaN(value)) {
+    e.target.value = "";
+  } else {
+    // setOffferPrice(value);
+  }
+};
+
+
+
+const handleOffer = async () => {
+  if (offerPrice == "") {
+    toast.warn("Offer price is required!");
+  } else {
+    setAuctionData((p) => ({
+      ...p,
+      auctionProcessing: true,
+      buttonMessage: "Processing Please Wait...",
+    }));
+    let approve = await ApproveTaboo(offerPrice, walletAddress);
+
+    if (approve) {
+      let txra = await Transaction({ tx: approve });
+
+      if (txra) {
+        let tx = await MakeOffer(offerPrice, nft.token_id, walletAddress); //axios.post('/make-offer',{address:walletAddress,taboo_amount:offerPrice});
+
+        if (tx) {
+          let txObj = { tx: tx };
+
+          let txdd = await Transaction(txObj);
+
+          if (txdd) {
+            let res = await axios.post("/create-offer", {
+              content_id: nft._id,
+              wallet_address: walletAddress,
+              price: offerPrice,
+            });
+            setAuctionData((p) => ({
+              ...p,
+              auctionProcessing: false,
+              buttonMessage: "",
+            }));
+          } else {
+            toast.warn("Transaction Failed!");
+          }
+        } else {
+          toast.warn("Auction is ended!.");
+        }
+      } else {
+        toast.warn("Amount approval failed!");
+      }
+    }
+    setAuctionData((p) => ({
+      ...p,
+      auctionProcessing: false,
+      buttonMessage: "",
+    }));
+    handleOfferStart();
+  }
+};
+
+
+
+
   return (
     <>
     <Layout>
@@ -290,7 +372,18 @@ useEffect(() => {
                       onClick={()=>{
                         setCommonModel(true)
                       }}>    {nft.status == "sold" ? "Sold Out" : "Buy Now"}</button>
-                      <a class="border-btn" onClick={handleShow}><span>Make Offer</span></a>
+                      <a class="border-btn" 
+
+                      disabled={
+                        isLoading ||
+                        nft.status == "sold" ||
+                        nft.status == "active"
+                          ? true
+                          : false
+                      }
+                      onClick={() => setOfferStart(true)}
+                      ><span>Make Offer</span></a>
+
                     </div>
                     <Modal
         size="lg"
@@ -583,6 +676,69 @@ useEffect(() => {
               </div>
           </Modal.Body>
         </Modal>
+
+
+
+        <Modal
+          show={offerStart}
+          className="modal-comming-soon bid-modal"
+          backdrop="static"
+          keyboard={false}
+          onHide={handleOfferStart}
+          centered
+        >
+          <Modal.Header
+            closeButton
+            className="border-none p-0"
+            style={{ zIndex: "10000000" }}
+          ></Modal.Header>
+          <Modal.Body>
+            <div class="bid-modal-box">
+              <h3>Create a Auction</h3>
+              <p>You are about to place a bit for Tempor Incododunt</p>
+
+              <Form>
+                <Form.Group className="mb-3">
+                  <Form.Label>Min Price</Form.Label>
+                  <Form.Control
+                    type="text"
+                    onChange={(e) => {
+                      let inputValue = e.target.value;
+                      setAuctionData((prev) => {
+                        if (!isNaN(inputValue)) {
+                          return { ...prev, offerPrice: inputValue };
+                        }
+                      });
+                    }}
+                    value={offerPrice}
+                    placeholder="min price"
+                  />
+                </Form.Group>
+              </Form>
+
+              <div>
+                <button
+                  className="blue-btn"
+                  onClick={() => {
+                    if (!auctionProcessing) handleOffer();
+                  }}
+                  disabled={auctionProcessing}
+                  style={{ cursor: auctionProcessing ? "no-drop" : "pointer" }}
+                >
+                  {buttonMessage ? buttonMessage : "Start Bid"}
+                </button>
+
+                <a href="" className="border-btn">
+                  Cancel
+                </a>
+              </div>
+            </div>
+          </Modal.Body>
+        </Modal>
+
+
+
+
         </section>
       </div>
     </Layout>
