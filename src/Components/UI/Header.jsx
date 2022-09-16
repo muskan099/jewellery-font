@@ -36,15 +36,16 @@ function Header() {
 
     setIsLoginStart(true)
    let address = await Connect();
-
-   let punk = 0;
-   // console.log("punks",punk)
-   //let tier=punk>0?"3 Tier":"1 Tier"
-   let balance = await TabooBalance(address[0]);
-   let tier = 0;
-   console.log("balance", balance);
-
+console.log({address})
+   
    if (address && address.length) {
+    let punk = 0;
+    // console.log("punks",punk)
+    //let tier=punk>0?"3 Tier":"1 Tier"
+    let balance = await TabooBalance(address[0]);
+    let tier = 0;
+    console.log("balance", balance);
+ 
      dispatch(
        loginSaga({
          address: address[0],

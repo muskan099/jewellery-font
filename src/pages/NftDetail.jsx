@@ -84,6 +84,7 @@ function NftDetail() {
    const [nftImages , setNftImages] = useState("")
    const [allOffers , setAllOffers] = useState("")
    const [punk,setPunk]=useState(0);
+   const[ makeOfferDetails,setMakeOfferDetails] = useState([])
    const handleOfferStart = () => setOfferStart(true);
   // const [nftName , setNftName] = useState("")
 
@@ -91,7 +92,7 @@ const getData1 = async () =>{
   try{
     const api =  await axiosMain.post("/nftDetailById", inputdata)
     if(api){
-      console.log(api,"api data");
+    
       setNftName(api.data.name)
       setNftDesc(api.data.description)
       setNftPrice(api.data.price)
@@ -100,26 +101,39 @@ const getData1 = async () =>{
       setNftStatus(api.data.status)
 
     }
-    console.log(api);
+   
   }catch(error){
     console.log(error);
   }
 }
+const getOffers = async () => {
+  try{
+    if(id){
 
+      const res =  await axiosMain.get(`/getOffer?content_id=${id}`)
+      console.log("offer dtata",res)
+      setMakeOfferDetails(res.data)
+    }
+   
+   
+  }catch(error){
+    console.log(error);
+  }
+}
+console.log({makeOfferDetails})
 useEffect(()=>{
   getData1();
-
   getData();
+  getOffers();
   
 },[])
 
 
 
 const handleBuy = async (e) => {
-  console.log(nft.price," nft price");
+  
   let price = parseFloat(nftPrice);
-  console.log(price,"price");
-  console.log(balance , "balance");
+  
 
   if (!isAuthenticated) {
       toast.warn("Please connect wallet!");
@@ -142,21 +156,21 @@ const handleBuy = async (e) => {
 
       let tx = await Transaction({ tx: approveData });
       if (tx) {
-        console.log("tx", tx);
+       
         // let {tx}=transactions;
         let taboo_hash = true;
         try {
           // taboo_hash = await Transaction(tx.data);
         } catch (e) {
           setBuyStart(false);
-          console.log(e);
+         
         }
 
         if (taboo_hash) {
           // let token = await NFTBalance();
 
           // console.log("ss",token)
-          console.log(nft.token_id , "nftId");
+        
           let hash = await BuyNFT(
             nft.token_id,
             nft.ipfs,
@@ -195,7 +209,7 @@ const handleBuy = async (e) => {
                
             });
 
-            console.log("order", order);
+            
 
             // handleClose2();
             // handleShow1();
@@ -222,7 +236,7 @@ const handleBuy = async (e) => {
 
       let tx = await Transaction({ tx: approveData });
 
-      console.log("nft token", nft.token_id);
+     
 
       if (tx) {
       
@@ -257,7 +271,7 @@ const handleBuy = async (e) => {
 const [time, setTime] = useState(false);
 
 useEffect(() => {
-  console.log("inside use effect", nft);
+  
 
   if (nft && nft.bid_end) {
     let end_Date = nft.bid_end;
@@ -269,7 +283,7 @@ useEffect(() => {
     current_time = new Date(current_time);
     current_time.setSeconds(current_time.getSeconds() + 600);
     setTime(current_time);
-    console.log(`time is ${current_time}`);
+    
   }
 }, [nft]);
 
@@ -430,42 +444,25 @@ const handleOffer = async () => {
                       <table class="table table-details">
                       <thead>
                         <tr>
-                          <th>Offer By</th>
+                        
                           <th>Wallet Address</th>
                           <th>Date</th>
                           <th>Offer Price</th>
                         </tr>
                       </thead>
                       <tbody>
-                      {/* { nft.map((items, index) => {
+                      { makeOfferDetails.map((items, index) => {
                             return (
                         <tr>
-                          <td><span><img src="assets/images/img-nft/user.png" />Quest</span> </td>
-                          <td>{items.wallet_address}</td>
+                          
+                          <td>{items.wallet_address.slice(0,5)}....{items.wallet_address.slice(-5)}</td>
                           <td>{moment(items.created_at).format("lll")}</td>
                           <td>Price:{items.offer_price} JWL</td>
                         </tr>
                           )
-                        }) } */}
-                        {/* <p style={{color:"white"}}>Not data found</p */}
-                        {/* <tr>
-                          <td><span><img src="assets/images/img-nft/user.png" />Metamarse</span> </td>
-                          <td>21652cda2dcc4a1sc84a584dc</td>
-                          <td>14 Mar 2022 12:03 PM</td>
-                          <td>0.70ETH</td>
-                        </tr>
-                        <tr>
-                          <td><span><img src="assets/images/img-nft/user.png" />Metamarse</span> </td>
-                          <td>21652cda2dcc4a1sc84a584dc</td>
-                          <td>14 Mar 2022 12:03 PM</td>
-                          <td>0.70ETH</td>
-                        </tr>
-                        <tr>
-                          <td><span><img src="assets/images/img-nft/user.png" />Metamarse</span> </td>
-                          <td>21652cda2dcc4a1sc84a584dc</td>
-                          <td>14 Mar 2022 12:03 PM</td>
-                          <td>0.70ETH</td>
-                        </tr> */}
+                        }) } 
+                         
+                      
 
                       </tbody>
                     </table>
