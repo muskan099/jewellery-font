@@ -63,9 +63,9 @@ const AdminDashboard = () => {
   return (
     <>
      <Layout>
-      <section className="creater-dash-sec">
-        <Container fluid className="p-0">
-          <Row>
+      {/* <section className="creater-dash-sec">
+        <Container fluid className="p-0"> */}
+          {/* <Row>
             <Col lg={1} md={12} sm={12} xs={12}>
               <div className="sidemenu-creater">
                 <ul>
@@ -172,7 +172,7 @@ const AdminDashboard = () => {
                           </h3>
                         </li> */}
                       
-                      </ul>
+                      {/* </ul>
                     </div>
 
                     <div className="latest-user-row">
@@ -208,7 +208,7 @@ const AdminDashboard = () => {
                             <td>{user.email}</td>
                             <td>{user.wallet_address}</td>
                             {/* <td> {user.created_at.slice(0, 9)}</td> */}
-                          </tr>
+                          {/* </tr>
                         </tbody>
                       </Table>
                     </div>
@@ -227,14 +227,14 @@ const AdminDashboard = () => {
                   className="profile-main-img"
                   src={"images/Team/team7.png"}
                 />
-                <h4>{user.name}</h4>
+                <h4>{user.name}</h4> */}
                 {/* <p>{user._id.slice(0,6)}...{user._id.slice(-5)}</p> */}
                 <hr />
-              </div>
+              {/* </div>
             </Col>
-          </Row>
-        </Container>
-      </section>
+          </Row> */}
+        {/* </Container> */}
+      {/* </section> */} 
       </Layout>
     </>
   );
