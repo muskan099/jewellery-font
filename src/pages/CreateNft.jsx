@@ -193,7 +193,7 @@ function CreateNft() {
     } else if (category == "") {
       toast.error("category is required!");
     } else {
-      setCreateStart(true);
+      try {setCreateStart(true);
       setPhoto({ ...photo, loading: true });
       const data = { name: name, price: price, description: description };
       let ipfs_hash = await ipfsMint(contentImage, data);
@@ -221,16 +221,18 @@ function CreateNft() {
 
       formData.append("user_id", "62733f0715eb380c440489ee");
 
-      // formData.append("quantity", quantity);
-
       console.log({ formData });
+
       dispatch(createNftSaga({ formData, toast }));
-      // toast.success("NFT created");
-      // console.log("nFT CREATED");
-  
-      // toast.success("Nft Created Succesfully");
-      navigate("/marketplace");
+      
+      toast.success("Nft Created Succesfully");
+
       setCreateStart(false);
+
+      setTimeout(navigate("/marketplace"), 120000);
+      }catch(e){
+        toast.warn("Reconnect your Wallet")
+      }
     }
     // setTimeout(navigate("/explore"), 120000);
   };

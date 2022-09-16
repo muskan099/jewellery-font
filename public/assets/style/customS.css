@@ -36,16 +36,18 @@ header.custom-header {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-  
+.make-offer-container{
+    display: grid;
+}
   .bid-modal-box p{
     font-size: 16px !important;
     margin: 15px 0 !important;
-    color: white !important;
+    color: #000 !important;
   }
   .bid-modal-box label{
     font-size: 16px;
     margin: 15px 0;
-    color: white;
+    color: #000;
   }
   .bid-modal-box h5{
     font-weight: 600;
@@ -93,6 +95,20 @@ header.custom-header {
       padding: 10px  30px;
       margin: 25px;
       margin-top: 60px;
+  }
+  .border-btn-1{
+    background-color: transparent !important;
+    box-shadow: none !important;
+    padding: 8px 25px;
+    color: #000 !important;
+    text-decoration: none;
+    border-radius: 30px;
+    display: inline-block;
+    border: 1px solid #A77327;
+    margin: 10px 5px 0;
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
   }
   .bid-modal-box.success-bid-box table{
     margin: 0 !important;

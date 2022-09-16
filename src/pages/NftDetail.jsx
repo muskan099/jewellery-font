@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../Components/Layout";
-import { Row, Col, Container, Modal, Table } from "react-bootstrap";
+import { Row, Col, Container, Modal, Table, Form } from "react-bootstrap";
 import StoreLayout from "../Components/StoreLayout";
 import Footer from "../Components/UI/Footer"
 import CountDownTimer from "../Components/UI/CountDownTimer";
@@ -16,6 +16,8 @@ import { updateNftStatusSaga } from "../store/reducers/nftReducer";
 import { Sale } from "../helpers/Sale";
 import { clearNftDetail, getNftDetailSaga } from "../store/reducers/nftReducer";
 import moment from "moment";
+import { ApproveTaboo } from "../helpers/Approve";
+import { axios } from "../http";
 
 function NftDetail() {
   const dispatch = useDispatch();
@@ -82,6 +84,7 @@ function NftDetail() {
    const [nftImages , setNftImages] = useState("")
    const [allOffers , setAllOffers] = useState("")
    const [punk,setPunk]=useState(0);
+   const handleOfferStart = () => setOfferStart(true);
   // const [nftName , setNftName] = useState("")
 
 const getData1 = async () =>{
@@ -127,7 +130,7 @@ const handleBuy = async (e) => {
    }
     else {
     setBuyStart(true);
-    const for_sale = nft.isSale == "false" ? true : false;
+    const for_sale = nft.forsale === "false" ? true : false;
 
     if (for_sale) {
       
@@ -307,16 +310,19 @@ const handleOffer = async () => {
           let txdd = await Transaction(txObj);
 
           if (txdd) {
-            let res = await axios.post("/create-offer", {
+            let res = await axios.post("/createOffer", {
               content_id: nft._id,
               wallet_address: walletAddress,
               price: offerPrice,
+              
             });
             setAuctionData((p) => ({
               ...p,
               auctionProcessing: false,
               buttonMessage: "",
             }));
+            toast.success("Offer Created");
+            setOfferStart(false)
           } else {
             toast.warn("Transaction Failed!");
           }
@@ -695,7 +701,7 @@ const handleOffer = async () => {
           <Modal.Body>
             <div class="bid-modal-box">
               <h3>Create a Auction</h3>
-              <p>You are about to place a bit for Tempor Incododunt</p>
+              <p>You are about to place a bit for </p>
 
               <Form>
                 <Form.Group className="mb-3">
@@ -716,7 +722,7 @@ const handleOffer = async () => {
                 </Form.Group>
               </Form>
 
-              <div>
+              <div className="make-offer-container">
                 <button
                   className="blue-btn"
                   onClick={() => {
@@ -728,7 +734,7 @@ const handleOffer = async () => {
                   {buttonMessage ? buttonMessage : "Start Bid"}
                 </button>
 
-                <a href="" className="border-btn">
+                <a href="" className="border-btn-1">
                   Cancel
                 </a>
               </div>
