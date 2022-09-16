@@ -85,7 +85,7 @@ function NftDetail() {
    const [allOffers , setAllOffers] = useState("")
    const [punk,setPunk]=useState(0);
    const[ makeOfferDetails,setMakeOfferDetails] = useState([])
-   const handleOfferStart = () => setOfferStart(true);
+   const handleOfferStart = () => setOfferStart(false);
   // const [nftName , setNftName] = useState("")
 
 const getData1 = async () =>{
@@ -393,15 +393,13 @@ const handleOffer = async () => {
                         setCommonModel(true)
                       }}>    {nft.status == "sold" ? "Sold Out" : "Buy Now"}</button>
                       <a class="border-btn" 
-
-                      disabled={
-                        isLoading ||
-                        nft.status == "sold" ||
-                        nft.status == "active"
-                          ? true
-                          : false
-                      }
-                      onClick={() => setOfferStart(true)}
+onClick={() => 
+ nft.status == "sold"?
+  setOfferStart(true):""}
+  disabled={
+                        nft.status == "Active" ? true
+                           : false
+                       }
                       ><span>Make Offer</span></a>
 
                     </div>
@@ -731,7 +729,7 @@ const handleOffer = async () => {
                   {buttonMessage ? buttonMessage : "Start Bid"}
                 </button>
 
-                <a href="" className="border-btn-1">
+                <a href="" className="border-btn-1" onClick={handleOfferStart}>
                   Cancel
                 </a>
               </div>

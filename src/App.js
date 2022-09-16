@@ -15,6 +15,7 @@ import ScrollToTop from "./Components/ScrollToTop";
 import Contactus from "./pages/Contactus";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import Articles from "./pages/Articles";
+import ArticleDetail from "./pages/ArticleDetail";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contactus />} />
             <Route path="/articles" element={<Articles />} />
+            <Route path="/article-detail" element={<ArticleDetail />} />
           </Routes>
         </ScrollToTop>
       </BrowserRouter>

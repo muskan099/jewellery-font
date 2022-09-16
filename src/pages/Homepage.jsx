@@ -13,11 +13,14 @@ import Slider from "react-slick";
 import { toast, ToastContainer } from "react-toastify";
 import axiosMain from "../http/axios/axios_main";
 import moment from "moment/moment";
+import { Link, useNavigate }  from "react-router-dom"
+import axios from "axios";
+import CountUp from "react-countup";
 
 function Homepage() {
 
   const [article, setArticle] = useState([]);
-
+  const navigate = useNavigate()
   const trendingslide = {
     centerMode: true,
     centerPadding: "30px",
@@ -87,6 +90,10 @@ function Homepage() {
       items: 1,
     },
   };
+  const[userData,setUserData] = useState()
+  const[artistCount,setArtistCount] = useState()
+  const[collectionCount,setCollectionCount] = useState()
+  const[totalUserCount,settotalUserCount] = useState()
   const [formError, setFormError] = useState("");
   const [inputdata, setInputdata] = useState({
     email: "",
@@ -136,9 +143,23 @@ function Homepage() {
       console.log(res,"article")
     }
   };
-
-
+const userData1 = async() => {
+  const res = await axiosMain.get('/gethomeData') 
+  setUserData(res);
+  setArtistCount(res.data.data.artistCount)
+  setCollectionCount(res.data.data.collectionCount)
+  settotalUserCount(res.data.data.totalUserCount)
+}
+console.log({userData})
+console.log({artistCount})
+console.log({collectionCount})
+console.log({totalUserCount})
+  const single_nft_data =  (item) =>{
+    console.log(item, "items");
+    navigate("/article-detail", {state:{id : item._id}})
+  }
   useEffect(() => {
+    userData1();
     getData();
   },[]);
 
@@ -175,7 +196,13 @@ function Homepage() {
                     <Row>
                       <Col md={4} sm={4} xs={4}>
                         <div>
-                          <h4 className="banner-analysis-number">432K+</h4>
+                        <CountUp
+                            className="banner-analysis-number"
+                              end={collectionCount}
+                              duration={10}
+                              id="plus"
+                            />
+                         
                           <p className="banner-analysis-quantity">
                             Collections
                           </p>
@@ -183,13 +210,25 @@ function Homepage() {
                       </Col>
                       <Col md={4} sm={4} xs={4}>
                         <div>
-                          <h4 className="banner-analysis-number">200K+</h4>
+                         
+                          <CountUp
+                            className="banner-analysis-number"
+                              end={artistCount}
+                              duration={10}
+                              id="plus"
+                            />
                           <p className="banner-analysis-quantity">Artists</p>
                         </div>
                       </Col>
                       <Col md={4} sm={4} xs={4}>
                         <div>
-                          <h4 className="banner-analysis-number">10K+</h4>
+                        <CountUp
+                            className="banner-analysis-number"
+                              end={totalUserCount}
+                              duration={10}
+                              id="plus"
+                            />
+                         
                           <p className="banner-analysis-quantity">Community</p>
                         </div>
                       </Col>
@@ -219,8 +258,7 @@ function Homepage() {
                       src="assets\images\WalletConnect-img.png"
                       alt="metamask"
                     />
-                    <img src="assets\images\exodus-img.png" alt="metamask" />
-                    <img src="assets\images\exodus-img.png" alt="metamask" />
+                    
                   </div>
                 </Col>
               </Row>
@@ -1790,7 +1828,9 @@ function Homepage() {
                     <Row>
                     {article.map((item, index) => (
                       <Col lg={4} md={4}>
-                        <div className="artical-news-box">
+                        <div className="artical-news-box" onClick={()=>{
+                            single_nft_data(item)
+                          }}>
                           <img src={item.images} />
                           <div className="inner-div-new">
                             <h5>

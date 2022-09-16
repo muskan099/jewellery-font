@@ -153,6 +153,7 @@ body{
     font-weight: 400;
     font-family: var(--NeueMachina-Regular);
     color: white;
+    font-size: 22px;
 }
 .banner-analysis-quantity{
     font-weight: 16px;
