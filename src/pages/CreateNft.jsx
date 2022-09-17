@@ -193,7 +193,11 @@ function CreateNft() {
     } else if (category == "") {
       toast.error("category is required!");
     } else {
-      try {setCreateStart(true);
+     
+     try 
+      {
+      
+      setCreateStart(true);
       setPhoto({ ...photo, loading: true });
       const data = { name: name, price: price, description: description };
       let ipfs_hash = await ipfsMint(contentImage, data);
@@ -231,6 +235,7 @@ function CreateNft() {
 
       setTimeout(navigate("/marketplace"), 120000);
       }catch(e){
+        setCreateStart(false);
         toast.warn("Reconnect your Wallet")
       }
     }
