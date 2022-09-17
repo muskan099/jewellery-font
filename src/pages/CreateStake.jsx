@@ -169,7 +169,7 @@ function CreateStake() {
                const hash=await Transaction(tx)
              
              let hash1 = await VerifyTransactions(hash,tabooToken)   
-                if(hash1){
+            
 
                     const res=await axios.post('https://jewellery.donative.in/stake',{
                       wallet_address:walletAddress,
@@ -188,15 +188,16 @@ function CreateStake() {
 
                   //  navigate('/stakes')
 
-                }else{
-
-                  setIsStart(false)
-                  toast.error("Transaction Failed")
                 }
-             }else
-              {
-                setIsStart(false)
-              }
+                // else{
+
+                //   setIsStart(false)
+                //   toast.error("Transaction Failed")
+                // }
+            //  }else
+            //   {
+            //     setIsStart(false)
+            //   }
        }
   }
   return (
