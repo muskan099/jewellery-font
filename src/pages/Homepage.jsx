@@ -16,7 +16,14 @@ import moment from "moment/moment";
 import { Link, useNavigate }  from "react-router-dom"
 import axios from "axios";
 import CountUp from "react-countup";
-
+import Connect from "../helpers/Connect";
+import { TabooBalance } from "../helpers/TabooHelper";
+import {
+  grantWebsiteAccessAction,
+  loginSaga,
+  logout,
+} from "../store/reducers/authReducer";
+import { useDispatch, useSelector } from "react-redux";
 function Homepage() {
 
   const [article, setArticle] = useState([]);
@@ -131,8 +138,41 @@ function Homepage() {
       }
     }
   };
+  const dispatch = useDispatch();
+  const[isLoginStart,setIsLoginStart]=useState(false);
+  const handleLogin = async () => {
 
+    setIsLoginStart(true)
+   let address = await Connect();
+console.log({address})
+   
+   if (address && address.length) {
+    let punk = 0;
+    // console.log("punks",punk)
+    //let tier=punk>0?"3 Tier":"1 Tier"
+    let balance = await TabooBalance(address[0]);
+    let tier = 0;
+    console.log("balance", balance);
+ 
+     dispatch(
+       loginSaga({
+         address: address[0],
+         balance: balance,
+         tabooPunk: punk,
+         tier: tier,
+       })
+     );
 
+     setIsLoginStart(false)
+   }else{
+       handleLogout();
+       setIsLoginStart(false)
+       toast.warn("Please connect to binance smart chain!")
+   }
+ };
+ const handleLogout = async () => {
+  dispatch(logout({}));
+};
 
 
   const getData = async () => {
@@ -249,14 +289,16 @@ console.log({totalUserCount})
               <Row>
                 <Col>
                   <div className="group-logo">
-                    <img src="assets\images\metamask-img.png" alt="metamask" />
+                    <img src="assets\images\metamask-img.png" alt="metamask" onClick={handleLogin}/>
                     <img
                       src="assets\images\trustWallet-img.png"
                       alt="metamask"
+                      onClick={handleLogin}
                     />
                     <img
                       src="assets\images\WalletConnect-img.png"
                       alt="metamask"
+                      onClick={handleLogin}
                     />
                     
                   </div>
