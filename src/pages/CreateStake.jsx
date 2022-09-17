@@ -181,13 +181,13 @@ function CreateStake() {
                       // rate:rate
                     })
 
-
+                    
                     toast.success("Token staked successfully!")
+                    navigate('/stakes')
 
                    setIsStart(false)
 
 
-                   navigate('/stakes')
 
                 }else{
 
