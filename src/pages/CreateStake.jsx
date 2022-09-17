@@ -187,7 +187,7 @@ function CreateStake() {
                    setIsStart(false)
 
 
-                  //  navigate('/stakes')
+                   navigate('/stakes')
 
                 }else{
 
