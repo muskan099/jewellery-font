@@ -168,36 +168,36 @@ function CreateStake() {
              if(tx){
                const hash=await Transaction(tx)
              
-             let hash1 = await VerifyTransactions(hash,tabooToken)   
-            
+            //  let hash1 = await VerifyTransactions(hash,tabooToken)   
+             console.log({end_date})
+                if(hash){
 
                     const res=await axios.post('https://jewellery.donative.in/stake',{
                       wallet_address:walletAddress,
                       deposit_amount:tabooToken,
                       end_date:end_date,
-                      start_date: today,
+                     start_date: moment(today, "YYYY-MM-DD HH:mm:ss", true).format(),
                       // hash:hash.transactionHash,
                       // rate:rate
                     })
 
 
+                    toast.success("Token staked successfully!")
 
                    setIsStart(false)
 
-                   toast.success("Token staked successfully!")
 
                   //  navigate('/stakes')
 
-                }
-                // else{
+                }else{
 
-                //   setIsStart(false)
-                //   toast.error("Transaction Failed")
-                // }
-            //  }else
-            //   {
-            //     setIsStart(false)
-            //   }
+                  setIsStart(false)
+                  toast.error("Transaction Failed")
+                }
+             }else
+              {
+                setIsStart(false)
+              }
        }
   }
   return (
