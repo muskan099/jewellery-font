@@ -16,12 +16,13 @@ import {
   Dropdown,
   
 } from "react-bootstrap";
+import { web3 } from "../../helpers/Web3Helper";
 function Header() {
   const[isLoginStart,setIsLoginStart]=useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
  
-  const {
+  let {
     isAuthenticated,
     walletAddress,
     hasWebsiteAccess: hasWebsiteAccessRedux,
@@ -29,13 +30,15 @@ function Header() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const[changedWalletAddress,setChangedWalletAddress] = useState(walletAddress)
   const [hasWebsiteAccess, setHasWebsiteAccess] = useState(
     hasWebsiteAccessRedux ? true : true
   );
+  let address ;
   const handleLogin = async () => {
 
     setIsLoginStart(true)
-   let address = await Connect();
+ address = await Connect();
 console.log({address})
    
    if (address && address.length) {
@@ -116,6 +119,28 @@ const handleModalClose1 = () => {
   setShowModal1(false);
 };
 
+const  accountInterval = async () => { 
+  console.log("change wallet address called")
+  const web3Connect = await web3();
+  console.log(web3Connect.eth.getAccounts())
+  let address1 = await web3Connect.eth.getAccounts();
+  console.log({walletAddress})
+  console.log(address1[0])
+  if (address1[0] !== walletAddress) {
+    walletAddress = address1[0];
+    setChangedWalletAddress(address1[0])
+    localStorage.setItem("walletAddress", address1[0]);
+    let newbalance = await TabooBalance(address1[0]);
+    localStorage.setItem("balance", newbalance);
+    console.log("the wallet address changed",walletAddress)
+  
+}}
+
+setInterval(() => {
+  accountInterval();
+
+},1000)
+
   return (
     <header className='custom-header' fixed="top">
         <Container>
@@ -153,7 +178,7 @@ const handleModalClose1 = () => {
               <Dropdown className="d-flex align-items-center">
                 <div className="wallet-addressNew">
                   {" "}
-                  {`${walletAddress?.slice(0, 3)}...${walletAddress?.slice(
+                  {`${changedWalletAddress?.slice(0, 3)}...${changedWalletAddress?.slice(
                     -3
                   )}`}{" "}
                 </div>
