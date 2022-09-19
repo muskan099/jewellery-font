@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Container,Tab, Tabs,Button,Form,FormGroup,Table } from "react-bootstrap";
 import Layout from '../Components/Layout';
-import { toast } from "react-toastify";
+import { toast ,ToastContainer } from "react-toastify";
 import axios from "axios";
 import { TabooBalance } from "../helpers/TabooHelper";
 import { TabooPunk } from "../helpers/TabooPunk";
@@ -114,15 +114,13 @@ function CreateStake() {
            toast.warn("Please enter amount to stake!")
            console.log({taboo_balance})
           
-     }
-    
-     else if(tabooToken<1000){
+     }else if(tabooToken<1000){
        toast.warn("Stake min 1000 jwl tokens")
        console.log({taboo_balance})
       
      }else if(taboo_balance<tabooToken){
        toast.warn("You do not have sufficient fund to stake!")
-       console.log({taboo_balance})
+      console.log("balance is less",{taboo_balance})
      }else
        {
         console.log({taboo_balance})
@@ -203,6 +201,7 @@ function CreateStake() {
   return (
     <Layout>
         <section className="profile-upper-banner">
+        <ToastContainer/>
           <Container fluid className="p-0">
               <Row>
                 <Col>
