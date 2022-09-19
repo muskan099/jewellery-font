@@ -1,5 +1,5 @@
 import { web3 } from "./Web3Helper";
-const Connect = async () => {
+export const Connect = async () => {
   try {
     const web3Connect = await web3();
     console.log("web3", web3Connect);
@@ -9,6 +9,7 @@ const Connect = async () => {
 
     if (chainId === 97) {
       const accounts = await web3Connect.eth.getAccounts();
+
       console.log("accounts", accounts);
 
       return accounts;
@@ -19,4 +20,5 @@ const Connect = async () => {
     console.log("in cathc block", err.message);
   }
 };
+
 export default Connect;
