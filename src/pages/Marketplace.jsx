@@ -36,7 +36,7 @@ const Marketplace = () => {
   
   const [filterSearch, setFilterSearch] = useState({
     A_TO_Z: false,
-    auction:false,
+    status:"",
     price: "",
     letest: false,
     startPrice: 0,
@@ -53,7 +53,7 @@ const Marketplace = () => {
     },
     endPrice: 100000000,
   });
-  const { startPrice, endPrice, A_TO_Z, auction, price, letest, typeCategory,nftTier } = filterSearch;
+  const { startPrice, endPrice, A_TO_Z, status, price, letest, typeCategory,nftTier } = filterSearch;
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const inputRangeRef = useRef(null);
@@ -86,7 +86,7 @@ const Marketplace = () => {
     startPrice,
     endPrice,
     A_TO_Z,
-    auction,
+    status,
     price,
     letest,
    
@@ -102,7 +102,7 @@ const Marketplace = () => {
      startPrice,
       endPrice,
       A_TO_Z,
-      auction,
+      status,
       price,
       letest,
       tier: tier,
@@ -146,7 +146,7 @@ const Marketplace = () => {
       startPrice,
       endPrice,
       A_TO_Z,
-      auction,
+      status,
       price,
       letest,
       meta,
@@ -157,7 +157,7 @@ const Marketplace = () => {
     startPrice,
     endPrice,
     A_TO_Z,
-    auction,
+    status,
     price,
     letest,
     nftTier,
@@ -179,7 +179,7 @@ const Marketplace = () => {
         A_TO_Z: false,
         letest: false,
         price: "",
-        auction: false,
+        status: "",
          typeCategory:{
           Ring:true,
           Necklace:false,
@@ -195,7 +195,7 @@ const Marketplace = () => {
         A_TO_Z: false,
         letest: false,
         price: "",
-        auction: false,
+         status: "",
         typeCategory:{
           Ring:false,
           Necklace:true,
@@ -211,7 +211,7 @@ const Marketplace = () => {
         A_TO_Z: false,
         letest: false,
         price: "",
-        auction: false,
+         status: "",
         typeCategory:{
           Ring:false,
           Necklace:false,
@@ -231,7 +231,7 @@ const Marketplace = () => {
         A_TO_Z: true,
         letest: false,
         price: "",
-        auction: false
+        status: "",
         
       }));
     } else if (value === "letest") {
@@ -240,7 +240,7 @@ const Marketplace = () => {
         A_TO_Z: false,
         letest: true,
         price: "",
-        auction: false
+        status: "",
       }));
     } else if (value === "Auction") {
       setFilterSearch((prev) => ({
@@ -248,7 +248,7 @@ const Marketplace = () => {
         A_TO_Z: false,
         letest: true,
         price: "",
-        auction: true
+        status: "auction",
       }));
     }else {
       setFilterSearch((prev) => ({
@@ -256,7 +256,7 @@ const Marketplace = () => {
         A_TO_Z: false,
         letest: false,
        price: value,
-       auction: false
+       status: "",
       }));
     }
   };
