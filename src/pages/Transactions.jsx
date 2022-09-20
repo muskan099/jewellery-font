@@ -284,7 +284,15 @@ console.log("this is tx",tx)
                               <td className="td-break">{items.nftName}</td>
                               <td className="td-break">{items.buying_Price}</td>
                               <td className="td-break">{items.wallet_address.slice(0,3)}....  {items.wallet_address.slice(-3)}</td>
-                              <td className="td-break">{items.hash.slice(0,3)}....  {items.hash.slice(-3)}</td>
+                              <td className="td-break">
+                              <a href={`https://testnet.bscscan.com/tx/${items.hash}`} target="_blank">
+                                {`${items.hash?.slice(
+                                  0,
+                                  3
+                                )}...${items.hash?.slice(-5)}`}
+                              </a>
+                             
+                              </td>
                               <td className="td-break">{items.token}</td>
                               <td className="td-break success-green">{items.status ? 'success' : 'success'}</td>
                               <td className="td-break"><div className="btn-flex-btn"><button className="btn-sell1" onClick={()=>handleCreateSale(items)}>{items.isOwner=="no"?"Sold":"Sell"}</button>
@@ -302,7 +310,7 @@ console.log("this is tx",tx)
                     </table>
                     <Modal
           show={show}
-          className="modal-comming-soon bid-modal"
+          className="modal-comming-soon bid-modal transaction-page-modal"
           backdrop="static"
           keyboard={false}
           onHide={handleClose}
@@ -399,7 +407,7 @@ console.log("this is tx",tx)
 
         <Modal
           show={showAuction}
-          className="modal-comming-soon bid-modal"
+          className="modal-comming-soon bid-modal transaction-page-modal"
           backdrop="static"
           keyboard={false}
           onHide={() => setShowAuction(false)}

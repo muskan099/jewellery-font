@@ -36,6 +36,7 @@ const Marketplace = () => {
   
   const [filterSearch, setFilterSearch] = useState({
     A_TO_Z: false,
+    auction:false,
     price: "",
     letest: false,
     startPrice: 0,
@@ -52,7 +53,7 @@ const Marketplace = () => {
     },
     endPrice: 100000000,
   });
-  const { startPrice, endPrice, A_TO_Z, price, letest, typeCategory,nftTier } = filterSearch;
+  const { startPrice, endPrice, A_TO_Z, auction, price, letest, typeCategory,nftTier } = filterSearch;
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const inputRangeRef = useRef(null);
@@ -85,6 +86,7 @@ const Marketplace = () => {
     startPrice,
     endPrice,
     A_TO_Z,
+    auction,
     price,
     letest,
    
@@ -100,6 +102,7 @@ const Marketplace = () => {
      startPrice,
       endPrice,
       A_TO_Z,
+      auction,
       price,
       letest,
       tier: tier,
@@ -143,6 +146,7 @@ const Marketplace = () => {
       startPrice,
       endPrice,
       A_TO_Z,
+      auction,
       price,
       letest,
       meta,
@@ -153,6 +157,7 @@ const Marketplace = () => {
     startPrice,
     endPrice,
     A_TO_Z,
+    auction,
     price,
     letest,
     nftTier,
@@ -174,6 +179,7 @@ const Marketplace = () => {
         A_TO_Z: false,
         letest: false,
         price: "",
+        auction: false,
          typeCategory:{
           Ring:true,
           Necklace:false,
@@ -189,6 +195,7 @@ const Marketplace = () => {
         A_TO_Z: false,
         letest: false,
         price: "",
+        auction: false,
         typeCategory:{
           Ring:false,
           Necklace:true,
@@ -204,6 +211,7 @@ const Marketplace = () => {
         A_TO_Z: false,
         letest: false,
         price: "",
+        auction: false,
         typeCategory:{
           Ring:false,
           Necklace:false,
@@ -223,6 +231,7 @@ const Marketplace = () => {
         A_TO_Z: true,
         letest: false,
         price: "",
+        auction: false
         
       }));
     } else if (value === "letest") {
@@ -231,14 +240,23 @@ const Marketplace = () => {
         A_TO_Z: false,
         letest: true,
         price: "",
+        auction: false
       }));
-    } else {
+    } else if (value === "Auction") {
+      setFilterSearch((prev) => ({
+        ...prev,
+        A_TO_Z: false,
+        letest: true,
+        price: "",
+        auction: true
+      }));
+    }else {
       setFilterSearch((prev) => ({
         ...prev,
         A_TO_Z: false,
         letest: false,
-       
-        price: value,
+       price: value,
+       auction: false
       }));
     }
   };
@@ -505,7 +523,7 @@ const Marketplace = () => {
                             <div>
                                 <div className="checkbox">
                                   <label>
-                                    <input type="checkbox" value=""></input>
+                                    <input type="checkbox" value="" checked></input>
                                     <span className="cr">
                                       <i className="cr-icon fa fa-check"></i>
                                     </span>
@@ -528,24 +546,19 @@ const Marketplace = () => {
                             </Accordion.Header>
                             <Accordion.Body>
                             <div>
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox" value=""></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Auction
-                                  </label>
-                                </div>
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox" value=""></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Sell
-                                  </label>
-                                </div>
+                            <div className="radio">
+                                <label>
+                                  <input type="radio"     name="o1"
+                            value={"Auction"}
+                            onChange={handleLikeFilter}></input>
+                                  <span className="cr">
+                                    <i className="cr-icon fa fa-circle"></i>
+                                  </span>
+                                Auction
+                                </label>
+                              </div>
+                               
+                               
                               
                                
 

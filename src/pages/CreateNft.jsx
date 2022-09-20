@@ -81,10 +81,11 @@ function CreateNft() {
       if (files[0].type.includes("image")) {
         const filename = files[0].name;
         const fileExtension = filename.substr(filename.lastIndexOf(".") + 1);
-        setState({
-          file: event.currentTarget.files[0],
-          photoUrl: URL.createObjectURL(files[0]),
-        });
+        console.log({fileExtension})
+        // setState({
+        //   file: event.currentTarget.files[0],
+        //   photoUrl: URL.createObjectURL(files[0]),
+        // });
         if (
           fileExtension.toLowerCase() === "png" ||
           fileExtension.toLowerCase() === "jpg" ||
@@ -92,11 +93,16 @@ function CreateNft() {
           fileExtension.toLowerCase() === "jpeg" ||
           fileExtension.toLowerCase() === "webp"
         ) {
-          // setState({
-          //   file: event.currentTarget.files[0],
-          //   photoUrl: URL.createObjectURL(files[0]),
-          // });
+          setState({
+            file: event.currentTarget.files[0],
+            photoUrl: URL.createObjectURL(files[0]),
+          });
         }
+        
+      }else{
+        toast.warn("Photo format can only be PNG,JPG,GIF,WEBP or MP4, Max 20mb")
+      
+        console.log("Photo format can only be PNG,JPG,GIF,WEBP or MP4, Max 20mb")
       }
     }
   };
@@ -245,6 +251,7 @@ function CreateNft() {
   return (
     <Layout>
       <section className="nft-create-page">
+      <ToastContainer />
         <Container>
           <Row>
             <Col lg={8}>
@@ -406,7 +413,7 @@ function CreateNft() {
           </Row>
         </Container>
       </section>
-      <ToastContainer />
+    
     </Layout>
   );
 }

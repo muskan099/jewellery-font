@@ -45,7 +45,7 @@ function NftDetail() {
     hasWebsiteAccess: hasWebsiteAccessRedux,
   } = useSelector((state) => state.auth);
 
-  const { nftDetail: nft,alloffer, isLoading, totalNfts, tier } = useSelector((state) => state.nft);
+  const { nftDetail: nft,alloffer, isLoading, totalNfts, tier} = useSelector((state) => state.nft);
 
   let { transactions } = useSelector((state) => state.transactions);
 
@@ -81,6 +81,7 @@ function NftDetail() {
   const [nftStatus , setNftStatus] = useState("")
   const [nftDesc , setNftDesc] = useState("")
   const [nftPrice , setNftPrice] = useState("")
+  const [nftBalance , setBalance] = useState("")
    const [nftImages , setNftImages] = useState("")
    const [allOffers , setAllOffers] = useState("")
    const [punk,setPunk]=useState(0);
@@ -96,6 +97,7 @@ const getData1 = async () =>{
       setNftName(api.data.name)
       setNftDesc(api.data.description)
       setNftPrice(api.data.price)
+      setBalance(balance)
       setNftImages(api.data.images)
       setAllOffers(api.data.allOffer)
       setNftStatus(api.data.status)
@@ -156,7 +158,7 @@ const handleBuy = async (e) => {
 
       let tx = await Transaction({ tx: approveData });
       if (tx) {
-       
+        console.log("thehash is",{tx})
         // let {tx}=transactions;
         let taboo_hash = true;
         try {
@@ -165,7 +167,7 @@ const handleBuy = async (e) => {
           setBuyStart(false);
          
         }
-
+        console.log("thehash is",taboo_hash)
         if (taboo_hash) {
           // let token = await NFTBalance();
 
@@ -180,7 +182,7 @@ const handleBuy = async (e) => {
             punk,
             nft.wallet_address
           );
-
+          console.log("thehash is",{hash})
           if (hash) {
             // token=token+1;
             //toast.success("Order placed successfully!")
@@ -241,23 +243,33 @@ const handleBuy = async (e) => {
       if (tx) {
       
           let hash = await Sale(walletAddress, nft.token_id, "1");
+          console.log({hash})
 
          if (hash) {
           setNftHash(hash.transactionHash);
           
           let orderObj = { id: nft._id, status: "sold" };
+            let hashNFT = hash;
+            let Nft_hash = hash.transactionHash;
 
           dispatch(updateNftStatusSaga(orderObj));
 
           let order = await axiosMain.post("/transactionCreater", {
             content_id: nft._id,
-            to_account: "0x9632a9b8afe7CbA98236bCc66b4C019EDC1CD1Cc",
-            amount: nft.price,
-            address: walletAddress,
-            hash: hash.transactionHash,
-            tokenUrl: nft.ipfs,
-            token: nft.token_id,
+              wallet_address: walletAddress,
+              status : "",
+              refund_status:"",
+              total : price,
+              type :"creator",
+               to_address: "0x9632a9b8afe7CbA98236bCc66b4C019EDC1CD1Cc",
+              // amount: nft.price,
+              // tx_id: Nft_hash,
+              hash: Nft_hash,
+               tokenUrl: nft.ipfs,
+               token: hashNFT.token,
+            
           });
+
           if (order) {
              navigate("/transactions");
            }
@@ -393,13 +405,10 @@ const handleOffer = async () => {
                         setCommonModel(true)
                       }}>    {nft.status == "sold" ? "Sold Out" : "Buy Now"}</button>
                       <a class="border-btn" 
-onClick={() => 
- nft.status == "sold"?
-  setOfferStart(true):""}
-  disabled={
-                        nft.status == "Active" ? true
-                           : false
-                       }
+                    onClick={() => 
+                    nft.status == "auction"?
+                       setOfferStart(true):""}
+  
                       ><span>Make Offer</span></a>
 
                     </div>
@@ -580,7 +589,7 @@ onClick={() =>
                 <thead>
                   <tr>
                     <th>Your Balance</th>
-                    <th>JWL</th>
+                    <th>{balance}JWL</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -600,7 +609,7 @@ onClick={() =>
                         parseFloat(nft.price) +
                           (parseFloat(nft.price) *fees) / 100}{" "} */}
                     {nftPrice} JWL
-                      JWL
+                      
                     </td>
                   </tr>
                 </tbody>

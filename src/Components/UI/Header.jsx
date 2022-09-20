@@ -120,19 +120,19 @@ const handleModalClose1 = () => {
 };
 
 const  accountInterval = async () => { 
-  console.log("change wallet address called")
+  
+  
   const web3Connect = await web3();
-  console.log(web3Connect.eth.getAccounts())
+ 
   let address1 = await web3Connect.eth.getAccounts();
-  console.log({walletAddress})
-  console.log(address1[0])
+ 
   if (address1[0] !== walletAddress) {
     walletAddress = address1[0];
     setChangedWalletAddress(address1[0])
     localStorage.setItem("walletAddress", address1[0]);
     let newbalance = await TabooBalance(address1[0]);
     localStorage.setItem("balance", newbalance);
-    console.log("the wallet address changed",walletAddress)
+   
   
 }}
 
