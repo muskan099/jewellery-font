@@ -111,14 +111,14 @@ useEffect(() => {
       });
     }
   }
-}
-);
+},[]);
+
 const [showModal1, setShowModal1] = useState(false);
 
 const handleModalClose1 = () => {
   setShowModal1(false);
 };
-
+/*
 const  accountInterval = async () => { 
   
   
@@ -140,7 +140,7 @@ setInterval(() => {
   accountInterval();
 
 },1000)
-
+*/
   return (
     <header className='custom-header' fixed="top">
         <Container>
