@@ -275,7 +275,9 @@ console.log("this is tx",tx)
                       <tbody>
                         {data.map((items, index) => {
                           return (
+                           
                             <tr className="for-body-tr">
+                               {console.log("transacrtion item",items)}
                               <td className="td-break">{index + 1}</td>
                               <td className="td-break"><img className="img-fluid" src={items.nftImage} width="40px" alt="" onError={({ currentTarget }) => {
     currentTarget.onerror = null; // prevents looping

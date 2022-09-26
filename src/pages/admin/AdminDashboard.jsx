@@ -16,7 +16,8 @@ import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { axios } from "../../http";
 import { useEffect, useState } from "react";
-import Layout from "../../Components/Layout";
+import HomeLayout from "../../Components/Layout";
+
 const AdminDashboard = () => {
   
   const data = [
@@ -44,28 +45,42 @@ const AdminDashboard = () => {
     vAxis: { minValue: 0 },
   };
   const { user } = useSelector((state) => state.auth);
+  const[totalUser,setTotalUser] = useState([])
   console.log({ user });
+  const {
+   
+    walletAddress,
+    
+   
+  } = useSelector((state) => state.auth);
+  console.log({walletAddress})
+
   const [nftDetails,setNftDetails] = useState([])
+  const[profileImage,setprofileImage] = useState("");
   const getData = async() => {
-    const res = await axios.get('/dashboard')
+    const res = await axios.get('/admindashboard')
     console.log(res.data)
     setNftDetails(res.data.data)
+    setTotalUser(res.data.data.AllUser)
+    const adminDataResult = JSON.parse(localStorage.getItem("adminData"))
+    setprofileImage(adminDataResult.image)
   }
   console.log("nftDetails",nftDetails)
-  let percentage1 = nftDetails.totalNFT_Persentage;
-  let percentage2 = nftDetails.forSellNFT_Persentage;
-  let percentage3 = nftDetails.auctionNFT_Persentage;
-  let percentage4 = nftDetails.commission;
-  let percentage5 = nftDetails.totalUserPersentage;
+  console.log("Total User",totalUser)
+  let percentage1 = nftDetails.collectionCount;
+  let percentage2 = nftDetails.forsalenftcount;
+  let percentage3 = nftDetails.auctionnftcount;
+  let percentage4 = nftDetails.totalUserCount;
+  // let percentage5 = nftDetails.totalUserPersentage;
   useEffect(() => {
     getData();
-  },)
+  },[])
   return (
     <>
-     <Layout>
-      {/* <section className="creater-dash-sec">
-        <Container fluid className="p-0"> */}
-          {/* <Row>
+     <HomeLayout>
+    <section className="creater-dash-sec">
+        <Container fluid className="p-0"> 
+         <Row>
             <Col lg={1} md={12} sm={12} xs={12}>
               <div className="sidemenu-creater">
                 <ul>
@@ -73,48 +88,26 @@ const AdminDashboard = () => {
                     <NavLink to="/admin-dashboard">
                       <img
                         className="img-fluid m-0"
-                        src={"images/dashboard.png"}
+                        src={"assets/images/dashboard.png"}
                       />
                     </NavLink>
                   </li>
                   <li>
-                    <a href="/nft-list">
-                      <img className="img-fluid m-0" src={"images/list.png"} />
+                    <a href="/transactions">
+                      <img className="img-fluid m-0" src={"assets/images/list.png"} />
                     </a>
                   </li>
                   <li>
-                    <a href="/TransactionList">
+                    <a href="/stakes">
                       <img
                         className="img-fluid m-0"
-                        src={"images/list22.png"}
+                        src={"assets/images/list22.png"}
                       />
                     </a>
                   </li>
 
-                  <li>
-                    <a href="/StackList">
-                      <img
-                        className="img-fluid m-0"
-                        src={"images/list22.png"}
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/ContactList">
-                      <img
-                        className="img-fluid m-0"
-                        src={"images/list22.png"}
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/create-nft">
-                      <img
-                        className="img-fluid m-0"
-                        src={"images/list22.png"}
-                      />
-                    </a>
-                  </li>
+               
+                 
                 </ul>
               </div>
             </Col>
@@ -151,7 +144,7 @@ const AdminDashboard = () => {
                           />
                           <h3 className="main-heading-inner">On Auction</h3>
                         </li>
-                        <li>
+                        {/* <li>
                           <CircularProgressbar
                              value={percentage5}
                            
@@ -160,8 +153,8 @@ const AdminDashboard = () => {
                           <h3 className="main-heading-inner">
                             Total Register Users
                           </h3>
-                        </li>
-                        {/* <li>
+                        </li> */}
+                       <li>
                           <CircularProgressbar
                              value={percentage4}
                            
@@ -170,9 +163,9 @@ const AdminDashboard = () => {
                           <h3 className="main-heading-inner">
                             Total Register Users
                           </h3>
-                        </li> */}
+                        </li> 
                       
-                      {/* </ul>
+                     </ul>
                     </div>
 
                     <div className="latest-user-row">
@@ -183,34 +176,8 @@ const AdminDashboard = () => {
                     </div>
 
                     <div className="shadow-box">
-                      <Table className="table-tank" responsive>
-                        <thead>
-                          <tr>
-                            <th className="table-tank-th">S.No</th>
-                            <th className="table-tank-th">Collection</th>
-                            <th className="table-tank-th">Email Address</th>
-                            <th className="table-tank-th">Wallet Address</th>
-                            <th className="table-tank-th">Create Date</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>1</td>
-                            <td>
-                              <div class="owner-row-outer">
-                                <img src="images/Team/team7.png" />
-                                <div>
-                                  <h5>Clementines Nightmare</h5>
-                                </div>
-                              </div>
-                            </td>
-
-                            <td>{user.email}</td>
-                            <td>{user.wallet_address}</td>
-                            {/* <td> {user.created_at.slice(0, 9)}</td> */}
-                          {/* </tr>
-                        </tbody>
-                      </Table>
+                   
+                    
                     </div>
                   </Col>
                 </Row>
@@ -225,17 +192,20 @@ const AdminDashboard = () => {
                 </h3>
                 <img
                   className="profile-main-img"
-                  src={"images/Team/team7.png"}
+                 src={`https://jewellery.donative.in:3000/AdminProfile/${profileImage}`}
+
                 />
-                <h4>{user.name}</h4> */}
-                {/* <p>{user._id.slice(0,6)}...{user._id.slice(-5)}</p> */}
+                {console.log({profileImage})}
+                <h4>{walletAddress.slice(0,4)}....{walletAddress.slice(-4)}</h4> 
+                <a href="/update-profile" className="gradient-btn" >Update Profile</a>
+               {/* <p>{user._id.slice(0,6)}...{user._id.slice(-5)}</p>  */}
                 <hr />
-              {/* </div>
+             </div>
             </Col>
-          </Row> */}
-        {/* </Container> */}
-      {/* </section> */} 
-      </Layout>
+          </Row> 
+       </Container> 
+     </section>  
+     </HomeLayout>
     </>
   );
 };

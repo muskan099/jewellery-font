@@ -16,7 +16,10 @@ import Contactus from "./pages/Contactus";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import Articles from "./pages/Articles";
 import ArticleDetail from "./pages/ArticleDetail";
-
+import SignIn from "./pages/admin/SignIn";
+import SignUp from "./pages/admin/SignUp";
+import UpdateAdminProfile from "./pages/admin/UpdateAdminProfile";
+import NftList from "./pages/admin/NftList";
 function App() {
   return (
     <div className="App">
@@ -38,6 +41,10 @@ function App() {
             <Route path="/contact" element={<Contactus />} />
             <Route path="/articles" element={<Articles />} />
             <Route path="/article-detail" element={<ArticleDetail />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/update-profile" element={<UpdateAdminProfile />} />
+            <Route path="/nft-list" element={<NftList />} />
           </Routes>
         </ScrollToTop>
       </BrowserRouter>

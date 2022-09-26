@@ -2608,7 +2608,15 @@ a {
   .sidemenu-creater ul li:focus a img{
     opacity: 1;
   }
-  
+  .shadow-graph-box {
+    box-shadow: 0 3px 10px #A77327  !important;
+margin: 30px 0;
+    border-radius: 5px;
+    overflow: hidden;
+    padding: 20px;
+    max-height: 360px;
+    min-height: 360px;
+}
   .top-collect-creater{
     padding: 30px 0;
   }
@@ -2624,6 +2632,12 @@ margin: 0px 0 30px !important;
   border-radius: 0;
   text-align: center;
   height: 100%;
+  
+  }
+  .profile-img-left-box h4{
+   color: #fff;
+font-size: 18px;
+margin-top: 20px;
   }
   .top-model-profile{
     display: flex;
@@ -2829,3 +2843,87 @@ margin: 0px 0 30px !important;
     color: #fff;
 }
 /* admin-dashboard */
+
+/* Sign Up */
+#sign-account{
+    padding: 40px 0;
+}
+#sign-account .img img{
+    width: 100%;
+    mix-blend-mode: screen;
+}
+#sign-account .form-box{
+    border: 1px solid #A77327;
+    padding: 50px;
+    border-radius: 20px;
+}
+#sign-account .form-box h2{
+    font-size: 40px;
+    text-align: center;
+    color: #fff;
+    font-weight: 600;
+    font-family: var(--Saire);
+    margin-bottom: 20px;
+}
+#sign-account .form-box p{
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+#sign-account .form-box p a{
+    color: #A77327;
+    text-decoration: none;
+}
+#sign-account .form-box .input-field {
+    margin-bottom: 20px;
+}
+#sign-account .form-box .input-field span {
+    display: block;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 8px;
+}
+#sign-account .form-box .input-field input {
+    border: none;
+    outline: none;
+    width: 100%;
+    border-radius: 10px;
+    height: 40px;
+    color: #fff;
+    background-color: transparent;
+    padding: 0 15px;
+    border: 1px solid #b13cba;
+}
+#sign-account .form-box .input-field input[type="date"]::placeholder{
+    color: red;
+}
+#sign-account .form-box h6 a{
+    color: #A77327;
+    text-decoration: none;
+    font-size: 20px;
+}
+#sign-account .form-box .form-btn{
+    margin-top: 40px;
+}
+#sign-account .form-box .form-btn a {
+    text-decoration: none;
+    background: linear-gradient(90deg, #A77327 0%, #EFD67B 49.79%, #A77327 100%);
+    border-radius: 60px;
+    border-radius: 10px;
+    padding: 10px 15px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    display: block;
+    text-align: center;
+}
+.signup .form-box .form-btn{
+    margin-top: 0!important;
+    margin-bottom: 40px;
+}
+.signup .form-box p{
+    margin-bottom: 0!important;
+    color: #fff !important;
+}
+/* Sign Up */

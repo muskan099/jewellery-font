@@ -26,7 +26,6 @@ import { toast } from "react-toastify";
 
 function* setItemToLocalStorage(key, value) {
   localStorage.setItem(key, value);
-  
 }
 
 // @ note := THis login saga is for connecting the wallet ,
@@ -62,10 +61,13 @@ export function* loginSaga(action) {
 // @ note := THis login saga is for login the user through API Call
 
 export function* userLoginSaga(action) {
+  console.log("action", action);
   yield put(userLoginStart());
   try {
-    const { formData, navigate } = action.payload;
-    const response = yield axios.post(`/users/login`, formData);
+    console.log("action.payload", action.payload);
+    const { inputdata, navigate } = action.payload;
+    console.log("inputData", inputdata);
+    const response = yield axios.post(`/AdminSingin`, inputdata);
     console.log(response.data);
     if (response?.data.status) {
       yield call(
@@ -81,7 +83,7 @@ export function* userLoginSaga(action) {
       );
       yield put(userloginSuccess(response.data.user));
       if (response.data.user.user_role === "admin") {
-        navigate("/admin-dashboard");
+        navigate("/create-nft");
       }
     } else {
       toast.error(response.data.message);
