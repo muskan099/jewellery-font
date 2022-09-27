@@ -105,7 +105,14 @@ const AdminDashboard = () => {
                       />
                     </a>
                   </li>
-
+                  <li>
+                    <a href="/stakes">
+                      <img
+                        className="img-fluid m-0"
+                        src={"assets/images/list22.png"}
+                      />
+                    </a>
+                  </li>
                
                  
                 </ul>

@@ -135,7 +135,8 @@ useEffect(()=>{
 const handleBuy = async (e) => {
   
   let price = parseFloat(nftPrice);
-  
+  console.log("price",{price})
+ 
 
   if (!isAuthenticated) {
       toast.warn("Please connect wallet!");
@@ -146,8 +147,8 @@ const handleBuy = async (e) => {
    }
     else {
     setBuyStart(true);
-    const for_sale = nft.forsale === "false" ? true : false;
-
+    const for_sale = nft.forsale === "no" ? true : false;
+    console.log("forsale",{for_sale})
     if (for_sale) {
       
       let approveData = await TokenApproval(
@@ -182,6 +183,7 @@ const handleBuy = async (e) => {
             punk,
             nft.wallet_address
           );
+        
           console.log("thehash is",{hash})
           if (hash) {
             // token=token+1;
