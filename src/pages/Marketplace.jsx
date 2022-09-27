@@ -33,7 +33,8 @@ function enableSlider($, changeStateFn) {
   );
 }
 const Marketplace = () => {
-  
+
+  const { nft, isLoading, totalNfts } = useSelector((state) => state.nft);
   const [filterSearch, setFilterSearch] = useState({
     A_TO_Z: false,
     status:"",
@@ -58,7 +59,7 @@ const Marketplace = () => {
   const navigate = useNavigate()
   const inputRangeRef = useRef(null);
   const [meta, setMeta] = useState("");
-  const { nft, isLoading, totalNfts } = useSelector((state) => state.nft);
+
   console.log(totalNfts)
   console.log({nft})
   const { isAuthenticated, walletAddress, tier } = useSelector(
@@ -111,7 +112,7 @@ const Marketplace = () => {
       nftTier,
     };
 
-    dispatch(getNftSaga(data));
+    await dispatch(getNftSaga(data));
     console.log({ data });
   };
   const [currentPage, setCurrentPage] = useState(1);
@@ -607,8 +608,9 @@ const Marketplace = () => {
                           {/* </Link> */}
                         </Col>
                         ))  : ""}
+                       
                       
-                        
+                            
                     </Row>
                   </Col> 
                 </Row>

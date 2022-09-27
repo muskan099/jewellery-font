@@ -22,6 +22,7 @@ import FindNFTToken from "../helpers/FindNFTToken";
 import { TabooBalance } from "../helpers/TabooHelper";
 import { TabooPunk } from "../helpers/TabooPunk";
 import { loginSaga, logout } from "../store/reducers/authReducer";
+import Connect from "../helpers/Connect";
 function NftDetail() {
   const dispatch = useDispatch();
 
@@ -52,12 +53,11 @@ function NftDetail() {
 
   let { transactions } = useSelector((state) => state.transactions);
 
-  console.log(nft , "nft ka data");
- console.log(alloffer , "all")
+  
   // console.log(totalNfts , "nft ka data");
   const { state } = useLocation("/marketplace");
   const { id } = state || "";
-  console.log(id , "Id");
+  
   const [commonModel , setCommonModel] = useState(false)
   const [commonModel1 , setCommonModel1] = useState(false)
   const handleCommonModel = () =>{
@@ -92,7 +92,9 @@ function NftDetail() {
    const[ makeOfferDetails,setMakeOfferDetails] = useState([])
    const handleOfferStart = () => setOfferStart(false);
   // const [nftName , setNftName] = useState("")
-
+const endBid = moment(new Date(), "YYYY-MM-DD").format();
+const endBidNew = endBid.slice(0,10)
+console.log({endBidNew})
 const getData1 = async () =>{
   try{
     const api =  await axiosMain.post("/nftDetailById", inputdata)
@@ -105,6 +107,7 @@ const getData1 = async () =>{
       setNftImages(api.data.images)
       setAllOffers(api.data.allOffer)
       setNftStatus(api.data.status)
+     
       setNftWalletAdress(api.data.wallet_address)
 
     }
@@ -127,176 +130,191 @@ const getOffers = async () => {
     console.log(error);
   }
 }
-console.log({makeOfferDetails})
+
 useEffect(()=>{
   getData1();
+ 
   getData();
   getOffers();
+ 
   
-},[])
-
+},[nft])
+const[isLoginStart,setIsLoginStart]=useState(false);
+let address ;
 
 
 const handleBuy = async (e) => {
+ try {
+
+   let price = parseFloat(nftPrice);
+   console.log("price",{price})
   
-  let price = parseFloat(nftPrice);
-  console.log("price",{price})
  
-
-  if (!isAuthenticated) {
-      toast.warn("Please connect wallet!");
-   }
-    else if (balance<price) {
-     toast.warn("You don't have sufficient amount");
-  
-   }
-    else {
-    setBuyStart(true);
-    const for_sale = nft.forsale === "no" ? true : false;
-    console.log("forsale",{for_sale})
-    if (for_sale) {
-      
-      let approveData = await TokenApproval(
-        price,
-        walletAddress,
-        nft.forsale
-      );
-
-      let tx = await Transaction({ tx: approveData });
-      if (tx) {
-        console.log("thehash is",{tx})
-        // let {tx}=transactions;
-        let taboo_hash = true;
-        try {
-          // taboo_hash = await Transaction(tx.data);
-        } catch (e) {
-          setBuyStart(false);
-         
-        }
-        console.log("thehash is",taboo_hash)
-        if (taboo_hash) {
-          // let token = await NFTBalance();
-
-          // console.log("ss",token)
-        
-          let hash = await BuyNFT(
-            nft.token_id,
-            nft.ipfs,
-            price,
-            nft.signature,
-            tier,
-            punk,
-            nft.wallet_address
-          );
-        
-          console.log("thehash is",{hash})
-          if (hash) {
-            let tokenId = await FindNFTToken(hash.hash,price);
-            // token=token+1;
-            //toast.success("Order placed successfully!")
-            let hashNFT = hash;
-            let Nft_hash = hash.hash.transactionHash;
-            hash = hash.hash.transactionHash;
-            hash = hash.substring(0, 5) + "....." + hash.substring(38, 42);
-            setNftHash(hash);
-            let orderObj = { id: nft._id, status: "sold" };
-            dispatch(updateNftStatusSaga(orderObj));
-            
-            console.log({hashNFT})
-            let order = await axiosMain.post("/transactionCreater", {
-              content_id: nft._id,
-              wallet_address: walletAddress,
-              status : "",
-              refund_status:"",
-              total : price,
-              type :"creator",
-               to_address: "0x9632a9b8afe7CbA98236bCc66b4C019EDC1CD1Cc",
-              // amount: nft.price,
-              // tx_id: Nft_hash,
-
-              hash: Nft_hash,
-               tokenUrl: nft.ipfs,
-               token: tokenId
-               
-            });
-            await handleBalance(walletAddress);
-            
-
-            // handleClose2();
-            // handleShow1();
-
-            setBuyStart(false);
-
-            getData();
-
-            // setTimeout(handleClose1, 3000);
-
-            navigate("/transactions");
-          }
-        } else {
-          
-          setBuyStart(false);
-        }
-      }
-    } else 
-    {
-      console.log("i m in else block")
-      let approveData = await TokenApproval(
-        price,
-        walletAddress,
-        nft.forsale
-      );
-
-      let tx = await Transaction({ tx: approveData });
-
+   if (!isAuthenticated) {
+       toast.warn("Please connect wallet!");
+       
+    }
+     else if (balance<price) {
+      toast.warn("You don't have sufficient amount");
      
-
-      if (tx) {
-      try {
-          let hash = await Sale(walletAddress, nft.token_id, "1");
-          console.log("nft otken id",nft.token_id)
-
-         if (hash) {
-          setNftHash(hash.transactionHash);
+   
+    }
+     else {
+      console.log("Please connect wallet else")
+     setBuyStart(true);
+     const for_sale = nft.forsale === "no" ? true : false;
+     console.log("forsale",{for_sale})
+     if (for_sale) {
+       
+       let approveData = await TokenApproval(
+         price,
+         walletAddress,
+         nft.forsale
+       );
+ console.log({approveData})
+ setCommonModel(false)
+ toast.warn("Your Request is under Process")
+       let tx = await Transaction({ tx: approveData });
+       setCommonModel(true)
+       console.log({tx})
+       if (tx) {
+        console.log({tx})
+         // let {tx}=transactions;
+         let taboo_hash = true;
+         try {
+           // taboo_hash = await Transaction(tx.data);
+         } catch (e) {
+           setBuyStart(false);
           
-          let orderObj = { id: nft._id, status: "sold" };
-            let hashNFT = hash;
-            let Nft_hash = hash.transactionHash;
-
-          dispatch(updateNftStatusSaga(orderObj));
-
-          let order = await axiosMain.post("/transactionCreater", {
-            content_id: nft._id,
-              wallet_address: walletAddress,
-              status : "",
-              refund_status:"",
-              total : price,
-              type :"creator",
-               to_address: "0x9632a9b8afe7CbA98236bCc66b4C019EDC1CD1Cc",
-              // amount: nft.price,
-              // tx_id: Nft_hash,
-              hash: Nft_hash,
-               tokenUrl: nft.ipfs,
-               token: nft.token_id,
-            
-          });
-          await handleBalance(walletAddress);
-
-          if (order) {
+         }
+      
+         if (taboo_hash) {
+           // let token = await NFTBalance();
+ 
+           // console.log("ss",token)
+         
+           let hash = await BuyNFT(
+             nft.token_id,
+             nft.ipfs,
+             price,
+             nft.signature,
+             tier,
+             punk,
+             nft.wallet_address
+           );
+         
+          
+           if (hash) {
+             let tokenId = await FindNFTToken(hash.hash,price);
+             // token=token+1;
+             //toast.success("Order placed successfully!")
+             let hashNFT = hash;
+             let Nft_hash = hash.hash.transactionHash;
+             hash = hash.hash.transactionHash;
+             hash = hash.substring(0, 5) + "....." + hash.substring(38, 42);
+             setNftHash(hash);
+             let orderObj = { id: nft._id, status: "sold" };
+             dispatch(updateNftStatusSaga(orderObj));
+             
+             console.log({hashNFT})
+             let order = await axiosMain.post("/transactionCreater", {
+               content_id: nft._id,
+               wallet_address: walletAddress,
+               status : "",
+               refund_status:"",
+               total : price,
+               type :"creator",
+                to_address: "0x9632a9b8afe7CbA98236bCc66b4C019EDC1CD1Cc",
+               // amount: nft.price,
+               // tx_id: Nft_hash,
+ 
+               hash: Nft_hash,
+                tokenUrl: nft.ipfs,
+                token: tokenId
+                
+             });
+             await handleBalance(walletAddress);
+             
+ 
+             // handleClose2();
+             // handleShow1();
+ 
+             setBuyStart(false);
+ 
+             getData();
+ 
+             // setTimeout(handleClose1, 3000);
+ 
              navigate("/transactions");
            }
-        } else {
-          setBuyStart(false);
-          toast.error("Owner cannot purchase his own NFT")
-        }
-      }catch(e){
-        console.log("I m in catch")
-      toast.error("i m in catch")
-      }
-      }
-    
-    }
-  }
+         } else if(!tx){
+           console.log("Reconnect")
+           setBuyStart(false);
+          
+         }
+       }
+     } else 
+     {
+       console.log("i m in else block")
+       let approveData = await TokenApproval(
+         price,
+         walletAddress,
+         nft.forsale
+       );
+ 
+       let tx = await Transaction({ tx: approveData });
+ 
+      
+ 
+       if (tx) {
+       try {
+           let hash = await Sale(walletAddress, nft.token_id, "1");
+           console.log("nft otken id",nft.token_id)
+ 
+          if (hash) {
+           setNftHash(hash.transactionHash);
+           
+           let orderObj = { id: nft._id, status: "sold" };
+             let hashNFT = hash;
+             let Nft_hash = hash.transactionHash;
+ 
+           dispatch(updateNftStatusSaga(orderObj));
+ 
+           let order = await axiosMain.post("/transactionCreater", {
+             content_id: nft._id,
+               wallet_address: walletAddress,
+               status : "",
+               refund_status:"",
+               total : price,
+               type :"creator",
+                to_address: "0x9632a9b8afe7CbA98236bCc66b4C019EDC1CD1Cc",
+               // amount: nft.price,
+               // tx_id: Nft_hash,
+               hash: Nft_hash,
+                tokenUrl: nft.ipfs,
+                token: nft.token_id,
+             
+           });
+           await handleBalance(walletAddress);
+ 
+           if (order) {
+              navigate("/transactions");
+            }
+         } else {
+           setBuyStart(false);
+           toast.error("Owner cannot purchase his own NFT")
+         }
+       }catch(e){
+         console.log("I m in catch")
+       toast.error("i m in catch")
+       }
+       }
+     
+     }
+   }
+ }catch(e){
+   toast.error("ReConnect wallet")
+ }
 };
 const [time, setTime] = useState(false);
 const handleBalance = async (address) => {
@@ -327,10 +345,12 @@ useEffect(() => {
     setTime(current_time);
     
   }
+ 
+ 
 }, [nft]);
 
 
-
+console.log({nftStatus})
 const handleOfferPrice = (e) => {
   let value = e.target.value;
 
@@ -420,8 +440,9 @@ const handleOffer = async () => {
                     <h6> Price: {nftPrice} JWL</h6>
                     <p>{nftDesc}</p>
                     <div>
-                    {console.log(nftStatus == 'sold')}
-                    {time && nft.status == "auction" && nft.bid_end != new Date()    ? <CountDownTimer expiryTimestamp={time} /> : ""}
+                 {console.log(nft.bid_end)}
+                 {console.log(endBidNew)}
+                    {time && nft.status == "auction" && nft.bid_end != endBidNew ? <CountDownTimer expiryTimestamp={time} /> :  ""}
                       <button class="gradient-btn"  
                       disabled={
                           isLoading ||
@@ -433,19 +454,19 @@ const handleOffer = async () => {
                       
                       onClick={()=>{
                         setCommonModel(true)
-                      }}>    {nft.status == "sold" ? "Sold Out" : "Buy Now"}</button>
-                      <a class="border-btn" 
+                      }}>   {nft.status == "auction" ? "Wait for Auction To End" : nft.status == "sold" ? "Sold Out" : "Buy Now"}</button>
+                      
+                      <button class="border-btn" 
                     onClick={() => 
                     nft.status == "auction"?
                        setOfferStart(true):""}
-  
-                      ><span>Make Offer</span></a>
+                   disabled={ nft.status == "sold" || nft.status == "active" ? true : false}>Make Offer</button>
 
                     </div>
                     <Modal
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
+                    size="lg"
+                 aria-labelledby="contained-modal-title-vcenter"
+                   centered
         className="modal-comming-soon "
         show={show}
         onHide={handleClose}
@@ -734,7 +755,7 @@ const handleOffer = async () => {
           ></Modal.Header>
           <Modal.Body>
             <div class="bid-modal-box">
-              <h3>Create a Auction</h3>
+              <h3>Create an Offer</h3>
               <p>You are about to place a bit for </p>
 
               <Form>

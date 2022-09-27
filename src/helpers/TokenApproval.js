@@ -369,7 +369,7 @@ export const TokenApproval = async (price, address, forsale) => {
       //'maxPriorityFeePerGas': 1999999987,
       data: nftContract.methods.approve(spender, price).encodeABI(),
     };
-
+console.log({tx})
     return tx;
   } catch (e) {
     console.log(e);

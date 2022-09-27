@@ -1,6 +1,7 @@
 import Web3 from "web3";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import Web3Modal from "web3modal";
+import { toast } from "react-toastify";
 
 const providerOptions = {
   /* See Provider Options Section */
@@ -32,6 +33,7 @@ export const web3 = async () => {
     return web3;
   } catch (error) {
     console.log(error.message);
+    toast.error("Reconnect wallet")
   }
 };
 

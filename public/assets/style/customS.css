@@ -2523,7 +2523,9 @@ a {
 	background: #5889a0;
 	outline: none;
 } */
-
+.font-size-days{
+font-size: 12px;
+}
 /* Flip animation */
 
 /* .flip {

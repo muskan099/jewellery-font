@@ -69,6 +69,9 @@ console.log({address})
   dispatch(logout({}));
 };
 useEffect(() => {
+  setChangedWalletAddress(walletAddress)
+},[walletAddress])
+useEffect(() => {
 
   if(!hasWebsiteAccess){
         navigate('/')
@@ -111,7 +114,7 @@ useEffect(() => {
       });
     }
   }
-},[]);
+},[changedWalletAddress]);
 
 const [showModal1, setShowModal1] = useState(false);
 

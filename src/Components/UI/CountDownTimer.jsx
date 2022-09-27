@@ -18,7 +18,7 @@ export default function CountDownTimer({ expiryTimestamp }) {
   return (
     <div style={{textAlign: 'center', border:"2px"}}>
       <div style={{fontSize: '50px'}} className="color-p-timer">
-        <span>{days}</span><span>:</span><span>{hours}</span><span>:</span><span>{minutes}</span><span>:</span><span>{seconds}</span>
+        <span>{days}<span className="font-size-days">Days</span></span><span>:</span><span>{hours}<span className="font-size-days">Hours</span></span><span>:</span><span>{minutes}</span><span>:</span><span>{seconds}</span>
       </div>
       {/* <p>{isRunning ? 'Running' : 'Not running'}</p>
       <button onClick={start}>Start</button>
