@@ -77,7 +77,7 @@ const Marketplace = () => {
   
   console.log({typeCategory})
   
-  const getData = (
+  const getData = async(
     page,
     limit = 25,
     skip = 0,

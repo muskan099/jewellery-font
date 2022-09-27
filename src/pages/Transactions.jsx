@@ -95,7 +95,7 @@ console.log("this is tx",tx)
         handleClose();
 
         setIsLoading(false);
-
+        window.location.reload(true);
         toast.success("Sale created successfully!");
       } else {
         setIsLoading(false);
@@ -278,12 +278,12 @@ console.log("this is tx",tx)
                           return (
                            
                             <tr className="for-body-tr">
-                               {console.log("transacrtion item",items)}
+                             
                               <td className="td-break">{index + 1}</td>
                               <td className="td-break"><img className="img-fluid" src={items.nftImage} width="40px" alt="" onError={({ currentTarget }) => {
-    currentTarget.onerror = null; // prevents looping
-    currentTarget.src="assets/images/img-nft/list-img.png";
-  }}/></td>
+                              currentTarget.onerror = null; // prevents looping
+                              currentTarget.src="assets/images/img-nft/list-img.png";
+                             }}/></td>
                               <td className="td-break">{items.nftName}</td>
                               <td className="td-break">{items.buying_Price}</td>
                               <td className="td-break">{items.wallet_address.slice(0,3)}....  {items.wallet_address.slice(-3)}</td>
@@ -298,11 +298,15 @@ console.log("this is tx",tx)
                               </td>
                               <td className="td-break">{items.token}</td>
                               <td className="td-break success-green">{items.status ? 'success' : 'success'}</td>
-                              <td className="td-break"><div className="btn-flex-btn"><button className="btn-sell1" disabled ={items.contentInfo.forsale == "yes" ? true : false}
-                              onClick={()=>handleCreateSale(items)}>{items.isOwner=="no"?"Sold":"Sell"}</button>
-                                <button className="btn-sell1" disabled ={items.contentInfo.forsale == "yes" ? true : false} onClick={()=>handleWithdrawSale(items.contentInfo)}>Cancel</button>
-                                {/* <button className="btn-sell1" disabled ={items.contentInfo.forsale == "yes" ? true : false} onClick={()=>handleStartAuction(items.contentInfo)} >Auction</button> */}
-                                </div>
+                              <td className="td-break">
+                                {items.contentInfo.owner== walletAddress ?
+                                 <div className="btn-flex-btn"><button className="btn-sell1" disabled ={items.contentInfo.forsale == "yes" ? true : false}
+                                 onClick={()=>handleCreateSale(items)}>{items.isOwner=="no"?"Sold":"Sell"}</button>
+                                   <button className="btn-sell1" disabled ={items.contentInfo.forsale == "yes" ? true : false} onClick={()=>handleWithdrawSale(items.contentInfo)}>Cancel</button>
+                                   <button className="btn-sell1" disabled ={items.contentInfo.forsale == "yes" ? true : false} onClick={()=>handleStartAuction(items.contentInfo)} >Auction</button>
+                                   </div>:""
+                                }
+                               
                               </td>
                             </tr>
                           )

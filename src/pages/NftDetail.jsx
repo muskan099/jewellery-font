@@ -84,6 +84,7 @@ function NftDetail() {
   const [nftStatus , setNftStatus] = useState("")
   const [nftDesc , setNftDesc] = useState("")
   const [nftPrice , setNftPrice] = useState("")
+  const [nftWalletAdress , setNftWalletAdress] = useState("")
   const [nftBalance , setBalance] = useState("")
    const [nftImages , setNftImages] = useState("")
    const [allOffers , setAllOffers] = useState("")
@@ -104,6 +105,7 @@ const getData1 = async () =>{
       setNftImages(api.data.images)
       setAllOffers(api.data.allOffer)
       setNftStatus(api.data.status)
+      setNftWalletAdress(api.data.wallet_address)
 
     }
    
@@ -419,7 +421,7 @@ const handleOffer = async () => {
                     <p>{nftDesc}</p>
                     <div>
                     {console.log(nftStatus == 'sold')}
-                    {time && nft.status == "auction"   ? <CountDownTimer expiryTimestamp={time} /> : ""}
+                    {time && nft.status == "auction" && nft.bid_end != new Date()    ? <CountDownTimer expiryTimestamp={time} /> : ""}
                       <button class="gradient-btn"  
                       disabled={
                           isLoading ||
@@ -461,7 +463,7 @@ const handleOffer = async () => {
                       <img src="assets/images/img-nft/user.png" />
                       <div>
                         {/* <h6>{nftName}</h6> */}
-                        <p>{walletAddress}</p>
+                        <p>{nftWalletAdress}</p>
                       </div>
                     </div>
                   </div>
