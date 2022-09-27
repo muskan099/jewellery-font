@@ -18,6 +18,8 @@ import { clearNftDetail, getNftDetailSaga } from "../store/reducers/nftReducer";
 import moment from "moment";
 import { ApproveTaboo } from "../helpers/Approve";
 import { axios } from "../http";
+import FindNFTToken from "../helpers/FindNFTToken";
+
 
 function NftDetail() {
   const dispatch = useDispatch();
@@ -186,6 +188,7 @@ const handleBuy = async (e) => {
         
           console.log("thehash is",{hash})
           if (hash) {
+            let tokenId = await FindNFTToken(hash.hash,price);
             // token=token+1;
             //toast.success("Order placed successfully!")
             let hashNFT = hash;
@@ -195,8 +198,8 @@ const handleBuy = async (e) => {
             setNftHash(hash);
             let orderObj = { id: nft._id, status: "sold" };
             dispatch(updateNftStatusSaga(orderObj));
-
-
+            
+            console.log({hashNFT})
             let order = await axiosMain.post("/transactionCreater", {
               content_id: nft._id,
               wallet_address: walletAddress,
@@ -207,9 +210,10 @@ const handleBuy = async (e) => {
                to_address: "0x9632a9b8afe7CbA98236bCc66b4C019EDC1CD1Cc",
               // amount: nft.price,
               // tx_id: Nft_hash,
+
               hash: Nft_hash,
                tokenUrl: nft.ipfs,
-               token: hashNFT.token,
+               token: tokenId
                
             });
 
@@ -224,14 +228,16 @@ const handleBuy = async (e) => {
 
             // setTimeout(handleClose1, 3000);
 
-            navigate("/transactions");
+            // navigate("/transactions");
           }
         } else {
+          
           setBuyStart(false);
         }
       }
     } else 
     {
+      console.log("i m in else block")
       let approveData = await TokenApproval(
         price,
         walletAddress,
@@ -243,9 +249,9 @@ const handleBuy = async (e) => {
      
 
       if (tx) {
-      
+      try {
           let hash = await Sale(walletAddress, nft.token_id, "1");
-          console.log({hash})
+          console.log("nft otken id",nft.token_id)
 
          if (hash) {
           setNftHash(hash.transactionHash);
@@ -277,8 +283,14 @@ const handleBuy = async (e) => {
            }
         } else {
           setBuyStart(false);
+          toast.error("Owner cannot purchase his own NFT")
         }
+      }catch(e){
+        console.log("I m in catch")
+      toast.error("i m in catch")
       }
+      }
+    
     }
   }
 };
@@ -393,7 +405,7 @@ const handleOffer = async () => {
                     <p>{nftDesc}</p>
                     <div>
                     {console.log(nftStatus == 'sold')}
-                    {time && nft.status == "auction" ? <CountDownTimer expiryTimestamp={time} /> : ""}
+                    {time && nft.status == "auction"   ? <CountDownTimer expiryTimestamp={time} /> : ""}
                       <button class="gradient-btn"  
                       disabled={
                           isLoading ||

@@ -80,7 +80,7 @@ function Transactions() {
       setIsLoading(true);
       let tx = await CreateReSale(
         walletAddress,
-        saleData.token_id,
+        saleData.token,
         minPrice
       );
 console.log("this is tx",tx)

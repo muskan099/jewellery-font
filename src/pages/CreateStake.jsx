@@ -21,7 +21,7 @@ function CreateStake() {
 
   const [stakeTime,setStakeTime]=useState(3)
 
-  const [rate,setRate]=useState(12)
+  const [rate,setRate]=useState("")
   const adminAddress = "0x8768EA5bB7144c39EC3Df69406DcA255d06ac4fC"
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -29,19 +29,7 @@ function CreateStake() {
 
   const[isStart,setIsStart]=useState(false)
 
-  const handleBalance = async (address) => {
-    //let address = await Connect();
-
-    let punk= await TabooPunk(address);
-    // console.log("punks",punk)
-    let tier=punk>0?"3 Tier":"1 Tier"
-    let balance= await TabooBalance(address)
-    console.log("balance",balance)
-
-    if (address && address.length) {
-      dispatch(loginSaga({ address: address,balance:balance,tabooPunk:punk,tier:tier}));
-    }
-  };
+ 
 
 
   useEffect(() => {
@@ -175,13 +163,14 @@ function CreateStake() {
                       deposit_amount:tabooToken,
                       end_date:end_date,
                      start_date: moment(today, "YYYY-MM-DD HH:mm:ss", true).format(),
+                     interest: rate
                       // hash:hash.transactionHash,
                       // rate:rate
                     })
 
-                    
+                    const response2 = await handleBalance(walletAddress);
                     toast.success("Token staked successfully!")
-                    navigate('/stakes')
+                    // navigate('/stakes')
 
                    setIsStart(false)
 
@@ -198,6 +187,20 @@ function CreateStake() {
               }
        }
   }
+  const handleBalance = async (address) => {
+    //let address = await Connect();
+
+    let punk= await TabooPunk(address);
+    // console.log("punks",punk)
+    let tier=punk>0?"3 Tier":"1 Tier"
+    let balance= await TabooBalance(address)
+    console.log("balance",balance)
+
+    if (address && address.length) {
+      dispatch(loginSaga({ address: address,balance:balance,tabooPunk:punk,tier:tier}));
+    }
+  };
+
   return (
     <Layout>
         <section className="profile-upper-banner">
