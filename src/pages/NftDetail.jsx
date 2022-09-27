@@ -275,7 +275,7 @@ const handleBuy = async (e) => {
               // tx_id: Nft_hash,
               hash: Nft_hash,
                tokenUrl: nft.ipfs,
-               token: hashNFT.token,
+               token: nft.token_id,
             
           });
           await handleBalance(walletAddress);
