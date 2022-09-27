@@ -50,6 +50,7 @@ function Transactions() {
  
 
   const handleCreateSale = async (data) => {
+    
     console.log("data sale", data);
 
     setSaleData(data);
@@ -297,13 +298,9 @@ console.log("this is tx",tx)
                               </td>
                               <td className="td-break">{items.token}</td>
                               <td className="td-break success-green">{items.status ? 'success' : 'success'}</td>
-                              <td className="td-break"><div className="btn-flex-btn"><button className="btn-sell1" onClick={()=>handleCreateSale(items)}>{items.isOwner=="no"?"Sold":"Sell"}</button>
-                                <button className="btn-sell1" disabled={
-                                  items.status == "active" &&
-                                  items.isOwner == "yes"
-                                    ? false
-                                    : true
-                                }onClick={()=>handleWithdrawSale(items.contentInfo)}>Cancel</button><button className="btn-sell1" onClick={()=>handleStartAuction(items.contentInfo)} >Auction</button></div>
+                              <td className="td-break"><div className="btn-flex-btn"><button className="btn-sell1" disabled ={items.contentInfo.forsale == "yes" ? true : false}
+                              onClick={()=>handleCreateSale(items)}>{items.isOwner=="no"?"Sold":"Sell"}</button>
+                                <button className="btn-sell1" disabled ={items.contentInfo.forsale == "yes" ? true : false} onClick={()=>handleWithdrawSale(items.contentInfo)}>Cancel</button><button className="btn-sell1" disabled ={items.contentInfo.forsale == "yes" ? true : false} onClick={()=>handleStartAuction(items.contentInfo)} >Auction</button></div>
                               </td>
                             </tr>
                           )

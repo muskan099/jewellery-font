@@ -19,8 +19,9 @@ import moment from "moment";
 import { ApproveTaboo } from "../helpers/Approve";
 import { axios } from "../http";
 import FindNFTToken from "../helpers/FindNFTToken";
-
-
+import { TabooBalance } from "../helpers/TabooHelper";
+import { TabooPunk } from "../helpers/TabooPunk";
+import { loginSaga, logout } from "../store/reducers/authReducer";
 function NftDetail() {
   const dispatch = useDispatch();
 
@@ -216,7 +217,7 @@ const handleBuy = async (e) => {
                token: tokenId
                
             });
-
+            await handleBalance(walletAddress);
             
 
             // handleClose2();
@@ -228,7 +229,7 @@ const handleBuy = async (e) => {
 
             // setTimeout(handleClose1, 3000);
 
-            // navigate("/transactions");
+            navigate("/transactions");
           }
         } else {
           
@@ -277,6 +278,7 @@ const handleBuy = async (e) => {
                token: hashNFT.token,
             
           });
+          await handleBalance(walletAddress);
 
           if (order) {
              navigate("/transactions");
@@ -295,7 +297,19 @@ const handleBuy = async (e) => {
   }
 };
 const [time, setTime] = useState(false);
+const handleBalance = async (address) => {
+  //let address = await Connect();
 
+  let punk= await TabooPunk(address);
+  // console.log("punks",punk)
+  let tier=punk>0?"3 Tier":"1 Tier"
+  let balance= await TabooBalance(address)
+  console.log("balance",balance)
+  setBalance(balance)
+  if (address && address.length) {
+    dispatch(loginSaga({ address: address,balance:balance,tabooPunk:punk,tier:tier}));
+  }
+};
 useEffect(() => {
   
 
