@@ -94,7 +94,7 @@ function NftDetail() {
   // const [nftName , setNftName] = useState("")
 const endBid = moment(new Date(), "YYYY-MM-DD").format();
 const endBidNew = endBid.slice(0,10)
-console.log({endBidNew})
+
 const getData1 = async () =>{
   try{
     const api =  await axiosMain.post("/nftDetailById", inputdata)
@@ -138,7 +138,7 @@ useEffect(()=>{
   getOffers();
  
   
-},[nft])
+},[])
 const[isLoginStart,setIsLoginStart]=useState(false);
 let address ;
 
@@ -173,7 +173,8 @@ const handleBuy = async (e) => {
        );
  console.log({approveData})
  setCommonModel(false)
- toast.warn("Your Request is under Process")
+ toast.warn("Your Request is Processing")
+
        let tx = await Transaction({ tx: approveData });
        setCommonModel(true)
        console.log({tx})

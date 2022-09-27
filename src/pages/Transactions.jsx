@@ -303,7 +303,7 @@ console.log("this is tx",tx)
                                  <div className="btn-flex-btn"><button className="btn-sell1" disabled ={items.contentInfo.forsale == "yes" ? true : false}
                                  onClick={()=>handleCreateSale(items)}>{items.isOwner=="no"?"Sold":"Sell"}</button>
                                    <button className="btn-sell1" disabled ={items.contentInfo.forsale == "yes" ? true : false} onClick={()=>handleWithdrawSale(items.contentInfo)}>Cancel</button>
-                                   <button className="btn-sell1" disabled ={items.contentInfo.forsale  == "yes" && items.contentInfo.status != "auction" ? true : false} onClick={()=>handleStartAuction(items.contentInfo)} >Auction</button>
+                                   <button className="btn-sell1" disabled ={items.contentInfo.forsale  == "yes" || items.contentInfo.status == "auction" ? true : false} onClick={()=>handleStartAuction(items.contentInfo)} >Auction</button>
                                    </div>:""
                                 }
                                
