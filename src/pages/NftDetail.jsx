@@ -399,8 +399,11 @@ const handleOffer = async () => {
               auctionProcessing: false,
               buttonMessage: "",
             }));
+            getOffers();
             toast.success("Offer Created");
+           
             setOfferStart(false)
+           
           } else {
             toast.warn("Transaction Failed!");
           }
