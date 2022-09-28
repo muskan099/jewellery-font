@@ -239,7 +239,7 @@ const Marketplace = () => {
         typeCategory:{
           Ring:false,
           Necklace:false,
-          Earings:true,
+          Earings:false,
           Bangel:true,
           Chain:false
         }
@@ -256,7 +256,7 @@ const Marketplace = () => {
         typeCategory:{
           Ring:false,
           Necklace:false,
-          Earings:true,
+          Earings:false,
           Bangel:false,
           Chain:true
         }
