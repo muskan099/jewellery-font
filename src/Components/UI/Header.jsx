@@ -86,8 +86,8 @@ if (!isAuthenticated && window.location.pathname === "/login") {
 //   navigate("/");
 // }
 }, [isAuthenticated]);
-useEffect(() => {
-  const asyncFunction = async() => {
+useEffect(async() => {
+
     if (isAuthenticated) {
       let provider = await Provider();
       provider.on("accountsChanged", (accounts) => {
@@ -113,8 +113,8 @@ useEffect(() => {
         handleLogout();
       });
     }
-  }
-},[changedWalletAddress]);
+  
+},[]);
 
 const [showModal1, setShowModal1] = useState(false);
 
