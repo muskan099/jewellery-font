@@ -50,7 +50,7 @@ export const createAuction = async (
   const nonce = await web3js.eth.getTransactionCount(from_account, "latest");
 
   let tx = 0;
-  minPrice = "0x" + (minPrice * 1000000000).toString(16);
+  minPrice = "0x" + (minPrice * 1000000000000000000).toString(16);
 
   console.log("uri", uri);
 
@@ -158,7 +158,7 @@ export const createNFTAuction = async (
   console.log("price",minPrice)
 
   let tx = 0;
-  minPrice = "0x" + (minPrice * 1000000000).toString(16);
+  minPrice = "0x" + (minPrice * 1000000000000000000).toString(16);
 
   console.log("price",minPrice)
 

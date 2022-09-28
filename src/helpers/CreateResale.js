@@ -431,8 +431,9 @@ export const CreateReSale = async (selectedAccount, token, price) => {
   const nonce = await web3js.eth.getTransactionCount(selectedAccount, "latest");
 
   let hash = false;
-
-  price = "0x" + (price * 1000000000).toString(16);
+  
+  price =  price-(parseFloat((price)*2))/100;
+  price = "0x" + (price * 1000000000000000000).toString(16);
 
   console.log({ NftContract });
   console.log({ token });
@@ -440,8 +441,8 @@ export const CreateReSale = async (selectedAccount, token, price) => {
   console.log({ price });
   try {
     let ownerPercentage = 0;
-    let royaltyPercentage = 2;
-    let platformPercentage = 15;
+    let royaltyPercentage = 200;
+    let platformPercentage = 1500;
 
     let estimates_gas = await web3js.eth.estimateGas({
       from: selectedAccount,

@@ -430,7 +430,7 @@ export const Sale = async (selectedAccount, token, amount) => {
 
   let hash = false;
 
-  amount = "0x" + (amount * 1000000000).toString(16);
+  amount = "0x" + (amount * 1000000000000000000).toString(16);
 
   try {
     let estimates_gas = await web3js.eth.estimateGas({
