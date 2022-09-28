@@ -23,6 +23,7 @@ import { TabooBalance } from "../helpers/TabooHelper";
 import { TabooPunk } from "../helpers/TabooPunk";
 import { loginSaga, logout } from "../store/reducers/authReducer";
 import Connect from "../helpers/Connect";
+import calculateDays from "../helpers/CalculateDays"
 function NftDetail() {
   const dispatch = useDispatch();
 
@@ -443,7 +444,7 @@ const handleOffer = async () => {
                     <div>
                  {console.log(nft.bid_end)}
                  {console.log(endBidNew)}
-                    {time && nft.status == "auction" && nft.bid_end != endBidNew ? <CountDownTimer expiryTimestamp={time} /> :  ""}
+                    {time && nft.status == "auction" && calculateDays(nft.bid_end,endBidNew)<0 ? <CountDownTimer expiryTimestamp={time} /> :  ""}
                       <button class="gradient-btn"  
                       disabled={
                           isLoading ||
@@ -461,7 +462,7 @@ const handleOffer = async () => {
                     onClick={() => 
                     nft.status == "auction"?
                        setOfferStart(true):""}
-                   disabled={ nft.status == "sold" || nft.status == "active" ? true : false}>Make Offer</button>
+                   disabled={ nft.status == "sold" || nft.status == "active"||calculateDays(nft.bid_end,endBidNew)>=0 ? true : false}>Make Offer</button>
 
                     </div>
                     <Modal
