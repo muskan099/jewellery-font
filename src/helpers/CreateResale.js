@@ -442,7 +442,7 @@ export const CreateReSale = async (selectedAccount, token, price) => {
   try {
     let ownerPercentage = 0;
     let royaltyPercentage = 200;
-    let platformPercentage = 1500;
+    let platformPercentage = 500;
 
     let estimates_gas = await web3js.eth.estimateGas({
       from: selectedAccount,

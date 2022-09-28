@@ -557,7 +557,7 @@ export const BuyNFT = async (
     let admin_address = "0xbc2BF1401a615b6768D46A14c738e7937Fe32aA0";
     let adminPercent = 100;
     let royaltyPercent = 200;
-    let platformPercent = 750;
+    let platformPercent = 500;
     if (punk > 0) {
       platformPercent = 0;
     }
