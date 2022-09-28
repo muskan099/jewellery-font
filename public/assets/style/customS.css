@@ -2526,6 +2526,21 @@ a {
 .font-size-days{
 font-size: 24px;
 }
+.btn-text-color{
+   
+    background-color: transparent !important;
+    box-shadow: none !important;
+    padding: 8px 25px;
+    color: #000 !important;
+    text-decoration: none;
+    border-radius: 30px;
+    display: inline-block;
+    border: 1px solid #A77327;
+    margin: 10px 5px 0;
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
+}
 /* Flip animation */
 
 /* .flip {

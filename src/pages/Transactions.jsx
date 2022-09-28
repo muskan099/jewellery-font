@@ -86,12 +86,12 @@ function Transactions() {
       );
 console.log("this is tx",tx)
       if (tx) {
-        let res = axios.post("/update-content", {
+        let res = await axios.post("/update-content", {
           content_id: saleData.content_id,
           price: minPrice,
           forsale: "yes",
         });
-
+        console.log("api called");
         handleClose();
 
         setIsLoading(false);
@@ -302,7 +302,7 @@ console.log("this is tx",tx)
                                 {items.contentInfo.owner== walletAddress ?
                                  <div className="btn-flex-btn"><button className="btn-sell1" disabled ={items.contentInfo.forsale == "yes" ? true : false}
                                  onClick={()=>handleCreateSale(items)}>{items.isOwner=="no"?"Sold":"Sell"}</button>
-                                   <button className="btn-sell1" disabled ={items.contentInfo.forsale == "yes" ? true : false} onClick={()=>handleWithdrawSale(items.contentInfo)}>Cancel</button>
+                                   <button className=" btn-text-color" disabled ={items.contentInfo.forsale == "no" ? true : false} onClick={()=>handleWithdrawSale(items.contentInfo)}>Cancel</button>
                                    <button className="btn-sell1" disabled ={items.contentInfo.forsale  == "yes" || items.contentInfo.status == "auction" ? true : false} onClick={()=>handleStartAuction(items.contentInfo)} >Auction</button>
                                    </div>:""
                                 }
