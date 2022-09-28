@@ -432,7 +432,7 @@ export const CreateReSale = async (selectedAccount, token, price) => {
 
   let hash = false;
   
-  price =  price-(parseFloat((price)*2))/100;
+  // price =  price-(parseFloat((price)*2))/100;
   price = "0x" + (price * 1000000000000000000).toString(16);
 
   console.log({ NftContract });
