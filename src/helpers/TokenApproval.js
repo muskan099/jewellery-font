@@ -9,9 +9,9 @@ const web3js = new Web3(
 
 const contractAddress = "0x01b609d990C97514BCE6F67eE28972Fe1E26fc5f";
 
-const spenderFirst = "0xa426D5287037aB108751da3526d83432AFC4A2cC";
+const spenderFirst = "0xEf186773012F97c9eDE43768E3b98543104e37d7";
 
-const spenderSecond = "0x4D7d89Ad584e2a62493F60829E9C2D427C400571";
+const spenderSecond = "0x874B03c00CDF344bC7Ce95E0C1D5bdCa0ed94421";
 
 const abi = [
   {

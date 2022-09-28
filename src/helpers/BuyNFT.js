@@ -15,7 +15,7 @@ export const BuyNFT = async (
 
   let selectedAccount = accounts[0];
 
-  let contractAddress = "0xa426D5287037aB108751da3526d83432AFC4A2cC";
+  let contractAddress = "0xEf186773012F97c9eDE43768E3b98543104e37d7";
 
   const abi = [
     {
