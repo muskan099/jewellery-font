@@ -758,7 +758,7 @@ const handleOffer = async () => {
           <Modal.Body>
             <div class="bid-modal-box">
               <h3>Create an Offer</h3>
-              <p>You are about to place a bit for </p>
+              <p>You are about to place a bid for </p>
 
               <Form>
                 <Form.Group className="mb-3">
