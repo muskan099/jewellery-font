@@ -44,7 +44,9 @@ const Marketplace = () => {
     typeCategory: {
       Ring: false,
       Necklace:false,
-      Earings:false
+      Earings:false,
+      Bangel:false,
+      Chain:false
       
     },
     nftTier: {
@@ -184,7 +186,9 @@ const Marketplace = () => {
          typeCategory:{
           Ring:true,
           Necklace:false,
-          Earings:false
+          Earings:false,
+          Bangel:false,
+          Chain:false
         }
         
       }));
@@ -200,7 +204,9 @@ const Marketplace = () => {
         typeCategory:{
           Ring:false,
           Necklace:true,
-          Earings:false
+          Earings:false,
+          Bangel:false,
+          Chain:false
           
         }
         
@@ -216,7 +222,43 @@ const Marketplace = () => {
         typeCategory:{
           Ring:false,
           Necklace:false,
-          Earings:true
+          Earings:true,
+          Bangel:false,
+          Chain:false
+        }
+        
+      }));
+    } else  if (value === "Bangel") {
+      setCategory("Bangel");
+      setFilterSearch((prev) => ({
+        ...prev,
+        A_TO_Z: false,
+        letest: false,
+        price: "",
+         status: "",
+        typeCategory:{
+          Ring:false,
+          Necklace:false,
+          Earings:true,
+          Bangel:true,
+          Chain:false
+        }
+        
+      }));
+    } else  if (value === "Chain") {
+      setCategory("Chain");
+      setFilterSearch((prev) => ({
+        ...prev,
+        A_TO_Z: false,
+        letest: false,
+        price: "",
+         status: "",
+        typeCategory:{
+          Ring:false,
+          Necklace:false,
+          Earings:true,
+          Bangel:false,
+          Chain:true
         }
         
       }));
@@ -485,6 +527,40 @@ const Marketplace = () => {
                                       <i className="cr-icon fa fa-check"></i>
                                     </span>
                                     Earings
+                                  </label>
+                                </div>
+                              
+                              
+                            
+                              </div>
+                              <div>
+                                <div className="radio">
+                                  <label>
+                                    <input     checked={filterSearch.typeCategory.Bangel}name="o1" type="radio"
+                            value="Bangel"
+                         
+                            onChange={handleTypeCategory}></input>
+                                    <span className="cr">
+                                      <i className="cr-icon fa fa-check"></i>
+                                    </span>
+                                    Bangel
+                                  </label>
+                                </div>
+                              
+                              
+                            
+                              </div>
+                              <div>
+                                <div className="radio">
+                                  <label>
+                                    <input     checked={filterSearch.typeCategory.Chain}name="o1" type="radio"
+                            value="Chain"
+                         
+                            onChange={handleTypeCategory}></input>
+                                    <span className="cr">
+                                      <i className="cr-icon fa fa-check"></i>
+                                    </span>
+                                    Chain
                                   </label>
                                 </div>
                               

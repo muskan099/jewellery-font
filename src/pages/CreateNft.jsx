@@ -384,6 +384,8 @@ function CreateNft() {
                         <option value="Ring">Ring</option>
                         <option value="Necklaces">Necklaces</option>
                         <option value="Earings">Earings</option>
+                        <option value="Chain">Chain</option>
+                        <option value="Bangle">Bangle</option>
                       </Form.Select>
                     </FormGroup>
                   </Col>
