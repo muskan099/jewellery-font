@@ -136,7 +136,7 @@ const[id,setId] = useState();
                           <th>Name</th>
                           <th >Buying Price</th>
                           <th>Creator Address</th>
-                          <th>Transaction hash</th>
+                         
                           <th>Token</th>
                           <th>Status</th>
                           <th width="20%">Action</th>
@@ -156,15 +156,7 @@ const[id,setId] = useState();
                               <td className="td-break">{items.name}</td>
                               <td className="td-break">{items.price}</td>
                               <td className="td-break">{items.wallet_address.slice(0,3)}....  {items.wallet_address.slice(-3)}</td>
-                              <td className="td-break">
-                              <a href={`https://testnet.bscscan.com/tx/${items.hash}`} target="_blank">
-                                {`${items.hash?.slice(
-                                  0,
-                                  3
-                                )}...${items.hash?.slice(-5)}`}
-                              </a>
-                             
-                              </td>
+                            
                               <td className="td-break">{items.token_id}</td>
                               <td className="td-break success-green">{items.status ? 'success' : 'success'}</td>
                               <td className="td-break">
