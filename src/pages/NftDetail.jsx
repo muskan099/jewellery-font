@@ -174,7 +174,7 @@ const handleBuy = async (e) => {
        );
  console.log({approveData})
  setCommonModel(false)
- toast.warn("Your Request is Processing")
+ toast.warn("Your Request is Processing Please Wait")
 
        let tx = await Transaction({ tx: approveData });
        setCommonModel(true)
