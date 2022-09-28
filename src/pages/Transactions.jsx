@@ -507,7 +507,7 @@ console.log("this is tx",tx)
             </div>
             <div>
 
-            <a  className="blue-btn"onClick={() => submitWithdrawSale()}>Submit</a>
+            <a  className="blue-btn"onClick={() => submitWithdrawSale()} disabled={isLoading}> {isLoading ? "Processing" : "Submit"}</a>
             <a className="btn-text-color" onClick={() => setShowSale(false)}>Cancel</a>
             </div>
           </Modal.Body>
