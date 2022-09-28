@@ -209,16 +209,16 @@ console.log("this is tx",tx)
     let hash = await WithdrawSale(walletAddress, saleData.token_id);
 
     if (hash) {
-      let res = await axios.post("/Auction", {
+      let res = await axios.post("/cancleSellNFT", {
         content_id: saleData._id,
         status: "sold",
-        token: saleData.token_id,
-        bid_price: saleData.price,
+        forsale:"no"
       });
 
       setShowSale(false);
 
       toast.success("Transaction submitted successfully!");
+      window.location.reload(true);
     }
   };
   const handleStartAuction = (value) => {
