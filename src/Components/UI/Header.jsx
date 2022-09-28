@@ -86,32 +86,37 @@ if (!isAuthenticated && window.location.pathname === "/login") {
 //   navigate("/");
 // }
 }, [isAuthenticated]);
-useEffect(async() => {
+useEffect(() => {
 
     if (isAuthenticated) {
-      let provider = await Provider();
-      provider.on("accountsChanged", (accounts) => {
-        console.log(accounts);
-        handleLogin();
-      });
+      const handleChain=async()=>{
 
-      // Subscribe to chainId change
-      provider.on("chainChanged", (chainId) => {
-        console.log(chainId);
-        handleLogin();
-      });
+        let provider = await Provider();
+        provider.on("accountsChanged", (accounts) => {
+          console.log(accounts);
+          handleLogin();
+        });
+  
+        // Subscribe to chainId change
+        provider.on("chainChanged", (chainId) => {
+          console.log(chainId);
+          handleLogin();
+        });
+  
+        // Subscribe to provider connection
+        provider.on("connect", (info) => {
+          console.log(info);
+        });
+  
+        // Subscribe to provider disconnection
+        provider.on("disconnect", (error) => {
+          console.log(error);
+  
+          handleLogout();
+        });
+      }
 
-      // Subscribe to provider connection
-      provider.on("connect", (info) => {
-        console.log(info);
-      });
-
-      // Subscribe to provider disconnection
-      provider.on("disconnect", (error) => {
-        console.log(error);
-
-        handleLogout();
-      });
+      handleChain()
     }
   
 },[]);
