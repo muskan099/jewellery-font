@@ -1189,9 +1189,9 @@ const movetodetail=(dataid)=>{
                     </Tabs>
                   </div>
                   <div className="text-center">
-                    <a href="/" className="border-btn">
+                    <Link to="/marketplace" className="border-btn">
                       <span>see more</span>
-                    </a>
+                    </Link>
                   </div>
                 </Col>
               </Row>
