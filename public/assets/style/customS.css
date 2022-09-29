@@ -3032,3 +3032,10 @@ margin: 0px !important;
     text-align: center;
     font-weight: 700;
 }
+.join_us{
+
+    font-size: 1.75rem;
+    background: linear-gradient(90deg, #A77327 0%, #EFD67B 49.79%, #A77327 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

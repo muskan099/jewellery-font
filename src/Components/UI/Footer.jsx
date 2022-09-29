@@ -53,18 +53,19 @@ function Footer() {
                   <div>
                     <h6 className="footer-links-heading">Marketplace</h6>
                     <div className="footer-links">
-                      <a href="/marketplace" className="footer-link">
+                      <Link to="/marketplace" className="footer-link">
                         Discover
-                      </a>
-                      <a href="#Articles" className="footer-link">
-                        Articles
-                      </a>
-                      <a href="/" className="footer-link">
+                      </Link>
+
+                      <Link to="/joinus" className="footer-link">
+                      Join us
+                      </Link>
+                      <Link to="/" className="footer-link">
                         How it Works
-                      </a>
-                      <a href="/contact" className="footer-link">
+                      </Link>
+                      <Link href="/contact" className="footer-link">
                         Help
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </Col>
@@ -73,18 +74,18 @@ function Footer() {
                     <h6 className="footer-links-heading">Links</h6>
 
                     <div className="footer-links">
-                      <a href="/" className="footer-link">
+                      <Link to="/" className="footer-link">
                         Tokens
-                      </a>
-                      <a href="/" className="footer-link">
+                      </Link>
+                      <Link to="/" className="footer-link">
                         API
-                      </a>
-                      <a href="/" className="footer-link">
+                      </Link>
+                      <Link to="/" className="footer-link">
                         Big Bounty
-                      </a>
-                      <a href="/" className="footer-link">
+                      </Link>
+                      <Link to="/" className="footer-link">
                         Become Partners
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </Col>
