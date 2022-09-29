@@ -53,25 +53,25 @@ function NftDetail() {
   const { nftDetail: nft,alloffer, isLoading, totalNfts, tier} = useSelector((state) => state.nft);
 
   let { transactions } = useSelector((state) => state.transactions);
-  var xValues = [50,60,70,80,90,100,110,120,130,140,150];
-  var yValues = [7,8,8,9,9,9,10,11,14,14,15];
-const showChart = async() => {
+//   var xValues = [50,60,70,80,90,100,110,120,130,140,150];
+//   var yValues = [7,8,8,9,9,9,10,11,14,14,15];
+// const showChart = async() => {
     
-    new Chart("myChart", {
-      type: "line",
-      data: {
-        labels: xValues,
-        datasets: [{
-          backgroundColor: "rgba(0,0,0,1.0)",
-          borderColor: "rgba(0,0,0,0.1)",
-          data: yValues
-        }]
-      },
-      options: {
-        legend: {display: false}
-      }
-    });
-  }
+//     new Chart("myChart", {
+//       type: "line",
+//       data: {
+//         labels: xValues,
+//         datasets: [{
+//           backgroundColor: "rgba(0,0,0,1.0)",
+//           borderColor: "rgba(0,0,0,0.1)",
+//           data: yValues
+//         }]
+//       },
+//       options: {
+//         legend: {display: false}
+//       }
+//     });
+//   }
   
   // console.log(totalNfts , "nft ka data");
   const { state } = useLocation("/marketplace");
