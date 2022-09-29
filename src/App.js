@@ -45,6 +45,8 @@ function App() {
             <Route path="/signup" element={<SignUp />} />
             <Route path="/update-profile" element={<UpdateAdminProfile />} />
             <Route path="/nft-list" element={<NftList />} />
+          
+
           </Routes>
         </ScrollToTop>
       </BrowserRouter>

@@ -53,7 +53,25 @@ function NftDetail() {
   const { nftDetail: nft,alloffer, isLoading, totalNfts, tier} = useSelector((state) => state.nft);
 
   let { transactions } = useSelector((state) => state.transactions);
-
+  var xValues = [50,60,70,80,90,100,110,120,130,140,150];
+  var yValues = [7,8,8,9,9,9,10,11,14,14,15];
+const showChart = async() => {
+    
+    new Chart("myChart", {
+      type: "line",
+      data: {
+        labels: xValues,
+        datasets: [{
+          backgroundColor: "rgba(0,0,0,1.0)",
+          borderColor: "rgba(0,0,0,0.1)",
+          data: yValues
+        }]
+      },
+      options: {
+        legend: {display: false}
+      }
+    });
+  }
   
   // console.log(totalNfts , "nft ka data");
   const { state } = useLocation("/marketplace");
@@ -92,6 +110,7 @@ function NftDetail() {
    const [punk,setPunk]=useState(0);
    const[ makeOfferDetails,setMakeOfferDetails] = useState([])
    const handleOfferStart = () => setOfferStart(false);
+   const[showDescription,setShowDescription] = useState(false)
   // const [nftName , setNftName] = useState("")
 const endBid = moment(new Date(), "YYYY-MM-DD").format();
 const endBidNew = endBid.slice(0,10)
@@ -442,7 +461,30 @@ const handleOffer = async () => {
                 <Col lg={6} md={6} className="ms-auto">
                   <div class="details-side-content">
                     <h4>{nftName}</h4>
-                    <h6> Price: {nftPrice} JWL</h6>
+                    <button className="view-description"onClick={() => setShowDescription(true)}>View Description</button>
+                    <Modal
+        show={showDescription}
+          className="modal-comming-soon bid-modal transaction-page-modal"
+          backdrop="static"
+          keyboard={false}
+          onHide={handleClose}
+          centered
+        >
+          <Modal.Header
+            closeButton
+            className="border-none p-0"
+            style={{ zIndex: "10000000" }}
+          >
+               <h3 className="modal-header-background">Quest Jewellers</h3>
+          </Modal.Header>
+          <Modal.Body className="modal-background">
+
+            <div class="bid-modal-box">
+            <h3 className="modal-header-h3">{nftName}</h3>
+          </div>
+          </Modal.Body>
+        </Modal>
+                       <h6> Price: {nftPrice} JWL</h6>
                     <p>{nftDesc}</p>
                     <div>
                  {console.log(nft.bid_end)}
@@ -535,13 +577,14 @@ const handleOffer = async () => {
            </Container>
         </section>
 
-        <section className="details-table-sec d-none">
+        <section className="details-table-sec ">
            <Container>
               <Row>
                 <Col md={12}>
                 <h3 class="heading-box-new"><span>Pricing History</span> <a href="">See all <img src="assets/images/img-nft/arrow-gred.png" /></a></h3>
                 <div>
-                  <img src="assets/images/img-nft/graph.png" class="img-fluid" />
+               
+                {showChart()};
                 </div>
                 </Col>
               </Row>
@@ -549,7 +592,7 @@ const handleOffer = async () => {
         </section>
 
 
-        <section className="details-table-sec product-list-sec d-none">
+        <section className="details-table-sec product-list-sec ">
            <Container>
            <h3 class="heading-box-new"><span>Releted NFTs</span> <a href="">See all <img src="assets/images/img-nft/arrow-gred.png" /></a></h3>
               <Row>
