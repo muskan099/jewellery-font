@@ -13,7 +13,7 @@ import Slider from "react-slick";
 import { toast, ToastContainer } from "react-toastify";
 import axiosMain from "../http/axios/axios_main";
 import moment from "moment/moment";
-import { Link, useNavigate }  from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import axios from "axios";
 import CountUp from "react-countup";
 import Connect from "../helpers/Connect";
@@ -27,6 +27,12 @@ import { useDispatch, useSelector } from "react-redux";
 function Homepage() {
 
   const [article, setArticle] = useState([]);
+
+  const [topcat, settopcat] = useState([]);
+
+  // const [topcat_category,settopcat_category] =useState("Ring");
+
+  const [key, setKey] = useState('Ring');
   const navigate = useNavigate()
   const trendingslide = {
     centerMode: true,
@@ -97,10 +103,10 @@ function Homepage() {
       items: 1,
     },
   };
-  const[userData,setUserData] = useState()
-  const[artistCount,setArtistCount] = useState()
-  const[collectionCount,setCollectionCount] = useState()
-  const[totalUserCount,settotalUserCount] = useState()
+  const [userData, setUserData] = useState()
+  const [artistCount, setArtistCount] = useState()
+  const [collectionCount, setCollectionCount] = useState()
+  const [totalUserCount, settotalUserCount] = useState()
   const [formError, setFormError] = useState("");
   const [inputdata, setInputdata] = useState({
     email: "",
@@ -139,72 +145,103 @@ function Homepage() {
     }
   };
   const dispatch = useDispatch();
-  const[isLoginStart,setIsLoginStart]=useState(false);
+  const [isLoginStart, setIsLoginStart] = useState(false);
   const handleLogin = async () => {
 
     setIsLoginStart(true)
-   let address = await Connect();
-console.log({address})
-   
-   if (address && address.length) {
-    let punk = 0;
-    // console.log("punks",punk)
-    //let tier=punk>0?"3 Tier":"1 Tier"
-    let balance = await TabooBalance(address[0]);
-    let tier = 0;
-    console.log("balance", balance);
- 
-     dispatch(
-       loginSaga({
-         address: address[0],
-         balance: balance,
-         tabooPunk: punk,
-         tier: tier,
-       })
-     );
+    let address = await Connect();
+    console.log({ address })
 
-     setIsLoginStart(false)
-   }else{
-       handleLogout();
-       setIsLoginStart(false)
-       toast.warn("Please connect to binance smart chain!")
-   }
- };
- const handleLogout = async () => {
-  dispatch(logout({}));
-};
+    if (address && address.length) {
+      let punk = 0;
+      // console.log("punks",punk)
+      //let tier=punk>0?"3 Tier":"1 Tier"
+      let balance = await TabooBalance(address[0]);
+      let tier = 0;
+      console.log("balance", balance);
+
+      dispatch(
+        loginSaga({
+          address: address[0],
+          balance: balance,
+          tabooPunk: punk,
+          tier: tier,
+        })
+      );
+
+      setIsLoginStart(false)
+    } else {
+      handleLogout();
+      setIsLoginStart(false)
+      toast.warn("Please connect to binance smart chain!")
+    }
+  };
+  const handleLogout = async () => {
+    dispatch(logout({}));
+  };
 
 
   const getData = async () => {
     const res = await axiosMain.get("/getAllArtical");
-    
+
     if (res?.data.status) {
       setArticle(res.data.data);
-      console.log(res,"article")
+      console.log(res, "article")
     }
   };
-const userData1 = async() => {
-  const res = await axiosMain.get('/gethomeData') 
-  setUserData(res);
-  setArtistCount(res.data.data.artistCount)
-  setCollectionCount(res.data.data.collectionCount)
-  settotalUserCount(res.data.data.totalUserCount)
-}
-console.log({userData})
-console.log({artistCount})
-console.log({collectionCount})
-console.log({totalUserCount})
-  const single_nft_data =  (item) =>{
-    console.log(item, "items");
-    navigate("/article-detail", {state:{id : item._id}})
+  const userData1 = async () => {
+    const res = await axiosMain.get('/gethomeData')
+    setUserData(res);
+    setArtistCount(res.data.data.artistCount)
+    setCollectionCount(res.data.data.collectionCount)
+    settotalUserCount(res.data.data.totalUserCount)
   }
+  console.log({ userData })
+  console.log({ artistCount })
+  console.log({ collectionCount })
+  console.log({ totalUserCount })
+  const single_nft_data = (item) => {
+    console.log(item, "items");
+    navigate("/article-detail", { state: { id: item._id } })
+  }
+
+  const topCategory = async () => {
+
+    try {
+      const topapires = await axiosMain.post("/getNFTByCategory", {
+        category: key,
+
+      });
+
+
+      settopcat(topapires.data);
+      console.log(topapires, 'ttoopp');
+
+    } catch (error) {
+      console.log(error, 'topapi error');
+
+    }
+
+
+
+
+  }
+
   useEffect(() => {
+
+    topCategory();
     userData1();
     getData();
-  },[]);
+  }, []);
 
+  useEffect(() => {
+    topCategory();
+  }, [key]);
 
+const movetodetail=(dataid)=>{
+ navigate("/nft-detail", {state:{id : dataid}});
 
+}
 
 
   return (
@@ -236,13 +273,13 @@ console.log({totalUserCount})
                     <Row>
                       <Col md={4} sm={4} xs={4}>
                         <div>
-                        <CountUp
+                          <CountUp
                             className="banner-analysis-number"
-                              end={collectionCount}
-                              duration={10}
-                              id="plus"
-                            />
-                         
+                            end={collectionCount}
+                            duration={10}
+                            id="plus"
+                          />
+
                           <p className="banner-analysis-quantity">
                             Collections
                           </p>
@@ -250,25 +287,25 @@ console.log({totalUserCount})
                       </Col>
                       <Col md={4} sm={4} xs={4}>
                         <div>
-                         
+
                           <CountUp
                             className="banner-analysis-number"
-                              end={artistCount}
-                              duration={10}
-                              id="plus"
-                            />
+                            end={artistCount}
+                            duration={10}
+                            id="plus"
+                          />
                           <p className="banner-analysis-quantity">Artists</p>
                         </div>
                       </Col>
                       <Col md={4} sm={4} xs={4}>
                         <div>
-                        <CountUp
+                          <CountUp
                             className="banner-analysis-number"
-                              end={totalUserCount}
-                              duration={10}
-                              id="plus"
-                            />
-                         
+                            end={totalUserCount}
+                            duration={10}
+                            id="plus"
+                          />
+
                           <p className="banner-analysis-quantity">Community</p>
                         </div>
                       </Col>
@@ -289,7 +326,7 @@ console.log({totalUserCount})
               <Row>
                 <Col>
                   <div className="group-logo">
-                    <img src="assets\images\metamask-img.png" alt="metamask" onClick={handleLogin}/>
+                    <img src="assets\images\metamask-img.png" alt="metamask" onClick={handleLogin} />
                     <img
                       src="assets\images\trustWallet-img.png"
                       alt="metamask"
@@ -300,14 +337,14 @@ console.log({totalUserCount})
                       alt="metamask"
                       onClick={handleLogin}
                     />
-                    
+
                   </div>
                 </Col>
               </Row>
             </Container>
           </section>
 
-          <section className="trending-sec-new">
+          <section className="trending-sec-new" style={{ display: 'none' }}>
             <Container>
               <Row>
                 <Col>
@@ -552,1109 +589,9 @@ console.log({totalUserCount})
             </Container>
           </section>
 
-          <section className="trending-sec-new">
-            <Container>
-              <Row>
-                <Col>
-                  <div className="outer-collection-tab">
-                    <h2 className="heading-main">Top Collections</h2>
-                    <Tabs
-                      defaultActiveKey="Art"
-                      className=" mb-3 collection-tab"
-                    >
-                      <Tab eventKey="Art" title="Art">
-                        <div>
-                          <Row>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-color">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="red-text">+1.6%</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-text">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-color">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-color">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-color">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-color">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-color">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                          </Row>
-                        </div>
-                      </Tab>
-                      <Tab eventKey="Collectibles" title="Collectibles">
-                        <div>
-                          <Row>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-color">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="red-text">+1.6%</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-text">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-color">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-color">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-color">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-color">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-color">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                          </Row>
-                        </div>
-                      </Tab>
-                      <Tab eventKey="Metaverse" title="Metaverse">
-                        <div>
-                          <Row>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-color">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="red-text">+1.6%</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-text">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-color">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-color">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-color">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-color">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-color">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                          </Row>
-                        </div>
-                      </Tab>
-                      <Tab eventKey="Virtual Worlds" title="Virtual Worlds">
-                        <div>
-                          <Row>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-color">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="red-text">+1.6%</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-text">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-color">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-color">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-color">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-color">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-color">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                          </Row>
-                        </div>
-                      </Tab>
-                      <Tab eventKey="Sports" title="Sports">
-                        <div>
-                          <Row>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-color">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="red-text">+1.6%</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-text">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-color">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-color">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-color">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-color">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-color">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                          </Row>
-                        </div>
-                      </Tab>
-                      <Tab eventKey="Music" title="Music">
-                        <div>
-                          <Row>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-color">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="red-text">+1.6%</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-text">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-color">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-color">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-color">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-color">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                            <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
-                                <img
-                                  src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
-                                />
-                                <div>
-                                  <h5>Azuki 3D </h5>
-                                  <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
-                                    <h6>1.5 ETH</h6>
-                                    <h6>$1907</h6>
-                                  </div>
-                                  <div class="d-flex justify-content-between">
-                                    <p>Floor Price </p>
-                                    <p class="green-color">
-                                      <span>+1.6%</span>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                          </Row>
-                        </div>
-                      </Tab>
-                    </Tabs>
-                  </div>
-                  <div className="text-center">
-                    <a href="/" className="border-btn">
-                      <span>see more</span>
-                    </a>
-                  </div>
-                </Col>
-              </Row>
-            </Container>
-          </section>
 
-          <section className="trending-sec-new category-slider-sec">
+
+          <section className="trending-sec-new category-slider-sec" style={{ display: 'none' }}>
             <Container>
               <Row>
                 <Col>
@@ -1860,28 +797,428 @@ console.log({totalUserCount})
             </Container>
           </section>
 
+          <section className="trending-sec-new">
+            <Container>
+              <Row>
+                <Col>
+                  <div className="outer-collection-tab">
+                    <h2 className="heading-main">Top Collections</h2>
+                    <Tabs
+                      defaultActiveKey="Ring"
+                      className=" mb-3 collection-tab"
+                      justify
+                      onSelect={(k) => setKey(k)}
+                    >
+                      <Tab eventKey="Ring" title="Ring">
+                        <div>
+                          <Row>
+                          {topcat=='' ?  <div style={{color:'wheat',textAlign:'center'}}>No Data Available</div> : ''}
+
+                            {topcat && topcat.map((items, index) => {
+
+                              return (
+
+                                <Col lg={3} md={6} sm={6} >
+                                  <div class="product-list-box">
+                                    <img onClick={()=>movetodetail(items._id)}
+                                      style={{ width: '100%' }}
+                                      src={items.images}
+                                      class="img-fluid"
+                                    />
+                                    <div>
+                                      <h5>{items.name} </h5>
+                                      {/* <p>AZUKI.JP</p> */}
+                                      <div class="d-flex justify-content-between">
+                                        <h6>Price</h6>
+                                        <h6>{items.price} Jwl</h6>
+                                      </div>
+                                      <div class="d-flex justify-content-between">
+                                        {/* <p>Floor Price </p> */}
+                                        {/* <p class="green-color">
+                                <span>+1.6%</span>
+                              </p> */}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </Col>
+                              )
+
+                            })}
+
+                          </Row>
+                        </div>
+                      </Tab>
+                      <Tab eventKey="Necklaces" title="Necklaces">
+                        <div>
+                          <Row>
+                          {topcat=='' ?  <div style={{color:'wheat',textAlign:'center'}}>No Data Available</div> : ''}
+                            {topcat && topcat.map((items, index) => {
+
+                              return (
+
+                                <Col lg={3} md={6} sm={6} >
+                                  <div class="product-list-box">
+                                    <img
+                                    onClick={()=>movetodetail(items._id)}
+                                      style={{ width: '100%' }}
+                                      src={items.images}
+                                      class="img-fluid"
+                                    />
+                                    <div>
+                                      <h5>{items.name} </h5>
+                                      {/* <p>AZUKI.JP</p> */}
+                                      <div class="d-flex justify-content-between">
+                                        <h6>Price</h6>
+                                        <h6>{items.price} Jwl</h6>
+                                      </div>
+                                      <div class="d-flex justify-content-between">
+                                        {/* <p>Floor Price </p> */}
+                                        {/* <p class="green-color">
+         <span>+1.6%</span>
+       </p> */}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </Col>
+                              )
+
+                            })}
+
+                          </Row>
+                        </div>
+                      </Tab>
+                      <Tab eventKey="Earings" title="Earings">
+                        <div>
+                          <Row>
+                          {topcat=='' ?  <div style={{color:'wheat',textAlign:'center'}}>No Data Available</div> : ''}
+                            {topcat && topcat.map((items, index) => {
+
+                              return (
+
+                                <Col lg={3} md={6} sm={6} >
+                                  <div class="product-list-box">
+                                    <img
+                                    onClick={()=>movetodetail(items._id)}
+                                      style={{ width: '100%' }}
+                                      src={items.images}
+                                      class="img-fluid"
+                                    />
+                                    <div>
+                                      <h5>{items.name} </h5>
+                                      {/* <p>AZUKI.JP</p> */}
+                                      <div class="d-flex justify-content-between">
+                                        <h6>Price</h6>
+                                        <h6>{items.price} Jwl</h6>
+                                      </div>
+                                      <div class="d-flex justify-content-between">
+                                        {/* <p>Floor Price </p> */}
+                                        {/* <p class="green-color">
+         <span>+1.6%</span>
+       </p> */}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </Col>
+                              )
+
+                            })}
+
+                          </Row>
+                        </div>
+                      </Tab>
+                      <Tab eventKey="Bangel" title="Bangel">
+                        <div>
+                          <Row>
+                          {topcat=='' ?  <div style={{color:'wheat',textAlign:'center'}}>No Data Available</div> : ''}
+
+                            {topcat && topcat.map((items, index) => {
+
+                              return (
+
+                                <Col lg={3} md={6} sm={6} >
+                                  <div class="product-list-box">
+                                    <img
+                                    onClick={()=>movetodetail(items._id)}
+                                      style={{ width: '100%' }}
+                                      src={items.images}
+                                      class="img-fluid"
+                                    />
+                                    <div>
+                                      <h5>{items.name} </h5>
+                                      {/* <p>AZUKI.JP</p> */}
+                                      <div class="d-flex justify-content-between">
+                                        <h6>Price</h6>
+                                        <h6>{items.price} Jwl</h6>
+                                      </div>
+                                      <div class="d-flex justify-content-between">
+                                        {/* <p>Floor Price </p> */}
+                                        {/* <p class="green-color">
+    <span>+1.6%</span>
+  </p> */}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </Col>
+                              )
+
+                            })}
+
+                          </Row>
+                        </div>
+                      </Tab>
+                      <Tab eventKey="Chain" title="Chain">
+                        <div>
+                          <Row>
+                          {topcat=='' ?  <div style={{color:'wheat',textAlign:'center'}}>No Data Available</div> : ''}
+
+                            {topcat && topcat.map((items, index) => {
+
+                              return (
+
+                                <Col lg={3} md={6} sm={6} >
+                                  <div class="product-list-box">
+                                    <img
+                                    onClick={()=>movetodetail(items._id)}
+                                      style={{ width: '100%' }}
+                                      src={items.images}
+                                      class="img-fluid"
+                                    />
+                                    <div>
+                                      <h5>{items.name} </h5>
+                                      {/* <p>AZUKI.JP</p> */}
+                                      <div class="d-flex justify-content-between">
+                                        <h6>Price</h6>
+                                        <h6>{items.price} Jwl</h6>
+                                      </div>
+                                      <div class="d-flex justify-content-between">
+                                        {/* <p>Floor Price </p> */}
+                                        {/* <p class="green-color">
+    <span>+1.6%</span>
+  </p> */}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </Col>
+                              )
+
+                            })}
+
+                          </Row>
+                        </div>
+                      </Tab>
+                      {/* <Tab eventKey="Music" title="Music">
+                        <div> */}
+                      {/* <Row>
+                            <Col lg={3} md={6} sm={6}>
+                              <div class="product-list-box">
+                                <img
+                                  src="assets/images/img-nft/list-img.png"
+                                  class="img-fluid"
+                                />
+                                <div>
+                                  <h5>Azuki 3D </h5>
+                                  <p>AZUKI.JP</p>
+                                  <div class="d-flex justify-content-between">
+                                    <h6>1.5 ETH</h6>
+                                    <h6>$1907</h6>
+                                  </div>
+                                  <div class="d-flex justify-content-between">
+                                    <p>Floor Price </p>
+                                    <p class="green-color">
+                                      <span>+1.6%</span>
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </Col>
+                            <Col lg={3} md={6} sm={6}>
+                              <div class="product-list-box">
+                                <img
+                                  src="assets/images/img-nft/list-img.png"
+                                  class="img-fluid"
+                                />
+                                <div>
+                                  <h5>Azuki 3D </h5>
+                                  <p>AZUKI.JP</p>
+                                  <div class="d-flex justify-content-between">
+                                    <h6>1.5 ETH</h6>
+                                    <h6>$1907</h6>
+                                  </div>
+                                  <div class="d-flex justify-content-between">
+                                    <p>Floor Price </p>
+                                    <p class="red-text">+1.6%</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </Col>
+                            <Col lg={3} md={6} sm={6}>
+                              <div class="product-list-box">
+                                <img
+                                  src="assets/images/img-nft/list-img.png"
+                                  class="img-fluid"
+                                />
+                                <div>
+                                  <h5>Azuki 3D </h5>
+                                  <p>AZUKI.JP</p>
+                                  <div class="d-flex justify-content-between">
+                                    <h6>1.5 ETH</h6>
+                                    <h6>$1907</h6>
+                                  </div>
+                                  <div class="d-flex justify-content-between">
+                                    <p>Floor Price </p>
+                                    <p class="green-text">
+                                      <span>+1.6%</span>
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </Col>
+                            <Col lg={3} md={6} sm={6}>
+                              <div class="product-list-box">
+                                <img
+                                  src="assets/images/img-nft/list-img.png"
+                                  class="img-fluid"
+                                />
+                                <div>
+                                  <h5>Azuki 3D </h5>
+                                  <p>AZUKI.JP</p>
+                                  <div class="d-flex justify-content-between">
+                                    <h6>1.5 ETH</h6>
+                                    <h6>$1907</h6>
+                                  </div>
+                                  <div class="d-flex justify-content-between">
+                                    <p>Floor Price </p>
+                                    <p class="green-color">
+                                      <span>+1.6%</span>
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </Col>
+                            <Col lg={3} md={6} sm={6}>
+                              <div class="product-list-box">
+                                <img
+                                  src="assets/images/img-nft/list-img.png"
+                                  class="img-fluid"
+                                />
+                                <div>
+                                  <h5>Azuki 3D </h5>
+                                  <p>AZUKI.JP</p>
+                                  <div class="d-flex justify-content-between">
+                                    <h6>1.5 ETH</h6>
+                                    <h6>$1907</h6>
+                                  </div>
+                                  <div class="d-flex justify-content-between">
+                                    <p>Floor Price </p>
+                                    <p class="green-color">
+                                      <span>+1.6%</span>
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </Col>
+                            <Col lg={3} md={6} sm={6}>
+                              <div class="product-list-box">
+                                <img
+                                  src="assets/images/img-nft/list-img.png"
+                                  class="img-fluid"
+                                />
+                                <div>
+                                  <h5>Azuki 3D </h5>
+                                  <p>AZUKI.JP</p>
+                                  <div class="d-flex justify-content-between">
+                                    <h6>1.5 ETH</h6>
+                                    <h6>$1907</h6>
+                                  </div>
+                                  <div class="d-flex justify-content-between">
+                                    <p>Floor Price </p>
+                                    <p class="green-color">
+                                      <span>+1.6%</span>
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </Col>
+                            <Col lg={3} md={6} sm={6}>
+                              <div class="product-list-box">
+                                <img
+                                  src="assets/images/img-nft/list-img.png"
+                                  class="img-fluid"
+                                />
+                                <div>
+                                  <h5>Azuki 3D </h5>
+                                  <p>AZUKI.JP</p>
+                                  <div class="d-flex justify-content-between">
+                                    <h6>1.5 ETH</h6>
+                                    <h6>$1907</h6>
+                                  </div>
+                                  <div class="d-flex justify-content-between">
+                                    <p>Floor Price </p>
+                                    <p class="green-color">
+                                      <span>+1.6%</span>
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </Col>
+                            <Col lg={3} md={6} sm={6}>
+                              <div class="product-list-box">
+                                <img
+                                  src="assets/images/img-nft/list-img.png"
+                                  class="img-fluid"
+                                />
+                                <div>
+                                  <h5>Azuki 3D </h5>
+                                  <p>AZUKI.JP</p>
+                                  <div class="d-flex justify-content-between">
+                                    <h6>1.5 ETH</h6>
+                                    <h6>$1907</h6>
+                                  </div>
+                                  <div class="d-flex justify-content-between">
+                                    <p>Floor Price </p>
+                                    <p class="green-color">
+                                      <span>+1.6%</span>
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </Col>
+                          </Row> */}
+                      {/* </div>
+                      </Tab> */}
+                    </Tabs>
+                  </div>
+                  <div className="text-center">
+                    <Link to="/marketplace" className="border-btn">
+                      <span>see more</span>
+                    </Link>
+                  </div>
+                </Col>
+              </Row>
+            </Container>
+          </section>
           <section className="articles-new-sec" id="Articles">
             <Container>
               <Row>
                 <Col>
-                
+
                   <div className="">
                     <h2 className="heading-main">Articles</h2>
                     <Row>
-                    {article.map((item, index) => (
-                      <Col lg={4} md={4}>
-                        <div className="artical-news-box" onClick={()=>{
+                      {article.map((item, index) => (
+                        <Col lg={4} md={4}>
+                          <div className="artical-news-box" onClick={() => {
                             single_nft_data(item)
                           }}>
-                          <img src={item.images} />
-                          <div className="inner-div-new">
-                            <h5>
-                             {item.title}
-                            </h5>
-                            <p>{moment(item.created_at).format("YYYY-MM-DD")}</p>
+                            <img src={item.images} />
+                            <div className="inner-div-new">
+                              <h5>
+                                {item.title}
+                              </h5>
+                              <p>{moment(item.created_at).format("YYYY-MM-DD")}</p>
+                            </div>
                           </div>
-                        </div>
-                      </Col>
+                        </Col>
                       ))}
                       {/* <Col lg={4} md={4}>
                         <div className="artical-news-box">
@@ -1909,7 +1246,7 @@ console.log({totalUserCount})
                       </Col> */}
                     </Row>
                   </div>
-            
+
                   <div className="text-center">
                     <a href="/articles" className="border-btn">
                       <span>see more</span>
