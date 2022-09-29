@@ -201,7 +201,7 @@ setInterval(() => {
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                   <Dropdown.Item>
-                    <Link to="/transactions" className="dropdown-item">
+                    <Link to="/collections" className="dropdown-item">
                       Collections
                     </Link>
                   </Dropdown.Item>
