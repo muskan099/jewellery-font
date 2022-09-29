@@ -46,7 +46,7 @@ const Contactus = () => {
           "https://jewellery.donative.in/contactus",
           inputdata
         );
-        toast.success(response?.data.message);
+        toast.success("thanks for contacting us ");
 
         setInputdata({
           email: "",

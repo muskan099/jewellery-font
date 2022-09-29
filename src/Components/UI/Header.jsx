@@ -217,7 +217,7 @@ setInterval(() => {
                       Create Nft
                     </Link>
                   </Dropdown.Item>
-                  <Dropdown.Item>
+                  {/* <Dropdown.Item>
                     <Link to="/create-stake" className="dropdown-item">
                       Create Stake
                     </Link>
@@ -227,7 +227,7 @@ setInterval(() => {
                     <Link to="/stakes" className="dropdown-item">
                       Stakes
                     </Link>
-                  </Dropdown.Item>
+                  </Dropdown.Item> */}
 
 
                  {/* <Dropdown.Item>

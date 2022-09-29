@@ -2979,6 +2979,7 @@ margin-top: 20px;
     display: grid;
     grid-auto-flow: column;
     margin-bottom: 10px;
+    justify-content: space-between;
 }
 .modal-header-h4{
     font-size: 1.15rem;
@@ -3038,4 +3039,9 @@ margin: 0px !important;
     background: linear-gradient(90deg, #A77327 0%, #EFD67B 49.79%, #A77327 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+.hash-color{
+    color: #fff;
+    text-decoration: none;
+    cursor:pointer;
 }

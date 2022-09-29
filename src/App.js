@@ -37,7 +37,7 @@ function App() {
             <Route path="/create-stake" element={<CreateStake />} />
             <Route path="/meet" element={<Meet />} />
             <Route path="/stakes" element={<Stakes />} />
-            <Route path="/transactions" element={<Transactions />} />
+            <Route path="/collections" element={<Transactions />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contactus />} />
             <Route path="/articles" element={<Articles />} />

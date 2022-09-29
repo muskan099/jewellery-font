@@ -821,16 +821,16 @@ const movetodetail=(dataid)=>{
                                 <Col lg={3} md={6} sm={6} >
                                   <div class="product-list-box">
                                     <img onClick={()=>movetodetail(items._id)}
-                                      style={{ width: '100%' }}
+                                     
                                       src={items.images}
-                                      class="img-fluid"
+                                      class="img-fluid img-fluid img-main-box"
                                     />
                                     <div>
                                       <h5>{items.name} </h5>
                                       {/* <p>AZUKI.JP</p> */}
                                       <div class="d-flex justify-content-between">
                                         <h6>Price</h6>
-                                        <h6>{items.price} Jwl</h6>
+                                        <h6>{items.price}JWL (${parseInt(items.price)*0.01})</h6>
                                       </div>
                                       <div class="d-flex justify-content-between">
                                         {/* <p>Floor Price </p> */}

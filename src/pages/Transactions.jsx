@@ -10,8 +10,9 @@ import { axios } from "../http";
 import { CreateReSale, WithdrawSale } from "../helpers/CreateResale";
 import { createNFTAuction } from "../helpers/AuctionHelper";
 import { Transaction } from "../helpers/Transaction";
+import { useNavigate } from "react-router-dom"
 function Transactions() {
-
+  const navigate = useNavigate()
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -226,7 +227,10 @@ console.log("this is tx",tx)
 
     setANft(value);
   };
-
+  const single_nft_data =  (item) =>{
+    console.log(item, "items");
+    navigate("/nft-detail", {state:{id : item._id}})
+  }
   return (
 
     <Layout>
@@ -277,18 +281,29 @@ console.log("this is tx",tx)
                         {data.map((items, index) => {
                           return (
                            
-                            <tr className="for-body-tr">
+                            <tr className="for-body-tr" key={index}>
                              
                               <td className="td-break">{index + 1}</td>
-                              <td className="td-break"><img className="img-fluid" src={items.nftImage} width="40px" alt="" onError={({ currentTarget }) => {
+                              <td className="td-break">
+                           
+                                <div onClick={()=>{
+                            single_nft_data(items)
+                          }}>
+
+                                <img className="img-fluid" src={items.nftImage} width="40px" alt="" 
+                                onError={({ currentTarget }) => {
                               currentTarget.onerror = null; // prevents looping
                               currentTarget.src="assets/images/img-nft/list-img.png";
-                            }}/></td>
+                            }}/>
+                                </div>
+                               
+                                
+                                </td>
                               <td className="td-break">{items.nftName}</td>
-                              <td className="td-break">{items.buying_Price}</td>
+                              <td className="td-break">{items.total}</td>
                               <td className="td-break">{items.wallet_address.slice(0,3)}....  {items.wallet_address.slice(-3)}</td>
                               <td className="td-break">
-                              <a href={`https://testnet.bscscan.com/tx/${items.hash}`} target="_blank">
+                              <a className="hash-color"href={`https://testnet.bscscan.com/tx/${items.hash}`} target="_blank">
                                 {`${items.hash?.slice(
                                   0,
                                   3
@@ -304,7 +319,7 @@ console.log("this is tx",tx)
                                  onClick={()=>handleCreateSale(items)}>{items.isOwner=="no"?"Sold":"Sell"}</button>
                                    <button className="btn-sell1 " disabled ={items.contentInfo.forsale == "no" ? true : false} onClick={()=>handleWithdrawSale(items.contentInfo)}>Cancel</button>
                                    <button className="btn-sell1" disabled ={items.contentInfo.forsale  == "yes" || items.contentInfo.status == "auction" ? true : false} onClick={()=>handleStartAuction(items.contentInfo)} >Auction</button>
-                                   </div>:""
+                                   </div>:   <button className="btn-sell1" disabled>Sold</button>
                                 }
                                
                               </td>
@@ -432,7 +447,7 @@ console.log("this is tx",tx)
 
               <Form>
                 <Form.Group className="mb-3">
-                  <Form.Label>Min Price(in Taboo)</Form.Label>
+                  <Form.Label>Min Price (in JWL)</Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="min price"

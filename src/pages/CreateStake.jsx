@@ -331,7 +331,7 @@ function CreateStake() {
                                 >
                                     <div className="list-stake-step">
                                         <ul>
-                                            <li>Stake in Taboo and Earn more</li>
+                                            <li>Stake in JWl and Earn more</li>
                                             <li>APY is {rate}%</li>
                                             <li>Minimum Lockup period is 3 months</li>
                                             <li>No Deposit or Withdrawal Fee</li>

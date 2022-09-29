@@ -673,7 +673,7 @@ const Marketplace = () => {
                               <p>{item.name}</p>
                               <div class="d-flex justify-content-between">
                                 {/* <h6>{item}</h6> */}
-                                <h6>Price:{item.price}JWL</h6>
+                                <h6>Price: {item.price}JWL (${parseInt(item.price)*0.01})</h6>
                                 <h6>{item.status}</h6>
                               </div>
                               {/* <div class="d-flex justify-content-between">

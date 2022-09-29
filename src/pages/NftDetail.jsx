@@ -95,6 +95,15 @@ function NftDetail() {
    const[relatedNFT,setRelatedNFT] = useState()
    const[category,setCategory] = useState();
    const[showDescription,setShowDescription] = useState(false)
+   const [width, setWidth] = useState();
+  const [height, setHeight] = useState();
+  const [purity, setPurity] = useState();
+  const [grossWeight, setGrossWeight] = useState();
+  const [size, setSize] = useState();
+  const [daimondType, setDaimondType] = useState();
+  const [settingType, setSettingType] = useState();
+  const [totalNumber, setTotalNumber] = useState();
+  const [totalWeight, setTotalWeight] = useState();
   // const [nftName , setNftName] = useState("")
 const endBid = moment(new Date(), "YYYY-MM-DD").format();
 const endBidNew = endBid.slice(0,10)
@@ -114,6 +123,16 @@ const getData1 = async () =>{
       setNftId(api.data._id)
       setCategory(api.data.category)
       setNftWalletAdress(api.data.wallet_address)
+      setWidth(api.data.width)
+      setHeight(api.data.height)
+      setPurity(api.data.purity)
+      setGrossWeight(api.data.grossWeight)
+      setSize(api.data.size)
+      setDaimondType(api.data.daimondType)
+      setSettingType(api.data.settingType)
+      setTotalNumber(api.data.totalNumber)
+      setTotalWeight(api.data.totalWeight)
+
 
     }
    
@@ -485,25 +504,9 @@ const handleOffer = async () => {
             <Row className="desc-row">
                 <Col lg={5} md={6} className="div-border">
                 <div>
-                    <img src={nftImages} class="img-fluid" className="desc-border"/>
+                    <img src={nftImages}  className="desc-border img-fluid img-main-box"/>
                   </div>
-                  <h4 className="modal-header-h4">Summary</h4>
-                  <div className="list-col">
-                    <p>{nftName}Weight</p>
-                    <p className="desc-values">9ct</p>
-                  </div>
-                  <div className="list-col">
-                    <p>{nftName}Weight</p>
-                    <p className="desc-values">9ct</p>
-                  </div>
-                  <div className="list-col">
-                    <p>{nftName}Weight</p>
-                    <p className="desc-values">9ct</p>
-                  </div>
-                  <div className="list-col">
-                    <p>{nftName}Weight</p>
-                    <p className="desc-values">9ct</p>
-                  </div>
+                 
                   </Col>
                   <Col lg={7} md={6} >
                     <Row className="desc-row2">
@@ -511,78 +514,54 @@ const handleOffer = async () => {
                     <Row>
                     <Col lg={6} md={6}>
                     <div className="list-col">
-                    <p>{nftName}Weight</p>
-                    <p className="desc-values">9ct</p>
+                    <p>Size</p>
+                    <p className="desc-values">{size}</p>
                   </div>
                   <div className="list-col">
-                    <p>{nftName}Weight</p>
-                    <p className="desc-values">9ct</p>
+                    <p>Daimond Type</p>
+                    <p className="desc-values">{daimondType}</p>
                   </div>
+                 
                   <div className="list-col">
-                    <p>{nftName}Weight</p>
-                    <p className="desc-values">9ct</p>
-                  </div>
-                  <div className="list-col">
-                    <p>{nftName}Weight</p>
-                    <p className="desc-values">9ct</p>
+                    <p>Total Number</p>
+                    <p className="desc-values">{totalNumber}</p>
                   </div>
 </Col>
 <Col lg={6} md={6}>
 <div className="list-col">
-                    <p>{nftName}Weight</p>
-                    <p className="desc-values">9ct</p>
+                    <p>Total Weight</p>
+                    <p className="desc-values">{totalWeight} ct</p>
                   </div>
                   <div className="list-col">
-                    <p>{nftName}Weight</p>
-                    <p className="desc-values">9ct</p>
-                  </div>
-                  <div className="list-col">
-                    <p>{nftName}Weight</p>
-                    <p className="desc-values">9ct</p>
-                  </div>
-                  <div className="list-col">
-                    <p>{nftName}Weight</p>
-                    <p className="desc-values">9ct</p>
+                    <p>Setting Type</p>
+                    <p className="desc-values">{settingType}</p>
                   </div>
 </Col>
                     </Row>
                     <Row>
-                    <h4 className="modal-header-h4">Daimonds</h4>
+                    <h4 className="modal-header-h4">Summary</h4>
                     <Col lg={6} md={6}>
-                    <div className="list-col">
-                    <p>{nftName}Weight</p>
-                    <p className="desc-values">9ct</p>
-                  </div>
+                  
                   <div className="list-col">
                     <p>{nftName}Weight</p>
-                    <p className="desc-values">9ct</p>
+                    <p className="desc-values">{width} mm</p>
                   </div>
                   <div className="list-col">
-                    <p>{nftName}Weight</p>
-                    <p className="desc-values">9ct</p>
+                    <p>Height</p>
+                    <p className="desc-values">{height} mm</p>
                   </div>
-                  <div className="list-col">
-                    <p>{nftName}Weight</p>
-                    <p className="desc-values">9ct</p>
-                  </div>
+               
 </Col>
 <Col lg={6} md={6}>
 <div className="list-col">
-                    <p>{nftName}Weight</p>
-                    <p className="desc-values">9ct</p>
+                    <p>Purity</p>
+                    <p className="desc-values">{purity} KT</p>
                   </div>
                   <div className="list-col">
-                    <p>{nftName}Weight</p>
-                    <p className="desc-values">9ct</p>
+                    <p>Gross Weight</p>
+                    <p className="desc-values">{grossWeight} g</p>
                   </div>
-                  <div className="list-col">
-                    <p>{nftName}Weight</p>
-                    <p className="desc-values">9ct</p>
-                  </div>
-                  <div className="list-col">
-                    <p>{nftName}Weight</p>
-                    <p className="desc-values">9ct</p>
-                  </div>
+                
 </Col>
                     </Row>
                     </Row>
@@ -591,7 +570,7 @@ const handleOffer = async () => {
                   </Col>
                  
                   </Row>
-       <Row className="desc-footer">
+       {/* <Row className="desc-footer">
          <Col>
          <div className="footer-row"> 
          <p>{nftName}Weight</p>
@@ -621,11 +600,13 @@ const handleOffer = async () => {
 
          </Col>
 
-       </Row>
+       </Row> */}
           </div>
           </Modal.Body>
         </Modal>
-                       <h6> Price: {nftPrice} JWL</h6>
+        
+                       <h6> Price: {nftPrice} JWL ($ {nftPrice*0.01})</h6>
+                       <h6> </h6>
                     <p>{nftDesc}</p>
                     <div>
                  {console.log(nft.bid_end)}
@@ -722,7 +703,7 @@ const handleOffer = async () => {
            <Container>
               <Row>
                 <Col md={12}>
-                <h3 class="heading-box-new"><span>Pricing History</span> <a href="">See all <img src="assets/images/img-nft/arrow-gred.png" /></a></h3>
+                <h3 class="heading-box-new"><span>Pricing History</span> </h3>
                 <div class="graph-dimensions">
                
                { nftId ? <GraphRepresantation id={nftId} /> : ""}
@@ -735,7 +716,7 @@ const handleOffer = async () => {
 
         <section className="details-table-sec product-list-sec ">
            <Container>
-           <h3 class="heading-box-new"><span>Releted NFTs</span> <a href="">See all <img src="assets/images/img-nft/arrow-gred.png" /></a></h3>
+           <h3 class="heading-box-new"><span>Releted NFTs</span> <a href="/marketplace">See all <img src="assets/images/img-nft/arrow-gred.png" /></a></h3>
               <Row>
                 {relatedNFT ? relatedNFT.map((items,index) => {
                   console.log({items})
@@ -747,7 +728,7 @@ const handleOffer = async () => {
                          <h5>{items.name}</h5>
                       
                          <div class="d-flex justify-content-between">
-                           <h6>{items.price}</h6>
+                           <h6>Price:   {items.price}JWL (${parseFloat(items.price)*0.01})</h6>
                         
                          </div>
                         
@@ -793,16 +774,16 @@ const handleOffer = async () => {
                   </tr>
                   <tr>
                     <td>Service Fee</td>
-                    <td> 0 %</td>
+                    <td> 5 %</td>
                   </tr>
                   <tr>
                     <td>Total will Pay</td>
 
                     <td>
-                      {/* {nft &&
-                        parseFloat(nft.price) +
-                          (parseFloat(nft.price) *fees) / 100}{" "} */}
-                    {nftPrice} JWL
+                      {nft &&
+                        parseFloat(nftPrice) +
+                          (parseFloat(nftPrice) * 5) / 100}{" "}
+                  JWL
                       
                     </td>
                   </tr>
@@ -853,16 +834,16 @@ const handleOffer = async () => {
                   </tr>
                   <tr>
                     <td>Service Fee</td>
-                    <td> 0 %</td>
+                    <td> 5 %</td>
                   </tr>
                   <tr>
                     <td>Total will Pay</td>
 
                     <td>
-                      {/* {nft &&
-                        parseFloat(nft.price) +
-                          (parseFloat(nft.price) *fees) / 100}{" "} */}
-                    {nftPrice} JWL
+                      {nft &&
+                        parseFloat(nftPrice) +
+                          (parseFloat(nftPrice) * 5) / 100}
+                  
                       JWL
                     </td>
                   </tr>
