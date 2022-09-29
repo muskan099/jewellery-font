@@ -66,16 +66,16 @@ function CreateNft() {
   const [field, setField] = useState("");
   //const[walletAddress,setWalletAddress] = useState('')
   const [isSale, setIsSale] = useState("");
-  const [width, setWidth] = useState(1);
-  const [height, setQuantity] = useState(1);
-  const [quantity, setQuantity] = useState(1);
-  const [quantity, setQuantity] = useState(1);
-  const [quantity, setQuantity] = useState(1);
-  const [quantity, setQuantity] = useState(1);
-  const [quantity, setQuantity] = useState(1);
-  const [quantity, setQuantity] = useState(1);
-  const [quantity, setQuantity] = useState(1);
-  const [quantity, setQuantity] = useState(1);
+  const [width, setWidth] = useState();
+  const [height, setHeight] = useState();
+  const [purity, setPurity] = useState();
+  const [grossWeight, setGrossWeight] = useState();
+  const [size, setSize] = useState();
+  const [daimondType, setDaimondType] = useState();
+  const [settingType, setSettingType] = useState();
+  const [totalNumber, setTotalNumber] = useState();
+  const [totalWeight, setTotalWeight] = useState();
+
   const photoUploadHandler = (event, setState) => {
     const { files } = event.target;
 
@@ -176,7 +176,69 @@ function CreateNft() {
       setCategory(value);
     }
   };
+  const handleWidth = (e) => {
+    let value = e.target.value;
 
+    if (value) {
+      setWidth(value);
+    }
+  };
+  const handleHeight = (e) => {
+    let value = e.target.value;
+
+    if (value) {
+      setHeight(value);
+    }
+  };
+  const handlePurity = (e) => {
+    let value = e.target.value;
+
+    if (value) {
+      setPurity(value);
+    }
+  };
+  const handleGrossWeight = (e) => {
+    let value = e.target.value;
+
+    if (value) {
+      setGrossWeight(value);
+    }
+  };
+  const handleSize = (e) => {
+    let value = e.target.value;
+
+    if (value) {
+      setSize(value);
+    }
+  };
+  const handleDaimondType = (e) => {
+    let value = e.target.value;
+
+    if (value) {
+      setDaimondType(value);
+    }
+  };
+  const handleSettingType = (e) => {
+    let value = e.target.value;
+
+    if (value) {
+      setSettingType(value);
+    }
+  };
+  const handleTotalNumber = (e) => {
+    let value = e.target.value;
+
+    if (value) {
+      setTotalNumber(value);
+    }
+  };
+  const handleTotalWeight = (e) => {
+    let value = e.target.value;
+
+    if (value) {
+      setTotalWeight(value);
+    }
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("handle submit called");
@@ -404,8 +466,9 @@ function CreateNft() {
                     <FormGroup>
                       <h3>Width</h3>
                       <Form.Control
+                       
                         type="text"
-                        value={width}
+                       
                         placeholder="Enter Width"
                         onKeyUp={(e) => handleWidth(e)}
                         
@@ -417,7 +480,7 @@ function CreateNft() {
                       <h3>Height</h3>
                       <Form.Control
                         type="text"
-                        value={height}
+                       
                         placeholder="Enter Height"
                         onKeyUp={(e) => handleHeight(e)}
                         
@@ -429,7 +492,7 @@ function CreateNft() {
                       <h3>Purity</h3>
                       <Form.Control
                         type="text"
-                        value={purity}
+                        
                         placeholder="Enter Purity"
                         onKeyUp={(e) => handlePurity(e)}
                         
@@ -441,7 +504,7 @@ function CreateNft() {
                       <h3>Gross Weight</h3>
                       <Form.Control
                         type="text"
-                        value={grossWeight}
+                        
                         placeholder="Enter GrossWeight"
                         onKeyUp={(e) => handleGrossWeight(e)}
                         
@@ -453,7 +516,7 @@ function CreateNft() {
                       <h3>Size</h3>
                       <Form.Control
                         type="text"
-                        value={size}
+                       
                         placeholder="Enter Size"
                         onKeyUp={(e) => handleSize(e)}
                         
@@ -467,9 +530,9 @@ function CreateNft() {
                       <h3>Daimond Type</h3>
                       <Form.Control
                         type="text"
-                        value={daimondType}
+                       
                         placeholder="Enter Daimond Type"
-                        onKeyUp={(e) => handledaimondType(e)}
+                        onKeyUp={(e) => handleDaimondType(e)}
                         
                       />
                     </FormGroup>
@@ -479,9 +542,9 @@ function CreateNft() {
                       <h3>Setting Type</h3>
                       <Form.Control
                         type="text"
-                        value={settingType}
+                        
                         placeholder="Setting Type"
-                        onKeyUp={(e) => handlesettingType(e)}
+                        onKeyUp={(e) => handleSettingType(e)}
                         
                       />
                     </FormGroup>
@@ -491,7 +554,7 @@ function CreateNft() {
                       <h3>Total Number</h3>
                       <Form.Control
                         type="text"
-                        value={totalNumber}
+                       
                         placeholder="Enter Total Number"
                         onKeyUp={(e) => handleTotalNumber(e)}
                         
@@ -503,7 +566,7 @@ function CreateNft() {
                       <h3>Total Weight</h3>
                       <Form.Control
                         type="text"
-                        value={totalWeight}
+                      
                         placeholder="Enter TotalWeight"
                         onKeyUp={(e) => handleTotalWeight(e)}
                         
