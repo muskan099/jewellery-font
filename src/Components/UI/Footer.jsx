@@ -63,7 +63,7 @@ function Footer() {
                       <Link to="/" className="footer-link">
                         How it Works
                       </Link>
-                      <Link href="/contact" className="footer-link">
+                      <Link to="/contact" className="footer-link">
                         Help
                       </Link>
                     </div>
