@@ -10,7 +10,7 @@ import { web3 } from "./Web3Helper";
 
 //const contractAddress = "0x9abDbA20EdFbA06B782126b4D8d72A5853918FD0";
 
-const spender = "0x874B03c00CDF344bC7Ce95E0C1D5bdCa0ed94421";
+const spender = "0x3ad065587c86Ad7c5Cd34066A4e597AaDd411370";
 
 let contractAddress = "0xEf186773012F97c9eDE43768E3b98543104e37d7";
 

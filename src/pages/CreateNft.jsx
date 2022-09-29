@@ -66,6 +66,15 @@ function CreateNft() {
   const [field, setField] = useState("");
   //const[walletAddress,setWalletAddress] = useState('')
   const [isSale, setIsSale] = useState("");
+  const [width, setWidth] = useState();
+  const [height, setHeight] = useState();
+  const [purity, setPurity] = useState();
+  const [grossWeight, setGrossWeight] = useState();
+  const [size, setSize] = useState();
+  const [daimondType, setDaimondType] = useState();
+  const [settingType, setSettingType] = useState();
+  const [totalNumber, setTotalNumber] = useState();
+  const [totalWeight, setTotalWeight] = useState();
 
   const photoUploadHandler = (event, setState) => {
     const { files } = event.target;
@@ -167,7 +176,69 @@ function CreateNft() {
       setCategory(value);
     }
   };
+  const handleWidth = (e) => {
+    let value = e.target.value;
 
+    if (value) {
+      setWidth(value);
+    }
+  };
+  const handleHeight = (e) => {
+    let value = e.target.value;
+
+    if (value) {
+      setHeight(value);
+    }
+  };
+  const handlePurity = (e) => {
+    let value = e.target.value;
+
+    if (value) {
+      setPurity(value);
+    }
+  };
+  const handleGrossWeight = (e) => {
+    let value = e.target.value;
+
+    if (value) {
+      setGrossWeight(value);
+    }
+  };
+  const handleSize = (e) => {
+    let value = e.target.value;
+
+    if (value) {
+      setSize(value);
+    }
+  };
+  const handleDaimondType = (e) => {
+    let value = e.target.value;
+
+    if (value) {
+      setDaimondType(value);
+    }
+  };
+  const handleSettingType = (e) => {
+    let value = e.target.value;
+
+    if (value) {
+      setSettingType(value);
+    }
+  };
+  const handleTotalNumber = (e) => {
+    let value = e.target.value;
+
+    if (value) {
+      setTotalNumber(value);
+    }
+  };
+  const handleTotalWeight = (e) => {
+    let value = e.target.value;
+
+    if (value) {
+      setTotalWeight(value);
+    }
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("handle submit called");
@@ -390,7 +461,122 @@ function CreateNft() {
                     </FormGroup>
                   </Col>
                 </Row>
-
+                <Row>
+                  <Col md={4}>
+                    <FormGroup>
+                      <h3>Width</h3>
+                      <Form.Control
+                       
+                        type="text"
+                       
+                        placeholder="Enter Width"
+                        onKeyUp={(e) => handleWidth(e)}
+                        
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col md={4}>
+                    <FormGroup>
+                      <h3>Height</h3>
+                      <Form.Control
+                        type="text"
+                       
+                        placeholder="Enter Height"
+                        onKeyUp={(e) => handleHeight(e)}
+                        
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col md={4}>
+                  <FormGroup>
+                      <h3>Purity</h3>
+                      <Form.Control
+                        type="text"
+                        
+                        placeholder="Enter Purity"
+                        onKeyUp={(e) => handlePurity(e)}
+                        
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col md={4}>
+                  <FormGroup>
+                      <h3>Gross Weight</h3>
+                      <Form.Control
+                        type="text"
+                        
+                        placeholder="Enter GrossWeight"
+                        onKeyUp={(e) => handleGrossWeight(e)}
+                        
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col md={4}>
+                  <FormGroup>
+                      <h3>Size</h3>
+                      <Form.Control
+                        type="text"
+                       
+                        placeholder="Enter Size"
+                        onKeyUp={(e) => handleSize(e)}
+                        
+                      />
+                    </FormGroup>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col md={4}>
+                    <FormGroup>
+                      <h3>Daimond Type</h3>
+                      <Form.Control
+                        type="text"
+                       
+                        placeholder="Enter Daimond Type"
+                        onKeyUp={(e) => handleDaimondType(e)}
+                        
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col md={4}>
+                    <FormGroup>
+                      <h3>Setting Type</h3>
+                      <Form.Control
+                        type="text"
+                        
+                        placeholder="Setting Type"
+                        onKeyUp={(e) => handleSettingType(e)}
+                        
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col md={4}>
+                  <FormGroup>
+                      <h3>Total Number</h3>
+                      <Form.Control
+                        type="text"
+                       
+                        placeholder="Enter Total Number"
+                        onKeyUp={(e) => handleTotalNumber(e)}
+                        
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col md={4}>
+                  <FormGroup>
+                      <h3>Total Weight</h3>
+                      <Form.Control
+                        type="text"
+                      
+                        placeholder="Enter TotalWeight"
+                        onKeyUp={(e) => handleTotalWeight(e)}
+                        
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col md={4}>
+                  
+                  </Col>
+                </Row>
                 <div>
                   <button className="gradient-btn" onClick={handleSubmit}>
                     {createStart ? "Processing" : "Create Item"}
