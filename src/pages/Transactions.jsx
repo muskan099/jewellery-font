@@ -287,7 +287,7 @@ console.log("this is tx",tx)
                               <td className="td-break">
                            
                                 <div onClick={()=>{
-                            single_nft_data(items)
+                            single_nft_data(items.contentInfo)
                           }}>
 
                                 <img className="img-fluid" src={items.nftImage} width="40px" alt="" 
