@@ -602,8 +602,12 @@ font-family: var(--Poppins);
 
 }
 
-.trending-sec-new{
+/* .trending-sec-new{
     display: none;
+} */
+
+.img-fluid{
+    cursor: pointer;
 }
 .modal-comming-soon {
   
