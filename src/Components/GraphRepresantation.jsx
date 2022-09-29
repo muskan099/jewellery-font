@@ -13,14 +13,14 @@ function GraphRepresantation({id}) {
     const res = await axiosMain.post(`/getDatePriceHistry`,{
         content_id: id 
     })
-    console.log("graph api response",res)
+    
     setDataNew(res.data.data)
 
       }
 
         }
        
-      console.log("dataNew",dataNew)
+     
       
       useEffect(() => {
         getData();

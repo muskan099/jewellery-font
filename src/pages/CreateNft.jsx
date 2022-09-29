@@ -66,7 +66,16 @@ function CreateNft() {
   const [field, setField] = useState("");
   //const[walletAddress,setWalletAddress] = useState('')
   const [isSale, setIsSale] = useState("");
-
+  const [width, setWidth] = useState(1);
+  const [height, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(1);
   const photoUploadHandler = (event, setState) => {
     const { files } = event.target;
 
@@ -390,7 +399,121 @@ function CreateNft() {
                     </FormGroup>
                   </Col>
                 </Row>
-
+                <Row>
+                  <Col md={4}>
+                    <FormGroup>
+                      <h3>Width</h3>
+                      <Form.Control
+                        type="text"
+                        value={width}
+                        placeholder="Enter Width"
+                        onKeyUp={(e) => handleWidth(e)}
+                        
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col md={4}>
+                    <FormGroup>
+                      <h3>Height</h3>
+                      <Form.Control
+                        type="text"
+                        value={height}
+                        placeholder="Enter Height"
+                        onKeyUp={(e) => handleHeight(e)}
+                        
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col md={4}>
+                  <FormGroup>
+                      <h3>Purity</h3>
+                      <Form.Control
+                        type="text"
+                        value={purity}
+                        placeholder="Enter Purity"
+                        onKeyUp={(e) => handlePurity(e)}
+                        
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col md={4}>
+                  <FormGroup>
+                      <h3>Gross Weight</h3>
+                      <Form.Control
+                        type="text"
+                        value={grossWeight}
+                        placeholder="Enter GrossWeight"
+                        onKeyUp={(e) => handleGrossWeight(e)}
+                        
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col md={4}>
+                  <FormGroup>
+                      <h3>Size</h3>
+                      <Form.Control
+                        type="text"
+                        value={size}
+                        placeholder="Enter Size"
+                        onKeyUp={(e) => handleSize(e)}
+                        
+                      />
+                    </FormGroup>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col md={4}>
+                    <FormGroup>
+                      <h3>Daimond Type</h3>
+                      <Form.Control
+                        type="text"
+                        value={daimondType}
+                        placeholder="Enter Daimond Type"
+                        onKeyUp={(e) => handledaimondType(e)}
+                        
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col md={4}>
+                    <FormGroup>
+                      <h3>Setting Type</h3>
+                      <Form.Control
+                        type="text"
+                        value={settingType}
+                        placeholder="Setting Type"
+                        onKeyUp={(e) => handlesettingType(e)}
+                        
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col md={4}>
+                  <FormGroup>
+                      <h3>Total Number</h3>
+                      <Form.Control
+                        type="text"
+                        value={totalNumber}
+                        placeholder="Enter Total Number"
+                        onKeyUp={(e) => handleTotalNumber(e)}
+                        
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col md={4}>
+                  <FormGroup>
+                      <h3>Total Weight</h3>
+                      <Form.Control
+                        type="text"
+                        value={totalWeight}
+                        placeholder="Enter TotalWeight"
+                        onKeyUp={(e) => handleTotalWeight(e)}
+                        
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col md={4}>
+                  
+                  </Col>
+                </Row>
                 <div>
                   <button className="gradient-btn" onClick={handleSubmit}>
                     {createStart ? "Processing" : "Create Item"}

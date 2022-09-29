@@ -92,6 +92,8 @@ function NftDetail() {
    const [punk,setPunk]=useState(0);
    const[ makeOfferDetails,setMakeOfferDetails] = useState([])
    const handleOfferStart = () => setOfferStart(false);
+   const[relatedNFT,setRelatedNFT] = useState()
+   const[category,setCategory] = useState();
    const[showDescription,setShowDescription] = useState(false)
   // const [nftName , setNftName] = useState("")
 const endBid = moment(new Date(), "YYYY-MM-DD").format();
@@ -110,6 +112,7 @@ const getData1 = async () =>{
       setAllOffers(api.data.allOffer)
       setNftStatus(api.data.status)
       setNftId(api.data._id)
+      setCategory(api.data.category)
       setNftWalletAdress(api.data.wallet_address)
 
     }
@@ -132,15 +135,30 @@ const getOffers = async () => {
     console.log(error);
   }
 }
+const getRelated = async(category) => {
 
+if(category){
+
+  const res = await axiosMain.post('/getNFTByCategory',{
+  category:category
+})
+setRelatedNFT(res.data)
+}
+  }
+  
+
+console.log(category)
+console.log(relatedNFT)
 useEffect(()=>{
   getData1();
  
   getData();
+
   getOffers();
- 
+ getRelated(category)
   
-},[])
+  
+},[category])
 const[isLoginStart,setIsLoginStart]=useState(false);
 let address ;
 
@@ -445,24 +463,165 @@ const handleOffer = async () => {
                     <h4>{nftName}</h4>
                     <button className="view-description"onClick={() => setShowDescription(true)}>View Description</button>
                     <Modal
-        show={showDescription}
-          className="modal-comming-soon bid-modal transaction-page-modal"
+                show={showDescription}
+          className="desc-modal transaction-page-modal"
           backdrop="static"
           keyboard={false}
-          onHide={handleClose}
-          centered
+          onHide={() => {setShowDescription(false)}}
+          size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
         >
           <Modal.Header
             closeButton
-            className="border-none p-0"
+            className="modal-header-background-desc desc-background"
             style={{ zIndex: "10000000" }}
           >
-               <h3 className="modal-header-background">Quest Jewellers</h3>
+              Quest Jewellers
           </Modal.Header>
-          <Modal.Body className="modal-background">
+          <Modal.Body className="modal-background background-color">
 
             <div class="bid-modal-box">
             <h3 className="modal-header-h3">{nftName}</h3>
+            <Row className="desc-row">
+                <Col lg={5} md={6} className="div-border">
+                <div>
+                    <img src={nftImages} class="img-fluid" className="desc-border"/>
+                  </div>
+                  <h4 className="modal-header-h4">Summary</h4>
+                  <div className="list-col">
+                    <p>{nftName}Weight</p>
+                    <p className="desc-values">9ct</p>
+                  </div>
+                  <div className="list-col">
+                    <p>{nftName}Weight</p>
+                    <p className="desc-values">9ct</p>
+                  </div>
+                  <div className="list-col">
+                    <p>{nftName}Weight</p>
+                    <p className="desc-values">9ct</p>
+                  </div>
+                  <div className="list-col">
+                    <p>{nftName}Weight</p>
+                    <p className="desc-values">9ct</p>
+                  </div>
+                  </Col>
+                  <Col lg={7} md={6} >
+                    <Row className="desc-row2">
+                    <h4 className="modal-header-h4">Main GemStones</h4>
+                    <Row>
+                    <Col lg={6} md={6}>
+                    <div className="list-col">
+                    <p>{nftName}Weight</p>
+                    <p className="desc-values">9ct</p>
+                  </div>
+                  <div className="list-col">
+                    <p>{nftName}Weight</p>
+                    <p className="desc-values">9ct</p>
+                  </div>
+                  <div className="list-col">
+                    <p>{nftName}Weight</p>
+                    <p className="desc-values">9ct</p>
+                  </div>
+                  <div className="list-col">
+                    <p>{nftName}Weight</p>
+                    <p className="desc-values">9ct</p>
+                  </div>
+</Col>
+<Col lg={6} md={6}>
+<div className="list-col">
+                    <p>{nftName}Weight</p>
+                    <p className="desc-values">9ct</p>
+                  </div>
+                  <div className="list-col">
+                    <p>{nftName}Weight</p>
+                    <p className="desc-values">9ct</p>
+                  </div>
+                  <div className="list-col">
+                    <p>{nftName}Weight</p>
+                    <p className="desc-values">9ct</p>
+                  </div>
+                  <div className="list-col">
+                    <p>{nftName}Weight</p>
+                    <p className="desc-values">9ct</p>
+                  </div>
+</Col>
+                    </Row>
+                    <Row>
+                    <h4 className="modal-header-h4">Daimonds</h4>
+                    <Col lg={6} md={6}>
+                    <div className="list-col">
+                    <p>{nftName}Weight</p>
+                    <p className="desc-values">9ct</p>
+                  </div>
+                  <div className="list-col">
+                    <p>{nftName}Weight</p>
+                    <p className="desc-values">9ct</p>
+                  </div>
+                  <div className="list-col">
+                    <p>{nftName}Weight</p>
+                    <p className="desc-values">9ct</p>
+                  </div>
+                  <div className="list-col">
+                    <p>{nftName}Weight</p>
+                    <p className="desc-values">9ct</p>
+                  </div>
+</Col>
+<Col lg={6} md={6}>
+<div className="list-col">
+                    <p>{nftName}Weight</p>
+                    <p className="desc-values">9ct</p>
+                  </div>
+                  <div className="list-col">
+                    <p>{nftName}Weight</p>
+                    <p className="desc-values">9ct</p>
+                  </div>
+                  <div className="list-col">
+                    <p>{nftName}Weight</p>
+                    <p className="desc-values">9ct</p>
+                  </div>
+                  <div className="list-col">
+                    <p>{nftName}Weight</p>
+                    <p className="desc-values">9ct</p>
+                  </div>
+</Col>
+                    </Row>
+                    </Row>
+                 
+                 
+                  </Col>
+                 
+                  </Row>
+       <Row className="desc-footer">
+         <Col>
+         <div className="footer-row"> 
+         <p>{nftName}Weight</p>
+                    <p className="desc-values">9ct</p>
+</div>
+
+         </Col>
+         <Col>
+         <div className="footer-row"> 
+         <p>{nftName}Weight</p>
+                    <p className="desc-values">9ct</p>
+</div>
+
+         </Col>
+         <Col>
+         <div className="footer-row"> 
+         <p>{nftName}Weight</p>
+                    <p className="desc-values">9ct</p>
+</div>
+
+         </Col>
+         <Col>
+         <div className="footer-row"> 
+         <p>{nftName}Weight</p>
+                    <p className="desc-values">9ct</p>
+</div>
+
+         </Col>
+
+       </Row>
           </div>
           </Modal.Body>
         </Modal>
@@ -578,74 +737,28 @@ const handleOffer = async () => {
            <Container>
            <h3 class="heading-box-new"><span>Releted NFTs</span> <a href="">See all <img src="assets/images/img-nft/arrow-gred.png" /></a></h3>
               <Row>
-                <Col lg={3} md={6}>
-                  <div class="product-list-box">
-                    <img src="assets/images/img-nft/list-img.png" class="img-fluid" />
-                    <div>
-                      <h5>Azuki 3D </h5>
-                      <p>AZUKI.JP</p>
-                      <div class="d-flex justify-content-between">
-                        <h6>1.5 ETH</h6>
-                        <h6>$1907</h6>
-                      </div>
-                      <div class="d-flex justify-content-between">
-                        <p>Floor Price </p>
-                        <p class="green-color"><span>+1.6%</span></p>
-                      </div>
-                    </div>
-                  </div>
-                </Col>
-                <Col lg={3} md={6}>
-                  <div class="product-list-box">
-                    <img src="assets/images/img-nft/list-img.png" class="img-fluid" />
-                    <div>
-                      <h5>Azuki 3D </h5>
-                      <p>AZUKI.JP</p>
-                      <div class="d-flex justify-content-between">
-                        <h6>1.5 ETH</h6>
-                        <h6>$1907</h6>
-                      </div>
-                      <div class="d-flex justify-content-between">
-                        <p>Floor Price </p>
-                        <p class="green-color"><span>+1.6%</span></p>
-                      </div>
-                    </div>
-                  </div>
-                </Col>
-                <Col lg={3} md={6}>
-                <div class="product-list-box">
-  								<img src="assets/images/img-nft/list-img.png" class="img-fluid" />
-  								<div>
-  									<h5>Azuki 3D </h5>
-  									<p>AZUKI.JP</p>
-  									<div class="d-flex justify-content-between">
-  										<h6>1.5 ETH</h6>
-  										<h6>$1907</h6>
-  									</div>
-  									<div class="d-flex justify-content-between">
-  										<p>Floor Price </p>
-  										<p class="green-color"><span>+1.6%</span></p>
-  									</div>
-  								</div>
-  							</div>
-                </Col>
-                <Col lg={3} md={6}>
-                <div class="product-list-box">
-  								<img src="assets/images/img-nft/list-img.png" class="img-fluid" />
-  								<div>
-  									<h5>Azuki 3D </h5>
-  									<p>AZUKI.JP</p>
-  									<div class="d-flex justify-content-between">
-  										<h6>1.5 ETH</h6>
-  										<h6>$1907</h6>
-  									</div>
-  									<div class="d-flex justify-content-between">
-  										<p>Floor Price </p>
-  										<p class="green-color"><span>+1.6%</span></p>
-  									</div>
-  								</div>
-  							</div>
-                </Col>
+                {relatedNFT ? relatedNFT.map((items,index) => {
+                  console.log({items})
+                 return (
+                   <Col lg={3} md={6} key={index}>
+                     <div class="product-list-box">
+                       <img src={items.images} class="img-fluid img-main-box"  />
+                       <div>
+                         <h5>{items.name}</h5>
+                      
+                         <div class="d-flex justify-content-between">
+                           <h6>{items.price}</h6>
+                        
+                         </div>
+                        
+                       </div>
+                     </div>
+                   </Col>
+
+                 )
+               }) : ""}
+                
+               
               </Row>
            </Container>
 

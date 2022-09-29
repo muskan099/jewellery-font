@@ -11,7 +11,7 @@ const contractAddress = "0x01b609d990C97514BCE6F67eE28972Fe1E26fc5f";
 
 const spenderFirst = "0xEf186773012F97c9eDE43768E3b98543104e37d7";
 
-const spenderSecond = "0x874B03c00CDF344bC7Ce95E0C1D5bdCa0ed94421";
+const spenderSecond = "0x3ad065587c86Ad7c5Cd34066A4e597AaDd411370";
 
 const abi = [
   {
