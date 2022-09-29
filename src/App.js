@@ -20,6 +20,7 @@ import SignIn from "./pages/admin/SignIn";
 import SignUp from "./pages/admin/SignUp";
 import UpdateAdminProfile from "./pages/admin/UpdateAdminProfile";
 import NftList from "./pages/admin/NftList";
+import Joinus from "./pages/Joinus";
 function App() {
   return (
     <div className="App">
@@ -45,8 +46,9 @@ function App() {
             <Route path="/signup" element={<SignUp />} />
             <Route path="/update-profile" element={<UpdateAdminProfile />} />
             <Route path="/nft-list" element={<NftList />} />
+            <Route path="/joinus" element={<Joinus />} />
           
-
+            
           </Routes>
         </ScrollToTop>
       </BrowserRouter>
