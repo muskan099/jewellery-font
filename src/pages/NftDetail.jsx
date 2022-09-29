@@ -24,6 +24,7 @@ import { TabooPunk } from "../helpers/TabooPunk";
 import { loginSaga, logout } from "../store/reducers/authReducer";
 import Connect from "../helpers/Connect";
 import calculateDays from "../helpers/CalculateDays"
+import GraphRepresantation from "../Components/GraphRepresantation";
 function NftDetail() {
   const dispatch = useDispatch();
 
@@ -54,8 +55,6 @@ function NftDetail() {
 
   let { transactions } = useSelector((state) => state.transactions);
 
-  
-  // console.log(totalNfts , "nft ka data");
   const { state } = useLocation("/marketplace");
   const { id } = state || "";
   
@@ -88,10 +87,12 @@ function NftDetail() {
   const [nftWalletAdress , setNftWalletAdress] = useState("")
   const [nftBalance , setBalance] = useState("")
    const [nftImages , setNftImages] = useState("")
+   const [nftId , setNftId] = useState(false)
    const [allOffers , setAllOffers] = useState("")
    const [punk,setPunk]=useState(0);
    const[ makeOfferDetails,setMakeOfferDetails] = useState([])
    const handleOfferStart = () => setOfferStart(false);
+   const[showDescription,setShowDescription] = useState(false)
   // const [nftName , setNftName] = useState("")
 const endBid = moment(new Date(), "YYYY-MM-DD").format();
 const endBidNew = endBid.slice(0,10)
@@ -108,7 +109,7 @@ const getData1 = async () =>{
       setNftImages(api.data.images)
       setAllOffers(api.data.allOffer)
       setNftStatus(api.data.status)
-     
+      setNftId(api.data._id)
       setNftWalletAdress(api.data.wallet_address)
 
     }
@@ -442,7 +443,30 @@ const handleOffer = async () => {
                 <Col lg={6} md={6} className="ms-auto">
                   <div class="details-side-content">
                     <h4>{nftName}</h4>
-                    <h6> Price: {nftPrice} JWL</h6>
+                    <button className="view-description"onClick={() => setShowDescription(true)}>View Description</button>
+                    <Modal
+        show={showDescription}
+          className="modal-comming-soon bid-modal transaction-page-modal"
+          backdrop="static"
+          keyboard={false}
+          onHide={handleClose}
+          centered
+        >
+          <Modal.Header
+            closeButton
+            className="border-none p-0"
+            style={{ zIndex: "10000000" }}
+          >
+               <h3 className="modal-header-background">Quest Jewellers</h3>
+          </Modal.Header>
+          <Modal.Body className="modal-background">
+
+            <div class="bid-modal-box">
+            <h3 className="modal-header-h3">{nftName}</h3>
+          </div>
+          </Modal.Body>
+        </Modal>
+                       <h6> Price: {nftPrice} JWL</h6>
                     <p>{nftDesc}</p>
                     <div>
                  {console.log(nft.bid_end)}
@@ -535,13 +559,14 @@ const handleOffer = async () => {
            </Container>
         </section>
 
-        <section className="details-table-sec d-none">
+        <section className="details-table-sec ">
            <Container>
               <Row>
                 <Col md={12}>
                 <h3 class="heading-box-new"><span>Pricing History</span> <a href="">See all <img src="assets/images/img-nft/arrow-gred.png" /></a></h3>
-                <div>
-                  <img src="assets/images/img-nft/graph.png" class="img-fluid" />
+                <div class="graph-dimensions">
+               
+               { nftId ? <GraphRepresantation id={nftId} /> : ""}
                 </div>
                 </Col>
               </Row>
@@ -549,7 +574,7 @@ const handleOffer = async () => {
         </section>
 
 
-        <section className="details-table-sec product-list-sec d-none">
+        <section className="details-table-sec product-list-sec ">
            <Container>
            <h3 class="heading-box-new"><span>Releted NFTs</span> <a href="">See all <img src="assets/images/img-nft/arrow-gred.png" /></a></h3>
               <Row>
