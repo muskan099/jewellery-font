@@ -24,6 +24,7 @@ import { TabooPunk } from "../helpers/TabooPunk";
 import { loginSaga, logout } from "../store/reducers/authReducer";
 import Connect from "../helpers/Connect";
 import calculateDays from "../helpers/CalculateDays"
+import GraphRepresantation from "../Components/GraphRepresantation";
 function NftDetail() {
   const dispatch = useDispatch();
 
@@ -53,27 +54,7 @@ function NftDetail() {
   const { nftDetail: nft,alloffer, isLoading, totalNfts, tier} = useSelector((state) => state.nft);
 
   let { transactions } = useSelector((state) => state.transactions);
-//   var xValues = [50,60,70,80,90,100,110,120,130,140,150];
-//   var yValues = [7,8,8,9,9,9,10,11,14,14,15];
-// const showChart = async() => {
-    
-//     new Chart("myChart", {
-//       type: "line",
-//       data: {
-//         labels: xValues,
-//         datasets: [{
-//           backgroundColor: "rgba(0,0,0,1.0)",
-//           borderColor: "rgba(0,0,0,0.1)",
-//           data: yValues
-//         }]
-//       },
-//       options: {
-//         legend: {display: false}
-//       }
-//     });
-//   }
-  
-  // console.log(totalNfts , "nft ka data");
+
   const { state } = useLocation("/marketplace");
   const { id } = state || "";
   
@@ -106,6 +87,7 @@ function NftDetail() {
   const [nftWalletAdress , setNftWalletAdress] = useState("")
   const [nftBalance , setBalance] = useState("")
    const [nftImages , setNftImages] = useState("")
+   const [nftId , setNftId] = useState(false)
    const [allOffers , setAllOffers] = useState("")
    const [punk,setPunk]=useState(0);
    const[ makeOfferDetails,setMakeOfferDetails] = useState([])
@@ -127,7 +109,7 @@ const getData1 = async () =>{
       setNftImages(api.data.images)
       setAllOffers(api.data.allOffer)
       setNftStatus(api.data.status)
-     
+      setNftId(api.data._id)
       setNftWalletAdress(api.data.wallet_address)
 
     }
@@ -582,9 +564,9 @@ const handleOffer = async () => {
               <Row>
                 <Col md={12}>
                 <h3 class="heading-box-new"><span>Pricing History</span> <a href="">See all <img src="assets/images/img-nft/arrow-gred.png" /></a></h3>
-                <div>
+                <div class="graph-dimensions">
                
-                {showChart()};
+               { nftId ? <GraphRepresantation id={nftId} /> : ""}
                 </div>
                 </Col>
               </Row>

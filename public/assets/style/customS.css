@@ -2968,3 +2968,7 @@ margin-top: 20px;
     color: #fff !important;
 }
 /* Sign Up */
+/* Graph CSS */
+.graph-dimensions{
+    height: 276px;
+}
