@@ -97,28 +97,24 @@ function Joinus() {
         }
         else if (!regex.test(inputdata.storeEmail)) {
             setFormError("Please Enter valid email");
-
         }
         else if (!inputdata.description) {
             setFormError("Please Enter description");
-
         }
         else if (!inputdata.mobile_no) {
             setFormError("Please Enter Mobile no ");
-
         } else if (inputdata.mobile_no.length < 6 || inputdata.mobile_no.length > 10) {
             setFormError("Please enter vaild Mobile no")
-        }else if (typeof inputdata.mobile_no=='string') {
-            setFormError("Please enter vaild Mobile no")
-        }  
+        }
+        // else if (typeof inputdata.mobile_no=='string') {
+        //     setFormError("Please enter vaild Mobile no")
+        // }
         
         else if (!file) {
             setFormError("Please Upload file")
         }
-
         else {
             setFormError("");
-            // e.preventDefault();
             const formData = new FormData();
             try {
                 console.log("datasub");
