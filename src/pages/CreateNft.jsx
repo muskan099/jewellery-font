@@ -293,6 +293,15 @@ function CreateNft() {
       formData.append("description", description);
       formData.append("meta_tag", metaTag);
       formData.append("price", price);
+      formData.append("width", width);
+      formData.append("height", height);
+      formData.append("purity", purity);
+      formData.append("grossWeight", grossWeight);
+      formData.append("size", size);
+      formData.append("daimondType", daimondType);
+      formData.append("settingType", settingType);
+      formData.append("totalNumber", totalNumber);
+      formData.append("totalWeight", totalWeight);
       formData.append("field", field);
       formData.append("isSale", isSale);
       formData.append("category",category)
