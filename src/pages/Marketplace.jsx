@@ -534,7 +534,7 @@ const Marketplace = () => {
                             
                               </div>
                              
-                              {/* <div>
+                              <div>
                                 <div className="radio">
                                   <label>
                                     <input     checked={filterSearch.typeCategory.Bangel}name="o1" type="radio"
@@ -550,8 +550,8 @@ const Marketplace = () => {
                               
                               
                             
-                              </div> */}
-                              {/* <div>
+                              </div> 
+                             <div>
                                 <div className="radio">
                                   <label>
                                     <input     checked={filterSearch.typeCategory.Chain}name="o1" type="radio"
@@ -564,10 +564,10 @@ const Marketplace = () => {
                                     Chain
                                   </label>
                                 </div>
-                              
+                               
                               
                             
-                              </div> */}
+                              </div> 
                             </Accordion.Body>
                           </Accordion.Item>
 

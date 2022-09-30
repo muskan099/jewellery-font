@@ -256,7 +256,7 @@ function Joinus() {
                                     controlId="exampleForm.ControlInput1"
                                 >
                                     <Form.Control
-                                        type="text"
+                                        type="tel"
                                         placeholder="Enter Mobile no."
                                         onChange={handleformdata}
                                         name="mobile_no"
@@ -279,7 +279,9 @@ function Joinus() {
                             <div class="product-list-box create-nft-box">
 
                                 <img className="img-main" src="" width={200} />
-
+                                {photoUrl && (
+                  <img className="img-main" src={photo.photoUrl} width={200} />
+                )}
                                 <div>
 
 
