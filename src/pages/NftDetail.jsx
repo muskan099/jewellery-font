@@ -181,6 +181,14 @@ useEffect(()=>{
 const[isLoginStart,setIsLoginStart]=useState(false);
 let address ;
 
+const single_nft_data =  (items) =>{
+  console.log("item related");
+  window.scrollTo(0, 0);
+  window.location.reload(true)
+  navigate("/nft-detail", {state:{id : items._id}})
+ 
+ 
+}
 
 const handleBuy = async (e) => {
  try {
@@ -723,7 +731,12 @@ const handleOffer = async () => {
                  return (
                    <Col lg={3} md={6} key={index}>
                      <div class="product-list-box">
+                       <div onClick={()=>{
+                            single_nft_data(items)
+                          }}>
+                         {console.log("related nft ",items)}
                        <img src={items.images} class="img-fluid img-main-box"  />
+                       </div>
                        <div>
                          <h5>{items.name}</h5>
                       
