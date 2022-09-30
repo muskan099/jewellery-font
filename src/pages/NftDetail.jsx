@@ -183,9 +183,14 @@ let address ;
 
 const single_nft_data =  (items) =>{
   console.log("item related");
-  window.scrollTo(0, 0);
-  window.location.reload(true)
+  
+
   navigate("/nft-detail", {state:{id : items._id}})
+  window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
+}
+window.location.reload(true)
+
  
  
 }
