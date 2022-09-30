@@ -438,7 +438,7 @@ function CreateNft() {
                     <FormGroup>
                       <h3>Quantity</h3>
                       <Form.Control
-                        type="text"
+                        type="number"
                         value={quantity}
                         placeholder=""
                         onKeyUp={(e) => handleQuantity(e)}
@@ -450,7 +450,7 @@ function CreateNft() {
                     <FormGroup>
                       <h3>Price</h3>
                       <Form.Control
-                        type="text"
+                        type="number"
                         placeholder=""
                         onKeyUp={(e) => handlePrice(e)}
                       />
@@ -476,7 +476,7 @@ function CreateNft() {
                       <h3>Width</h3>
                       <Form.Control
                        
-                        type="text"
+                        type="number"
                        
                         placeholder="Enter Width"
                         onKeyUp={(e) => handleWidth(e)}
@@ -488,7 +488,7 @@ function CreateNft() {
                     <FormGroup>
                       <h3>Height</h3>
                       <Form.Control
-                        type="text"
+                        type="number"
                        
                         placeholder="Enter Height"
                         onKeyUp={(e) => handleHeight(e)}
@@ -500,7 +500,7 @@ function CreateNft() {
                   <FormGroup>
                       <h3>Purity</h3>
                       <Form.Control
-                        type="text"
+                        type="number"
                         
                         placeholder="Enter Purity"
                         onKeyUp={(e) => handlePurity(e)}
@@ -512,7 +512,7 @@ function CreateNft() {
                   <FormGroup>
                       <h3>Gross Weight</h3>
                       <Form.Control
-                        type="text"
+                        type="number"
                         
                         placeholder="Enter GrossWeight"
                         onKeyUp={(e) => handleGrossWeight(e)}
@@ -524,7 +524,7 @@ function CreateNft() {
                   <FormGroup>
                       <h3>Size</h3>
                       <Form.Control
-                        type="text"
+                        type="number"
                        
                         placeholder="Enter Size"
                         onKeyUp={(e) => handleSize(e)}
@@ -562,7 +562,7 @@ function CreateNft() {
                   <FormGroup>
                       <h3>Total Number</h3>
                       <Form.Control
-                        type="text"
+                        type="number"
                        
                         placeholder="Enter Total Number"
                         onKeyUp={(e) => handleTotalNumber(e)}
@@ -574,9 +574,8 @@ function CreateNft() {
                   <FormGroup>
                       <h3>Total Weight</h3>
                       <Form.Control
-                        type="text"
-                      
-                        placeholder="Enter TotalWeight"
+                        type="number"
+                      placeholder="Enter TotalWeight"
                         onKeyUp={(e) => handleTotalWeight(e)}
                         
                       />
