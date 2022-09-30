@@ -24,6 +24,7 @@ export function* getNftSaga(action) {
   try {
     const response = yield axios.post(`/ContentExplore`, action.payload);
     if (response.status === 200) {
+      console.log("inside get nft",response.data)
       yield put(getNftSuccess(response.data));
     } else {
       yield put(getNftFail("Something went wrong! Please try again."));

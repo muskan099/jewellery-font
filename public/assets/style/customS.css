@@ -3045,3 +3045,12 @@ margin: 0px !important;
     text-decoration: none;
     cursor:pointer;
 }
+/* PAGINATION */
+.page-link{
+    color: #000 !important;
+    background: linear-gradient(90deg, #A77327 0%, #EFD67B 49.79%, #A77327 100%);
+    font-size: 20px;
+    font-weight: 700;
+
+}
+/* PAGINATION */

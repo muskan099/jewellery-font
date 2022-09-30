@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getNftSaga } from "../store/reducers/nftReducer";
 import { Link, useNavigate }  from "react-router-dom"
 import axiosMain from "../http/axios/axios_main";
+import ReactPaginate from "react-paginate";
 const jQuery = window.jQuery;
 function enableSlider($, changeStateFn) {
   
@@ -35,6 +36,16 @@ function enableSlider($, changeStateFn) {
 const Marketplace = () => {
 
   const { nft, isLoading, totalNfts } = useSelector((state) => state.nft);
+  const [currentPage, setCurrentPage] = useState(1);
+  const[category,setCategory] = useState("")
+
+  const [RecentlyAdded, setRecentlyAdded] = useState(false);
+  const [paginationData, setPaginationData] = useState({
+    skip: 0,
+    limit: 60,
+    pages: [],
+  });
+
   const [filterSearch, setFilterSearch] = useState({
     A_TO_Z: false,
     status:"",
@@ -67,73 +78,6 @@ const Marketplace = () => {
   const { isAuthenticated, walletAddress, tier } = useSelector(
     (state) => state.auth
   );
-  const single_nft_data =  (item) =>{
-    console.log(item, "items");
-    navigate("/nft-detail", {state:{id : item._id}})
-  }
-
-
-  const [RecentlyAdded, setRecentlyAdded] = useState(false);
-  
- 
-  
-  
-  console.log({typeCategory})
-  
-  const getData = async(
-    page,
-    limit = 25,
-    skip = 0,
-    tier,
-   search_tag,
-    startPrice,
-    endPrice,
-    A_TO_Z,
-    status,
-    price,
-    letest,
-   
-  ) => {
-    // console.log("get nft saga function \n");
-    // console.log("nft tier inside getNftSaga \n", nftTier);
-
-    let data = {
-    page: page,
-      skip,
-      limit: limit,
-      search_tag: meta,
-     startPrice,
-      endPrice,
-      A_TO_Z,
-      status,
-      price,
-      letest,
-      tier: tier,
-      typeCategory ,
-      category :  category,
-      nftTier,
-    };
-
-    await dispatch(getNftSaga(data));
-    console.log({ data });
-  };
-  const [currentPage, setCurrentPage] = useState(1);
-  const[category,setCategory] = useState("")
-  const [paginationData, setPaginationData] = useState({
-    skip: 0,
-    limit: 60,
-    pages: [],
-  });
-
- 
-  const handleSearch = async (e) => {
-    let value = e.target.value;
-
-    if (value) {
-      setMeta(value);
-     
-    }
-  };
   useEffect(() => {
     enableSlider(jQuery, setFilterSearch);
   }, []);
@@ -169,6 +113,75 @@ const Marketplace = () => {
     meta,
     typeCategory
   ],[]);
+  useEffect(() => {
+    setPaginationData((p) => ({
+      ...p,
+      pages: Array.from(
+        { length: Math.ceil(totalNfts / p.limit) },
+        (_, i) => i + 1
+      ),
+    }));
+  }, [nft, paginationData.limit]);
+  const single_nft_data =  (item) =>{
+    console.log(item, "items");
+    navigate("/nft-detail", {state:{id : item._id}})
+  }
+
+
+  
+ 
+  
+  
+  console.log({typeCategory})
+  
+  const getData = (
+    page,
+    limit = 25,
+    skip = 0,
+    tier,
+   search_tag,
+    startPrice,
+    endPrice,
+    A_TO_Z,
+    status,
+    price,
+    letest,
+   
+  ) => {
+    // console.log("get nft saga function \n");
+    // console.log("nft tier inside getNftSaga \n", nftTier);
+
+    let data = {
+    page: page,
+      skip,
+      limit: limit,
+      search_tag: meta,
+     startPrice,
+      endPrice,
+      A_TO_Z,
+      status,
+      price,
+      letest,
+      tier: tier,
+      typeCategory ,
+      category :  category,
+      nftTier,
+    };
+
+    dispatch(getNftSaga(data));
+    console.log({ data });
+  };
+ 
+ 
+  const handleSearch = async (e) => {
+    let value = e.target.value;
+
+    if (value) {
+      setMeta(value);
+     
+    }
+  };
+ 
   
   
   const handleTypeCategory = (e) => {
@@ -302,6 +315,11 @@ const Marketplace = () => {
        status: "",
       }));
     }
+  };
+  const handlePageClick = (data) => {
+    const pageClicked = data.selected + 1;
+
+    setCurrentPage(pageClicked);
   };
   return (
     <>
@@ -690,6 +708,31 @@ const Marketplace = () => {
                             
                     </Row>
                   </Col> 
+                  <div className="pagination-new-exploror ">
+                  <Col className="mx-auto">
+                    <ReactPaginate
+                      previousLabel={"prev"}
+                      nextLabel={"next"}
+                      breakLabel={"..."}
+                      pageCount={totalNfts / 25}
+                      marginPagesDisplayed={2}
+                      onPageChange={handlePageClick}
+                      containerClassName={"pagination"}
+                      pageClassName={"page-item"}
+                      pageLinkClassName={"page-link"}
+                      previousClassName={"page-item"}
+                      previousLinkClassName={"page-link"}
+                      nextClassName={"page-item"}
+                      nextLinkClassName={"page-link"}
+                      breakClassName={"page-item"}
+                      breakLinkClassName={"page-link"}
+                      pageRangeDisplayed={1}
+                    />
+                  </Col>
+
+                  {console.log("the nft data is ", nft)}
+                </div>
+             
                 </Row>
               </Container>
          </section>
