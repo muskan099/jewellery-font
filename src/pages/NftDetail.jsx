@@ -351,7 +351,7 @@ const handleBuy = async (e) => {
            await handleBalance(walletAddress);
  
            if (order) {
-              navigate("/transactions");
+              navigate("/collections");
             }
          } else {
            setBuyStart(false);
