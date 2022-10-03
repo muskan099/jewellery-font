@@ -170,6 +170,7 @@ const Marketplace = () => {
 
     dispatch(getNftSaga(data));
     console.log({ data });
+    window.location.reload(true);
   };
  
  
