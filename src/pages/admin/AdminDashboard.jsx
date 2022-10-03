@@ -93,7 +93,7 @@ const AdminDashboard = () => {
                     </NavLink>
                   </li>
                   <li>
-                    <a href="/transactions">
+                    <a href="/collections">
                       <img className="img-fluid m-0" src={"assets/images/list.png"} />
                     </a>
                   </li>

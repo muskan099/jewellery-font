@@ -298,7 +298,7 @@ const handleBuy = async (e) => {
  
              // setTimeout(handleClose1, 3000);
  
-             navigate("/transactions");
+             navigate("/collections");
            }
          } else if(!tx){
            console.log("Reconnect")
