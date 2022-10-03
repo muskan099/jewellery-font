@@ -24,7 +24,7 @@ function Transactions() {
   const [showSale, setShowSale] = useState(false);
   const [showAuction, setShowAuction] = useState(false);
   const { isAuthenticated, walletAddress } = useSelector((state) => state.auth);
-
+const[handleTab,setHandleTab] = useState("")
   console.log(walletAddress, "check");
   const [auctionData, setAuctionData] = useState({
     minPrice: 0,
@@ -222,6 +222,7 @@ function Transactions() {
     console.log(item, "items");
     navigate("/nft-detail", { state: { id: item._id } });
   };
+  
   return (
     <Layout>
       <div>
@@ -261,9 +262,9 @@ function Transactions() {
               <Col>
                 <div id="category">
                   <div class="tabs">
-                    <div class="tab active">Overview</div>
-                    <div class="tab">Purchased NFTs</div>
-                    <div class="tab">On Sell NFTs</div>
+                    <div class={handleTab === "" ? 'tab active': "tab "}onClick={() => setHandleTab("")}>Overview</div>
+                    <div class={handleTab === "sold" ? 'tab active': "tab "}  onClick={() => setHandleTab("sold")}>Purchased NFTs</div>
+                    <div class= {handleTab === "active" ? 'tab active': "tab "}  onClick={() => setHandleTab("active")}>On Sell NFTs</div>
                   </div>
                 </div>
               </Col>
@@ -295,7 +296,198 @@ function Transactions() {
                         </tr>
                       </thead>
                       <tbody>
-                        {data.map((items, index) => {
+                        {console.log({handleTab})}
+                        {handleTab == "active" ? data.filter((item) => item.contentInfo.status == "active" ).map((items, index) => {
+                          return (
+                            <tr className="for-body-tr" key={index}>
+                              <td className="td-break">{index + 1}</td>
+                              <td className="td-break">
+                                <div
+                                  onClick={() => {
+                                    single_nft_data(items.contentInfo);
+                                  }}
+                                >
+                                  <img
+                                    className="img-fluid"
+                                    src={items.nftImage}
+                                    width="40px"
+                                    alt=""
+                                    onError={({ currentTarget }) => {
+                                      currentTarget.onerror = null; // prevents looping
+                                      currentTarget.src =
+                                        "assets/images/img-nft/list-img.png";
+                                    }}
+                                  />
+                                </div>
+                              </td>
+                              <td className="td-break">{items.nftName}</td>
+                              <td className="td-break">{items.total}</td>
+                              <td className="td-break">
+                                {items.wallet_address.slice(0, 3)}....{" "}
+                                {items.wallet_address.slice(-3)}
+                              </td>
+                              <td className="td-break">
+                                <a
+                                  className="hash-color"
+                                  href={`https://testnet.bscscan.com/tx/${items.hash}`}
+                                  target="_blank"
+                                >
+                                  {`${items.hash?.slice(
+                                    0,
+                                    3
+                                  )}...${items.hash?.slice(-5)}`}
+                                </a>
+                              </td>
+                              <td className="td-break">{items.token}</td>
+                              <td className="td-break success-green">
+                                {items.status ? "success" : "success"}
+                              </td>
+                              <td className="td-break">
+                                {items.contentInfo.owner == walletAddress ? (
+                                  <div className="btn-flex-btn">
+                                    <button
+                                      className="btn-sell1"
+                                      disabled={
+                                        items.contentInfo.forsale == "yes"
+                                          ? true
+                                          : false
+                                      }
+                                      onClick={() => handleCreateSale(items)}
+                                    >
+                                      {items.isOwner == "no" ? "Sold" : "Sell"}
+                                    </button>
+                                    <button
+                                      className="btn-sell1 "
+                                      disabled={
+                                        items.contentInfo.forsale == "no"
+                                          ? true
+                                          : false
+                                      }
+                                      onClick={() =>
+                                        handleWithdrawSale(items.contentInfo)
+                                      }
+                                    >
+                                      Cancel
+                                    </button>
+                                    <button
+                                      className="btn-sell1"
+                                      disabled={
+                                        items.contentInfo.forsale == "yes" ||
+                                        items.contentInfo.status == "auction"
+                                          ? true
+                                          : false
+                                      }
+                                      onClick={() =>
+                                        handleStartAuction(items.contentInfo)
+                                      }
+                                    >
+                                      Auction
+                                    </button>
+                                  </div>
+                                ) : (
+                                  <button className="btn-sell1" disabled>
+                                    Sold
+                                  </button>
+                                )}
+                              </td>
+                            </tr>
+                          );
+                        }): handleTab == "sold" ? data.map((items, index) => {
+                          return (
+                            <tr className="for-body-tr" key={index}>
+                              <td className="td-break">{index + 1}</td>
+                              <td className="td-break">
+                                <div
+                                  onClick={() => {
+                                    single_nft_data(items.contentInfo);
+                                  }}
+                                >
+                                  <img
+                                    className="img-fluid"
+                                    src={items.nftImage}
+                                    width="40px"
+                                    alt=""
+                                    onError={({ currentTarget }) => {
+                                      currentTarget.onerror = null; // prevents looping
+                                      currentTarget.src =
+                                        "assets/images/img-nft/list-img.png";
+                                    }}
+                                  />
+                                </div>
+                              </td>
+                              <td className="td-break">{items.nftName}</td>
+                              <td className="td-break">{items.total}</td>
+                              <td className="td-break">
+                                {items.wallet_address.slice(0, 3)}....{" "}
+                                {items.wallet_address.slice(-3)}
+                              </td>
+                              <td className="td-break">
+                                <a
+                                  className="hash-color"
+                                  href={`https://testnet.bscscan.com/tx/${items.hash}`}
+                                  target="_blank"
+                                >
+                                  {`${items.hash?.slice(
+                                    0,
+                                    3
+                                  )}...${items.hash?.slice(-5)}`}
+                                </a>
+                              </td>
+                              <td className="td-break">{items.token}</td>
+                              <td className="td-break success-green">
+                                {items.status ? "success" : "success"}
+                              </td>
+                              <td className="td-break">
+                                {items.contentInfo.owner == walletAddress ? (
+                                  <div className="btn-flex-btn">
+                                    <button
+                                      className="btn-sell1"
+                                      disabled={
+                                        items.contentInfo.forsale == "yes"
+                                          ? true
+                                          : false
+                                      }
+                                      onClick={() => handleCreateSale(items)}
+                                    >
+                                      {items.isOwner == "no" ? "Sold" : "Sell"}
+                                    </button>
+                                    <button
+                                      className="btn-sell1 "
+                                      disabled={
+                                        items.contentInfo.forsale == "no"
+                                          ? true
+                                          : false
+                                      }
+                                      onClick={() =>
+                                        handleWithdrawSale(items.contentInfo)
+                                      }
+                                    >
+                                      Cancel
+                                    </button>
+                                    <button
+                                      className="btn-sell1"
+                                      disabled={
+                                        items.contentInfo.forsale == "yes" ||
+                                        items.contentInfo.status == "auction"
+                                          ? true
+                                          : false
+                                      }
+                                      onClick={() =>
+                                        handleStartAuction(items.contentInfo)
+                                      }
+                                    >
+                                      Auction
+                                    </button>
+                                  </div>
+                                ) : (
+                                  <button className="btn-sell1" disabled>
+                                    Sold
+                                  </button>
+                                )}
+                              </td>
+                            </tr>
+                          );
+                        }):data.map((items, index) => {
                           return (
                             <tr className="for-body-tr" key={index}>
                               <td className="td-break">{index + 1}</td>
