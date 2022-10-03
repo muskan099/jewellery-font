@@ -167,10 +167,10 @@ const Marketplace = () => {
       category :  category,
       nftTier,
     };
-
+    
     dispatch(getNftSaga(data));
     console.log({ data });
-    window.location.reload(true);
+   
   };
  
  
