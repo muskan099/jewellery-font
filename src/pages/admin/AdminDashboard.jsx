@@ -175,12 +175,12 @@ const AdminDashboard = () => {
                      </ul>
                     </div>
 
-                    <div className="latest-user-row">
+                    {/* <div className="latest-user-row">
                       <h3 className="main-heading-inner mb-0"> Latest Users</h3>
                       <a href="" className="view-all-link">
                         See All
                       </a>
-                    </div>
+                    </div> */}
 
                     <div className="shadow-box">
                    
@@ -199,8 +199,9 @@ const AdminDashboard = () => {
                 </h3>
                 <img
                   className="profile-main-img"
-                 src={`https://jewellery.donative.in:3000/AdminProfile/${profileImage}`}
-
+                //  src={`https://jewellery.donative.in:3000/AdminProfile/${profileImage}`}
+                 src={"assets/images/team7.png"}
+                 
                 />
                 {console.log({profileImage})}
                 <h4>{walletAddress.slice(0,4)}....{walletAddress.slice(-4)}</h4> 
