@@ -41,7 +41,7 @@ export function* createNftSaga(action) {
   
   yield put(createNftStart());
   try {
-    const response = yield axios.post(`/NFTCreate`, formData);
+    const response = yield axios.post(`/nftcreate`, formData);
     if (response.status === 200) {
       if(toast){
         toast.success("NFT Created Successful")
