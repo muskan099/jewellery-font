@@ -17,7 +17,7 @@ import { useSelector } from "react-redux";
 import { axios } from "../../http";
 import { useEffect, useState } from "react";
 import HomeLayout from "../../Components/Layout";
-
+import axiosMain from "../../http/axios/axios_main";
 const AdminDashboard = () => {
   
   const data = [
@@ -45,7 +45,11 @@ const AdminDashboard = () => {
     vAxis: { minValue: 0 },
   };
   const { user } = useSelector((state) => state.auth);
+  const [list, setList] = useState([]);
   const[totalUser,setTotalUser] = useState([])
+  const [name, setName] = useState(false);
+  const [category, setCategory] = useState(false);
+  const [price, setPrice] = useState(false);
   console.log({ user });
   const {
    
@@ -54,27 +58,79 @@ const AdminDashboard = () => {
    
   } = useSelector((state) => state.auth);
   console.log({walletAddress})
-
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const[id,setId] = useState();
   const [nftDetails,setNftDetails] = useState([])
+  const[ makeOfferDetails,setMakeOfferDetails] = useState([])
   const[profileImage,setprofileImage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const getData = async() => {
     const res = await axios.get('/admindashboard')
     console.log(res.data)
     setNftDetails(res.data.data)
     setTotalUser(res.data.data.AllUser)
-    const adminDataResult = JSON.parse(localStorage.getItem("adminData"))
-    setprofileImage(adminDataResult.image)
+    const adminDataResult = localStorage.getItem("adminData")
+    const storeImage = Object.keys(adminDataResult).find(key => adminDataResult[key] === 'image')
+    console.log("adminDataResult",adminDataResult)
+    console.log("storeImage",storeImage)
+    setprofileImage(storeImage)
+    console.log("profileImage",profileImage)
   }
   console.log("nftDetails",nftDetails)
   console.log("Total User",totalUser)
+  console.log("profileImage",profileImage)
   let percentage1 = nftDetails.collectionCount;
   let percentage2 = nftDetails.forsalenftcount;
   let percentage3 = nftDetails.auctionnftcount;
   let percentage4 = nftDetails.totalUserCount;
   // let percentage5 = nftDetails.totalUserPersentage;
+  const getOffers = async () => {
+    try{
+     
+  
+      const api = await axiosMain.get("/NFTList");
+
+    
+      setList(api.data.data[0].list);
+     
+     
+    }catch(error){
+      console.log(error);
+    }
+  }
+  const updateNft = async () => {
+    const res = axiosMain.post("/UpdateNFT",{name:name,category:category,price:price,id:id})
+    handleClose();
+  };
+  const handleName = (e) => {
+    let value = e.target.value;
+    if (value) {
+        setName(value);
+      }
+   
+  };
+ 
+  const handleCategory = (e) => {
+    let value = e.target.value;
+    if (value) {
+        setCategory(value);
+      }
+   
+  };
+  const handlePrice = (e) => {
+    let value = e.target.value;
+    if (value) {
+        setPrice(value);
+      }
+   
+  };
   useEffect(() => {
     getData();
+    getOffers();
   },[])
+
   return (
     <>
      <HomeLayout>
@@ -182,9 +238,150 @@ const AdminDashboard = () => {
                       </a>
                     </div> */}
 
-                    <div className="shadow-box">
-                   
                     
+                    <div className="table-responsive">
+                    <table className="table table-details">
+                      <thead>
+                        <tr className="for-back">
+                          <th>S.No</th>
+                          <th>Image</th>
+                          <th>Name</th>
+                          <th >Buying Price</th>
+                          <th>Creator Address</th>
+                         
+                          <th>Token</th>
+                          <th>Status</th>
+                          <th width="20%">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {list.map((items, index) => {
+                          return (
+                           
+                            <tr className="for-body-tr">
+                             
+                              <td className="td-break">{index + 1}</td>
+                              <td className="td-break"><img className="img-fluid" src={items.images} width="40px" alt="" onError={({ currentTarget }) => {
+    currentTarget.onerror = null; // prevents looping
+    currentTarget.src="assets/images/img-nft/list-img.png";
+  }}/></td>
+                              <td className="td-break">{items.name}</td>
+                              <td className="td-break">{items.price}</td>
+                              <td className="td-break">{items.wallet_address.slice(0,3)}....  {items.wallet_address.slice(-3)}</td>
+                            
+                              <td className="td-break">{items.token_id}</td>
+                              <td className="td-break success-green">{items.status ? 'success' : 'success'}</td>
+                              <td className="td-break">
+                                  
+                                  <div className="btn-flex-btn"><button className="btn-sell1" onClick={() => {
+                                  setId(items._id)
+                                  handleShow();
+                              }}>Update</button>
+                               </div>
+                              </td>
+                            </tr>
+                          )
+                        })}
+                      </tbody>
+                    </table>
+                    <Modal
+          show={show}
+          className="modal-comming-soon bid-modal transaction-page-modal"
+          backdrop="static"
+          keyboard={false}
+          onHide={handleClose}
+          centered
+        >
+          <Modal.Header
+            closeButton
+            className="border-none p-0"
+            style={{ zIndex: "10000000" }}
+          >
+               <h3 className="modal-header-h3">Update Nft</h3>
+          </Modal.Header>
+          <Modal.Body className="modal-background">
+            <div class="bid-modal-box">
+            <Form>
+                <Form.Group className="mb-3">
+                  <Form.Label>Id</Form.Label>
+                  {console.log({id})}
+                  <Form.Control
+                    type="text"
+              
+                   value={id}
+                  readOnly
+                    className="input-box-auction"
+                  />
+                </Form.Group>
+                {console.log("this is the di",id)}
+              </Form>
+
+              <Form>
+                <Form.Group className="mb-3">
+                  <Form.Label>Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Name"
+                   
+                    onChange={(e) => handleName(e)}
+                
+                    className="input-box-auction"
+                  />
+                </Form.Group>
+              </Form>
+
+              <Form>
+                <Form.Group className="mb-3">
+                  <Form.Label>Price</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Price"
+                   
+                    onChange={(e) => handlePrice(e)}
+                
+                    className="input-box-auction"
+                  />
+                </Form.Group>
+              </Form>
+              <Form>
+                <Form.Group className="mb-3">
+                  <Form.Label>Category</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Category"
+                 
+                   
+                    onChange={(e) => handleCategory(e)}
+                    
+                    className="input-box-auction"
+                  />
+                </Form.Group>
+              </Form>
+
+            
+
+              <div class="btn-sell-container">
+                <a
+                  href="#"
+                  className="blue-btn"
+                  onClick={() => {
+                    if (!isLoading) {
+                      updateNft();
+                    }
+                  }}
+                  disabled={isLoading}
+                  style={{ cursor: isLoading ? "no-drop" : "pointer" }}
+                >
+                  {isLoading ? "Processing" : "Submit"}
+                </a>
+
+                <a href="" className="border-btn">
+                  Cancel
+                </a>
+              </div>
+            </div>
+          </Modal.Body>
+        </Modal>
                     </div>
                   </Col>
                 </Row>
@@ -199,11 +396,11 @@ const AdminDashboard = () => {
                 </h3>
                 <img
                   className="profile-main-img"
-                //  src={`https://jewellery.donative.in:3000/AdminProfile/${profileImage}`}
-                 src={"assets/images/team7.png"}
+                  
+              src={`https://jewellery.donative.in:3000/AdminProfile/${profileImage}`}
                  
                 />
-                {console.log({profileImage})}
+             
                 <h4>{walletAddress.slice(0,4)}....{walletAddress.slice(-4)}</h4> 
                 <a href="/update-profile" className="gradient-btn" >Update Profile</a>
                {/* <p>{user._id.slice(0,6)}...{user._id.slice(-5)}</p>  */}
