@@ -19,6 +19,10 @@ header.custom-header {
 .details-side-content{
 
 }
+.m-container{
+    margin-top: 60px;
+    margin-left: 28px;
+}
 .bid-modal-box{
     text-align: left;
     padding: 20px 0;
@@ -1491,7 +1495,47 @@ margin-bottom: 25px;
         font-size: 12px !important;
     }
 }
-
+/* nft-list */
+ .artist-profile-box-list {
+    display: flex;
+    align-items: flex-end;
+    max-width: 200px;
+    position: absolute;
+    top: 190px;
+    left: 8%;
+}
+.artist-img-list{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    border: 2px solid #EFD67B;
+    margin-right: 15px;
+}
+.artist-profile-box-list  h2{
+    font-style: normal;
+    font-weight: 800;
+    font-size: 48px;
+    line-height: 150%;
+    letter-spacing: 0.133956px;
+    text-transform: capitalize;
+    background: linear-gradient(90deg, #A77327 0%, #EFD67B 49.79%, #A77327 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    font-family: "NeueMachina-Ultrabold";
+    margin-bottom: 0;
+}
+.artist-profile-box-list  p {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 150%;
+    letter-spacing: 0.133956px;
+    color: #FFFFFF;
+    margin-bottom: 0;
+}
+/* nft-list */
 /* artist page css */
 
 .artist-main-sec {

@@ -72,7 +72,7 @@ const AdminDashboard = () => {
     setNftDetails(res.data.data)
     setTotalUser(res.data.data.AllUser)
     const adminDataResult = localStorage.getItem("adminData")
-    const storeImage = Object.keys(adminDataResult).find(key => adminDataResult[key] === 'image')
+    const storeImage = JSON.parse(adminDataResult).image
     console.log("adminDataResult",adminDataResult)
     console.log("storeImage",storeImage)
     setprofileImage(storeImage)
@@ -162,7 +162,7 @@ const AdminDashboard = () => {
                     </a>
                   </li>
                   <li>
-                    <a href="/stakes">
+                    <a href="/nft-list">
                       <img
                         className="img-fluid m-0"
                         src={"assets/images/list22.png"}
@@ -397,8 +397,12 @@ const AdminDashboard = () => {
                 <img
                   className="profile-main-img"
                   
-              src={`https://jewellery.donative.in:3000/AdminProfile/${profileImage}`}
-                 
+              src={`https://jewellery.donative.in/AdminProfile/${profileImage}`}
+              onError={({ currentTarget }) => {
+                currentTarget.onerror = null; // prevents looping
+                currentTarget.src="assets/images/team7.png";
+              }} 
+            
                 />
              
                 <h4>{walletAddress.slice(0,4)}....{walletAddress.slice(-4)}</h4> 
