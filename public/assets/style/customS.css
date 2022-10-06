@@ -1526,6 +1526,37 @@ margin-bottom: 25px;
     font-family: "NeueMachina-Ultrabold";
     margin-bottom: 0;
 }
+.btn-width{
+    width: 238px;
+}
+.search-box-position{
+    margin-top: 5px;
+   position: absolute;
+    right: 21px;
+    width: 300px;
+}
+.grid-col{
+    display: grid;
+    grid-auto-flow: column;
+}
+.col-space{
+    gap: 10px;
+}
+.heading-nft-list{
+    font-style: normal;
+    font-weight: 800;
+    font-size: 48px;
+    line-height: 150%;
+    letter-spacing: 0.133956px;
+    text-transform: capitalize;
+    background: linear-gradient(90deg, #A77327 0%, #EFD67B 49.79%, #A77327 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    font-family: "NeueMachina-Ultrabold";
+    margin-bottom: 0;
+}
 .artist-profile-box-list  p {
     font-style: normal;
     font-weight: 500;
@@ -2694,7 +2725,7 @@ color: white;
     opacity: 1;
   }
   .shadow-graph-box {
-    /* box-shadow: 0 0px 10px #A77327  !important; */
+    box-shadow: 0 0px 10px #A77327  !important;
 margin: 30px 0;
     border-radius: 5px;
     overflow: hidden;
@@ -2713,6 +2744,7 @@ margin: 30px 0;
 margin: 0px 0 30px !important;
 }
   .creater-dash-sec .profile-img-left-box{
+    box-shadow: 0 0px 10px #A77327  !important;
   margin: 0px !important;
   border-radius: 0;
   text-align: center;

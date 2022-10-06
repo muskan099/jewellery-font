@@ -18,6 +18,7 @@ import { axios } from "../../http";
 import { useEffect, useState } from "react";
 import HomeLayout from "../../Components/Layout";
 import axiosMain from "../../http/axios/axios_main";
+import moment from "moment"
 const AdminDashboard = () => {
   
   const data = [
@@ -66,6 +67,11 @@ const AdminDashboard = () => {
   const[ makeOfferDetails,setMakeOfferDetails] = useState([])
   const[profileImage,setprofileImage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const startDate = new Date();
+  console.log({startDate})
+  let current_date1 = moment(startDate, "YYYY-MM-DD").format().slice(0,10);
+let current_date = current_date1.slice(0,10);
+  console.log(current_date)
   const getData = async() => {
     const res = await axios.get('/admindashboard')
     console.log(res.data)
@@ -255,7 +261,9 @@ const AdminDashboard = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {list.map((items, index) => {
+                        {list.filter((user) => {
+                       return user.created_at.slice(0,10) == current_date;
+                      }).map((items, index) => {
                           return (
                            
                             <tr className="for-body-tr">

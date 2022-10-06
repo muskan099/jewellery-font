@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
-import { Row, Col, Modal, Button, Form,FormControl,InputGroup } from "react-bootstrap";
+import { Row, Col, Modal, Button, Form,FormControl,InputGroup,Dropdown, Accordion } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import Layout from '../../Components/Layout';
 import { useSelector } from "react-redux";
@@ -23,9 +23,22 @@ const[id,setId] = useState();
   const [minPrice, setMinPrice] = useState("");
   const [ANft, setANft] = useState("");
   const [name, setName] = useState(false);
-  const [category, setCategory] = useState(false);
+  const [category, setCategory] = useState("");
   const [price, setPrice] = useState(false);
   const [search, setSearch] = useState("");
+  const [nft, setNft] = useState("");
+  const [result, setResult] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [status, setStatus] = useState("");
+  const [filterSearch, setFilterSearch] = useState({
+    category:"Jeni Summers",
+    nftTier: {
+      tier1: true,
+      tier2: false,
+      tier3: false,
+    },
+    
+  });
   const {
     isAuthenticated,
     walletAddress,
@@ -97,6 +110,25 @@ const[id,setId] = useState();
   };
   console.log(isAuthenticated, 'isauth');
   
+  const getData = async (currentPage, limit, filterSearch) => {
+    console.log({category})
+    console.log({filterSearch})
+   
+    const res = await axios.post("/content-list", {
+      page: currentPage,
+      limit: limit,
+      category:filterSearch.category,
+      nftTier: filterSearch.nftTier
+      
+    
+     
+    });
+
+    if (res.data) {
+      setNft(res.data);
+      setResult(res.data);
+    }
+  };
 
   return (
 
@@ -146,26 +178,81 @@ const[id,setId] = useState();
             <Col lg={11} md={12} sm={12} xs={12}>
               <Row>
 
-            <Col  md="4" sm="6" className="m-container">
-            
-               
-                
+          
+              <Col  className="m-container">
+                <Row>
+                  <Row>
                   
-                  <div className="artist-profile-box-list">
-                    <img src="assets/images/image 3.png" class="img-fluid artist-img-list" />
-                    <div>
-                      <h2>Metamarse</h2>
-                      <p>{isAuthenticated ? walletAddress.slice(0,6)+"...."+walletAddress.slice(-6) : ''}</p>
-               
-                    
-                
-                    </div>
-                  </div>
-               
+                  <div className="nft-list-btn-row grid-col">
+                  <Col>
+                  <h2 className="heading-nft-list">NFT List</h2>
+                    </Col>
+             <Col >
+             <a className="nav-btn gradient-btn" href="">
+                    Export to Exel
+                  </a>
+                  <a className="nav-btn gradient-btn" href="">
+                    Export to CSV
+                  </a>
+             </Col>
+                 
+                </div>
+                  </Row>
+                  <Row>
+                    <div className="grid-col">
+<Col md="8" className="grid-col col-space">
+                      <Dropdown>
+                      <Dropdown.Toggle className=" gradient-btn btn-width">
+                        All Category
+                      </Dropdown.Toggle>
 
-              </Col>
-              <Col md="4" sm="6" className="m-container">
-             <div className="news-search-box m-0">
+                      <Dropdown.Menu>
+                        <Dropdown.Item href="#/action-1" onClick={(e) => {
+                          setCategory("Chain");
+                        }}>Chain</Dropdown.Item>
+                     
+                     <Dropdown.Item href="#/action-1" onClick={(e) => {
+                          setCategory(e.target.value);
+                        }}>Bangel</Dropdown.Item>
+                        
+                        <Dropdown.Item href="#/action-1" onClick={(e) => {
+                          setCategory("Necklace");
+                        }}>Necklace</Dropdown.Item>
+                        <Dropdown.Item href="#/action-1" onClick={(e) => {
+                          setCategory("Earings");
+                        }}>Earings</Dropdown.Item>
+                         <Dropdown.Item href="#/action-1" onClick={(e) => {
+                          setCategory("Rings");
+                        }}>Rings</Dropdown.Item>
+                      </Dropdown.Menu>
+                      
+                    </Dropdown>
+                    <Dropdown>
+                      <Dropdown.Toggle className=" gradient-btn  btn-width">
+                        Status
+                      </Dropdown.Toggle>
+
+                      <Dropdown.Menu>
+                        <Dropdown.Item href="#/action-1" onClick={(e) => {
+                          setStatus("Auction");
+                        }}>Auction</Dropdown.Item>
+                     
+                     <Dropdown.Item href="#/action-1" onClick={(e) => {
+                          setStatus("Sold");
+                        }}>Sold</Dropdown.Item>
+                        
+                      
+                      </Dropdown.Menu>
+                      
+                    </Dropdown>
+
+
+
+                 
+                   </Col>
+                    <Col md="4">
+
+                          <div className="news-search-box m-0 search-box-position" >
                         <InputGroup className="news-input">
                           <FormControl
                             placeholder="Search....."
@@ -184,6 +271,15 @@ const[id,setId] = useState();
                           </Button>
                         </InputGroup>
                       </div>
+</Col>
+                      </div>
+                  </Row>
+                  </Row>
+             
+
+             
+
+           
              </Col>
 
                 </Row>
@@ -213,7 +309,39 @@ const[id,setId] = useState();
                      </tr>
                    </thead>
                    <tbody>
-                     {data.filter((user) =>  {return (
+                     {console.log({category})}
+                     {category || status ? data.filter((user) =>  {return (
+                         
+                         user.category.includes(category) &&   user.status.includes(status) 
+                         
+                        
+                       ); }).map((items, index) => {
+                       return (
+                        
+                         <tr className="for-body-tr">
+                           
+                           <td className="td-break">{index + 1}</td>
+                           <td className="td-break"><img className="img-fluid" src={items.images} width="40px" alt="" onError={({ currentTarget }) => {
+ currentTarget.onerror = null; // prevents looping
+ currentTarget.src="assets/images/img-nft/list-img.png";
+}}/></td>
+                           <td className="td-break">{items.name}</td>
+                           <td className="td-break">{items.price}</td>
+                           <td className="td-break">{items.wallet_address.slice(0,3)}....  {items.wallet_address.slice(-3)}</td>
+                         
+                           <td className="td-break">{items.token_id}</td>
+                           <td className="td-break success-green">{items.status ? 'success' : 'success'}</td>
+                           <td className="td-break">
+                               {console.log("id is this",items._id)}
+                               <div className="btn-flex-btn"><button className="btn-sell1" onClick={() => {
+                               setId(items._id)
+                               handleShow();
+                           }}>Update</button>
+                            </div>
+                           </td>
+                         </tr>
+                       )
+                     }): data.filter((user) =>  {return (
                          
                          user.name.includes(search) 
                          
@@ -222,10 +350,10 @@ const[id,setId] = useState();
                        return (
                         
                          <tr className="for-body-tr">
-                            {console.log("transacrtion item",items)}
+                           
                            <td className="td-break">{index + 1}</td>
                            <td className="td-break"><img className="img-fluid" src={items.images} width="40px" alt="" onError={({ currentTarget }) => {
- currentTarget.onerror = null; // prevents looping
+                           currentTarget.onerror = null; // prevents looping
  currentTarget.src="assets/images/img-nft/list-img.png";
 }}/></td>
                            <td className="td-break">{items.name}</td>
