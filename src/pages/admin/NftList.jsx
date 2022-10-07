@@ -93,7 +93,7 @@ const[id,setId] = useState();
   };
   console.log(isAuthenticated, 'isauth');
   
-  const getData = async (currentPage, limit) => {
+  const getData = async (currentPage, limit,search) => {
   
     console.log({filterSearch})
    
@@ -102,7 +102,8 @@ const[id,setId] = useState();
       limit: limit,
       category:categoryFilter,
       status:status,
-      page:currentPage
+      page:currentPage,
+      search_tag:search
       });
    console.log({res})
     if (res.data) {
@@ -113,8 +114,8 @@ const[id,setId] = useState();
   };
 console.log(data)
   useEffect(() => {
-    getData(currentPage,6,categoryFilter,status);
-  }, [categoryFilter,status,currentPage]);
+    getData(currentPage,6,search);
+  }, [categoryFilter,status,currentPage,search]);
   return (
 
     <Layout>

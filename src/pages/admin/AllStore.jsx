@@ -93,11 +93,16 @@ const[id,setId] = useState();
   };
   console.log(isAuthenticated, 'isauth');
   
-  const getData = async (currentPage, limit) => {
+  const getData = async (currentPage, limit,search) => {
   
     console.log({filterSearch})
    
-    const res = await axios.get("https://jewellery.donative.in/getAllStore", );
+    const res = await axios.post("https://jewellery.donative.in/getAllStore", {
+     search_tag:search,
+      limit:limit,
+       page:currentPage,
+       skip:6
+    });
    console.log(res.data.data.totalRecords.count)
     if (res.data) {
      
@@ -107,8 +112,8 @@ const[id,setId] = useState();
   };
 console.log(data)
   useEffect(() => {
-    getData(currentPage,6);
-  }, [categoryFilter,status,currentPage]);
+    getData(currentPage,6,search);
+  }, [search,currentPage]);
   return (
 
     <Layout>
@@ -120,7 +125,7 @@ console.log(data)
             <Col lg={1} md={12} sm={12} xs={12}>
               <div className="sidemenu-creater">
                 <ul>
-                  <li className="active">
+                <li className="active">
                     <NavLink to="/admin-dashboard">
                       <img
                         className="img-fluid m-0"
