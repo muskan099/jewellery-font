@@ -21,6 +21,8 @@ import SignUp from "./pages/admin/SignUp";
 import UpdateAdminProfile from "./pages/admin/UpdateAdminProfile";
 import NftList from "./pages/admin/NftList";
 import Joinus from "./pages/Joinus";
+import AdminTransaction from "./pages/admin/AdminTransaction";
+import AllStore from "./pages/admin/AllStore";
 function App() {
   return (
     <div className="App">
@@ -47,8 +49,8 @@ function App() {
             <Route path="/update-profile" element={<UpdateAdminProfile />} />
             <Route path="/nft-list" element={<NftList />} />
             <Route path="/joinus" element={<Joinus />} />
-          
-            
+            <Route path="/admin-transactions" element={<AdminTransaction />} />
+            <Route path="/admin-store" element={<AllStore />} />
           </Routes>
         </ScrollToTop>
       </BrowserRouter>

@@ -155,12 +155,12 @@ let current_date = current_date1.slice(0,10);
                     </NavLink>
                   </li>
                   <li>
-                    <a href="/collections">
+                    <a href="/admin-transactions">
                       <img className="img-fluid m-0" src={"assets/images/list.png"} />
                     </a>
                   </li>
                   <li>
-                    <a href="/stakes">
+                    <a href="/admin-store">
                       <img
                         className="img-fluid m-0"
                         src={"assets/images/list22.png"}

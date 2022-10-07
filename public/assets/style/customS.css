@@ -2694,10 +2694,17 @@ color: white;
 /* ishita css contact */
 
 /* admin-dashboard */
+.mb-search{
+    margin-bottom: 40px !important;
+}
+.mb-top{
+    margin-top: 20px;
+}
 .creater-dash-sec{
-    /* padding: 65px 0 0; */
+    padding: 8px 25px !important;
     text-align: left;
     border-top: 1px solid #A77327;
+    font-size: 16px !important;
   }
   .sidemenu-creater {
     background: linear-gradient(90deg, #A77327 0%, #EFD67B 49.79%, #A77327 100%) !important;
