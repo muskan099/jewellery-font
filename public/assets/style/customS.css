@@ -2697,6 +2697,7 @@ color: white;
 .creater-dash-sec{
     /* padding: 65px 0 0; */
     text-align: left;
+    border-top: 1px solid #A77327;
   }
   .sidemenu-creater {
     background: linear-gradient(90deg, #A77327 0%, #EFD67B 49.79%, #A77327 100%) !important;
