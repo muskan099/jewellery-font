@@ -3,6 +3,7 @@ body{
 	min-height: 100vh;
     font-family: 'Poppins', sans-serif !important;
     padding-top: 108px !important;
+    overflow-x: hidden;
 }
 header.custom-header {
     position: fixed;
@@ -334,11 +335,12 @@ mix-blend-mode: normal;
 border-collapse: separate;
     border-spacing: 0 20px;
 }
-.table.table-details tr{
+.table.table-details .for-back{
+	background: linear-gradient(90deg, #A77327 0%, #EFD67B 49.79%, #A77327 100%);
 
 }
 .table.table-details tr th{
-	background: linear-gradient(90deg, #A77327 0%, #EFD67B 49.79%, #A77327 100%);
+	/* background: linear-gradient(90deg, #A77327 0%, #EFD67B 49.79%, #A77327 100%); */
 border: none !important;
 padding: 15px;
 text-align: left;
@@ -932,8 +934,8 @@ body .home-outer-div{
     border: none !important;
 }
 .nav-btn.gradient-btn {
-    padding: 8px 25px;
-    margin-left: 40px;
+    padding: 6px 20px;
+    margin-left: 25px;
     font-size: 16px;
 }
 header.custom-header .navbar-light .navbar-toggler {
@@ -1186,12 +1188,13 @@ padding: 0;
 }
 
 @media (max-width: 768px){
+   
     .custom-header img {
         height: 42px;
     }
     .nav-btn.gradient-btn {
         padding: 2px 10px;
-        margin-left: 0;
+        margin-left: 2px;
         font-size: 12px;
     }
     .banner-home-page {
@@ -2724,7 +2727,7 @@ color: white;
     left: 500px;
     top: 228px;
 }
-}
+
 /* Date filter */
 /* admin-dashboard */
 .mb-search{
@@ -2734,13 +2737,13 @@ color: white;
     margin-top: 20px;
 }
 .creater-dash-sec{
-    padding: 8px 25px !important;
+    /* padding: 8px 25px !important; */
     text-align: left;
-    border-top: 1px solid #A77327;
+    /* border-top: 1px solid #A77327; */
     font-size: 16px !important;
   }
   .sidemenu-creater {
-    background: linear-gradient(90deg, #A77327 0%, #EFD67B 49.79%, #A77327 100%) !important;
+    background: linear-gradient(to bottom, #A77327 0%, #EFD67B 49.79%, #A77327 100%) !important;
     height: 100% !important;
   }
   .sidemenu-creater ul {
@@ -2757,7 +2760,7 @@ color: white;
     cursor: pointer;
   }
   .sidemenu-creater ul li a img {
-    height: 26px;
+    height: 30px;
     opacity: 0.4;
   }
   .sidemenu-creater ul li.active a img,
@@ -2766,8 +2769,8 @@ color: white;
     opacity: 1;
   }
   .shadow-graph-box {
-    box-shadow: 0 0px 10px #A77327  !important;
-margin: 30px 0;
+    /* box-shadow: 0 0px 10px #A77327  !important; */
+    margin: 30px 0;
     border-radius: 5px;
     overflow: hidden;
     padding: 20px;
@@ -2785,7 +2788,7 @@ margin: 30px 0;
 margin: 0px 0 30px !important;
 }
   .creater-dash-sec .profile-img-left-box{
-    box-shadow: 0 0px 10px #A77327  !important;
+    /* box-shadow: 0 0px 10px #A77327  !important; */
   margin: 0px !important;
   border-radius: 0;
   text-align: center;
@@ -2903,12 +2906,12 @@ margin-top: 20px;
     min-height: 360px;
   }
   .CircularProgressbar .CircularProgressbar-trail {
-    stroke:   #A77327 !important;
+    stroke:   #fff !important;
     stroke-linecap: round;
     stroke-width: 4px !important;
   }
   .CircularProgressbar .CircularProgressbar-path {
-    stroke: #fff !important;
+    stroke: #a77327 !important;
     stroke-width: 4px !important;
   }
   .CircularProgressbar {
@@ -3187,4 +3190,103 @@ margin: 0px !important;
     width: 190px;
     border-radius: 50%;
     object-fit: cover;
+}
+@media (max-width:768px){
+.shadow-graph-box.prograss-box-admin ul {
+    display: block;
+    padding: 0;
+}
+.shadow-graph-box.prograss-box-admin {
+    max-height: none;
+}
+.sidemenu-creater {
+    background: linear-gradient(90deg, #A77327 0%, #EFD67B 49.79%, #A77327 100%) !important;
+  }
+}
+.nft-list-btn-row{
+display: flex;
+align-items: center;
+margin-bottom: 20px;
+flex-wrap: wrap;
+}
+/*ishita*/
+.create-button{
+    border: 1px solid #ddd !important;
+    border-radius: 30px;
+    background: #000;
+    min-width: 180px;
+    color: #fff !important;
+}
+.create-button:hover,.create-button:focus{
+    border: 1px solid #ddd !important;
+    border-radius: 30px;
+    background: #000 !important;
+    min-width: 180px;
+    color: #fff !important;
+    box-shadow: none !important;
+}
+
+.dropdown .create-button.dropdown-toggle:after {
+    content: "";
+    background-image: none;
+    height: 10px;
+    width: 10px;
+    border-right: 2px solid #a77327!important;
+    border-bottom: 2px solid #a77327!important;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    right: 15px;
+    top: 13px;
+    position: absolute;
+    border: none;
+}
+ .paginate-right,.pagination{
+    float: right;
+}
+.search-box-position1 {
+    margin-top: 5px;
+    position: absolute;
+    right: 21px;
+}
+.filer-right-box.allcategory-filter.filter-nft-list {
+    justify-content: space-between;
+}
+.filer-right-box.allcategory-filter {
+    justify-content: flex-start;
+    margin: 10px 0;
+}
+.filer-right-box {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+.outer-multiple-drop {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.outer-multiple-drop .dropdown {
+    margin: 10px 20px 10px 0;
+}
+.filer-right-box .dropdown-toggle {
+    text-align: left;
+}
+@media (max-width:768px){
+.page-link{
+    font-size: 14px;
+    padding: 6px;
+}
+.transaction-heading1{
+    font-size: 26px;
+}
+.table.table-details tr th{
+    padding: 10px;
+    font-size: 16px;
+}
+.table.table-details tr td{
+    padding: 10px;
+    font-size: 14px;
+}
 }

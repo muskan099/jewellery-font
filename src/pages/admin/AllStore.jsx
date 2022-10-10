@@ -1,8 +1,18 @@
 import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
-import { Row, Col, Modal, Button, Form,FormControl,InputGroup,Dropdown, Accordion } from "react-bootstrap";
+import {
+  Row,
+  Col,
+  Modal,
+  Button,
+  Form,
+  FormControl,
+  InputGroup,
+  Dropdown,
+  Accordion,
+} from "react-bootstrap";
 import Table from "react-bootstrap/Table";
-import Layout from '../../Components/Layout';
+import Layout from "../../Components/Layout";
 import { useSelector } from "react-redux";
 import { toast, useToast } from "react-toastify";
 import axiosMain from "../../http/axios/axios_main";
@@ -11,15 +21,14 @@ import { CreateReSale, WithdrawSale } from "../../helpers/CreateResale";
 import { createNFTAuction } from "../../helpers/AuctionHelper";
 import { Transaction } from "../../helpers/Transaction";
 import { useLocation } from "react-router";
-import {  NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Pagination from "./Pagination";
 function Transactions() {
-
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [saleData, setSaleData] = useState();
-const[id,setId] = useState();
+  const [id, setId] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [minPrice, setMinPrice] = useState("");
   const [ANft, setANft] = useState("");
@@ -32,23 +41,19 @@ const[id,setId] = useState();
   const [result, setResult] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [status, setStatus] = useState("");
-  const[totalCount,setTotalCount] = useState();
+  const [totalCount, setTotalCount] = useState();
   const [filterSearch, setFilterSearch] = useState({
-    category:"Jeni Summers",
+    category: "Jeni Summers",
     nftTier: {
       tier1: true,
       tier2: false,
       tier3: false,
     },
-    
   });
-  const {
-    isAuthenticated,
-    walletAddress,
-  } = useSelector((state) => state.auth);
+  const { isAuthenticated, walletAddress } = useSelector((state) => state.auth);
   const { state } = useLocation("/marketplace");
 
-  console.log(walletAddress, 'check');
+  console.log(walletAddress, "check");
   const [auctionData, setAuctionData] = useState({
     minPrice: 0,
     startTime: "",
@@ -57,252 +62,224 @@ const[id,setId] = useState();
   });
   const { buttonMessage } = auctionData;
 
-  
   const [data, setdata] = useState([]);
- 
 
- 
-
-  
   const updateNft = async () => {
-    const res = axiosMain.post("/UpdateNFT",{name:name,category:category,price:price,id:id})
+    const res = axiosMain.post("/UpdateNFT", {
+      name: name,
+      category: category,
+      price: price,
+      id: id,
+    });
     handleClose();
   };
-  
+
   const handleName = (e) => {
     let value = e.target.value;
     if (value) {
-        setName(value);
-      }
-   
+      setName(value);
+    }
   };
- 
+
   const handleCategory = (e) => {
     let value = e.target.value;
     if (value) {
-        setCategory(value);
-      }
-   
+      setCategory(value);
+    }
   };
   const handlePrice = (e) => {
     let value = e.target.value;
     if (value) {
-        setPrice(value);
-      }
-   
+      setPrice(value);
+    }
   };
-  console.log(isAuthenticated, 'isauth');
-  
-  const getData = async (currentPage, limit,search) => {
-  
-    console.log({filterSearch})
-   
+  console.log(isAuthenticated, "isauth");
+
+  const getData = async (currentPage, limit, search) => {
+    console.log({ filterSearch });
+
     const res = await axios.post("https://jewellery.donative.in/getAllStore", {
-     search_tag:search,
-      limit:limit,
-       page:currentPage,
-       skip:6
+      search_tag: search,
+      limit: limit,
+      page: currentPage,
+      skip: 6,
     });
-   console.log(res.data.data.totalRecords.count)
+    console.log(res.data.data.totalRecords.count);
     if (res.data) {
-     
       setdata(res.data.data.list);
       setTotalCount(res.data.data.totalRecords.count);
     }
   };
-console.log(data)
+  console.log(data);
   useEffect(() => {
-    getData(currentPage,6,search);
-  }, [search,currentPage]);
+    getData(currentPage, 6, search);
+  }, [search, currentPage]);
   return (
-
     <Layout>
       <div>
-        <section className="artist-main-sec">
+        <section className="artist-main-sec1">
           <Container fluid className="p-0">
             <Row>
-         
-            <Col lg={1} md={12} sm={12} xs={12}>
-              <div className="sidemenu-creater">
-                <ul>
-                <li className="active">
-                    <NavLink to="/admin-dashboard">
-                      <img
-                        className="img-fluid m-0"
-                        src={"assets/images/dashboard.png"}
-                      />
-                    </NavLink>
-                  </li>
-                  <li>
-                  <a href="/admin-transactions">
-                      <img className="img-fluid m-0" src={"assets/images/list.png"} />
-                    </a>
-                  </li>
-                  <li>
-                  <a href="/admin-store">
-                      <img
-                        className="img-fluid m-0"
-                        src={"assets/images/list22.png"}
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/nft-list">
-                      <img
-                        className="img-fluid m-0"
-                        src={"assets/images/list22.png"}
-                      />
-                    </a>
-                  </li>
-               
-                 
-                </ul>
-              </div>
-            </Col>
-            <Col lg={11} md={12} sm={12} xs={12}>
-              <Row>
-
-          
-              <Col  className="m-container">
-                <Row>
-                  <Row>
-                  
-                  <div className="nft-list-btn-row grid-col">
-                  <Col>
-                  <h2 className="heading-nft-list">All Stores</h2>
-                    </Col>
-             <Col >
-             <a className="nav-btn gradient-btn" href="">
-                    Export to Exel
-                  </a>
-                  <a className="nav-btn gradient-btn" href="">
-                    Export to CSV
-                  </a>
-             </Col>
-                 
+              <Col lg={1} md={12} sm={12} xs={12}>
+                <div className="sidemenu-creater">
+                  <ul>
+                    <li className="active">
+                      <NavLink to="/admin-dashboard">
+                        <img
+                          className="img-fluid m-0"
+                          src={"assets/images/dashboard.png"}
+                        />
+                      </NavLink>
+                    </li>
+                    <li>
+                      <a href="/admin-transactions">
+                        <img
+                          className="img-fluid m-0"
+                          src={"assets/images/list.png"}
+                        />
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/admin-store">
+                        <img
+                          className="img-fluid m-0"
+                          src={"assets/images/list22.png"}
+                        />
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/nft-list">
+                        <img
+                          className="img-fluid m-0"
+                          src={"assets/images/list22.png"}
+                        />
+                      </a>
+                    </li>
+                  </ul>
                 </div>
-                  </Row>
-                  <Row>
-                    <div className="grid-col">
-<Col md="8" className="grid-col col-space">
-                    
+              </Col>
+              <Col lg={11} md={12} sm={12} xs={12}>
+                <Row>
+                  <Col className="m-container">
+                    <Row>
+                      <Row>
+                        <div className="nft-list-btn-row grid-col">
+                          <h2 className="heading-nft-list transaction-heading1">All Stores</h2>
 
-
-
-                 
-                   </Col>
-                    <Col md="4">
-
-                          <div className="news-search-box m-0 search-box-position" >
-                        <InputGroup className="news-input">
-                          <FormControl
-                            placeholder="Search....."
-                            aria-label="Recipient's username"
-                            aria-describedby="basic-addon2"
-                            onChange={(e) => {
-                              setSearch(e.target.value);
-                            }}
-                            className=" search-explore"
-                          />
-                          <Button
-                            variant="outline-secondary"
-                            id="button-addon2"
-                          >
-                            <i class="fa fa-search" aria-hidden="true"></i>
-                          </Button>
-                        </InputGroup>
-                      </div>
-</Col>
-                      </div>
-                  </Row>
-                  </Row>
-             
-
-             
-
-           
-             </Col>
-
+                          <a className="nav-btn gradient-btn" href="">
+                            Export to Exel
+                          </a>
+                          <a className="nav-btn gradient-btn" href="">
+                            Export to CSV
+                          </a>
+                        </div>
+                      </Row>
+                      <Row>
+                          <div className="filer-right-box allcategory-filter filter-nft-list">
+                            <div className="news-search-box m-0 ">
+                              <InputGroup className="news-input">
+                                <FormControl
+                                  placeholder="Search....."
+                                  aria-label="Recipient's username"
+                                  aria-describedby="basic-addon2"
+                                  onChange={(e) => {
+                                    setSearch(e.target.value);
+                                  }}
+                                  className=" search-explore"
+                                />
+                                <Button
+                                  variant="outline-secondary"
+                                  id="button-addon2"
+                                >
+                                  <i
+                                    class="fa fa-search"
+                                    aria-hidden="true"
+                                  ></i>
+                                </Button>
+                              </InputGroup>
+                            </div>
+                          </div>
+                      </Row>
+                    </Row>
+                  </Col>
                 </Row>
-             <div className="transactions-section">
-             <Row>
-           
-          
-           <Col className="mb-top">
-           <div className="transaction-box pt-4">
-               {/* <div className="for-image-box1">
+                <div className="transactions-section">
+                  <Row>
+                    <Col className="mb-top">
+                      <div className="transaction-box pt-4">
+                        {/* <div className="for-image-box1">
                      <img  className="m-0 img-fluid" src="assets/images/detail-img.png" alt=""/>
                      <p className="paragraph-main1 py-2">0x800d9250b9f8f46ef8b</p>
                  </div> */}
-               <div className="table-responsive">
-                 <table className="table table-details">
-                   <thead>
-                     <tr className="for-back">
-                       <th>S.No</th>
-                       <th>Image</th>
-                       <th>Name</th>
-                       <th >Email</th>
-                       <th>Mobile Number</th>
-                      
-                      
-                       <th>Status</th>
-                       <th width="20%">Action</th>
-                     </tr>
-                   </thead>
-                   <tbody>
-                     {console.log(data)}
-                     { data.map((items, index) => {
-                       return (
-                        
-                         <tr className="for-body-tr">
-                           
-                           <td className="td-break">{index + 1}</td>
-                           <td className="td-break"><img className="img-fluid" src={items.StoreImages} width="40px" alt="" onError={({ currentTarget }) => {
-                           currentTarget.onerror = null; // prevents looping
- currentTarget.src="assets/images/img-nft/list-img.png";
-}}/></td>
-                           <td className="td-break">{items.storeName}</td>
-                           <td className="td-break">{items.storeEmail}</td>
-                        
-                         
-                           <td className="td-break">{items.mobile_no}</td>
-                           <td className="td-break success-green">{items.status ? 'success' : 'success'}</td>
-                           <td className="td-break">
-                             
-                           </td>
-                         </tr>
-                       )
-                     })}
-                   </tbody>
-                 </table>
-                 {console.log("i am total nft",nft)}
-                 <Pagination
-                  nftPerPage={6}
-                  totalNft={totalCount}
-                 nft={data}
-                 
-                 getData={getData}
-                 limit={6}
-                />
-              
-               
-    
-     
-  
+                        <div className="table-responsive">
+                          <table className="table table-details">
+                            <thead>
+                              <tr className="for-back">
+                                <th>S.No</th>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Mobile Number</th>
 
-               </div>
-             </div>
-           </Col>
-         </Row>
-         
-         
-        </div>
-            </Col>
-             
+                                <th>Status</th>
+                                <th width="20%">Action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {console.log(data)}
+                              {data.map((items, index) => {
+                                return (
+                                  <tr className="for-body-tr">
+                                    <td className="td-break">{index + 1}</td>
+                                    <td className="td-break">
+                                      <img
+                                        className="img-fluid"
+                                        src={items.StoreImages}
+                                        width="40px"
+                                        alt=""
+                                        onError={({ currentTarget }) => {
+                                          currentTarget.onerror = null; // prevents looping
+                                          currentTarget.src =
+                                            "assets/images/img-nft/list-img.png";
+                                        }}
+                                      />
+                                    </td>
+                                    <td className="td-break">
+                                      {items.storeName}
+                                    </td>
+                                    <td className="td-break">
+                                      {items.storeEmail}
+                                    </td>
+
+                                    <td className="td-break">
+                                      {items.mobile_no}
+                                    </td>
+                                    <td className="td-break success-green">
+                                      {items.status ? "success" : "success"}
+                                    </td>
+                                    <td className="td-break"></td>
+                                  </tr>
+                                );
+                              })}
+                            </tbody>
+                          </table>
+                          {console.log("i am total nft", nft)}
+                        </div>
+                      </div>
+                      <Pagination
+                        nftPerPage={6}
+                        totalNft={totalCount}
+                        nft={data}
+                        getData={getData}
+                        limit={6}
+                      />
+                    </Col>
+                  </Row>
+                </div>
+              </Col>
             </Row>
           </Container>
         </section>
-       
       </div>
     </Layout>
   );

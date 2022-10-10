@@ -120,7 +120,7 @@ console.log(data)
 
     <Layout>
       <div>
-        <section className="artist-main-sec">
+        <section className="artist-main-sec1">
           <Container fluid className="p-0">
             <Row>
          
@@ -170,25 +170,22 @@ console.log(data)
                   <Row>
                   
                   <div className="nft-list-btn-row grid-col">
-                  <Col>
-                  <h2 className="heading-nft-list">NFT List</h2>
-                    </Col>
-             <Col >
+                  <h2 className="heading-nft-list transaction-heading1">NFT List</h2>
+                    
              <a className="nav-btn gradient-btn" href="">
                     Export to Exel
                   </a>
                   <a className="nav-btn gradient-btn" href="">
                     Export to CSV
                   </a>
-             </Col>
-                 
+
                 </div>
                   </Row>
                   <Row>
-                    <div className="grid-col">
-<Col md="8" className="grid-col col-space">
+                    <div className="filer-right-box allcategory-filter filter-nft-list">
+                    <div className="outer-multiple-drop">
                       <Dropdown>
-                      <Dropdown.Toggle className=" gradient-btn  creater-dash-sec">
+                      <Dropdown.Toggle className=" create-button">
                         All Category
                       </Dropdown.Toggle>
 
@@ -214,7 +211,7 @@ console.log(data)
                       
                     </Dropdown>
                     <Dropdown>
-                      <Dropdown.Toggle className=" gradient-btn   creater-dash-sec">
+                      <Dropdown.Toggle className=" create-button">
                         Status
                       </Dropdown.Toggle>
 
@@ -235,10 +232,9 @@ console.log(data)
 
 
                  
-                   </Col>
-                    <Col md="4">
+                   </div>
 
-                          <div className="news-search-box m-0 search-box-position" >
+                          <div className="news-search-box m-0 " >
                         <InputGroup className="news-input">
                           <FormControl
                             placeholder="Search....."
@@ -257,7 +253,6 @@ console.log(data)
                           </Button>
                         </InputGroup>
                       </div>
-</Col>
                       </div>
                   </Row>
                   </Row>
@@ -326,14 +321,7 @@ console.log(data)
                    </tbody>
                  </table>
                  {console.log("i am total nft",nft)}
-                 <Pagination
-                  nftPerPage={6}
-                  totalNft={totalCount}
-                 nft={data}
                  
-                 getData={getData}
-                 limit={6}
-                />
               
                  <Modal
        show={show}
@@ -440,6 +428,15 @@ console.log(data)
 
                </div>
              </div>
+             <Pagination
+                 className="paginate-right"
+                  nftPerPage={6}
+                  totalNft={totalCount}
+                 nft={data}
+                 
+                 getData={getData}
+                 limit={6}
+                />
            </Col>
          </Row>
          
