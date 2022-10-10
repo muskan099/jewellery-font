@@ -16,6 +16,8 @@ import Pagination from "./Pagination";
 import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
 import moment from "moment";
+import ExportToExcel from "../../Components/UI/ExportToExcel";
+import ExportToCSV from "../../Components/UI/ExportToCSV";
 function Transactions() {
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
@@ -147,12 +149,8 @@ console.log("the current date", { current_date });
     <h2 className="heading-nft-list">Transaction List</h2>
       </Col>
 <Col >
-<a className="nav-btn gradient-btn" href="">
-      Export to Exel
-    </a>
-    <a className="nav-btn gradient-btn" href="">
-      Export to CSV
-    </a>
+<ExportToExcel csvData={data} fileName={"StackList.js"}/>
+            <ExportToCSV nft={data}/>
 </Col>
    
   </div>
@@ -193,6 +191,7 @@ console.log("the current date", { current_date });
                       placeholder="Start Date....."
                       aria-label="Recipient's username"
                       aria-describedby="basic-addon2"
+                      value={current_date}
                       onClick={() => {
                         setIsVisible(true);
                       }}
@@ -201,6 +200,7 @@ console.log("the current date", { current_date });
                       placeholder="End Date....."
                       aria-label="Recipient's username"
                       aria-describedby="basic-addon2"
+                      value={current_date1}
                       onClick={() => {
                         setIsVisible1(true);
                         setIsVisible(false);
@@ -282,7 +282,7 @@ console.log("the current date", { current_date });
                           <th>Transaction hash</th>
                           <th>Token</th>
                           <th>Status</th>
-                          <th width="20%">Action</th>
+                         
                         </tr>
                       </thead>
                       <tbody>
@@ -450,10 +450,7 @@ console.log("the current date", { current_date });
                               <td className="td-break success-green">
                                 {items.status ? "success" : "success"}
                               </td>
-                              <td className="td-break">
-                              Pending
-                                   
-                              </td>
+                            
                             </tr>
                           );
                         })}

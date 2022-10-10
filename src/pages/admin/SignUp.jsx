@@ -98,7 +98,7 @@ const Signup = () => {
         toast.success(response?.data.message);
         setTimeout(() => {
           if (response?.data.status) {
-            // navigate("/signin");
+            navigate("/signin");
           }
         }, 1000);
         console.log({file})

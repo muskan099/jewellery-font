@@ -37,7 +37,7 @@ const Signin = () => {
     } 
     console.log({inputdata})
     dispatch(userLoginSaga({ inputdata, navigate }))
-    navigate("/create-nft")
+    navigate("/admin-dashboard")
     //else {
       
     //   setFormError("");
