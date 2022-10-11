@@ -23,6 +23,8 @@ import { Transaction } from "../../helpers/Transaction";
 import { useLocation } from "react-router";
 import { NavLink } from "react-router-dom";
 import Pagination from "./Pagination";
+import ExportToExcel from "../../Components/UI/ExportToExcel";
+import ExportToCSV from "../../Components/UI/ExportToCSV";
 function Transactions() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -172,12 +174,12 @@ function Transactions() {
                             NFT List
                           </h2>
 
-                          <a className="nav-btn gradient-btn" href="">
-                            Export to Exel
-                          </a>
-                          <a className="nav-btn gradient-btn" href="">
-                            Export to CSV
-                          </a>
+                          <ExportToExcel
+                            className="nav-btn gradient-btn"
+                              csvData={data}
+                              fileName={"StackList.js"}
+                            />
+                            <ExportToCSV className="nav-btn gradient-btn" nft={data} />
                         </div>
                       </Row>
                       <Row>
