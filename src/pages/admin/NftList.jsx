@@ -54,7 +54,7 @@ function Transactions() {
   });
   const { isAuthenticated, walletAddress } = useSelector((state) => state.auth);
   const { state } = useLocation("/marketplace");
-
+  const[result,setResult] = useState()
   console.log(walletAddress, "check");
   const [auctionData, setAuctionData] = useState({
     minPrice: 0,
@@ -114,6 +114,7 @@ function Transactions() {
       settrandata(res.data.data[0].list);
       setdata(res.data.data[0].list);
       setTotalCount(res.data.data[0].totalRecords[0].count);
+      setResult(api.data.data[0])
     }
   };
   console.log(data);
@@ -314,7 +315,7 @@ function Transactions() {
                               {data.map((items, index) => {
                                 return (
                                   <tr className="for-body-tr">
-                                    <td className="td-break">{index + 1}</td>
+                                    <td className="td-break">    {result.offSet + 1}</td>
                                     <td className="td-break">
                                       <img
                                         className="img-fluid"

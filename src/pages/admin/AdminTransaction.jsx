@@ -53,7 +53,7 @@ function Transactions() {
   const [startDate, setStartDate] = useState();
   const [current_date, setcurrent_date] = useState(null);
   const [current_date1, setcurrent_date1] = useState(null);
-
+const[result,setResult] = useState()
   console.log({ current_date });
   const [endDate, setEndDate] = useState();
   const [searchByDate, setSearchByDate] = useState(false);
@@ -79,12 +79,13 @@ function Transactions() {
       status: status,
       limit: limit,
       page: currentPage,
-      skip: 6,
+      skip: 0,
       name: "muskan",
     });
 
     setdata(api.data.data[0].list);
     setTotalCount(api.data.data[0].totalRecords[0].count);
+    setResult(api.data.data[0])
     console.log(api.data.data[0].list, "req");
   };
 
@@ -305,7 +306,7 @@ function Transactions() {
                                             key={index}
                                           >
                                             <td className="td-break">
-                                              {index + 1}
+                                              {result.offSet + 1}
                                             </td>
                                             <td className="td-break">
                                               <div
@@ -383,7 +384,7 @@ function Transactions() {
                                       return (
                                         <tr className="for-body-tr" key={index}>
                                           <td className="td-break">
-                                            {index + 1}
+                                          {result.offSet + 1}
                                           </td>
                                           <td className="td-break">
                                             <div
