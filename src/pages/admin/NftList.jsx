@@ -29,6 +29,7 @@ function Transactions() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const[result,setResult] = useState("")
   const [saleData, setSaleData] = useState();
   const [id, setId] = useState();
   const [isLoading, setIsLoading] = useState(false);
@@ -40,7 +41,7 @@ function Transactions() {
   const [price, setPrice] = useState(false);
   const [search, setSearch] = useState("");
   const [nft, setNft] = useState("");
-  const [result, setResult] = useState([]);
+
   const [currentPage, setCurrentPage] = useState(1);
   const [status, setStatus] = useState("");
   const [totalCount, setTotalCount] = useState();
@@ -54,7 +55,7 @@ function Transactions() {
   });
   const { isAuthenticated, walletAddress } = useSelector((state) => state.auth);
   const { state } = useLocation("/marketplace");
-  const[result,setResult] = useState()
+
   console.log(walletAddress, "check");
   const [auctionData, setAuctionData] = useState({
     minPrice: 0,
@@ -102,7 +103,7 @@ function Transactions() {
     console.log({ filterSearch });
 
     const res = await axios.post("https://jewellery.donative.in/NFTList", {
-      skip: 5,
+      
       limit: limit,
       category: categoryFilter,
       status: status,
@@ -110,12 +111,12 @@ function Transactions() {
       search_tag: search,
     });
     console.log({ res });
-    if (res.data) {
+   
       settrandata(res.data.data[0].list);
       setdata(res.data.data[0].list);
       setTotalCount(res.data.data[0].totalRecords[0].count);
-      setResult(api.data.data[0])
-    }
+      setResult(res.data.data[0])
+    
   };
   console.log(data);
   useEffect(() => {
@@ -315,7 +316,8 @@ function Transactions() {
                               {data.map((items, index) => {
                                 return (
                                   <tr className="for-body-tr">
-                                    <td className="td-break">    {result.offSet + 1}</td>
+                                    <td className="td-break">     {result.offSet+index + 1}</td>
+                                    {console.log("result is ",result.offSet)}
                                     <td className="td-break">
                                       <img
                                         className="img-fluid"

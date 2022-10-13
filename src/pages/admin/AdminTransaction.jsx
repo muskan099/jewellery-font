@@ -53,7 +53,7 @@ function Transactions() {
   const [startDate, setStartDate] = useState();
   const [current_date, setcurrent_date] = useState(null);
   const [current_date1, setcurrent_date1] = useState(null);
-const[result,setResult] = useState()
+const[result,setResult] = useState("")
   console.log({ current_date });
   const [endDate, setEndDate] = useState();
   const [searchByDate, setSearchByDate] = useState(false);
@@ -79,20 +79,19 @@ const[result,setResult] = useState()
       status: status,
       limit: limit,
       page: currentPage,
-      skip: 0,
-      name: "muskan",
+     
     });
 
     setdata(api.data.data[0].list);
     setTotalCount(api.data.data[0].totalRecords[0].count);
     setResult(api.data.data[0])
-    console.log(api.data.data[0].list, "req");
+    
   };
 
   useEffect(() => {
-    if (isAuthenticated) {
+  
       gettransaction(currentPage, 6, status);
-    }
+    
   }, [status, currentPage, current_date, current_date1]);
 
   const single_nft_data = (item) => {
@@ -293,20 +292,15 @@ const[result,setResult] = useState()
                               </thead>
                               <tbody>
                                 {console.log({ handleTab })}
-                                {handleTab == "active"
-                                  ? data
-                                      .filter(
-                                        (item) =>
-                                          item.contentInfo.status == "active"
-                                      )
-                                      .map((items, index) => {
+                                { data.map((items, index) => {
                                         return (
                                           <tr
                                             className="for-body-tr"
                                             key={index}
                                           >
                                             <td className="td-break">
-                                              {result.offSet + 1}
+                                          
+                                            {result.offSet + index + 1}
                                             </td>
                                             <td className="td-break">
                                               <div
@@ -379,146 +373,7 @@ const[result,setResult] = useState()
                                           </tr>
                                         );
                                       })
-                                  : handleTab == "sold"
-                                  ? data.map((items, index) => {
-                                      return (
-                                        <tr className="for-body-tr" key={index}>
-                                          <td className="td-break">
-                                          {result.offSet + 1}
-                                          </td>
-                                          <td className="td-break">
-                                            <div
-                                              onClick={() => {
-                                                single_nft_data(
-                                                  items.contentInfo
-                                                );
-                                              }}
-                                            >
-                                              <img
-                                                className="img-fluid"
-                                                src={items.nftImage}
-                                                width="40px"
-                                                alt=""
-                                                onError={({
-                                                  currentTarget,
-                                                }) => {
-                                                  currentTarget.onerror = null; // prevents looping
-                                                  currentTarget.src =
-                                                    "assets/images/img-nft/list-img.png";
-                                                }}
-                                              />
-                                            </div>
-                                          </td>
-                                          <td className="td-break">
-                                            {items.nftName}
-                                          </td>
-                                          <td className="td-break">
-                                            {items.total}
-                                          </td>
-                                          <td className="td-break">
-                                            {items.wallet_address.slice(0, 3)}
-                                            ....{" "}
-                                            {items.wallet_address.slice(-3)}
-                                          </td>
-                                          <td className="td-break">
-                                            <a
-                                              className="hash-color"
-                                              href={`https://testnet.bscscan.com/tx/${items.hash}`}
-                                              target="_blank"
-                                            >
-                                              {`${items.hash?.slice(
-                                                0,
-                                                3
-                                              )}...${items.hash?.slice(-5)}`}
-                                            </a>
-                                          </td>
-                                          <td className="td-break">
-                                            {items.token}
-                                          </td>
-                                          <td className="td-break success-green">
-                                            {items.status
-                                              ? "success"
-                                              : "success"}
-                                          </td>
-                                          <td className="td-break">
-                                            {items.contentInfo.owner ==
-                                            walletAddress ? (
-                                              <div className="btn-flex-btn"></div>
-                                            ) : (
-                                              <button
-                                                className="btn-sell1"
-                                                disabled
-                                              >
-                                                Sold
-                                              </button>
-                                            )}
-                                          </td>
-                                        </tr>
-                                      );
-                                    })
-                                  : data.map((items, index) => {
-                                      return (
-                                        <tr className="for-body-tr" key={index}>
-                                          <td className="td-break">
-                                            {index + 1}
-                                          </td>
-                                          <td className="td-break">
-                                            <div
-                                              onClick={() => {
-                                                single_nft_data(
-                                                  items.contentInfo
-                                                );
-                                              }}
-                                            >
-                                              <img
-                                                className="img-fluid"
-                                                src={items.nftImage}
-                                                width="40px"
-                                                alt=""
-                                                onError={({
-                                                  currentTarget,
-                                                }) => {
-                                                  currentTarget.onerror = null; // prevents looping
-                                                  currentTarget.src =
-                                                    "assets/images/img-nft/list-img.png";
-                                                }}
-                                              />
-                                            </div>
-                                          </td>
-                                          <td className="td-break">
-                                            {items.nftName}
-                                          </td>
-                                          <td className="td-break">
-                                            {items.total}
-                                          </td>
-                                          <td className="td-break">
-                                            {items.wallet_address.slice(0, 3)}
-                                            ....{" "}
-                                            {items.wallet_address.slice(-3)}
-                                          </td>
-                                          <td className="td-break">
-                                            <a
-                                              className="hash-color"
-                                              href={`https://testnet.bscscan.com/tx/${items.hash}`}
-                                              target="_blank"
-                                            >
-                                              {`${items.hash?.slice(
-                                                0,
-                                                3
-                                              )}...${items.hash?.slice(-5)}`}
-                                            </a>
-                                          </td>
-                                          <td className="td-break">
-                                            {items.token}
-                                          </td>
-                                          <td className="td-break success-green">
-                                            {items.status
-                                              ? "success"
-                                              : "success"}
-                                          </td>
-                                        </tr>
-                                      );
-                                    })}
+                                  }
                               </tbody>
                             </table>
                             

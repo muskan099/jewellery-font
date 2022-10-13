@@ -3209,6 +3209,7 @@ display: flex;
 align-items: center;
 margin-bottom: 20px;
 flex-wrap: wrap;
+gap: 20px;
 }
 /*ishita*/
 .create-button{
