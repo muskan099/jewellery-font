@@ -23,6 +23,8 @@ import NftList from "./pages/admin/NftList";
 import Joinus from "./pages/Joinus";
 import AdminTransaction from "./pages/admin/AdminTransaction";
 import AllStore from "./pages/admin/AllStore";
+import BuyFromOtherChain from "./pages/BuyFromOtherChain";
+
 function App() {
   return (
     <div className="App">
@@ -51,6 +53,7 @@ function App() {
             <Route path="/joinus" element={<Joinus />} />
             <Route path="/admin-transactions" element={<AdminTransaction />} />
             <Route path="/admin-store" element={<AllStore />} />
+            <Route path="/buyfromotherchain" element={<BuyFromOtherChain />} />
           </Routes>
         </ScrollToTop>
       </BrowserRouter>

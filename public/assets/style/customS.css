@@ -3292,3 +3292,161 @@ gap: 20px;
     font-size: 14px;
 }
 }
+/* BUY FROM ANOTHER CHAIN */
+/* .buy-metamask-sec {
+    padding: 100px 0 0;
+}
+.buy-coin-inner {
+    background: transparent;
+    border: 2px solid #ce9832;
+    border-radius: 12px;
+    padding: 24px;
+    outline: none;
+    position: relative;
+    overflow: hidden;
+}
+.buy-coin-inner .buy-coin-one h2 {
+    font-weight: 700;
+    font-size: 32px;
+    color: #fff;
+}
+.buy-coin-inner .form-group label span {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+}
+.buy-coin-inner .input-group.align-items-center {
+    position: relative;
+    background: #090909;
+    border-radius: 12px;
+}
+.buy-coin-inner .input-group span {
+    border: 0;
+    background: transparent;
+}
+.buy-coin-inner .input-group span {
+    border: 0;
+    background: transparent;
+}
+.buy-coin-inner input.form-control {
+    background: #090909;
+    border: 0;
+    height: 46px;
+    padding: 0.5rem 0.75rem;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    outline: none !important;
+    color: #fff !important;
+    box-shadow: none !important;
+}
+.buy-coin-inner .input-group .dropdown-toggle.btn-primary {
+    background: #090909 !important;
+    outline: none;
+    color: #c8a14e;
+    border: 0 !important;
+    min-width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border: none !important;
+    box-shadow: none !important;
+}
+.buy-coin-inner .input-group .dropdown-toggle.btn-primary p{
+    font-size: 16px !important;
+    margin: 0 !important;
+    color: #c8a14e;
+}
+.buy-coin-inner button.btn.common-btn {
+    width: 100%;
+    background: linear-gradient(90deg, #a77327 0%, #efd67b 49.79%, #a77327 100%);
+    border-radius: 6px;
+    color: #000;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 10px;
+}
+.buy-coin-inner select#basic-addon1 {
+    background: #090909 !important;
+    outline: none;
+    color: #c8a14e;
+    border: 0 !important;
+    font-size: 16px;
+}
+.buy-coin-inner .dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 0.3rem 1rem;
+    clear: both;
+    font-weight: 400;
+    color: #67748e;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+.buy-coin-inner .input-group-append .dropdown-menu a {
+    color: black !important;
+    font-size: 15px !important;
+    text-decoration: none !important;
+}
+.buy-coin-inner .dropdown-item:focus, .buy-coin-inner .dropdown-item:hover {
+    color: #344767;
+    /* background-color: #e9ecef; 
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+.create_buy.btn.btn-primary {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    min-width: 180px;
+    font-size: 14px !important;
+    padding: 10px !important;
+}
+#dash_home .body3 .receive_btn, #dash_home .body3 .send_btn11 {
+    -webkit-text-fill-color: #cca652 !important;
+}
+#dash_home .body1 .formselect {
+    -webkit-text-fill-color: #cca652 !important;
+}
+
+@media (max-width: 768px){
+    .buy-coin-inner .buy-coin-one h2 {
+        font-weight: 700;
+        font-size: 20px;
+        color: #fff;
+    }
+    .buy-coin-inner {
+        padding: 10px;
+    }
+    .buy-coin-inner .form-group label span {
+        color: #fff;
+        font-size: 12px;
+        font-weight: 500;
+    }
+   
+    .buy-coin-inner .input-group span img {
+        width: 30px !important;
+    }
+    .buy-coin-inner input.form-control,
+    .buy-coin-inner .input-group .dropdown-toggle.btn-primary p,
+    .buy-coin-inner select#basic-addon1{
+        font-size: 12px !important;
+    }
+    .buy-coin-inner button.btn.common-btn {
+        width: 100%;
+        font-size: 12px;
+        margin: 0;
+        display: block;
+        margin: 20px 0;
+    }
+    .buy-metamask-sec {
+        padding: 80px 0 0;
+    }
+
+}
+ */

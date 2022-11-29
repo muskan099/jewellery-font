@@ -9,12 +9,14 @@ const walletAddress = localStorage.getItem("walletAddress");
 const balance = localStorage.getItem("balance");
 const tabooPunk = localStorage.getItem("tabooPunk");
 const tier = localStorage.getItem("tier");
+const metaMaskWallet = localStorage.getItem("metaMaskWallet");
 
 const authSlice = createSlice({
   name: "auth",
   initialState: {
     isLoading: false,
     walletAddress: !!walletAddress ? walletAddress : "",
+    value: { user: {}, isAuthenticated: false },
     hasWebsiteAccess: hasWebsiteAccess ? Boolean(hasWebsiteAccess) : false,
     isAuthenticated: !!isAuthenticated ? true : false,
     isUserAuthenticated: !!isUserAuthenticated ? true : false,
@@ -24,19 +26,41 @@ const authSlice = createSlice({
     balance: !!balance > 0 ? balance : "",
     errorMsg: "",
     tier: !!tier ? tier : "",
+    metaMaskWallet: !!metaMaskWallet ? metaMaskWallet : "",
+    isChangeNetwork: "97",
+    isChangeContract: "BNB",
   },
 
   reducers: {
+
     grantWebsiteAccessAction: (state) => ({ ...state, hasWebsiteAccess: true }),
 
+    changenetwork: (state,action) => {
+      console.log();
+      return {
+        ...state,
+        isChangeNetwork : action.payload.isChangeNetwork
+      }
+    },
+
+    changecontract: (state,action) => {
+      console.log();
+      return {
+        ...state,
+        isChangeContract : action.payload.isChangeContract
+      }
+    },
     loginSaga: (state, action) => {
       return { ...state };
     },
-
+    
     googleLoginSaga: (state, action) => {
       return { ...state };
     },
-
+    setmetaMaskWallet: (state, action) => {
+      localStorage.setItem("metaMaskWallet", action.payload);
+      return { ...state, metaMaskWallet: action.payload };
+    },
     userLoginSaga: (state, action) => {
       return { ...state };
     },
@@ -272,12 +296,13 @@ export const {
   verifyOtpStart,
   verifyOtpSuccess,
   verifyOtpFail,
-
+  setmetaMaskWallet,
   passwordResetSaga,
   passwordResetStart,
   passwordResetSuccess,
   passwordResetFail,
-
+  changecontract,
+  changenetwork,
   userLoginSaga,
   userLoginStart,
   userloginSuccess,
