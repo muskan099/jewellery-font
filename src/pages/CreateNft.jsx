@@ -245,9 +245,11 @@ function CreateNft() {
     const pattern = /^[A-Za-z]+$/;
     const space = /^[a-zA-Z\s]*$/;
     const alphaNumeric = /[^a-zA-Z0-9\-\/]^[a-zA-Z\s]*$/;
-    if (file == null || file === "") {
+    if(chain === ""){
+      toast.error("Please select chain")
+    }else if (file == null || file === "") {
       toast.error("Please select NFT Image!");
-    } else if (metaTag === "") {
+    }  else if (metaTag === "") {
       toast.error("Meta tag is required!");
     } else if (alphaNumeric.test(metaTag)) {
       toast.error("Meta tag is can only be alphabet and numbers");

@@ -1,5 +1,5 @@
 body{
-	background-color: #000;
+	background-color: #000 !important;
 	min-height: 100vh;
     font-family: 'Poppins', sans-serif !important;
     padding-top: 108px !important;
@@ -3292,9 +3292,12 @@ gap: 20px;
     font-size: 14px;
 }
 }
-/* BUY FROM ANOTHER CHAIN */
-/* .buy-metamask-sec {
-    padding: 100px 0 0;
+/* BUY FROM ANOTHER CHAIN  */
+#dash_home{
+    background: #000000;
+}
+.buy-metamask-sec {
+    padding: 100px 0 100px 0;
 }
 .buy-coin-inner {
     background: transparent;
@@ -3394,7 +3397,7 @@ gap: 20px;
 }
 .buy-coin-inner .dropdown-item:focus, .buy-coin-inner .dropdown-item:hover {
     color: #344767;
-    /* background-color: #e9ecef; 
+    background-color: #e9ecef; 
     border: none !important;
     box-shadow: none !important;
     outline: none !important;
@@ -3449,4 +3452,104 @@ gap: 20px;
     }
 
 }
- */
+.modal .modal-content {
+    background-color: black !important;
+    border: 2px solid #a77327 !important;
+    border-radius: 10px !important;
+}
+  
+  
+ .modal  .modal-content .input-modal-data {
+    padding-bottom: 20px;
+  }
+  
+ .modal  .modal-content .input-modal-data p {
+    background-color: black;
+    color: white;
+    font-weight: 500;
+  
+  }
+  
+ .modal .modal-content .input-modal-data span {
+    font-size: 20px;
+    font-weight: 500;
+    color: #a77327;
+    float: right;
+  }
+  
+ .modal  .modal-content .block h1 {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.488);
+    font-weight: 300;
+  }
+  
+ .modal .modal-content .block h1 span {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.488);
+    float: right;
+    font-weight: 300;
+  
+  }
+  
+ .modal .modal-content h1 {
+    color: #ba8d3d;
+    font-size: 25px;
+    border-bottom: none;
+    font-weight: 700;
+  }
+  
+ .modal .modal-header {
+    border-bottom: none;
+  }
+  
+ .modal .modal-footer {
+    border-top: none;
+  }
+  
+ .modal .modal-footer .button-footer1 {
+    width: 100%;
+    background: linear-gradient(90deg, #a77327 0%, #efd67b 49.79%, #a77327 100%);
+  
+    border: none;
+    font-weight: 600;
+    font-size: 20px;
+  }
+ .modal .modal-dialog {
+    max-width: 600px !important;
+    margin: 1.75rem auto;
+}
+.modal button.btn-close {
+    background-color: #a77327 !important;
+} 
+
+.scroll_none::-webkit-outer-spin-button,
+.scroll_none::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#inputedit{
+    display: none;
+}
+#updatebtn{
+    display: none;
+}
+.btn_edit{
+    margin-left:5px ;
+    padding: 5px 15px;
+    background: linear-gradient(90deg, #a77327 0%, #efd67b 49.79%, #a77327 100%);
+    border-radius: 6px;
+    color: #000;
+    font-size: 18px;
+    font-weight: 600;
+}
+.recieve-coin-row ul li span {
+    color: #c8a14e;
+}
+.recieve-coin-row ul li {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+

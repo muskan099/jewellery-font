@@ -46,7 +46,7 @@ const Contactus = () => {
           "https://jewellery.donative.in/contactus",
           inputdata
         );
-        toast.success("thanks for contacting us ");
+        
 
         setInputdata({
           email: "",
@@ -56,6 +56,7 @@ const Contactus = () => {
           country: "",
           message: "",
         });
+        toast.success("thanks for contacting us ");
       } catch (error) {
         toast.error(error.response.message);
         console.log(error);
@@ -88,6 +89,7 @@ const Contactus = () => {
                           name="firstName"
                           placeholder="Enter First Name"
                           onChange={formdata}
+                          maxLength="20"
                         />
                       </div>
                       <div className="col-md-6">
@@ -98,6 +100,7 @@ const Contactus = () => {
                           name="lastName"
                           placeholder="Enter Last Name"
                           onChange={formdata}
+                          maxLength="20"
                         />
                       </div>
                     </div>
