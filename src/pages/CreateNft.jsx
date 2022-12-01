@@ -453,7 +453,7 @@ function CreateNft() {
                       <h3>Price</h3>
                       <Form.Control
                         type="number"
-                        placeholder=""
+                        placeholder="Enter price in JWL"
                         onKeyUp={(e) => handlePrice(e)}
                       />
                     </FormGroup>
