@@ -44,11 +44,12 @@ const authSlice = createSlice({
     },
 
     changecontract: (state,action) => {
-      console.log();
+      console.log(action.payload.isChangeContract,"contact value");
       return {
         ...state,
         isChangeContract : action.payload.isChangeContract
       }
+      
     },
     loginSaga: (state, action) => {
       return { ...state };

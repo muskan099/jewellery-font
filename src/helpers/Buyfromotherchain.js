@@ -94,7 +94,8 @@ export const buyFromOtherChain = async (amount, beneficiary, navigate, Qamount, 
           }
           await axiosMain.post('/buy-coin-bridge', payload).then((payment_response) => {
             console.log(payment_response);
-            navigate("/dashboard_home");
+            toast.success("You have succesfully purchased the coin")
+            // navigate("/dashboard_home");
           })
         } else {
           toast.update(id, {

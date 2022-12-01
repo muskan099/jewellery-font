@@ -38,10 +38,11 @@ function Header() {
   const handleLogin = async () => {
 
     setIsLoginStart(true)
- address = await Connect();
+    let data_Connect = await Connect();
+ address = data_Connect.accounts;
 console.log({address})
    
-   if (address && address.length) {
+   if (address) {
     let punk = 0;
     // console.log("punks",punk)
     //let tier=punk>0?"3 Tier":"1 Tier"

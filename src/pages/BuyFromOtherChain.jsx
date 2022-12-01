@@ -47,7 +47,7 @@ export default function BuyfromOtherChain() {
   const [Rate, setRate] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [showModal2, setShowModal2] = useState(false);
-  
+  console.log("metaMaskWallet",metaMaskWallet)
   const AllowanceHandler = async (e) => {
     let detail = await buyInfo(contract);
     let MaxAllowance = detail.allowance;
@@ -56,9 +56,11 @@ export default function BuyfromOtherChain() {
     setBalance(Balance);
   };
   const ChainHandler = async (e) => {
+    console.log("inside chain handker")
     let detail = await Connect();
     let chain = detail.chainId;
     let SenderAddress = detail.selectedAccount;
+    console.log(SenderAddress,"SenderAddress")
     setChain(chain);
     setSender(SenderAddress);
   };
@@ -91,6 +93,7 @@ export default function BuyfromOtherChain() {
   };
 
   const buyModel = async () => {
+    
     ChainHandler();
     getRates();
     if (amount < 1) {
@@ -158,6 +161,7 @@ export default function BuyfromOtherChain() {
 
   const handleContract = (e) => {
     let value = e.target.value;
+   
     dispatch(
       changecontract({
         isChangeContract: value
@@ -184,6 +188,7 @@ export default function BuyfromOtherChain() {
       if (contract === "BNB") {
         if (Chain == 97) {
           await buytoken(Rate, walletAddress, navigate);
+          handleModalClose();
         } else {
          _switch();
         }
@@ -228,6 +233,7 @@ export default function BuyfromOtherChain() {
   return (
    <>
     <Layout>
+   
       <section id="dash_home" className="buy-metamask-sec">
         <Notification message_mo={modelMessage} action_mo={openModel} random_val={randomVal} />
         <ToastContainer />
@@ -290,8 +296,8 @@ export default function BuyfromOtherChain() {
                           >
                             <option value="BNB">BNB</option>
                             <option value="ETH">ETH</option>
-                            <option value="BTCB">BTCB</option>
-                            <option value="BUSD">BUSD</option>
+                            {/* <option value="BTCB">BTCB</option>
+                            <option value="BUSD">BUSD</option> */}
                             <option value="MATIC">MATIC</option>
                           </select>
                         </div>
@@ -324,7 +330,7 @@ export default function BuyfromOtherChain() {
                       <button
                         className="btn common-btn m-2"
                         onClick={() => {
-                          navigate("/dashboard_home")
+                          navigate("/")
                         }}
                       >
                         Cancel
@@ -342,6 +348,7 @@ export default function BuyfromOtherChain() {
               </div>
             </Col>
           </Row>
+          {console.log(Sender,amount,"sender and amount")}
           {Sender && amount !== 0 && Rate !== undefined ? (
             <Modal
               size="sm"
@@ -464,14 +471,14 @@ export default function BuyfromOtherChain() {
           >
             <Modal.Header closeButton={handleModalClose2}>
               <Modal.Title>
-                <h1>Qwallet</h1>
+                <h1>Jewellery NFT</h1>
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <div className="input-modal-data">
                 <div className="form-group">
                   <p>
-                    Qwallet creation is under process please login again after some time.
+                  Jewellery NFT creation is under process please login again after some time.
                   </p>
                 </div>
               </div>

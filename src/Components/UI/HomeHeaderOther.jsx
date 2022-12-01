@@ -41,7 +41,8 @@ export default function HomeHeaderOther() {
                                 <img width={"140px"} src="assets/images/Homeimg/logo.png" />
                             </Navbar.Brand>
                            
-                            {newlocation.pathname == "/buyfrom_metamask" || newlocation.pathname == "/buy-paypal"  || newlocation.pathname == "/buyfromotherchain"? <Button
+                            {newlocation.pathname == "/buyfrom_metamask" || newlocation.pathname == "/buy-paypal"  || newlocation.pathname == "/buyfromotherchain"? 
+                            <Button
                                 className="Logout-btn ms-auto"
                                 onClick={async () => {
                                     if (!UserAddress) {

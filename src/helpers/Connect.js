@@ -7,12 +7,16 @@ export const Connect = async () => {
     let chainId = await web3Connect.eth.getChainId();
     console.log("chainId", chainId);
 
-    if (chainId === 97) {
+    if (chainId === 97 || chainId === 5 || chainId === 80001) {
       const accounts = await web3Connect.eth.getAccounts();
-
+      let selectedAccount = accounts[0];
       console.log("accounts", accounts);
 
-      return accounts;
+      return {
+        accounts,
+        selectedAccount: selectedAccount,
+        chainId: chainId,
+      };
     } else {
       return false;
     }

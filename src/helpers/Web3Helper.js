@@ -10,10 +10,16 @@ const providerOptions = {
     package: WalletConnectProvider,
     options: {
       rpc: {
-        56: "https://bsc-dataseed.binance.org/",
+        56: "https://bsc-dataseed1.binance.org/",
+        97: "https://data-seed-prebsc-2-s3.binance.org:8545",
+        1: "https://mainnet.infura.io/v3/b6919d9651b841d7ad0d1c269ec40050",
+        5: "https://goerli.infura.io/v3/b6919d9651b841d7ad0d1c269ec40050",
+        137: "https://rpc-mainnet.maticvigil.com",
+        80001: "https://rpc-mumbai.matic.today",
+        
       },
-      network: "mainnet",
-      chainId: 56,
+      // network: "mainnet",
+      // chainId: 56,
       // infuraId: "bnb1a5cae5d9hp0we9cx9v02n9hvmt94nnuguv0fav",
     },
   },
@@ -45,7 +51,7 @@ export const _switch = async () => {
       params: [{ chainId: "0x61" }],
     });
     toast.update(id, { render: "You have successfully switched to Binance Test network", type: "success", isLoading: false, autoClose: 2000 });
-    window.location.reload();
+    // window.location.reload();
     //   toast.success("You have successfully switched to Binance  network")
   } catch (switchError) {
     // This error code indicates that the chain has not been added to MetaMask.
@@ -67,7 +73,7 @@ export const _switch = async () => {
         .catch((error) => {
         })
       toast.update(id, { render: "You have successfully Added & switched to Binance Test network", type: "success", isLoading: false, autoClose: 2000 });
-      window.location.reload();
+      // window.location.reload();
     }
     toast.update(id, { render: "Failed to switch to the network", type: "error", isLoading: false, autoClose: 2000 });
   }
@@ -82,7 +88,7 @@ export const _switchETH = async () => {
       params: [{ chainId: "0x5" }],
     });
     toast.update(id, { render: "You have successfully switched to Etherium Goerli network", type: "success", isLoading: false, autoClose: 2000 });
-    window.location.reload();
+    // window.location.reload();
   } catch (switchError) {
     if (switchError.code === 4902) {
       await provider.request({
@@ -102,7 +108,7 @@ export const _switchETH = async () => {
         .catch((error) => {
         })
       toast.update(id, { render: "You have successfully Added & switched to Goerli Test network", type: "success", isLoading: false, autoClose: 2000 });
-      window.location.reload();
+      // window.location.reload();
     }
     toast.update(id, { render: "Failed to switch to the network", type: "error", isLoading: false, autoClose: 2000 });
   }
@@ -117,7 +123,7 @@ export const _switchMATIC = async () => {
       params: [{ chainId: "0x13881" }],
     });
     toast.update(id, { render: "You have successfully switched to Mumbai Polygon Network", type: "success", isLoading: false, autoClose: 2000 });
-    window.location.reload();
+    // window.location.reload();
   } catch (switchError) {
     if (switchError.code === 4902) {
       await provider.request({
@@ -137,7 +143,7 @@ export const _switchMATIC = async () => {
         .catch((error) => {
         })
       toast.update(id, { render: "You have successfully Added & switched to Mumbai Polygon Network", type: "success", isLoading: false, autoClose: 2000 });
-      window.location.reload();
+      // window.location.reload();
     }
     toast.update(id, { render: "Failed to switch to the network", type: "error", isLoading: false, autoClose: 2000 });
   }
