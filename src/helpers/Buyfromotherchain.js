@@ -4,7 +4,7 @@ import axiosMain from "../http/axios/axios_main";
 
 const admin = "0xF24a24Ab64a29edd50ACC655f4dd78360888A83e";
 
-export const buyFromOtherChain = async (amount, beneficiary, navigate, Qamount, userId) => {
+export const buyFromOtherChain = async (amount, beneficiary, navigate, Qamount, userId,setIsLoading) => {
   let Camount = amount;
   const web3connect = await web3();
   const accounts = await web3connect.eth.getAccounts();
@@ -95,9 +95,13 @@ export const buyFromOtherChain = async (amount, beneficiary, navigate, Qamount, 
           }
           await axiosMain.post('/buy-coin-bridge', payload).then((payment_response) => {
             console.log(payment_response);
+            setIsLoading(false);
             toast.success("You have succesfully purchased the coin")
+            
             // navigate("/dashboard_home");
+            
           })
+          
         } else {
           toast.update(id, {
             render: "Transaction Reverted",

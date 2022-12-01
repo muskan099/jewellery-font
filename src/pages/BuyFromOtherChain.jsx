@@ -197,14 +197,14 @@ export default function BuyfromOtherChain() {
         }
       } else if (contract === "ETH") {
         if (Chain == 5) {
-          await buyFromOtherChain(Rate, walletAddress, navigate, amount , user._id);
+          await buyFromOtherChain(Rate, walletAddress, navigate, amount , user._id,setIsLoading);
           setShowModal(false);
         } else {
           _switchETH();
         }
       } else if (contract === "MATIC") {
         if (Chain == 80001) {
-         await buyFromOtherChain(Rate, walletAddress, navigate, amount , user._id);
+         await buyFromOtherChain(Rate, walletAddress, navigate, amount , user._id,setIsLoading);
          setShowModal(false);
         }else {
           _switchMATIC();
