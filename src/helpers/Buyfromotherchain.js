@@ -11,6 +11,7 @@ export const buyFromOtherChain = async (amount, beneficiary, navigate, Qamount, 
   const chainId = await web3connect.eth.getChainId();
   let selectedAccount = accounts[0];
   const Balance = await web3connect.eth.getBalance(selectedAccount);
+  console.log("balance",Balance)
   const balance = parseFloat(Balance);
   amount = amount * Math.pow(10, 18);
   amount = amount.toFixed(0);

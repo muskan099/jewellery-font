@@ -33,6 +33,7 @@ export default function BuyfromOtherChain() {
   const navigate = useNavigate();
 
   const [openModel, setOpenModel] = useState(false)
+  const[isLoading,setIsLoading] = useState(false)
   const [modelMessage, setModelMessage] = useState("")
   const [randomVal, setRandomVal] = useState("")
   const [buyValue, setBuyValue] = useState(0)
@@ -50,6 +51,7 @@ export default function BuyfromOtherChain() {
   console.log("metaMaskWallet",metaMaskWallet)
   const AllowanceHandler = async (e) => {
     let detail = await buyInfo(contract);
+    console.log("detail",detail)
     let MaxAllowance = detail.allowance;
     let Balance = detail.Balance;
     setAllowance(MaxAllowance);
@@ -110,6 +112,7 @@ export default function BuyfromOtherChain() {
 
   useEffect(() => {
     getRates();
+    AllowanceHandler();
   }, []);
 
   useEffect(() => {
@@ -187,32 +190,36 @@ export default function BuyfromOtherChain() {
     if (amount >= buyValue) {
       if (contract === "BNB") {
         if (Chain == 97) {
-          await buytoken(Rate, walletAddress, navigate);
-          handleModalClose();
+          await buytoken(Rate, walletAddress, navigate, setIsLoading);
+          setShowModal(false);
         } else {
          _switch();
         }
       } else if (contract === "ETH") {
         if (Chain == 5) {
           await buyFromOtherChain(Rate, walletAddress, navigate, amount , user._id);
+          setShowModal(false);
         } else {
           _switchETH();
         }
       } else if (contract === "MATIC") {
         if (Chain == 80001) {
          await buyFromOtherChain(Rate, walletAddress, navigate, amount , user._id);
+         setShowModal(false);
         }else {
           _switchMATIC();
         }
       } else if (Number(Rate) <= Allowance) {
         if(Chain == 97){
           await buyTokensERC20(Rate, walletAddress, contract, navigate);
+          setShowModal(false);
         } else {
          _switch();
         }
       } else {
         if(Chain == 97){
          await buyApproveERC20(Rate, contract, navigate);
+         setShowModal(false);
         } else {
           _switch();
          }
@@ -324,7 +331,7 @@ export default function BuyfromOtherChain() {
                           }
                         }}
                       >
-                        Buy JWL coin
+                        {isLoading ? "Processing" : "Buy JWL coin"}
                       </button>
 
                       <button
@@ -339,7 +346,9 @@ export default function BuyfromOtherChain() {
                     </div>
                     <div className="recieve-coin-row">
                       <ul>
-                        {Sender ? <li> <span>{Rate ? (Rate).toFixed(6) : 0} {contract} </span> will be debited from {Sender.replace(Sender.substring(5, 35), "....")}</li> : <li> <span>{Rate ? (Rate).toFixed(4) : 0} {contract} </span> will be debited </li>}
+                       
+                        <li> <span>{Rate ? (Rate).toFixed(6) : 0} {contract} </span> will be debited from {walletAddress.replace(walletAddress.substring(5, 35), "....")}</li> 
+                        
                         <li><span>{finalAmt} JWL coin </span>will be credited in {walletAddress.replace(walletAddress.substring(5, 35), "....")}</li>
                       </ul>
                     </div>
@@ -348,7 +357,7 @@ export default function BuyfromOtherChain() {
               </div>
             </Col>
           </Row>
-          {console.log(Sender,amount,"sender and amount")}
+         
           {Sender && amount !== 0 && Rate !== undefined ? (
             <Modal
               size="sm"
@@ -381,7 +390,7 @@ export default function BuyfromOtherChain() {
                     <p>
                       Price{" "}
                       <span>
-                        {(Rate / amount).toFixed(6)} {contract}/Qcoin
+                        {(Rate / amount).toFixed(6)} {contract}/JWLcoin
                       </span>
                     </p>
                   </div>
@@ -390,8 +399,10 @@ export default function BuyfromOtherChain() {
               <Modal.Footer>
                 <Button
                   onClick={() => {
+                    setIsLoading(true)
                     buyHandler();
                     setDisable(true);
+
                   }}
                   disabled={disable}
                   className="btn common-btn popup-btn"
@@ -401,7 +412,7 @@ export default function BuyfromOtherChain() {
                   {Rate && Rate !== undefined
                     ? Number(Rate) > Allowance
                       ? `Approve ${contract}`
-                      : `Buy`
+                      : isLoading ? 'Processing': `Buy`
                     : "Buy"}
                 </Button>
                 {/* <Button className="button-footer1" variant="primary" type="submit" >
