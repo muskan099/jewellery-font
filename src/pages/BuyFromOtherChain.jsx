@@ -113,7 +113,7 @@ export default function BuyfromOtherChain() {
   useEffect(() => {
     getRates();
     AllowanceHandler();
-  }, []);
+  }, [walletAddress]);
 
   useEffect(() => {
     if (Sender) {

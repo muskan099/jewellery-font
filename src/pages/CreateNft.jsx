@@ -282,7 +282,7 @@ function CreateNft() {
       let ipfs_hash = await ipfsMint(contentImage, data);
 
       console.log("ipfs hash", ipfs_hash);
-
+     console.log("voucher mint", await Mint(ipfs_hash, price))
       let voucher = await Mint(ipfs_hash, price);
 
       console.log("voucher", voucher.address);
@@ -450,10 +450,10 @@ function CreateNft() {
                   </Col>
                   <Col md={4}>
                     <FormGroup>
-                      <h3>Price</h3>
+                      <h3>Price in Dollars</h3>
                       <Form.Control
                         type="number"
-                        placeholder="Enter price in JWL"
+                        placeholder="Enter price in dollar"
                         onKeyUp={(e) => handlePrice(e)}
                       />
                     </FormGroup>

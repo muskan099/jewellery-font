@@ -29,13 +29,14 @@ export const Mint=async(tokenUrl,minPrice)=>{
        console.log('ready to go!') 
       voucher.address= wallet_address //accounts[0];
   
-        
+      console.log("voucher.address",voucher.address) 
        const lazyminter = new LazyMinter({contract,signer})
  
-
+       console.log("lazyminter",lazyminter) 
+       console.log("voucher response", await lazyminter.createVoucher(token,tokenUrl,minPrice)) 
        voucher.voucher =  await lazyminter.createVoucher(token,tokenUrl,minPrice);
 
-       console.log(voucher);
+       console.log("voucher",voucher.voucher);
 
 
 
