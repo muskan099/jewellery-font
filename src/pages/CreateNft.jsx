@@ -324,6 +324,7 @@ function CreateNft() {
       setTimeout(navigate("/marketplace"), 120000);
       }catch(e){
         setCreateStart(false);
+        console.log(e);
         toast.warn("Reconnect your Wallet")
       }
     }

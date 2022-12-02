@@ -33,8 +33,11 @@ export const Mint=async(tokenUrl,minPrice)=>{
        const lazyminter = new LazyMinter({contract,signer})
  
        console.log("lazyminter",lazyminter) 
-       console.log("voucher response", await lazyminter.createVoucher(token,tokenUrl,minPrice)) 
-       voucher.voucher =  await lazyminter.createVoucher(token,tokenUrl,minPrice);
+       minPrice = minPrice * Math.pow(10, 18);
+       minPrice = minPrice.toFixed(0);
+      
+       console.log("voucher response") 
+       voucher.voucher =   lazyminter.createVoucher(token,tokenUrl,minPrice);
 
        console.log("voucher",voucher.voucher);
 
