@@ -36,7 +36,7 @@ export function* getNftSaga(action) {
 
 export function* createNftSaga(action) {
   console.log(action.payload)
-  const {formData, toast} = action.payload;
+  const {formData, toast, navigate} = action.payload;
   
   
   yield put(createNftStart());
@@ -45,6 +45,7 @@ export function* createNftSaga(action) {
     if (response.status === 200) {
       if(toast){
         toast.success("NFT Created Successful")
+        navigate("/marketplace");
       }
       yield put(createNftSuccess(response.data.data));
     } else {

@@ -78,23 +78,15 @@ function CreateNft() {
 
   const photoUploadHandler = (event, setState) => {
     const { files } = event.target;
-
     const reader = new window.FileReader();
     reader.readAsArrayBuffer(files[0]);
-
     reader.onloadend = () => {
       setContentImage(reader.result);
     };
-
     if (files[0]) {
       if (files[0].type.includes("image")) {
         const filename = files[0].name;
         const fileExtension = filename.substr(filename.lastIndexOf(".") + 1);
-        console.log({fileExtension})
-        // setState({
-        //   file: event.currentTarget.files[0],
-        //   photoUrl: URL.createObjectURL(files[0]),
-        // });
         if (
           fileExtension.toLowerCase() === "png" ||
           fileExtension.toLowerCase() === "jpg" ||
@@ -107,18 +99,14 @@ function CreateNft() {
             photoUrl: URL.createObjectURL(files[0]),
           });
         }
-        
       }else{
         toast.warn("Photo format can only be PNG,JPG,GIF,WEBP or MP4, Max 20mb")
-      
-        console.log("Photo format can only be PNG,JPG,GIF,WEBP or MP4, Max 20mb")
       }
     }
   };
 
   const handleName = (e) => {
     let value = e.target.value;
-
     if (value) {
       setName(value);
     }
@@ -126,14 +114,12 @@ function CreateNft() {
 
   const handleMetaTag = (e) => {
     let value = e.target.value;
-
     if (value) {
       setMetaTag(value);
     }
   };
   const handleChain = (e) => {
     let value = e.target.value;
-
     if (value) {
       setChain(value);
     }
@@ -141,7 +127,6 @@ function CreateNft() {
 
   const handleDescription = (e) => {
     let value = e.target.value;
-
     if (value) {
       SetDescription(value);
     }
@@ -149,7 +134,6 @@ function CreateNft() {
 
   const handlePrice = (e) => {
     let value = e.target.value;
-
     if (isNaN(value)) {
       e.target.value = "";
     } else {
@@ -159,9 +143,7 @@ function CreateNft() {
 
   const handleQuantity = (e) => {
     let value = e.target.value;
-
     if (isNaN(value)) {
-      //alert("hell")
       setQuantity("");
     } else {
       if (value) {
@@ -169,79 +151,79 @@ function CreateNft() {
       }
     }
   };
+
   const handleCategory = (e) => {
     let value = e.target.value;
-
     if (value) {
       setCategory(value);
     }
   };
+
   const handleWidth = (e) => {
     let value = e.target.value;
-
     if (value) {
       setWidth(value);
     }
   };
+
   const handleHeight = (e) => {
     let value = e.target.value;
-
     if (value) {
       setHeight(value);
     }
   };
+
   const handlePurity = (e) => {
     let value = e.target.value;
-
     if (value) {
       setPurity(value);
     }
   };
+
   const handleGrossWeight = (e) => {
     let value = e.target.value;
-
     if (value) {
       setGrossWeight(value);
     }
   };
+
   const handleSize = (e) => {
     let value = e.target.value;
-
     if (value) {
       setSize(value);
     }
   };
+
   const handleDaimondType = (e) => {
     let value = e.target.value;
-
     if (value) {
       setDaimondType(value);
     }
   };
+
   const handleSettingType = (e) => {
     let value = e.target.value;
-
     if (value) {
       setSettingType(value);
     }
   };
+
   const handleTotalNumber = (e) => {
     let value = e.target.value;
-
     if (value) {
       setTotalNumber(value);
     }
   };
+
   const handleTotalWeight = (e) => {
     let value = e.target.value;
-
     if (value) {
       setTotalWeight(value);
     }
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("handle submit called");
     const pattern = /^[A-Za-z]+$/;
     const space = /^[a-zA-Z\s]*$/;
     const alphaNumeric = /[^a-zA-Z0-9\-\/]^[a-zA-Z\s]*$/;
@@ -272,23 +254,14 @@ function CreateNft() {
     } else if (category == "") {
       toast.error("category is required!");
     } else {
-     
      try 
       {
-      
       setCreateStart(true);
       setPhoto({ ...photo, loading: true });
       const data = { name: name, price: price, description: description };
       let ipfs_hash = await ipfsMint(contentImage, data);
-
-      console.log("ipfs hash", ipfs_hash);
-     console.log("voucher mint", await Mint(ipfs_hash, price))
       let voucher = await Mint(ipfs_hash, price);
-
-      console.log("voucher", voucher.address);
-
       const formData = new FormData();
-      console.log("file", file);
       formData.append("images", file);
       formData.append("name", name);
       formData.append("wallet_address", walletAddress);
@@ -308,24 +281,17 @@ function CreateNft() {
       formData.append("isSale", isSale);
       formData.append("category",category)
       formData.append("ipfs", ipfs_hash);
-      formData.append("signature", voucher.voucher.signature);
-      formData.append("token_id", voucher.voucher.tokenId);
-
+      formData.append("signature", voucher.signature);
+      formData.append("token_id", voucher.tokenId);
       formData.append("user_id", "62733f0715eb380c440489ee");
-
-      console.log({ formData });
-
-      dispatch(createNftSaga({ formData, toast }));
-      
-      toast.success("Nft Created Succesfully");
-
+      dispatch(createNftSaga({ formData, toast , navigate}));
+      // toast.success("Nft Created Succesfully");
       setCreateStart(false);
-
-      setTimeout(navigate("/marketplace"), 120000);
+      // setTimeout(navigate("/marketplace"));
       }catch(e){
         setCreateStart(false);
         console.log(e);
-        toast.warn("Reconnect your Wallet")
+        toast.warn("NFT creation Failed")
       }
     }
     // setTimeout(navigate("/explore"), 120000);
