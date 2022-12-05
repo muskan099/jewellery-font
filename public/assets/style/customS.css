@@ -3713,4 +3713,10 @@ button{
         margin-top: 0;
         padding: 20px 15px;
     }
+    .details-side-content .fex-box-user p {
+        word-break: break-all;
+    }
+    .details-page {
+        padding: 25px 0 60px;
+    }
 }
