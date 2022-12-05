@@ -25,16 +25,20 @@ function Header() {
   let {
     isAuthenticated,
     walletAddress,
+    balance,
     hasWebsiteAccess: hasWebsiteAccessRedux,
   } = useSelector((state) => state.auth);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const[changedWalletAddress,setChangedWalletAddress] = useState(walletAddress)
+  const[walletBalance, setwalletBalance] = useState(balance)
+
   const [hasWebsiteAccess, setHasWebsiteAccess] = useState(
     hasWebsiteAccessRedux ? true : true
   );
   let address ;
+  console.log("walletBalance",walletBalance);
   const handleLogin = async () => {
 
     setIsLoginStart(true)
@@ -44,9 +48,10 @@ console.log({address})
    
    if (address) {
     let punk = 0;
-    // console.log("punks",punk)
-    //let tier=punk>0?"3 Tier":"1 Tier"
+   
     let balance = await TabooBalance(address[0]);
+    // balance = parseFloat(balance)
+    // balance = balance.toFixed(4)
     let tier = 0;
     console.log("balance", balance);
  
@@ -71,7 +76,9 @@ console.log({address})
 };
 useEffect(() => {
   setChangedWalletAddress(walletAddress)
-},[walletAddress])
+  setwalletBalance(balance)
+
+},[walletAddress, balance])
 useEffect(() => {
 
   if(!hasWebsiteAccess){
@@ -202,6 +209,16 @@ setInterval(() => {
                   />
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
+
+                <Dropdown.Item>
+                    <p>
+                    {/* {`${walletBalance?.slice(0, 3)}{" "}``xJWL`} */}
+                    {walletBalance} xJWL
+                    {/* {walletBalance.toFixed(4)} xJWL */}
+                    {/* {walletBalance?.toFixed(4)} */}
+                    </p>
+                  </Dropdown.Item>
+
                   <Dropdown.Item>
                     <Link to="/collections" className="dropdown-item">
                       Collections
