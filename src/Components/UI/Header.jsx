@@ -207,8 +207,8 @@ function Header() {
                     <Dropdown.Item>
                       <p>
                         {/* {`${walletBalance?.slice(0, 3)}{" "}``xJWL`} */}
-                        {walletBalance} xJWL
-                        {/* {walletBalance.toFixed(4)} xJWL */}
+                        {/* {walletBalance} xJWL */}
+                        {walletBalance.toFixed(4)} xJWL
                         {/* {walletBalance?.toFixed(4)} */}
                       </p>
                     </Dropdown.Item>
