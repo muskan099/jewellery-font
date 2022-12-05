@@ -7,7 +7,7 @@ const abi = [{"inputs":[{"internalType":"address","name":"_platformLazyNFT","typ
 
 const NftContractAddress = "0x0000000000000000000000000000000000000000";
 
-const tabooAddress = "0x01b609d990C97514BCE6F67eE28972Fe1E26fc5f";
+const tabooAddress = "0x106a4afc72D9Dc3026323711c81A84c250fe45fF";
 
 const NftContract = "0xEf186773012F97c9eDE43768E3b98543104e37d7";
 
