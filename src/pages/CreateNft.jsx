@@ -261,33 +261,40 @@ function CreateNft() {
       const data = { name: name, price: price, description: description };
       let ipfs_hash = await ipfsMint(contentImage, data);
       let voucher = await Mint(ipfs_hash, price);
-      const formData = new FormData();
-      formData.append("images", file);
-      formData.append("name", name);
-      formData.append("wallet_address", walletAddress);
-      formData.append("description", description);
-      formData.append("meta_tag", metaTag);
-      formData.append("price", price);
-      formData.append("width", width);
-      formData.append("height", height);
-      formData.append("purity", purity);
-      formData.append("grossWeight", grossWeight);
-      formData.append("size", size);
-      formData.append("daimondType", daimondType);
-      formData.append("settingType", settingType);
-      formData.append("totalNumber", totalNumber);
-      formData.append("totalWeight", totalWeight);
-      formData.append("field", field);
-      formData.append("isSale", isSale);
-      formData.append("category",category)
-      formData.append("ipfs", ipfs_hash);
-      formData.append("signature", voucher.signature);
-      formData.append("token_id", voucher.tokenId);
-      formData.append("user_id", "62733f0715eb380c440489ee");
-      dispatch(createNftSaga({ formData, toast , navigate}));
-      // toast.success("Nft Created Succesfully");
-      setCreateStart(false);
-      // setTimeout(navigate("/marketplace"));
+      
+      if(voucher){
+        const formData = new FormData();
+        formData.append("images", file);
+        formData.append("name", name);
+        formData.append("wallet_address", walletAddress);
+        formData.append("description", description);
+        formData.append("meta_tag", metaTag);
+        formData.append("price", price);
+        formData.append("width", width);
+        formData.append("height", height);
+        formData.append("purity", purity);
+        formData.append("grossWeight", grossWeight);
+        formData.append("size", size);
+        formData.append("daimondType", daimondType);
+        formData.append("settingType", settingType);
+        formData.append("totalNumber", totalNumber);
+        formData.append("totalWeight", totalWeight);
+        formData.append("field", field);
+        formData.append("isSale", isSale);
+        formData.append("category",category)
+        formData.append("ipfs", ipfs_hash);
+        formData.append("signature", voucher.signature);
+        formData.append("token_id", voucher.tokenId);
+        formData.append("user_id", "62733f0715eb380c440489ee");
+        dispatch(createNftSaga({ formData, toast , navigate}));
+        // toast.success("Nft Created Succesfully");
+        setCreateStart(false);
+        // setTimeout(navigate("/marketplace"));
+      }else{
+        setCreateStart(false);
+        toast.warn("NFT creation Failed")
+      }
+
       }catch(e){
         setCreateStart(false);
         console.log(e);
