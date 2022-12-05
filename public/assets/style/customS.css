@@ -1058,7 +1058,15 @@ padding: 0;
         right: 0;
     }
     header.custom-header nav {
-        padding:10px 20px;
+        padding: 0;
+    }
+    body {
+        padding-top: 70px !important;
+    }
+    .heading-market .market-head {
+        font-size: 24px;
+        margin-bottom: 30px;
+        font-weight: 700;
     }
     .banner-txt h2 {
         font-size: 30px;
@@ -1299,6 +1307,26 @@ padding: 0;
     .creat-process-sec .inner-box-process {
         padding: 20px;
         text-align: center;
+    }
+    .profile-upper-banner p{
+      font-size: 12px;
+    }
+    .profile-upper-banner .pb-5{
+      padding-bottom: 20px !important;
+    }
+    .about-heading {
+        font-weight: 700;
+        font-size: 24px;
+    }
+    .navbar-toggler-icon {
+        width: 20px !important;
+        height: 20px !important;
+    }
+    .custom-header img {
+        height: 34px;
+    }
+    .profile-upper-banner {
+        padding: 20px 0 !important;
     }
 }
 
@@ -2687,6 +2715,8 @@ font-size: 24px;
     border: none !important;
     box-shadow: none !important;
     height: 42px;
+    background-color: #000 !important;
+    color: #fff !important;
 }
 .contact-form .submit-btn {
     background: linear-gradient(90deg, #A77327 0%, #EFD67B 49.79%, #A77327 100%) !important;
@@ -3614,4 +3644,73 @@ button{
 .dropdown-after-login.dropdown-menu a button:focus,
 .dropdown-after-login.dropdown-menu a button:active{
     background-color: #A77327 !important;
+}
+.marketplace-list-sec{
+    color: #fff;
+}
+
+@media (max-width: 768px){
+    .dropdown-after-login.dropdown-menu a, .dropdown-after-login.dropdown-menu a button {
+        font-size: 12px;
+    }
+    .footer-new-outer  .footer-links-heading {
+        font-size: 16px;
+        line-height: 24px;
+        margin-bottom: 10px;
+    }
+    .footer-new-outer  .footer-links a {
+        font-size: 12px;
+        line-height: 20px;
+    }
+    .footer-new-outer .foot-logo {
+        height: 40px;
+    }
+    .social-links a img {
+        height: 16px;
+    }
+    
+    .modal .modal-content {
+        margin: 10px;
+    }
+    .recieve-coin-row ul li {
+        font-size: 10px;
+    }
+    .buy-metamask-sec {
+        padding: 35px 0 0;
+    }
+    button.btn.common-btn {
+        font-size: 16px;
+        padding: 5px !important;
+    }
+    .modal .modal-body h4.text-center.text-white{
+        font-size: 14px !important;
+    }
+    .modal  .modal-content .input-modal-data p {
+        font-size: 12px;
+    }
+    .modal .modal-content .input-modal-data span {
+        font-size: 12px;
+    }
+    .modal  .modal-content .input-modal-data {
+        padding-bottom: 0;
+    }
+    .modal .modal-content h1 {
+        font-size: 20px;
+    }
+    .login-form-box2, .login-form-box2 label {
+        font-size: 12px;
+        margin-top: 15px !important;
+    }
+    .contact-form .form-control {
+        height: 35px;
+        font-size: 12px !important;
+    }
+    .contact-form .submit-btn {
+        padding: 5px 30px;
+        font-size: 16px !important;
+    }
+    .login-form-box2 {
+        margin-top: 0;
+        padding: 20px 15px;
+    }
 }
