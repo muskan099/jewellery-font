@@ -187,7 +187,9 @@ setInterval(() => {
                               navigate("/buyfromotherchain")
                             }}>Buy Coin</Nav.Link>
                             {/* <Nav.Link onClick={handleShow}>Contact Us</Nav.Link> */}
-                            <Nav.Link >Contact Us</Nav.Link>
+                            <Nav.Link onClick={()=>{
+                              navigate("/contact")
+                            }}>Contact Us</Nav.Link>
                           
                         </Nav>
                     </Navbar.Collapse>
@@ -208,7 +210,7 @@ setInterval(() => {
                      alt="React Bootstrap logo"
                   />
                 </Dropdown.Toggle>
-                <Dropdown.Menu>
+                <Dropdown.Menu className="dropdown-after-login">
 
                 <Dropdown.Item>
                     <p>

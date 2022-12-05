@@ -623,7 +623,7 @@ body {
 }
 .modal-comming-soon .modal-header .btn-close {
   position: absolute;
-  color: #871333;
+  color: #EFD67B;
   right: 15px;
   top: 15px;
   outline: none !important;
@@ -641,8 +641,9 @@ body {
   height: 200px;
 }
 .modal-comming-soon .outer-div h5 {
-  font-size: 20px;
-  color: #871333;
-  text-transform: uppercase;
-  margin: 30px 0;
+    font-size: 20px;
+    color: #EFD67B;
+    text-transform: uppercase;
+    margin: 30px 0;
+    font-weight: 800;
 }

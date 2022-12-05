@@ -17,7 +17,7 @@ const Aboutus = () => {
     <>
       <Layout>
         <section className="profile-upper-banner">
-          <Container fluid className="p-5">
+          <Container fluid className="pb-5">
             <Row>
               <Col>
                 <div className="profile-banner p-10">
@@ -29,7 +29,7 @@ const Aboutus = () => {
             </Row>
           </Container>
           <Container>
-            <Row className="align-items-top">
+            <Row className="align-items-top about-us-text">
               <Col xl={9} lg={9} md={9} sm={12} xs={12} className="m-auto">
                 <p className="align-item-left text-color-white">
                   loremipsum typesetting, remaining essentially unchanged. It

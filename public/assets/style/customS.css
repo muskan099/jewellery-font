@@ -3586,3 +3586,14 @@ button{
     border-bottom: 1px solid #c8a14e !important;
     border-radius: 0 !important;
 }
+.about-us-text{
+    text-align: justify;
+}
+.product-list-box.create-nft-box.img-join-box .img-main{
+    width: 100%;
+    border-radius: 10px;
+}
+.dropdown-after-login.dropdown-menu{
+right: 0;
+left: auto;
+}

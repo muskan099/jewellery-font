@@ -276,9 +276,9 @@ function Joinus() {
                             </Form>
                         </Col>
                         <Col lg={4} sm={6} xs={12}>
-                            <div class="product-list-box create-nft-box">
+                            <div class="product-list-box create-nft-box img-join-box">
 
-                                <img className="img-main" src="" width={200} />
+                                <img className="img-main" src="assets/images/dummy-post.jpg" width={200} />
                                 {photoUrl && (
                   <img className="img-main" src={photo.photoUrl} width={200} />
                 )}

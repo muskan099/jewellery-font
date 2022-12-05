@@ -66,7 +66,7 @@ const Contactus = () => {
 
   return (
     <Layout>
-      <div className="pb-5 pt-5 mt-5 mb-5 ">
+      <div className="pb-5 pt-2 mt-2 mb-5 ">
         <div className="container">
           <ToastContainer />
           <div className="row align-items-center">
