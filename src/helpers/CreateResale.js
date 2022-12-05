@@ -1,10 +1,10 @@
 import { web3 } from "./Web3Helper";
 
-const NftContract = "0xEf186773012F97c9eDE43768E3b98543104e37d7";
+const NftContract = "0x296F47de09A37f1c67B081afA0F88aed37566d67";
 
 const tabooAddress = "0x106a4afc72D9Dc3026323711c81A84c250fe45fF";
 
-const contractAddress = "0x3ad065587c86Ad7c5Cd34066A4e597AaDd411370";
+const contractAddress = "0xc24d2E07715b11b8E01CA57d3d63a4F6E2F9f3e1";
 
 const abi = [
   {
