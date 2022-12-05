@@ -618,7 +618,7 @@ const handleOffer = async () => {
           </Modal.Body>
         </Modal>
         
-                       <h6> Price: {(nftPrice/0.1).toFixed(2)}JWL ($ {nftPrice})</h6>
+                       <h6> Price: {(nftPrice/0.1).toFixed(3)}JWL ($ {nftPrice})</h6>
                        <h6> </h6>
                     <p>{nftDesc}</p>
                     <div>
@@ -778,7 +778,7 @@ const handleOffer = async () => {
 
               <br />
 
-              <Table>
+              <Table className="table-your-balance">
                 <thead>
                   <tr>
                     <th>Your Balance</th>
@@ -838,7 +838,7 @@ const handleOffer = async () => {
 
               <br />
 
-              <Table>
+              <Table className="table-your-balance">
                 <thead>
                   <tr>
                     <th>Your Balance</th>

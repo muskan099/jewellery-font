@@ -424,14 +424,18 @@ color: #FFFFFF;
 opacity: 0.7;
 margin-top: 0;
 }
-.product-list-box h6{
-	font-style: normal;
-	font-weight: 600;
-	font-size: 16px;
-	line-height: 30px;
-	display: flex;
-	align-items: center;
-	color: #FFFFFF;
+.product-list-box h6 {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    color: #FFFFFF;
+    flex-wrap: wrap;
+    word-break: break-all;
+    max-width: 75%;
+    min-height: 65px;
 }
 .product-list-box p.green-color{
 	color: #24FF00;
@@ -2303,6 +2307,7 @@ filter: grayscale(0);
     border-radius: 15px;
     height: 290px;
     object-fit: contain;
+    background-color: #000;
 }
 .heading-market{
     display: block;
@@ -2606,18 +2611,19 @@ a {
 font-size: 24px;
 }
 
-.view-description{
+.view-description {
     font-style: normal;
-font-weight: 600;
-font-size: 16px;
-line-height: 30px;
-text-align: center;
-text-decoration: none;
-border: 1px solid #A77327;
-background-color: #000;
-margin-bottom: 20px;
-display: inline-block;
-color: white;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 30px;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid #A77327;
+    background-color: #000;
+    margin-bottom: 20px;
+    display: inline-block;
+    color: white;
+    text-decoration: underline;
 }
 .modal-header-background{
     background: linear-gradient(90deg, #A77327 0%, #EFD67B 49.79%, #A77327 100%);
@@ -3360,7 +3366,7 @@ gap: 20px;
     margin: 0 !important;
     color: #c8a14e;
 }
-.buy-coin-inner button.btn.common-btn {
+button.btn.common-btn {
     width: 100%;
     background: linear-gradient(90deg, #a77327 0%, #efd67b 49.79%, #a77327 100%);
     border-radius: 6px;
@@ -3368,6 +3374,12 @@ gap: 20px;
     font-size: 18px;
     font-weight: 600;
     padding: 10px;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+button {
+    border: none !important;
 }
 .buy-coin-inner select#basic-addon1 {
     background: #090909 !important;
@@ -3498,9 +3510,10 @@ gap: 20px;
     font-weight: 700;
   }
   
- .modal .modal-header {
+  .modal .modal-header {
     border-bottom: none;
-  }
+    min-height: 50px;
+}
   
  .modal .modal-footer {
     border-top: none;
@@ -3553,3 +3566,23 @@ gap: 20px;
     margin-bottom: 0;
 }
 
+.table-your-balance, .table-your-balance th, .table-your-balance td {
+    color: #fff !important;
+}
+.desc-modal.transaction-page-modal.modal .modal-dialog {
+    max-width: 950px !important;
+}
+button{
+    outline: none !important;
+    box-shadow: none !important;
+}
+.table.table-details, .table.table-details th, .table.table-details td{
+    color: #fff !important;
+}
+.table.table-details th:last-child, .table.table-details td:last-child {
+    text-align: right;
+}
+.details-table-sec .table.table-details th {
+    border-bottom: 1px solid #c8a14e !important;
+    border-radius: 0 !important;
+}
