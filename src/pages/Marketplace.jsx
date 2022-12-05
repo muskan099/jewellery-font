@@ -1,16 +1,16 @@
-import React ,  { useEffect ,useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Accordion from "react-bootstrap/Accordion";
 import ProgressBar from "react-bootstrap/ProgressBar";
-import { Row, Col, Container,FormControl,InputGroup,Button,Form } from "react-bootstrap";
+import { Row, Col, Container, FormControl, InputGroup, Button, Form } from "react-bootstrap";
 import Layout from "../Components/Layout";
 import { useDispatch, useSelector } from "react-redux";
 import { getNftSaga } from "../store/reducers/nftReducer";
-import { Link, useNavigate }  from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import axiosMain from "../http/axios/axios_main";
 import ReactPaginate from "react-paginate";
 const jQuery = window.jQuery;
 function enableSlider($, changeStateFn) {
-  
+
   $("#slider-range").slider({
     range: true,
     min: 0,
@@ -22,23 +22,22 @@ function enableSlider($, changeStateFn) {
         startPrice: Number(ui.values[0]),
         endPrice: Number(ui.values[1]),
       }));
-      //   console.log({ range: `${ui.values[0]} - ${ui.values[1]}` });
       $("#amount").val("Jewellery" + ui.values[0] + " - Jewellery" + ui.values[1]);
     },
   });
   $("#amount").val(
     "Jewellery" +
-      $("#slider-range").slider("values", 0) +
-      " - Jewellery" +
-      $("#slider-range").slider("values", 1)
+    $("#slider-range").slider("values", 0) +
+    " - Jewellery" +
+    $("#slider-range").slider("values", 1)
   );
 }
 const Marketplace = () => {
 
   const { nft, isLoading, totalNfts } = useSelector((state) => state.nft);
   const [currentPage, setCurrentPage] = useState(1);
-  const[category,setCategory] = useState("")
-
+  const [category, setCategory] = useState("")
+  const JwlPrice = 10;
   const [RecentlyAdded, setRecentlyAdded] = useState(false);
   const [paginationData, setPaginationData] = useState({
     skip: 0,
@@ -48,17 +47,17 @@ const Marketplace = () => {
 
   const [filterSearch, setFilterSearch] = useState({
     A_TO_Z: false,
-    status:"",
+    status: "",
     price: "",
     letest: false,
     startPrice: 0,
     typeCategory: {
       Ring: false,
-      Necklace:false,
-      Earings:false,
-      Bangel:false,
-      Chain:false
-      
+      Necklace: false,
+      Earings: false,
+      Bangel: false,
+      Chain: false
+
     },
     nftTier: {
       tier1: false,
@@ -67,14 +66,12 @@ const Marketplace = () => {
     },
     endPrice: 100000000,
   });
-  const { startPrice, endPrice, A_TO_Z, status, price, letest, typeCategory,nftTier } = filterSearch;
+  const { startPrice, endPrice, A_TO_Z, status, price, letest, typeCategory, nftTier } = filterSearch;
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const inputRangeRef = useRef(null);
   const [meta, setMeta] = useState("");
 
-  console.log(totalNfts)
-  console.log({nft})
   const { isAuthenticated, walletAddress, tier } = useSelector(
     (state) => state.auth
   );
@@ -83,7 +80,6 @@ const Marketplace = () => {
   }, []);
   useEffect(() => {
     window.scrollTo(0, 0);
-    // console.log("typeCategory", typeCategory);
     getData(
       currentPage,
       paginationData.limit,
@@ -112,7 +108,7 @@ const Marketplace = () => {
     paginationData.limit,
     meta,
     typeCategory
-  ],[]);
+  ], []);
   useEffect(() => {
     setPaginationData((p) => ({
       ...p,
@@ -122,166 +118,139 @@ const Marketplace = () => {
       ),
     }));
   }, [nft, paginationData.limit]);
-  const single_nft_data =  (item) =>{
-    console.log(item, "items");
-    navigate("/nft-detail", {state:{id : item._id}})
+  const single_nft_data = (item) => {
+    navigate("/nft-detail", { state: { id: item._id } })
   }
-
-
-  
- 
-  
-  
-  console.log({typeCategory})
-  
   const getData = (
     page,
     limit = 25,
     skip = 0,
     tier,
-   search_tag,
+    search_tag,
     startPrice,
     endPrice,
     A_TO_Z,
     status,
     price,
     letest,
-   
-  ) => {
-    // console.log("get nft saga function \n");
-    // console.log("nft tier inside getNftSaga \n", nftTier);
 
+  ) => {
     let data = {
-    page: page,
+      page: page,
       skip,
       limit: limit,
       search_tag: meta,
-     startPrice,
+      startPrice,
       endPrice,
       A_TO_Z,
       status,
       price,
       letest,
       tier: tier,
-      typeCategory ,
-      category :  category,
+      typeCategory,
+      category: category,
       nftTier,
     };
-    
     dispatch(getNftSaga(data));
-    console.log({ data });
-   
   };
- 
- 
+
+
   const handleSearch = async (e) => {
     let value = e.target.value;
-
     if (value) {
       setMeta(value);
-     
     }
   };
- 
-  
-  
+
   const handleTypeCategory = (e) => {
     let value = e.target.value;
-    console.log("the value of slider", value)
     if (value === "Ring") {
       setCategory("Ring");
-     
       setFilterSearch((prev) => ({
         ...prev,
         A_TO_Z: false,
         letest: false,
         price: "",
         status: "",
-         typeCategory:{
-          Ring:true,
-          Necklace:false,
-          Earings:false,
-          Bangel:false,
-          Chain:false
+        typeCategory: {
+          Ring: true,
+          Necklace: false,
+          Earings: false,
+          Bangel: false,
+          Chain: false
         }
-        
       }));
-    } else  if (value === "Necklace") {
+    } else if (value === "Necklace") {
       setCategory("Necklace");
-     
       setFilterSearch((prev) => ({
         ...prev,
         A_TO_Z: false,
         letest: false,
         price: "",
-         status: "",
-        typeCategory:{
-          Ring:false,
-          Necklace:true,
-          Earings:false,
-          Bangel:false,
-          Chain:false
-          
+        status: "",
+        typeCategory: {
+          Ring: false,
+          Necklace: true,
+          Earings: false,
+          Bangel: false,
+          Chain: false
         }
-        
       }));
-    } else  if (value === "Earings") {
+    } else if (value === "Earings") {
       setCategory("Earings");
       setFilterSearch((prev) => ({
         ...prev,
         A_TO_Z: false,
         letest: false,
         price: "",
-         status: "",
-        typeCategory:{
-          Ring:false,
-          Necklace:false,
-          Earings:true,
-          Bangel:false,
-          Chain:false
+        status: "",
+        typeCategory: {
+          Ring: false,
+          Necklace: false,
+          Earings: true,
+          Bangel: false,
+          Chain: false
         }
-        
+
       }));
-    } else  if (value === "Bangel") {
+    } else if (value === "Bangel") {
       setCategory("Bangel");
       setFilterSearch((prev) => ({
         ...prev,
         A_TO_Z: false,
         letest: false,
         price: "",
-         status: "",
-        typeCategory:{
-          Ring:false,
-          Necklace:false,
-          Earings:false,
-          Bangel:true,
-          Chain:false
+        status: "",
+        typeCategory: {
+          Ring: false,
+          Necklace: false,
+          Earings: false,
+          Bangel: true,
+          Chain: false
         }
-        
+
       }));
-    } else  if (value === "Chain") {
+    } else if (value === "Chain") {
       setCategory("Chain");
       setFilterSearch((prev) => ({
         ...prev,
         A_TO_Z: false,
         letest: false,
         price: "",
-         status: "",
-        typeCategory:{
-          Ring:false,
-          Necklace:false,
-          Earings:false,
-          Bangel:false,
-          Chain:true
+        status: "",
+        typeCategory: {
+          Ring: false,
+          Necklace: false,
+          Earings: false,
+          Bangel: false,
+          Chain: true
         }
-        
+
       }));
-    } 
+    }
   }
-  console.log(typeCategory ,"typeCategory");
   const handleLikeFilter = (e) => {
     let value = e.target.value;
-    console.log("the value of slider", value)
     if (value === "A_TO_Z") {
       setFilterSearch((prev) => ({
         ...prev,
@@ -289,7 +258,7 @@ const Marketplace = () => {
         letest: false,
         price: "",
         status: "",
-        
+
       }));
     } else if (value === "letest") {
       setFilterSearch((prev) => ({
@@ -307,13 +276,13 @@ const Marketplace = () => {
         price: "",
         status: "auction",
       }));
-    }else {
+    } else {
       setFilterSearch((prev) => ({
         ...prev,
         A_TO_Z: false,
         letest: false,
-       price: value,
-       status: "",
+        price: value,
+        status: "",
       }));
     }
   };
@@ -325,8 +294,8 @@ const Marketplace = () => {
   return (
     <>
       <Layout>
-         <section className="marketplace-list-sec">
-            <Container>
+        <section className="marketplace-list-sec">
+          <Container>
             <Row>
               <Col>
                 <div className="heading-market">
@@ -334,8 +303,8 @@ const Marketplace = () => {
                     <Col md="6" sm="6">
                       <h2 className="market-head">
                         <a>
-                         <i class="fa fa-arrow-left"></i>
-                        </a> 
+                          <i class="fa fa-arrow-left"></i>
+                        </a>
                         Marketplace
                       </h2>
                     </Col>
@@ -389,12 +358,12 @@ const Marketplace = () => {
                             alt="logo"
                           />
                         </Button> */}
-                              
-                          {/* </InputGroup>
+
+            {/* </InputGroup>
                       
                   </Col>
-                </Row> */} 
-                {/* <Row className=" pagination-row-explore">
+                </Row> */}
+            {/* <Row className=" pagination-row-explore">
                   <Col
                     className="set-limit"
                     lg={4}
@@ -422,321 +391,315 @@ const Marketplace = () => {
                     </Form.Select>
                   </Col>
                   </Row> */}
-                <Row>
-                  <Col lg={3} md={4}>
-                    <div className=" new-changes-filter">
-                      <div>
-                        <Accordion defaultActiveKey="0" className="">
-                          <Accordion.Item eventKey="0">
-                            <Accordion.Header className="sidebar_names">
-                              Sort
-                            </Accordion.Header>
-                            <Accordion.Body>
-                              <div className="radio">
-                                <label>
-                                  <input type="radio"     name="o1"
-                            value={"high_to_low"}
-                            onChange={handleLikeFilter}></input>
-                                  <span className="cr">
-                                    <i className="cr-icon fa fa-circle"></i>
-                                  </span>
-                                  Price: High to Low
-                                </label>
-                              </div>
-                              <div className="radio">
-                                <label>
-                                  <input type="radio"   
-                            name="o1"
-                            value={"low_to_high"}
-                            onChange={handleLikeFilter}></input>
-                                  <span className="cr">
-                                    <i className="cr-icon fa fa-circle"></i>
-                                  </span>
-                                  Price: Low to High
-                                </label>
-                              </div>
-                              <div className="radio">
-                                <label>
-                                  <input type="radio"  
-                            name="o1"
-                            value={"A_TO_Z"}
-                            onChange={handleLikeFilter}></input>
-                                  <span className="cr">
-                                    <i className="cr-icon fa fa-circle"></i>
-                                  </span>
-                                  A To Z
-                                </label>
-                              </div>
-                              <div className="radio">
-                                <label>
-                                  <input  type="radio"
-                            name="o1"
-                            value={"letest"}
-                            onChange={handleLikeFilter}></input>
-                                  <span className="cr">
-                                    <i className="cr-icon fa fa-circle"></i>
-                                  </span>
-                                  Latest
-                                </label>
-                              </div>
-                            </Accordion.Body>
-                          </Accordion.Item>
-                          <div className="status">
-                <label className="sidebar_names sidebar-names-border">Price</label>
-                <div class="slider-box">
-                  <div id="slider-range" class="slider"></div>
-                  <p>
-                    <input
-                      type="text"
-                      id="amount"
-                      onChange={(e) => console.log(e.target.value)}
-                      ref={inputRangeRef}
-                    ></input>
-                  </p>
-                </div>
+            <Row>
+              <Col lg={3} md={4}>
+                <div className=" new-changes-filter">
+                  <div>
+                    <Accordion defaultActiveKey="0" className="">
+                      <Accordion.Item eventKey="0">
+                        <Accordion.Header className="sidebar_names">
+                          Sort
+                        </Accordion.Header>
+                        <Accordion.Body>
+                          <div className="radio">
+                            <label>
+                              <input type="radio" name="o1"
+                                value={"high_to_low"}
+                                onChange={handleLikeFilter}></input>
+                              <span className="cr">
+                                <i className="cr-icon fa fa-circle"></i>
+                              </span>
+                              Price: High to Low
+                            </label>
+                          </div>
+                          <div className="radio">
+                            <label>
+                              <input type="radio"
+                                name="o1"
+                                value={"low_to_high"}
+                                onChange={handleLikeFilter}></input>
+                              <span className="cr">
+                                <i className="cr-icon fa fa-circle"></i>
+                              </span>
+                              Price: Low to High
+                            </label>
+                          </div>
+                          <div className="radio">
+                            <label>
+                              <input type="radio"
+                                name="o1"
+                                value={"A_TO_Z"}
+                                onChange={handleLikeFilter}></input>
+                              <span className="cr">
+                                <i className="cr-icon fa fa-circle"></i>
+                              </span>
+                              A To Z
+                            </label>
+                          </div>
+                          <div className="radio">
+                            <label>
+                              <input type="radio"
+                                name="o1"
+                                value={"letest"}
+                                onChange={handleLikeFilter}></input>
+                              <span className="cr">
+                                <i className="cr-icon fa fa-circle"></i>
+                              </span>
+                              Latest
+                            </label>
+                          </div>
+                        </Accordion.Body>
+                      </Accordion.Item>
+                      <div className="status">
+                        <label className="sidebar_names sidebar-names-border">Price</label>
+                        <div class="slider-box">
+                          <div id="slider-range" class="slider"></div>
+                          <p>
+                            <input
+                              type="text"
+                              id="amount"
+                              onChange={(e) => console.log(e.target.value)}
+                              ref={inputRangeRef}
+                            ></input>
+                          </p>
+                        </div>
+                      </div>
+
+                      <Accordion.Item eventKey="5" className="status">
+                        <Accordion.Header className="sidebar_names">
+                          Categories
+                        </Accordion.Header>
+                        <Accordion.Body>
+                          <div>
+                            <div className="radio">
+                              <label>
+                                <input checked={filterSearch.typeCategory.Ring} name="o1" type="radio"
+                                  value="Ring"
+
+                                  onChange={handleTypeCategory}></input>
+                                <span className="cr">
+                                  <i className="cr-icon fa fa-check"></i>
+                                </span>
+                                Ring
+                              </label>
+                            </div>
+
+
+
+                          </div>
+                          <div>
+                            <div className="radio">
+                              <label>
+                                <input checked={filterSearch.typeCategory.Necklace} name="o1" type="radio"
+                                  value="Necklace"
+
+                                  onChange={handleTypeCategory}></input>
+                                <span className="cr">
+                                  <i className="cr-icon fa fa-check"></i>
+                                </span>
+                                Necklace
+                              </label>
+                            </div>
+
+
+
+                          </div>
+                          <div>
+                            <div className="radio">
+                              <label>
+                                <input checked={filterSearch.typeCategory.Earings} name="o1" type="radio"
+                                  value="Earings"
+
+                                  onChange={handleTypeCategory}></input>
+                                <span className="cr">
+                                  <i className="cr-icon fa fa-check"></i>
+                                </span>
+                                Earings
+                              </label>
+                            </div>
+
+
+
                           </div>
 
-                          <Accordion.Item eventKey="5" className="status">
-                            <Accordion.Header className="sidebar_names">
-                              Categories
-                            </Accordion.Header>
-                            <Accordion.Body>
-                            <div>
-                                <div className="radio">
-                                  <label>
-                                    <input     checked={filterSearch.typeCategory.Ring}name="o1" type="radio"
-                            value="Ring"
-                         
-                            onChange={handleTypeCategory}></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Ring
-                                  </label>
-                                </div>
-                              
-                              
-                            
-                              </div>
-                              <div>
-                                <div className="radio">
-                                  <label>
-                                    <input     checked={filterSearch.typeCategory.Necklace}name="o1" type="radio"
-                            value="Necklace"
-                         
-                            onChange={handleTypeCategory}></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Necklace
-                                  </label>
-                                </div>
-                              
-                              
-                            
-                              </div>
-                              <div>
-                                <div className="radio">
-                                  <label>
-                                    <input     checked={filterSearch.typeCategory.Earings}name="o1" type="radio"
-                            value="Earings"
-                         
-                            onChange={handleTypeCategory}></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Earings
-                                  </label>
-                                </div>
-                              
-                              
-                            
-                              </div>
-                             
-                              <div>
-                                <div className="radio">
-                                  <label>
-                                    <input     checked={filterSearch.typeCategory.Bangel}name="o1" type="radio"
-                            value="Bangel"
-                         
-                            onChange={handleTypeCategory}></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Bangel
-                                  </label>
-                                </div>
-                              
-                              
-                            
-                              </div> 
-                             <div>
-                                <div className="radio">
-                                  <label>
-                                    <input     checked={filterSearch.typeCategory.Chain}name="o1" type="radio"
-                            value="Chain"
-                         
-                            onChange={handleTypeCategory}></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    Chain
-                                  </label>
-                                </div>
-                               
-                              
-                            
-                              </div> 
-                            </Accordion.Body>
-                          </Accordion.Item>
-
-
-                       
-                          <Accordion.Item eventKey="3" className="status">
-                            <Accordion.Header className="sidebar_names">
-                              Artist
-                            </Accordion.Header>
-                            <Accordion.Body>
-                              <div>
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox" value=""></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                  Quest
-                                  </label>
-                                </div>
-                               
-
-                              </div>
-                            </Accordion.Body>
-                          </Accordion.Item>
-                          <Accordion.Item eventKey="4" className="status">
-                            <Accordion.Header className="sidebar_names">
-                              Chain
-                            </Accordion.Header>
-                            <Accordion.Body>
-                            <div>
-                                <div className="checkbox">
-                                  <label>
-                                    <input type="checkbox" value="" checked></input>
-                                    <span className="cr">
-                                      <i className="cr-icon fa fa-check"></i>
-                                    </span>
-                                    BSC 
-                                  </label>
-                                </div>
-                              
-                             
-                          
-
-                              </div>
-                            </Accordion.Body>
-                          </Accordion.Item>
-                       
-                          
-
-                          <Accordion.Item eventKey="1" className="status">
-                            <Accordion.Header className="sidebar_names">
-                              Status
-                            </Accordion.Header>
-                            <Accordion.Body>
-                            <div>
+                          <div>
                             <div className="radio">
-                                <label>
-                                  <input type="radio"     name="o1"
-                            value={"Auction"}
-                            onChange={handleLikeFilter}></input>
-                                  <span className="cr">
-                                    <i className="cr-icon fa fa-circle"></i>
-                                  </span>
+                              <label>
+                                <input checked={filterSearch.typeCategory.Bangel} name="o1" type="radio"
+                                  value="Bangel"
+
+                                  onChange={handleTypeCategory}></input>
+                                <span className="cr">
+                                  <i className="cr-icon fa fa-check"></i>
+                                </span>
+                                Bangel
+                              </label>
+                            </div>
+
+
+
+                          </div>
+                          <div>
+                            <div className="radio">
+                              <label>
+                                <input checked={filterSearch.typeCategory.Chain} name="o1" type="radio"
+                                  value="Chain"
+
+                                  onChange={handleTypeCategory}></input>
+                                <span className="cr">
+                                  <i className="cr-icon fa fa-check"></i>
+                                </span>
+                                Chain
+                              </label>
+                            </div>
+
+
+
+                          </div>
+                        </Accordion.Body>
+                      </Accordion.Item>
+
+
+
+                      <Accordion.Item eventKey="3" className="status">
+                        <Accordion.Header className="sidebar_names">
+                          Artist
+                        </Accordion.Header>
+                        <Accordion.Body>
+                          <div>
+                            <div className="checkbox">
+                              <label>
+                                <input type="checkbox" value=""></input>
+                                <span className="cr">
+                                  <i className="cr-icon fa fa-check"></i>
+                                </span>
+                                Quest
+                              </label>
+                            </div>
+
+
+                          </div>
+                        </Accordion.Body>
+                      </Accordion.Item>
+                      <Accordion.Item eventKey="4" className="status">
+                        <Accordion.Header className="sidebar_names">
+                          Chain
+                        </Accordion.Header>
+                        <Accordion.Body>
+                          <div>
+                            <div className="checkbox">
+                              <label>
+                                <input type="checkbox" value="" checked></input>
+                                <span className="cr">
+                                  <i className="cr-icon fa fa-check"></i>
+                                </span>
+                                BSC
+                              </label>
+                            </div>
+
+
+
+
+                          </div>
+                        </Accordion.Body>
+                      </Accordion.Item>
+
+
+
+                      <Accordion.Item eventKey="1" className="status">
+                        <Accordion.Header className="sidebar_names">
+                          Status
+                        </Accordion.Header>
+                        <Accordion.Body>
+                          <div>
+                            <div className="radio">
+                              <label>
+                                <input type="radio" name="o1"
+                                  value={"Auction"}
+                                  onChange={handleLikeFilter}></input>
+                                <span className="cr">
+                                  <i className="cr-icon fa fa-circle"></i>
+                                </span>
                                 Auction
-                                </label>
-                              </div>
-                               
-                               
-                              
-                               
+                              </label>
+                            </div>
 
-                              </div>
-                            </Accordion.Body>
-                          </Accordion.Item>
-                        </Accordion>
-                      </div>
-                    </div>
-                  </Col>
 
-                  <Col lg={9} md={8}>
-                    <Row >
-                     
-                        {console.log("data inside nft is",nft)}
-                       
+
+
+
+                          </div>
+                        </Accordion.Body>
+                      </Accordion.Item>
+                    </Accordion>
+                  </div>
+                </div>
+              </Col>
+
+              <Col lg={9} md={8}>
+                <Row >
                   {!isLoading && nft?.length === 0 && (
                     <div className="text-center">No Record Found</div>
                   )}
                   {!isLoading && nft?.length > 0
-                    ?nft.map((item,index) => (
-                        <Col lg={4} md={6} key={index}>
-                          {/* <Link to="/nft-detail"> */}
-                          <div class="product-list-box" onClick={()=>{
-                            single_nft_data(item)
-                          }}>
-                            <img src={`https://jewellery.donative.in/NFTImages/${item.images}`} class="img-fluid img-main-box" onError={({ currentTarget }) => {
-    currentTarget.onerror = null; // prevents looping
-    currentTarget.src="assets/images/img-nft/list-img.png";
-  }} />
-                          
-                            <div>
-                              <h5> </h5>
-                              <p>{item.name}</p>
-                              <div class="d-flex justify-content-between">
-                                {/* <h6>{item}</h6> */}
-                                <h6>Price: {(item?.price/0.1).toFixed(2)} JWL (${item.price})</h6>
-                                <h6>{item.status}</h6>
-                              </div>
-                              {/* <div class="d-flex justify-content-between">
+                    ? nft.map((item, index) => (
+                      <Col lg={4} md={6} key={index}>
+                        {/* <Link to="/nft-detail"> */}
+                        <div class="product-list-box" onClick={() => {
+                          single_nft_data(item)
+                        }}>
+                          <img src={`https://jewellery.donative.in/NFTImages/${item.images}`} class="img-fluid img-main-box" onError={({ currentTarget }) => {
+                            currentTarget.onerror = null; // prevents looping
+                            currentTarget.src = "assets/images/img-nft/list-img.png";
+                          }} />
+
+                          <div>
+                            <h5> </h5>
+                            <p>{item.name}</p>
+                            <div class="d-flex justify-content-between">
+                              {/* <h6>{item}</h6> */}
+                              <h6>Price: {(item?.price).toFixed(2)} JWL (${item.price/JwlPrice})</h6>
+                              <h6>{item.status}</h6>
+                            </div>
+                            {/* <div class="d-flex justify-content-between">
                                 <p>Floor Price </p>
                                 <p class="red-text"><span>+1.6%</span></p>
                               </div> */}
-                            </div>
                           </div>
-                          {/* </Link> */}
-                        </Col>
-                        ))  : ""}
-                       
-                      
-                            
-                    </Row>
-                  </Col> 
-                  <div className="pagination-new-exploror ">
-                  <Col className="mx-auto">
-                    <ReactPaginate
-                      previousLabel={"prev"}
-                      nextLabel={"next"}
-                      breakLabel={"..."}
-                      pageCount={totalNfts / 25}
-                      marginPagesDisplayed={2}
-                      onPageChange={handlePageClick}
-                      containerClassName={"pagination"}
-                      pageClassName={"page-item"}
-                      pageLinkClassName={"page-link"}
-                      previousClassName={"page-item"}
-                      previousLinkClassName={"page-link"}
-                      nextClassName={"page-item"}
-                      nextLinkClassName={"page-link"}
-                      breakClassName={"page-item"}
-                      breakLinkClassName={"page-link"}
-                      pageRangeDisplayed={1}
-                    />
-                  </Col>
+                        </div>
+                        {/* </Link> */}
+                      </Col>
+                    )) : ""}
 
-                  {console.log("the nft data is ", nft)}
-                </div>
-             
+
+
                 </Row>
-              </Container>
-         </section>
+              </Col>
+              <div className="pagination-new-exploror ">
+                <Col className="mx-auto">
+                  <ReactPaginate
+                    previousLabel={"prev"}
+                    nextLabel={"next"}
+                    breakLabel={"..."}
+                    pageCount={totalNfts / 25}
+                    marginPagesDisplayed={2}
+                    onPageChange={handlePageClick}
+                    containerClassName={"pagination"}
+                    pageClassName={"page-item"}
+                    pageLinkClassName={"page-link"}
+                    previousClassName={"page-item"}
+                    previousLinkClassName={"page-link"}
+                    nextClassName={"page-item"}
+                    nextLinkClassName={"page-link"}
+                    breakClassName={"page-item"}
+                    breakLinkClassName={"page-link"}
+                    pageRangeDisplayed={1}
+                  />
+                </Col>
+              </div>
+            </Row>
+          </Container>
+        </section>
       </Layout>
     </>
   );

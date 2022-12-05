@@ -29,6 +29,7 @@ function NftDetail() {
   const dispatch = useDispatch();
 
   const navigate = useNavigate()
+  const JwlPrice = 10;
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -173,7 +174,7 @@ function NftDetail() {
 
   const handleBuy = async (e) => {
     try {
-      let price = parseFloat(nftPrice) / 0.1;
+      let price = parseFloat(nftPrice);
       if (!isAuthenticated) {
         toast.warn("Please connect wallet!");
       }
@@ -287,9 +288,6 @@ function NftDetail() {
           );
 
           let tx = await Transaction({ tx: approveData });
-
-
-
           if (tx) {
             try {
               let hash = await Sale(walletAddress, nft.token_id, "1");
@@ -324,14 +322,14 @@ function NftDetail() {
                 toast.error("Owner cannot purchase his own NFT")
               }
             } catch (e) {
-              toast.error("i m in catch")
+              toast.error("Transaction Failed")
             }
           }
 
         }
       }
     } catch (e) {
-      toast.error("ReConnect wallet")
+      toast.error("Buying Failed")
     }
   };
   const [time, setTime] = useState(false);
@@ -541,42 +539,10 @@ function NftDetail() {
                             </Col>
 
                           </Row>
-                          {/* <Row className="desc-footer">
-         <Col>
-         <div className="footer-row"> 
-         <p>{nftName}Weight</p>
-                    <p className="desc-values">9ct</p>
-</div>
-
-         </Col>
-         <Col>
-         <div className="footer-row"> 
-         <p>{nftName}Weight</p>
-                    <p className="desc-values">9ct</p>
-</div>
-
-         </Col>
-         <Col>
-         <div className="footer-row"> 
-         <p>{nftName}Weight</p>
-                    <p className="desc-values">9ct</p>
-</div>
-
-         </Col>
-         <Col>
-         <div className="footer-row"> 
-         <p>{nftName}Weight</p>
-                    <p className="desc-values">9ct</p>
-</div>
-
-         </Col>
-
-       </Row> */}
                         </div>
                       </Modal.Body>
                     </Modal>
-
-                    <h6> Price: {(nftPrice / 0.1).toFixed(2)}JWL ($ {nftPrice})</h6>
+                    <h6> Price: {parseFloat(nftPrice).toFixed(2)}JWL ($ {nftPrice / JwlPrice})</h6>
                     <h6> </h6>
                     <p>{nftDesc}</p>
                     <div>
@@ -728,7 +694,7 @@ function NftDetail() {
                     <tbody>
                       <tr>
                         <td>Price</td>
-                        <td>{(nftPrice / 0.1).toFixed(3)} JWL</td>
+                        <td>{parseFloat(nftPrice).toFixed(3)} JWL</td>
                       </tr>
                       <tr>
                         <td>Service Fee</td>
@@ -738,8 +704,8 @@ function NftDetail() {
                         <td>Total will Pay</td>
                         <td>
                           {nft &&
-                            (parseFloat(nftPrice / 0.1) +
-                            (parseFloat(nftPrice / 0.1) * 5) / 100).toFixed(3)}{" "}
+                            (parseFloat(nftPrice) +
+                              (parseFloat(nftPrice) * 5) / 100).toFixed(3)}{" "}
                           JWL
                         </td>
                       </tr>

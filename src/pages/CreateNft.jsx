@@ -26,7 +26,7 @@ function CreateNft() {
       } = useSelector((state) => state.nft); */
 
   const navigate = useNavigate();
-
+  const JwlPrice = 10;
   const { nft, isLoading } = useSelector((state) => state.nft);
 
   const { isAuthenticated, balance, tier, walletAddress } = useSelector(
@@ -134,10 +134,11 @@ function CreateNft() {
 
   const handlePrice = (e) => {
     let value = e.target.value;
+    let JWLValue = value*JwlPrice;
     if (isNaN(value)) {
       e.target.value = "";
     } else {
-      setPrice(value);
+      setPrice(JWLValue);
     }
   };
 
