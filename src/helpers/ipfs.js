@@ -38,7 +38,7 @@ export const ipfsMint = async (testFile, data) => {
       Name: `${data.name}`,
       Price: `${data.price}`,
       Description: `${data.description}`,
-      Url: `https://gateway.ipfs.io/ipfs/${hash1}`,
+      image: `https://gateway.ipfs.io/ipfs/${hash1}`,
     };
 
     let testBuffer2 = new Buffer.from(JSON.stringify(testFile1));
