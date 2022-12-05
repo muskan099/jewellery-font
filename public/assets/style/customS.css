@@ -3593,7 +3593,25 @@ button{
     width: 100%;
     border-radius: 10px;
 }
-.dropdown-after-login.dropdown-menu{
-right: 0;
-left: auto;
+.dropdown-after-login.dropdown-menu {
+    right: 0;
+    left: auto !important;
+    width: 200px;
+    background-color: #000;
+    border: 1px solid #c8a14e;
+}
+.dropdown-after-login.dropdown-menu p{
+    color: #fff;
+    margin: 0;
+}
+.dropdown-after-login.dropdown-menu a, .dropdown-after-login.dropdown-menu a button{
+    color: #fff;
+}
+.dropdown-after-login.dropdown-menu a:hover,
+.dropdown-after-login.dropdown-menu a:focus,
+.dropdown-after-login.dropdown-menu a:active,
+.dropdown-after-login.dropdown-menu a button:hover,
+.dropdown-after-login.dropdown-menu a button:focus,
+.dropdown-after-login.dropdown-menu a button:active{
+    background-color: #A77327 !important;
 }
