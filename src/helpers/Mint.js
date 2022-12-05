@@ -36,7 +36,7 @@ export const Mint=async(tokenUrl,minPrice)=>{
        minPrice = minPrice.toFixed(0);
       
        console.log("voucher response") 
-       voucher.voucher =   lazyminter.createVoucher(token,tokenUrl,minPrice);
+       voucher.voucher =   lazyminter.createVoucher(tokenUrl,minPrice);
 
        console.log("voucher",voucher.voucher);
 
