@@ -424,8 +424,6 @@ const abi = [
 export const CreateReSale = async (selectedAccount, token, price) => {
   let web3js = await web3();
 
-  //console.log('data',data);
-
   const SaleContract = new web3js.eth.Contract(abi, contractAddress);
 
   const nonce = await web3js.eth.getTransactionCount(selectedAccount, "latest");
@@ -435,10 +433,6 @@ export const CreateReSale = async (selectedAccount, token, price) => {
   // price =  price-(parseFloat((price)*2))/100;
   price = "0x" + (price * 1000000000000000000).toString(16);
 
-  console.log({ NftContract });
-  console.log({ token });
-  console.log({ tabooAddress });
-  console.log({ price });
   try {
     let ownerPercentage = 0;
     let royaltyPercentage = 200;
@@ -497,12 +491,6 @@ export const CreateReSale = async (selectedAccount, token, price) => {
 
 export const WithdrawSale = async (selectedAccount, token) => {
   let web3js = await web3();
-
-  console.log("token", token);
-
-  console.log("seller", selectedAccount);
-
-  console.log(" NftContract", NftContract);
 
   const SaleContract = new web3js.eth.Contract(abi, contractAddress);
 

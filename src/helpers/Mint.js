@@ -20,7 +20,7 @@ export const Mint = async (tokenUrl, minPrice) => {
   let voucher = {};
 
   if (window.ethereum) {
-
+ 
     const lazyminter = new LazyMinter({ contract, signer });
 
     minPrice = minPrice * Math.pow(10, 18);

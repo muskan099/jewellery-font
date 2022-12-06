@@ -38,7 +38,6 @@ function App() {
             <Route path="/create-nft" element={<CreateNft />} />
             <Route path="/create-stake" element={<CreateStake />} />
             <Route path="/admin-dashboard" element={<AdminDashboard />} />
-            <Route path="/create-stake" element={<CreateStake />} />
             <Route path="/meet" element={<Meet />} />
             <Route path="/stakes" element={<Stakes />} />
             <Route path="/collections" element={<Transactions />} />

@@ -11,7 +11,6 @@ const NftContractAddress = "0x296F47de09A37f1c67B081afA0F88aed37566d67";
 const tabooAddress = "0xE7a9b31D284d524e87BF002D85Acfcf5d1c9EA67";
 
 export const MakeOffer = async (minPrice, token, from_account) => {
-  console.log("token",token)
   let web3js = await web3();
 
   const nftContract = new web3js.eth.Contract(abi, contractAddress);

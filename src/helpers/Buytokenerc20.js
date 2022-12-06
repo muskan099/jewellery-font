@@ -695,7 +695,6 @@ export const buyInfo = async (contract) => {
   } else if (contract == "ETH") {
     allowance = 100000000;
     Balance = (await web3connect.eth.getBalance(selectedAccount)) / 1e18;
-    console.log("Balance ETH",Balance)
   } else if (contract == "MATIC") {
     allowance = 100000000;
     Balance = (await web3connect.eth.getBalance(selectedAccount)) / 1e18;

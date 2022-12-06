@@ -25,7 +25,6 @@ export const createAuction = async (
   uri,
   from_account
 ) => {
-  console.log("start time", startTime);
 
   startTime = new Date();
   timePeriod = new Date(timePeriod);
@@ -43,8 +42,6 @@ export const createAuction = async (
 
   token = 0;
 
-  console.log("start time", startTime);
-
   let web3js = await web3();
 
   const nftContract = new web3js.eth.Contract(abi, contractAddress);
@@ -53,8 +50,6 @@ export const createAuction = async (
 
   let tx = 0;
   minPrice = "0x" + (minPrice * 1000000000000000000).toString(16);
-
-  console.log("uri", uri);
 
   try {
     let estimates_gas = await web3js.eth.estimateGas({
@@ -127,8 +122,6 @@ export const createNFTAuction = async (
   uri,
   from_account
 ) => {
-  console.log("start time", startTime);
-
   startTime = new Date();
   timePeriod = new Date(timePeriod);
   let end_date = moment(timePeriod, "YYYY-MM-DD HH:mm:ss", true).format();
@@ -145,30 +138,14 @@ export const createNFTAuction = async (
 
   timePeriod=Math.ceil(timePeriod);
 
- console.log('address',from_account)
- 
-  console.log("start time", startTime);
-
   let web3js = await web3();
 
   const nftContract = new web3js.eth.Contract(abi, contractAddress);
 
   const nonce = await web3js.eth.getTransactionCount(from_account, "latest");
 
-  console.log("token",token)
-
-  console.log("price",minPrice)
-
   let tx = 0;
   minPrice = "0x" + (minPrice * 1000000000000000000).toString(16);
-
-  console.log("price",minPrice)
-
-  console.log("uri", uri);
-
-  //token="0x" + (token).toString(16)
-  console.log("from_account",from_account);
-
 
   try {
     let estimates_gas = await web3js.eth.estimateGas({

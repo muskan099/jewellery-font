@@ -11,7 +11,6 @@ export const buyFromOtherChain = async (amount, beneficiary, navigate, Qamount, 
   const chainId = await web3connect.eth.getChainId();
   let selectedAccount = accounts[0];
   const Balance = await web3connect.eth.getBalance(selectedAccount);
-  console.log("balance",Balance)
   const balance = parseFloat(Balance);
   amount = amount * Math.pow(10, 18);
   amount = amount.toFixed(0);
@@ -94,7 +93,6 @@ export const buyFromOtherChain = async (amount, beneficiary, navigate, Qamount, 
             reciver_wallet_address: beneficiary
           }
           await axiosMain.post('/buy-coin-bridge', payload).then((payment_response) => {
-            console.log(payment_response);
             setIsLoading(false);
             toast.success("You have succesfully purchased the coin")
             

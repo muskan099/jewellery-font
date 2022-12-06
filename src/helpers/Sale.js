@@ -422,8 +422,6 @@ const abi = [
 export const Sale = async (selectedAccount, token, amount) => {
   let web3js = await web3();
 
-  console.log("token", token);
-
   const SaleContract = new web3js.eth.Contract(abi, contractAddress);
 
   const nonce = await web3js.eth.getTransactionCount(selectedAccount, "latest");

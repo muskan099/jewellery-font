@@ -20,8 +20,6 @@ export const ApproveTaboo = async (price, address) => {
 
   const nonce = await web3js.eth.getTransactionCount(address, "latest");
 
-  console.log("data", address);
-
   price = "0x" + (price * 1000000000000000000).toString(16);
 
   let tx = false;
