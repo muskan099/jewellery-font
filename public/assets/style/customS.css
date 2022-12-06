@@ -959,7 +959,7 @@ header.custom-header nav {
 }
 .footer-new-outer{
     border-top: 1px solid #A77327;
-    padding-top: 90px;
+    padding: 20px 0;
 }
 .footer-new-outer .foot-logo{
 height: 80px;
@@ -992,7 +992,7 @@ padding: 0;
     margin-top: 70px;
     margin-bottom: 40px;
     display: block;
-    text-align:center;
+    text-align:left;
 }
 
 
@@ -2728,7 +2728,7 @@ font-size: 24px;
     border: none !important;
     box-shadow: none !important;
     margin: 15px 0 !important;
-    width: 100%;
+    /* width: 100%; */
 }
 /* ishita css contact */
 /* Date filter */
@@ -3718,5 +3718,54 @@ button{
     }
     .details-page {
         padding: 25px 0 60px;
+    }
+    .status {
+        margin-top: 10px;
+        padding: 5px 20px;
+    }
+    .new-changes-filter .accordion-item {
+        padding: 10px;
+    }
+    .heading-market {
+        margin-bottom: 15px;
+    }
+    .dropdown-after-login.dropdown-menu {
+        width: max-content;
+        min-width: auto;
+    }
+    .footer-new-outer .copyright-line-container {
+        text-align: center;
+    }
+    .footer-logo-container {
+        justify-content: center;
+    }
+    .social-links {
+        justify-content: center;
+    }
+    .modal{
+        padding: 0 !important;
+    }
+    .modal .modal-content {
+        margin: 0;
+    }
+    .modal .modal-dialog {
+        max-width: 95% !important;
+    }
+    .table-your-balance, .table-your-balance th, .table-your-balance td {
+        font-size: 12px;
+    }
+    .gradient-btn1 {
+        padding: 5px 30px;
+        font-size: 14px;
+        line-height: 24px;
+    }
+    .bid-modal-box {
+        padding: 0px 0;
+    }
+    .details-page .col-lg-5.col-md-6 .img-fluid{
+        width: 100%;
+    }
+    .details-side-content h4 {
+        margin-top: 20px;
     }
 }

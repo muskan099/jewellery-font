@@ -13,16 +13,31 @@ function Footer() {
       <Container>
         <Row>
           <Col>
-            <div className="footer-new-outer">
-              <Row className="">
+            <div className="footer-new-outer ">
+              <Row className="align-items-center">
                 <Col md={4} sm={4}>
-                  <div className="footer-logo-container">
+                <div className="copyright-line">
+                  <div className="copyright-line-container m-0">
+                    <p className="copyright m-0">
+                      © 2022{" "}
+                      <a href="" className="copyright-text">
+                        Quest
+                      </a>{" "}
+                      .all Right Reserved{" "}
+                    </p>
+                  </div>
+                </div>
+                 
+                 
+                </Col>
+                <Col md={3} sm={4} className="ms-auto me-auto">
+                <div className="footer-logo-container">
                     <img
                       src="assets/images/logo/logo.png"
                       className="foot-logo"
                       alt="logo"
                     />
-                    <p className="footer-aboutUs">
+                    {/* <p className="footer-aboutUs">
                       the leading NFT Marketplace on EthereumHome to the next
                       generation of digital creators.Discover the best NFT
                       collections.
@@ -45,12 +60,9 @@ function Footer() {
                           src="assets/images/social-media-icon-1.png"
                           width={"40"}
                         />
-                      </a>
+                      </a> */}
                     </div>
-                  </div>
-                </Col>
-                <Col md={3} sm={4} className="ms-auto me-auto">
-                  <div>
+                  {/* <div>
                     <h6 className="footer-links-heading">Marketplace</h6>
                     <div className="footer-links">
                       <Link to="/marketplace" className="footer-link">
@@ -67,10 +79,30 @@ function Footer() {
                         Help
                       </Link>
                     </div>
-                  </div>
+                  </div> */}
                 </Col>
                 <Col md={3} sm={4}>
-                  <div>
+                   <div className="social-links">
+                      <a href="" target={"_blank"}>
+                        <img
+                          src="assets/images/twitter-icon.png"
+                          width={"40"}
+                        />
+                      </a>
+                      <a href="/" target={"_blank"} className="telegram-link">
+                        <img src="assets/images/instagram.png" width={"40"} />
+                      </a>
+                      <a href="/" target={"_blank"} className="insta-link">
+                        <img src="assets/images/youtube.png" width={"40"} />
+                      </a>
+                      <a href="/" target={"_blank"} className="insta-link">
+                        <img
+                          src="assets/images/social-media-icon-1.png"
+                          width={"40"}
+                        />
+                      </a> 
+                    </div>
+                  {/* <div>
                     <h6 className="footer-links-heading">Links</h6>
 
                     <div className="footer-links">
@@ -87,20 +119,10 @@ function Footer() {
                         Become Partners
                       </Link>
                     </div>
-                  </div>
+                  </div> */}
                 </Col>
               </Row>
-              <div className="copyright-line">
-                <div className="copyright-line-container">
-                  <p className="copyright">
-                    © 2022{" "}
-                    <a href="" className="copyright-text">
-                      Quest
-                    </a>{" "}
-                    .all Right Reserved{" "}
-                  </p>
-                </div>
-              </div>
+            
             </div>
           </Col>
         </Row>
