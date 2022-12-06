@@ -785,15 +785,15 @@ function NftDetail() {
             >
               <Modal.Header
                 closeButton
-                className="border-none p-0"
-                style={{ zIndex: "10000000" }}
+                className=""
+                style={{ borderBottom: "1px solid #a77327" }}
               ></Modal.Header>
               <Modal.Body>
                 <div class="bid-modal-box">
                   <h3>Create an Offer</h3>
-                  <p>You are about to place a bid for </p>
+                  <p className="about-bid-pera">You are about to place a bid for </p>
                   <Form>
-                    <Form.Group className="mb-3">
+                    <Form.Group className="mb-3 min-price-box">
                       <Form.Label>Min Price</Form.Label>
                       <Form.Control
                         type="text"
@@ -809,22 +809,23 @@ function NftDetail() {
                         placeholder="min price"
                       />
                     </Form.Group>
-                  </Form>
-                  <div className="make-offer-container">
-                    <button
-                      className="blue-btn"
-                      onClick={() => {
-                        if (!auctionProcessing) handleOffer();
-                      }}
-                      disabled={auctionProcessing}
-                      style={{ cursor: auctionProcessing ? "no-drop" : "pointer" }}
-                    >
-                      {buttonMessage ? buttonMessage : "Start Bid"}
-                    </button>
-                    <a href="" className="border-btn-1" onClick={handleOfferStart}>
-                      Cancel
-                    </a>
+                    <div style={{ display: "flex", justifyContent: "center" }}>
+                      <button
+                        className="gradient-btn1 m-1"
+                        onClick={() => {
+                          if (!auctionProcessing) handleOffer();
+                        }}
+                        disabled={auctionProcessing}
+                        style={{ cursor: auctionProcessing ? "no-drop" : "pointer" }}
+                      >
+                        {buttonMessage ? buttonMessage : "Start Bid"}
+                      </button>
+                      <a href="" className="gradient-btn1 m-1" onClick={handleOfferStart}>
+                        Cancel
+                      </a>
                   </div>
+                  </Form>
+                
                 </div>
               </Modal.Body>
             </Modal>
