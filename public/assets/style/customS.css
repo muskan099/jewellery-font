@@ -3751,4 +3751,21 @@ button{
     .modal .modal-dialog {
         max-width: 95% !important;
     }
+    .table-your-balance, .table-your-balance th, .table-your-balance td {
+        font-size: 12px;
+    }
+    .gradient-btn1 {
+        padding: 5px 30px;
+        font-size: 14px;
+        line-height: 24px;
+    }
+    .bid-modal-box {
+        padding: 0px 0;
+    }
+    .details-page .col-lg-5.col-md-6 .img-fluid{
+        width: 100%;
+    }
+    .details-side-content h4 {
+        margin-top: 20px;
+    }
 }
