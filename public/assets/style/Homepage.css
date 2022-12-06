@@ -530,12 +530,13 @@ border: none;
     display: grid;
     gap: 24px;
 }
-.social-links{
+.social-links {
     display: grid;
     grid-auto-flow: column;
     justify-content: flex-start;
     gap: 40px;
     place-items: center;
+    justify-content: flex-end;
 }
 .footer-links-heading{
     font-style: var(--Poppins);

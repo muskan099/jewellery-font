@@ -810,15 +810,17 @@ const Contactus = () => {
                     </div>
                   </Form.Group>
 
-                  <Button
-                    onClick={() => {
-                      handlesubmit();
-                    }}
-                    className="submit-btn"
-                    type="button"
-                  >
-                    Submit
-                  </Button>
+                  <div className="text-center">
+                    <Button
+                      onClick={() => {
+                        handlesubmit();
+                      }}
+                      className="submit-btn"
+                      type="button"
+                    >
+                      Submit
+                    </Button>
+                  </div>
                   {/* <div className="text-right">
                   <Button
                     className="submit-btn w-auto"
