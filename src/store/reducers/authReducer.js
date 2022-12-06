@@ -7,8 +7,6 @@ const userRole = localStorage.getItem("userRole");
 const userData = localStorage.getItem("userData");
 const walletAddress = localStorage.getItem("walletAddress");
 const balance = localStorage.getItem("balance");
-const tabooPunk = localStorage.getItem("tabooPunk");
-const tier = localStorage.getItem("tier");
 const metaMaskWallet = localStorage.getItem("metaMaskWallet");
 
 const authSlice = createSlice({
@@ -25,7 +23,6 @@ const authSlice = createSlice({
     authToken: "",
     balance: !!balance > 0 ? balance : "",
     errorMsg: "",
-    tier: !!tier ? tier : "",
     metaMaskWallet: !!metaMaskWallet ? metaMaskWallet : "",
     isChangeNetwork: "97",
     isChangeContract: "BNB",
@@ -107,8 +104,6 @@ const authSlice = createSlice({
         isLoading: false,
         walletAddress: action.payload.address,
         balance: action.payload.balance,
-        tabooPunk: action.payload.tabooPunk,
-        tier: action.payload.tier,
         isAuthenticated: true,
         errorMsg: "",
       };
@@ -127,7 +122,6 @@ const authSlice = createSlice({
         ...state,
         isLoading: false,
         walletAddress: "",
-        tabooPunk: "",
         balance: "",
         isAuthenticated: false,
         errorMsg: "",

@@ -20,7 +20,6 @@ import { ApproveTaboo } from "../helpers/Approve";
 import { axios } from "../http";
 import FindNFTToken from "../helpers/FindNFTToken";
 import { TabooBalance } from "../helpers/TabooHelper";
-import { TabooPunk } from "../helpers/TabooPunk";
 import { loginSaga, logout } from "../store/reducers/authReducer";
 import Connect from "../helpers/Connect";
 import calculateDays from "../helpers/CalculateDays"
@@ -50,7 +49,7 @@ function NftDetail() {
     hasWebsiteAccess: hasWebsiteAccessRedux,
   } = useSelector((state) => state.auth);
 
-  const { nftDetail: nft, alloffer, isLoading, totalNfts, tier } = useSelector((state) => state.nft);
+  const { nftDetail: nft, alloffer, isLoading, totalNfts } = useSelector((state) => state.nft);
 
   let { transactions } = useSelector((state) => state.transactions);
 
@@ -67,7 +66,6 @@ function NftDetail() {
   }
 
   const getData = () => {
-    // let userTier = tier ? tier : "1 Tier";
     const data = { id: id };
 
     dispatch(getNftDetailSaga(data));
@@ -86,7 +84,6 @@ function NftDetail() {
   const [nftImages, setNftImages] = useState("")
   const [nftId, setNftId] = useState(false)
   const [allOffers, setAllOffers] = useState("")
-  const [punk, setPunk] = useState(0);
   const [makeOfferDetails, setMakeOfferDetails] = useState([])
   const handleOfferStart = () => setOfferStart(false);
   const [relatedNFT, setRelatedNFT] = useState()
@@ -198,8 +195,6 @@ function NftDetail() {
               nft.ipfs,
               price,
               nft.signature,
-              tier,
-              punk,
               nft.wallet_address
             );
             if (hash) {
@@ -241,8 +236,6 @@ function NftDetail() {
                   nft.ipfs,
                   price,
                   nft.signature,
-                  tier,
-                  punk,
                   nft.wallet_address
                 );
                 if (hash) {
@@ -335,13 +328,10 @@ function NftDetail() {
   const [time, setTime] = useState(false);
   const handleBalance = async (address) => {
     //let address = await Connect();
-
-    let punk = await TabooPunk(address);
-    let tier = punk > 0 ? "3 Tier" : "1 Tier"
     let balance = await TabooBalance(address)
     setBalance(balance)
     if (address && address.length) {
-      dispatch(loginSaga({ address: address, balance: balance, tabooPunk: punk, tier: tier }));
+      dispatch(loginSaga({ address: address, balance: balance}));
     }
   };
   useEffect(() => {

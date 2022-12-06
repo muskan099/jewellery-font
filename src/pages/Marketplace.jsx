@@ -59,20 +59,15 @@ const Marketplace = () => {
       Chain: false
 
     },
-    nftTier: {
-      tier1: false,
-      tier2: false,
-      tier3: false,
-    },
     endPrice: 100000000,
   });
-  const { startPrice, endPrice, A_TO_Z, status, price, letest, typeCategory, nftTier } = filterSearch;
+  const { startPrice, endPrice, A_TO_Z, status, price, letest, typeCategory } = filterSearch;
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const inputRangeRef = useRef(null);
   const [meta, setMeta] = useState("");
 
-  const { isAuthenticated, walletAddress, tier } = useSelector(
+  const { isAuthenticated, walletAddress } = useSelector(
     (state) => state.auth
   );
   useEffect(() => {
@@ -84,7 +79,6 @@ const Marketplace = () => {
       currentPage,
       paginationData.limit,
       paginationData.skip,
-      tier,
       RecentlyAdded,
       startPrice,
       endPrice,
@@ -103,7 +97,6 @@ const Marketplace = () => {
     status,
     price,
     letest,
-    nftTier,
     currentPage,
     paginationData.limit,
     meta,
@@ -125,7 +118,6 @@ const Marketplace = () => {
     page,
     limit = 25,
     skip = 0,
-    tier,
     search_tag,
     startPrice,
     endPrice,
@@ -146,10 +138,8 @@ const Marketplace = () => {
       status,
       price,
       letest,
-      tier: tier,
       typeCategory,
       category: category,
-      nftTier,
     };
     dispatch(getNftSaga(data));
   };

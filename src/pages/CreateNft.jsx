@@ -29,7 +29,7 @@ function CreateNft() {
   const JwlPrice = 10;
   const { nft, isLoading } = useSelector((state) => state.nft);
 
-  const { isAuthenticated, balance, tier, walletAddress } = useSelector(
+  const { isAuthenticated, balance, walletAddress } = useSelector(
     (state) => state.auth
   );
 

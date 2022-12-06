@@ -45,14 +45,7 @@ function Transactions() {
   const [currentPage, setCurrentPage] = useState(1);
   const [status, setStatus] = useState("");
   const [totalCount, setTotalCount] = useState();
-  const [filterSearch, setFilterSearch] = useState({
-    category: "Jeni Summers",
-    nftTier: {
-      tier1: true,
-      tier2: false,
-      tier3: false,
-    },
-  });
+  
   const { isAuthenticated, walletAddress } = useSelector((state) => state.auth);
   const { state } = useLocation("/marketplace");
 
@@ -100,7 +93,6 @@ function Transactions() {
   console.log(isAuthenticated, "isauth");
 
   const getData = async (currentPage, limit, search) => {
-    console.log({ filterSearch });
 
     const res = await axios.post("https://jewellery.donative.in/NFTList", {
       

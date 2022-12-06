@@ -5,8 +5,6 @@ export const BuyNFT = async (
   uri,
   minPrice,
   signature,
-  tier,
-  punk,
   creator
 ) => {
   const Web3 = await web3();
@@ -41,9 +39,6 @@ export const BuyNFT = async (
     let adminPercent = 100;
     let royaltyPercent = 200;
     let platformPercent = 500;
-    if (punk > 0) {
-      platformPercent = 0;
-    }
     let estimates_gas = await Web3.eth.estimateGas({
       from: selectedAccount,
       to: contractAddress,

@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Header from "../Components/UI/Header";
 import { Row, Col, Container, Tab, Tabs, Button } from "react-bootstrap";
-import Footer from "../Components/UI/Footer";
-import Card from "react-bootstrap/Card";
-import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import CardGroup from "react-bootstrap/CardGroup";
 import Form from "react-bootstrap/Form";
@@ -147,28 +143,16 @@ function Homepage() {
   const dispatch = useDispatch();
   const [isLoginStart, setIsLoginStart] = useState(false);
   const handleLogin = async () => {
-
     setIsLoginStart(true)
     let address = await Connect();
-    console.log({ address })
-
     if (address && address.length) {
-      let punk = 0;
-      // console.log("punks",punk)
-      //let tier=punk>0?"3 Tier":"1 Tier"
       let balance = await TabooBalance(address[0]);
-      let tier = 0;
-      console.log("balance", balance);
-
       dispatch(
         loginSaga({
           address: address[0],
           balance: balance,
-          tabooPunk: punk,
-          tier: tier,
         })
       );
-
       setIsLoginStart(false)
     } else {
       handleLogout();
@@ -183,10 +167,8 @@ function Homepage() {
 
   const getData = async () => {
     const res = await axiosMain.get("/getAllArtical");
-
     if (res?.data.status) {
       setArticle(res.data.data);
-      console.log(res, "article")
     }
   };
   const userData1 = async () => {
@@ -196,39 +178,23 @@ function Homepage() {
     setCollectionCount(res.data.data.collectionCount)
     settotalUserCount(res.data.data.totalUserCount)
   }
-  console.log({ userData })
-  console.log({ artistCount })
-  console.log({ collectionCount })
-  console.log({ totalUserCount })
   const single_nft_data = (item) => {
     console.log(item, "items");
     navigate("/article-detail", { state: { id: item._id } })
   }
 
   const topCategory = async () => {
-
     try {
       const topapires = await axiosMain.post("/getNFTByCategory", {
         category: key,
-
       });
-
-
       settopcat(topapires.data);
-      console.log(topapires, 'ttoopp');
-
     } catch (error) {
       console.log(error, 'topapi error');
-
     }
-
-
-
-
   }
 
   useEffect(() => {
-
     topCategory();
     userData1();
     getData();

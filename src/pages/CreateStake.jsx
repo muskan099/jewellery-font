@@ -6,7 +6,6 @@ import Layout from '../Components/Layout';
 import { toast ,ToastContainer } from "react-toastify";
 import axios from "axios";
 import { TabooBalance } from "../helpers/TabooHelper";
-import { TabooPunk } from "../helpers/TabooPunk";
 import { loginSaga, logout } from "../store/reducers/authReducer";
 import moment from 'moment';
 import { Transaction } from "../helpers/Transaction";
@@ -15,7 +14,7 @@ import {web3} from "../helpers/Web3Helper";
 import VerifyTransactions from "../helpers/VerifyTransactions";
 
 function CreateStake() {
-  const { isAuthenticated, walletAddress,balance ,tier} = useSelector((state) => state.auth);
+  const { isAuthenticated, walletAddress,balance} = useSelector((state) => state.auth);
 
   const[tabooToken,setTabooToken]=useState(0)
 
@@ -188,16 +187,11 @@ function CreateStake() {
        }
   }
   const handleBalance = async (address) => {
-    //let address = await Connect();
-
-    let punk= await TabooPunk(address);
-    // console.log("punks",punk)
-    let tier=punk>0?"3 Tier":"1 Tier"
     let balance= await TabooBalance(address)
     console.log("balance",balance)
 
     if (address && address.length) {
-      dispatch(loginSaga({ address: address,balance:balance,tabooPunk:punk,tier:tier}));
+      dispatch(loginSaga({ address: address,balance:balance}));
     }
   };
 

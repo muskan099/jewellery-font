@@ -45,7 +45,7 @@ function NftDetail() {
     hasWebsiteAccess: hasWebsiteAccessRedux,
   } = useSelector((state) => state.auth);
 
-  const { nftDetail: nft,alloffer, isLoading, totalNfts, tier } = useSelector((state) => state.nft);
+  const { nftDetail: nft,alloffer, isLoading, totalNfts } = useSelector((state) => state.nft);
 
   let { transactions } = useSelector((state) => state.transactions);
 
@@ -65,7 +65,6 @@ function NftDetail() {
   }
 
   const getData = () => {
-    // let userTier = tier ? tier : "1 Tier";
     const data = { id: id };
 
     dispatch(getNftDetailSaga(data));

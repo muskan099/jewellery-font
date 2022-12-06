@@ -11,12 +11,8 @@ import React, { useEffect, useState, useRef } from "react";
 import { toast } from "react-toastify";
 import { Provider } from "../../helpers/Web3Helper";
 import { Link, useNavigate } from "react-router-dom";
-import {
+import {Dropdown} from "react-bootstrap";
 
-  Dropdown,
-
-} from "react-bootstrap";
-import { web3 } from "../../helpers/Web3Helper";
 function Header() {
   const [isLoginStart, setIsLoginStart] = useState(false);
   const navigate = useNavigate();
@@ -39,26 +35,16 @@ function Header() {
   );
   let address;
   const handleLogin = async () => {
-
     setIsLoginStart(true)
     let data_Connect = await Connect();
     address = data_Connect.accounts;
 
     if (address) {
-      let punk = 0;
-
       let balance = await TabooBalance(address[0]);
-      console.log("balance",balance)
-      // balance = parseFloat(balance)
-      // balance = balance.toFixed(4)
-      let tier = 0;
-
       dispatch(
         loginSaga({
           address: address[0],
           balance: balance,
-          tabooPunk: punk,
-          tier: tier,
         })
       );
 
@@ -69,57 +55,49 @@ function Header() {
       toast.warn("Please connect to binance smart chain!")
     }
   };
+
   const handleLogout = async () => {
     dispatch(logout({}));
   };
+
   useEffect(() => {
     setChangedWalletAddress(walletAddress)
     setwalletBalance(balance)
-
   }, [walletAddress, balance])
-  useEffect(() => {
 
+  useEffect(() => {
     if (!hasWebsiteAccess) {
       navigate('/')
     }
-
     if (!isAuthenticated && window.location.pathname === "/login") {
       navigate("/login");
     } else if (!isAuthenticated && window.location.pathname === "/signup") {
       navigate("/signup");
     }
-    // else if (!isAuthenticated) {
-    //   navigate("/");
-    // }
   }, [isAuthenticated]);
+
   useEffect(() => {
-
     if (isAuthenticated) {
-      const handleChain = async () => {
-
+        const handleChain = async () => {
         let provider = await Provider();
         provider.on("accountsChanged", (accounts) => {
           handleLogin();
         });
-
         // Subscribe to chainId change
         provider.on("chainChanged", (chainId) => {
           handleLogin();
         });
-
         // Subscribe to provider connection
         provider.on("connect", (info) => {
+          handleLogin();
         });
-
         // Subscribe to provider disconnection
         provider.on("disconnect", (error) => {
           handleLogout();
         });
       }
-
       handleChain()
     }
-
   }, []);
 
   const [showModal1, setShowModal1] = useState(false);
@@ -127,29 +105,7 @@ function Header() {
   const handleModalClose1 = () => {
     setShowModal1(false);
   };
-  /*
-  const  accountInterval = async () => { 
-    
-    
-    const web3Connect = await web3();
-   
-    let address1 = await web3Connect.eth.getAccounts();
-   
-    if (address1[0] !== walletAddress) {
-      walletAddress = address1[0];
-      setChangedWalletAddress(address1[0])
-      localStorage.setItem("walletAddress", address1[0]);
-      let newbalance = await TabooBalance(address1[0]);
-      localStorage.setItem("balance", newbalance);
-     
-    
-  }}
-  
-  setInterval(() => {
-    accountInterval();
-  
-  },1000)
-  */
+
   return (
     <header className='custom-header' fixed="top">
       <Container>
