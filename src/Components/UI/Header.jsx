@@ -48,6 +48,7 @@ function Header() {
       let punk = 0;
 
       let balance = await TabooBalance(address[0]);
+      console.log("balance",balance)
       // balance = parseFloat(balance)
       // balance = balance.toFixed(4)
       let tier = 0;

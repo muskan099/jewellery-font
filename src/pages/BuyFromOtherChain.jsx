@@ -18,6 +18,7 @@ import useAuth from "../hooks/useAuth";
 import { buyFromOtherChain } from "../helpers/Buyfromotherchain";
 import { _switch, _switchETH, _switchMATIC } from "../helpers/Web3Helper";
 import { buytoken } from "../helpers/Buytoken";
+import {NativeBalance} from '../helpers/UpdateBalance'
 
 
 export default function BuyfromOtherChain() {
@@ -48,21 +49,31 @@ export default function BuyfromOtherChain() {
   const [Rate, setRate] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [showModal2, setShowModal2] = useState(false);
-  console.log("metaMaskWallet",metaMaskWallet)
+  
   const AllowanceHandler = async (e) => {
+    console.log("inside ALLOW HANDLER GET BALANC E")
     let detail = await buyInfo(contract);
-    console.log("detail",detail)
+    
     let MaxAllowance = detail.allowance;
-    let Balance = detail.Balance;
+   
     setAllowance(MaxAllowance);
-    setBalance(Balance);
+    
   };
+ 
+  const getBalance = async() => {
+    let Balance = await NativeBalance(walletAddress,Chain);
+    
+    setBalance(Balance);
+  }
+  useEffect(() => {
+    getBalance();
+  },[Chain])
   const ChainHandler = async (e) => {
     console.log("inside chain handker")
     let detail = await Connect();
     let chain = detail.chainId;
     let SenderAddress = detail.selectedAccount;
-    console.log(SenderAddress,"SenderAddress")
+    
     setChain(chain);
     setSender(SenderAddress);
   };
@@ -113,7 +124,7 @@ export default function BuyfromOtherChain() {
   useEffect(() => {
     getRates();
     AllowanceHandler();
-  }, [walletAddress]);
+  }, [walletAddress,contract]);
 
   useEffect(() => {
     if (Sender) {
@@ -173,15 +184,18 @@ export default function BuyfromOtherChain() {
     if (value === "ETH") {
       if (Chain !== 5) {
         _switchETH();
+        setChain(5)
       }
     } else if (value === "MATIC") {
       if (Chain !== 80001) {
         _switchMATIC();
+        setChain(80001)
       }
-    } else {
-      if (Chain !== 97) {
+    } else if(value === "BNB"){
+     
         _switch();
-      }
+        setChain(97)
+      
     }
     setInputNetwork(value)
   };
