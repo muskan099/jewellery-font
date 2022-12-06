@@ -512,7 +512,7 @@ function NftDetail() {
                                   <Col lg={6} md={6}>
 
                                     <div className="list-col">
-                                      <p>{nftName}Weight</p>
+                                      <p>{nftName} Weight</p>
                                       <p className="desc-values">{width} mm</p>
                                     </div>
                                     <div className="list-col">
