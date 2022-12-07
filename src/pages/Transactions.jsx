@@ -785,7 +785,7 @@ const[handleTab,setHandleTab] = useState("")
                         <div className="outer-div">
                           Are You sure you want to withdraw your Sale.
                         </div>
-                        <div>
+                        <div className="text-center mt-3">
                           <a
                             className="blue-btn"
                             onClick={() => submitWithdrawSale()}

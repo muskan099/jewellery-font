@@ -2418,7 +2418,8 @@ filter: grayscale(0);
     background: #000 !important;
 }
 .modal-comming-soon .outer-div {
-  text-align: center;
+    text-align: center;
+    color: #fff;
 }
 
 .modal-comming-soon .outer-div img {
@@ -2680,7 +2681,7 @@ font-size: 24px;
     background-color: transparent !important;
     box-shadow: none !important;
     padding: 8px 25px;
-    color: #000 !important;
+    color: #A77327 !important;
     text-decoration: none;
     border-radius: 30px;
     display: inline-block;
