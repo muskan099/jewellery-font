@@ -144,7 +144,7 @@ export const createNFTAuction = async (
 
   const nonce = await web3js.eth.getTransactionCount(from_account, "latest");
 
-  let tx = 0;
+  let tx;
   minPrice = "0x" + (minPrice * 1000000000000000000).toString(16);
 
   try {
@@ -200,6 +200,6 @@ export const createNFTAuction = async (
   } catch (e) {
     console.log(e);
   }
-  return tx;
+  return false;
 };
 

@@ -59,6 +59,7 @@ export const TokenApproval = async (price, address, forsale) => {
       return tx;
     }catch (e) {
       console.log(e);
+      return false;
     }
   }
    

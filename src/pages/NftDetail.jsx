@@ -229,7 +229,7 @@ function NftDetail() {
           } else {
             let tx = await Transaction({ tx: approveData });
             setCommonModel(true)
-            if (tx) {
+            if (tx.status) {
               let taboo_hash = true;
               if (taboo_hash) {
                 let hash = await BuyNFT(
@@ -285,9 +285,9 @@ function NftDetail() {
           
           let tx = await Transaction({ tx: approveData1 });
           
-          if (tx) {
+          if (tx.status) {
             try {
-              let hash = await Sale(walletAddress, nft.token_id, "1");
+              let hash = await Sale(walletAddress, nft.token_id, price);
               if (hash) {
                 setNftHash(hash.transactionHash);
                 let orderObj = { id: nft._id, status: "sold" };
@@ -409,7 +409,7 @@ function NftDetail() {
               toast.warn("Transaction Failed!");
             }
           } else {
-            toast.warn("Auction is ended!.");
+            toast.warn("Bidding Failed");
           }
         } else {
           toast.warn("Amount approval failed!");
@@ -424,13 +424,13 @@ function NftDetail() {
     }
   };
 
-const updateStatus = async() => {
-  const res = await axios.post('/updateContentStatus',{id: id ,
-    status:'active'})
-}
-useEffect(() => {
-  updateStatus();
-},[])
+// const updateStatus = async() => {
+//   const res = await axios.post('/updateContentStatus',{id: id ,
+//     status:'active'})
+// }
+// useEffect(() => {
+//   updateStatus();
+// },[])
 
   return (
     <>

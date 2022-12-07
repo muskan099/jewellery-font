@@ -17,16 +17,18 @@ export const MakeOffer = async (minPrice, token, from_account) => {
   const nonce = await web3js.eth.getTransactionCount(from_account, "latest");
 
   // token="10"
+  let amount = minPrice * Math.pow(10, 18);
+  amount = amount.toFixed(0);
 
-  let tx = 0;
-  minPrice = "0x" + (minPrice * 1000000000000000000).toString(16);
+  let tx;
 
   try {
     let estimates_gas = await web3js.eth.estimateGas({
       from: from_account,
       to: contractAddress,
+      value:amount,
       data: nftContract.methods
-        .makeBid(NftContractAddress, token,minPrice)
+        .makeBid(NftContractAddress, token,amount)
         .encodeABI(),
     });
 
@@ -40,9 +42,10 @@ export const MakeOffer = async (minPrice, token, from_account) => {
       nonce: nonce,
       gasPrice: gasPrice,
       gasLimit: gasLimit,
+      value: amount,
       //'maxPriorityFeePerGas': 1999999987,
       data: nftContract.methods
-        .makeBid(NftContractAddress, token,minPrice)
+        .makeBid(NftContractAddress, token,amount)
         .encodeABI(),
     };
 

@@ -426,15 +426,16 @@ export const Sale = async (selectedAccount, token, amount) => {
 
   const nonce = await web3js.eth.getTransactionCount(selectedAccount, "latest");
 
-  let hash = false;
+  let hash;
 
-  amount = "0x" + (amount * 1000000000000000000).toString(16);
+  amount = amount * Math.pow(10, 18);
+  amount = amount.toFixed(0);
 
   try {
     let estimates_gas = await web3js.eth.estimateGas({
       from: selectedAccount,
       to: contractAddress,
-      value: web3js.utils.toHex(web3js.utils.toWei("0", "gwei")),
+      value: amount,
       // value:'1'
       // value: BigInt(0 * 1000000000000000000).toString(),
       data: SaleContract.methods.buyNFT(NftContract, token).encodeABI(),
@@ -450,7 +451,7 @@ export const Sale = async (selectedAccount, token, amount) => {
       nonce: nonce,
       gasPrice: gasPrice,
       gasLimit: gasLimit,
-      value: web3js.utils.toHex(web3js.utils.toWei("0", "gwei")),
+      value: amount,
       //'maxPriorityFeePerGas': 1999999987,
       data: SaleContract.methods.buyNFT(NftContract, token).encodeABI(),
     };

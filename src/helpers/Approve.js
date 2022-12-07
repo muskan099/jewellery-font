@@ -22,7 +22,7 @@ export const ApproveTaboo = async (price, address) => {
 
   price = "0x" + (price * 1000000000000000000).toString(16);
 
-  let tx = false;
+  let tx;
 
   try {
     let estimates_gas = await web3js.eth.estimateGas({
@@ -51,5 +51,5 @@ export const ApproveTaboo = async (price, address) => {
   } catch (e) {
     console.log(e);
   }
-  return tx;
+  return false;
 };
