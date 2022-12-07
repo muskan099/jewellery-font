@@ -444,9 +444,9 @@ margin-top: 0;
 .details-table-sec.product-list-sec{
 	padding-bottom: 100px;
 }
-.table.table-details tr td {
+/* .table.table-details tr td {
     word-break: break-all;
-} 
+}  */
 
 @media (max-width:1300px){
     .table.table-details tr th{
@@ -2286,11 +2286,12 @@ filter: grayscale(0);
     flex-wrap: wrap;
     padding: 0;
   }
-  .table-details .btn-flex-btn .btn-sell1{
+  .table-details .btn-flex-btn .btn-sell1 {
     list-style: none;
-    width: 31.2%;
+    width: auto;
     margin: 8px;
-  }
+    word-break: initial;
+}
   @media (min-width: 320px) and (max-width: 767px){
     .transactions-table-new  {
         min-width: 1000px;
