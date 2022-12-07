@@ -291,7 +291,7 @@ function NftDetail() {
           }
           if (tx.status || tx) {
             try {
-              let hash = await Sale(walletAddress, nft.token_id, price);
+              let hash = await Sale(walletAddress, nft.token_id, "1");
               if (hash) {
                 setNftHash(hash.transactionHash);
                 let orderObj = { id: nft._id, status: "sold" };

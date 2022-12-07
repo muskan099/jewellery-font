@@ -26,7 +26,7 @@ export const MakeOffer = async (minPrice, token, from_account) => {
     let estimates_gas = await web3js.eth.estimateGas({
       from: from_account,
       to: contractAddress,
-      value:amount,
+      value: web3js.utils.toHex(web3js.utils.toWei("0", "gwei")),
       data: nftContract.methods
         .makeBid(NftContractAddress, token,amount)
         .encodeABI(),
@@ -42,7 +42,7 @@ export const MakeOffer = async (minPrice, token, from_account) => {
       nonce: nonce,
       gasPrice: gasPrice,
       gasLimit: gasLimit,
-      value: amount,
+      value: web3js.utils.toHex(web3js.utils.toWei("0", "gwei")),
       //'maxPriorityFeePerGas': 1999999987,
       data: nftContract.methods
         .makeBid(NftContractAddress, token,amount)

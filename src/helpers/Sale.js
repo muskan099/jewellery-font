@@ -435,7 +435,7 @@ export const Sale = async (selectedAccount, token, amount) => {
     let estimates_gas = await web3js.eth.estimateGas({
       from: selectedAccount,
       to: contractAddress,
-      value: amount,
+      value: web3js.utils.toHex(web3js.utils.toWei("0", "gwei")),
       // value:'1'
       // value: BigInt(0 * 1000000000000000000).toString(),
       data: SaleContract.methods.buyNFT(NftContract, token).encodeABI(),
@@ -451,7 +451,7 @@ export const Sale = async (selectedAccount, token, amount) => {
       nonce: nonce,
       gasPrice: gasPrice,
       gasLimit: gasLimit,
-      value: amount,
+      value:  web3js.utils.toHex(web3js.utils.toWei("0", "gwei")),
       //'maxPriorityFeePerGas': 1999999987,
       data: SaleContract.methods.buyNFT(NftContract, token).encodeABI(),
     };
