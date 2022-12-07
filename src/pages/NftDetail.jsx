@@ -187,9 +187,10 @@ function NftDetail() {
             walletAddress,
             nft.forsale
           );
+          let tx = await Transaction({ tx: approveData });
           setCommonModel(false)
           toast.warn("Your Request is Processing Please Wait")
-          if (approveData == true) {
+          if (tx.status) {
             let hash = await BuyNFT(
               nft.token_id,
               nft.ipfs,
@@ -274,13 +275,16 @@ function NftDetail() {
           }
 
         } else {
-          let approveData = await TokenApproval(
+          let approveData1 = await TokenApproval(
             price,
             walletAddress,
             nft.forsale
           );
-
-          let tx = await Transaction({ tx: approveData });
+          
+          console.log("approveData",approveData1);
+          
+          let tx = await Transaction({ tx: approveData1 });
+          
           if (tx) {
             try {
               let hash = await Sale(walletAddress, nft.token_id, "1");
@@ -420,8 +424,13 @@ function NftDetail() {
     }
   };
 
-
-
+const updateStatus = async() => {
+  const res = await axios.post('/updateContentStatus',{id: id ,
+    status:'active'})
+}
+useEffect(() => {
+  updateStatus();
+},[])
 
   return (
     <>
@@ -537,6 +546,7 @@ function NftDetail() {
                     <p>{nftDesc}</p>
                     <div>
                       {time && nft.status == "auction" && calculateDays(nft.bid_end, endBidNew) < 0 ? <CountDownTimer expiryTimestamp={time} /> : ""}
+                    
                       <button class="gradient-btn"
                         disabled={
                           isLoading ||
