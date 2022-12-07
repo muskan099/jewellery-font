@@ -448,6 +448,18 @@ margin-top: 0;
     word-break: break-all;
 } 
 
+@media (max-width:1300px){
+    .table.table-details tr th{
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px;
+    }
+    .table.table-details tr td{
+        font-size: 13px;
+        font-weight: 500;
+        padding: 10px;
+    }
+}
 @media (max-width:992px) {
     .details-side-content h4 {
         font-size: 28px;
