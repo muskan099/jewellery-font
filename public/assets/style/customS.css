@@ -2129,8 +2129,8 @@ filter: grayscale(0);
     font-weight: 400;
     border-radius: 6px;
     background: linear-gradient(90deg,#a77327,#efd67b 49.79%,#a77327);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    /* -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; */
     margin:1px;
     cursor: pointer;
 }
