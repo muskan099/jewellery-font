@@ -284,15 +284,15 @@ const[handleTab,setHandleTab] = useState("")
                     <table className="table table-details">
                       <thead>
                         <tr className="for-back">
-                          <th>S.No</th>
-                          <th>Image</th>
-                          <th>Name</th>
-                          <th>Buying Price</th>
-                          <th>Creator Address</th>
-                          <th>Transaction hash</th>
-                          <th>Token</th>
-                          <th>Status</th>
-                          <th width="20%">Action</th>
+                          <th width="5%">S.No</th>
+                          <th width="10%">Image</th>
+                          <th width="10%">Name</th>
+                          <th width="15%">Buying Price</th>
+                          <th width="15%">Creator Address</th>
+                          <th width="15%">Transaction hash</th>
+                          <th width="10%">Token</th>
+                          <th width="10%">Status</th>
+                          <th width="10%">Action</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -300,8 +300,8 @@ const[handleTab,setHandleTab] = useState("")
                         {handleTab == "active" ? data.filter((item) => item.contentInfo.status == "active" ).map((items, index) => {
                           return (
                             <tr className="for-body-tr" key={index}>
-                              <td className="td-break">{index + 1}</td>
-                              <td className="td-break">
+                              <td width="5%" className="td-break">{index + 1}</td>
+                              <td width="10%" className="td-break">
                                 <div
                                   onClick={() => {
                                     single_nft_data(items.contentInfo);
@@ -320,13 +320,13 @@ const[handleTab,setHandleTab] = useState("")
                                   />
                                 </div>
                               </td>
-                              <td className="td-break">{items.nftName}</td>
-                              <td className="td-break">{items.total}</td>
-                              <td className="td-break">
+                              <td width="10%" className="td-break">{items.nftName}</td>
+                              <td width="15%" className="td-break">{items.total}</td>
+                              <td width="15%" className="td-break">
                                 {items.wallet_address.slice(0, 3)}....{" "}
                                 {items.wallet_address.slice(-3)}
                               </td>
-                              <td className="td-break">
+                              <td width="15%" className="td-break">
                                 <a
                                   className="hash-color"
                                   href={`https://testnet.bscscan.com/tx/${items.hash}`}
@@ -338,11 +338,11 @@ const[handleTab,setHandleTab] = useState("")
                                   )}...${items.hash?.slice(-5)}`}
                                 </a>
                               </td>
-                              <td className="td-break">{items.token}</td>
-                              <td className="td-break success-green">
+                              <td width="10%" className="td-break">{items.token}</td>
+                              <td width="10%" className="td-break success-green">
                                 {items.status ? "success" : "success"}
                               </td>
-                              <td className="td-break">
+                              <td width="10%" className="td-break">
                                 {items.contentInfo.owner == walletAddress ? (
                                   <div className="btn-flex-btn">
                                     <button
