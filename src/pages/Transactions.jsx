@@ -395,8 +395,8 @@ const[handleTab,setHandleTab] = useState("")
                         }): handleTab == "sold" ? data.map((items, index) => {
                           return (
                             <tr className="for-body-tr" key={index}>
-                              <td className="td-break">{index + 1}</td>
-                              <td className="td-break">
+                              <td width="5%" className="td-break">{index + 1}</td>
+                              <td width="10%" className="td-break">
                                 <div
                                   onClick={() => {
                                     single_nft_data(items.contentInfo);
@@ -415,13 +415,13 @@ const[handleTab,setHandleTab] = useState("")
                                   />
                                 </div>
                               </td>
-                              <td className="td-break">{items.nftName}</td>
-                              <td className="td-break">{items.total}</td>
-                              <td className="td-break">
+                              <td width="10%" className="td-break">{items.nftName}</td>
+                              <td width="15%" className="td-break">{items.total}</td>
+                              <td width="15%" className="td-break">
                                 {items.wallet_address.slice(0, 3)}....{" "}
                                 {items.wallet_address.slice(-3)}
                               </td>
-                              <td className="td-break">
+                              <td width="15%" className="td-break">
                                 <a
                                   className="hash-color"
                                   href={`https://testnet.bscscan.com/tx/${items.hash}`}
@@ -433,11 +433,11 @@ const[handleTab,setHandleTab] = useState("")
                                   )}...${items.hash?.slice(-5)}`}
                                 </a>
                               </td>
-                              <td className="td-break">{items.token}</td>
-                              <td className="td-break success-green">
+                              <td width="10%" className="td-break">{items.token}</td>
+                              <td width="10%" className="td-break success-green">
                                 {items.status ? "success" : "success"}
                               </td>
-                              <td className="td-break">
+                              <td width="10%" className="td-break">
                                 {items.contentInfo.owner == walletAddress ? (
                                   <div className="btn-flex-btn">
                                     <button
@@ -490,8 +490,8 @@ const[handleTab,setHandleTab] = useState("")
                         }):data.map((items, index) => {
                           return (
                             <tr className="for-body-tr" key={index}>
-                              <td className="td-break">{index + 1}</td>
-                              <td className="td-break">
+                              <td width="5%" className="td-break">{index + 1}</td>
+                              <td width="10%" className="td-break">
                                 <div
                                   onClick={() => {
                                     single_nft_data(items.contentInfo);
@@ -510,13 +510,13 @@ const[handleTab,setHandleTab] = useState("")
                                   />
                                 </div>
                               </td>
-                              <td className="td-break">{items.nftName}</td>
-                              <td className="td-break">{items.total}</td>
-                              <td className="td-break">
+                              <td width="10%" className="td-break">{items.nftName}</td>
+                              <td width="15%" className="td-break">{items.total}</td>
+                              <td width="15%" className="td-break">
                                 {items.wallet_address.slice(0, 3)}....{" "}
                                 {items.wallet_address.slice(-3)}
                               </td>
-                              <td className="td-break">
+                              <td width="15%" className="td-break">
                                 <a
                                   className="hash-color"
                                   href={`https://testnet.bscscan.com/tx/${items.hash}`}
@@ -528,11 +528,11 @@ const[handleTab,setHandleTab] = useState("")
                                   )}...${items.hash?.slice(-5)}`}
                                 </a>
                               </td>
-                              <td className="td-break">{items.token}</td>
-                              <td className="td-break success-green">
+                              <td width="10%" className="td-break">{items.token}</td>
+                              <td width="10%" className="td-break success-green">
                                 {items.status ? "success" : "success"}
                               </td>
-                              <td className="td-break">
+                              <td width="10%" className="td-break">
                                 {items.contentInfo.owner == walletAddress ? (
                                   <div className="btn-flex-btn">
                                     <button
