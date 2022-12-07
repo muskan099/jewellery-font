@@ -187,13 +187,14 @@ function NftDetail() {
             walletAddress,
             nft.forsale
           );
+          
           let tx;
-          if(approveData !== false || approveData !== true){
+          if(approveData !== false ){
             tx = await Transaction({ tx: approveData });
           }
           setCommonModel(false)
           toast.warn("Your Request is Processing Please Wait")
-          if (tx.status || tx) {
+          if (tx) {
             let hash = await BuyNFT(
               nft.token_id,
               nft.ipfs,
@@ -230,9 +231,7 @@ function NftDetail() {
               navigate("/collections");
             }
           } else {
-            let tx = await Transaction({ tx: approveData });
-            setCommonModel(true)
-            if (tx.status) {
+          
               let taboo_hash = true;
               if (taboo_hash) {
                 let hash = await BuyNFT(
@@ -275,7 +274,7 @@ function NftDetail() {
                 setBuyStart(false);
               }
             }
-          }
+          
 
         } else {
           let approveData1 = await TokenApproval(
@@ -285,8 +284,8 @@ function NftDetail() {
           );
           
           console.log("approveData",approveData1);
-          let tx;
-          if(approveData1 !== false || approveData1 !== true){
+          let tx = true;
+          if(approveData1 !== false ){
             tx = await Transaction({ tx: approveData1 });
           }
           if (tx.status || tx) {
@@ -428,13 +427,16 @@ function NftDetail() {
     }
   };
 
-// const updateStatus = async() => {
-//   const res = await axios.post('/updateContentStatus',{id: id ,
-//     status:'active'})
-// }
-// useEffect(() => {
-//   updateStatus();
-// },[])
+const updateStatus = async() => {
+  const res = await axios.post('/updateContentStatus',{id: id ,
+    status:'active'})
+}
+useEffect(() => {
+  if(nft.status == 'auction' && calculateDays(nft.bid_end, endBidNew) > 0){
+
+    updateStatus();
+  }
+},[])
 
   return (
     <>
