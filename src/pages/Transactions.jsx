@@ -297,7 +297,7 @@ const[handleTab,setHandleTab] = useState("")
                       </thead>
                       <tbody>
                         {console.log({handleTab})}
-                        {handleTab == "active" ? data.filter((item) => item.contentInfo.status == "active" ).map((items, index) => {
+                        {handleTab == "active" ? data.filter((item) => item.contentInfo.forsale == "yes" ).map((items, index) => {
                           return (
                             <tr className="for-body-tr" key={index}>
                               <td width="5%" className="td-break">{index + 1}</td>
