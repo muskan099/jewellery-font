@@ -33,34 +33,34 @@ export const TokenApproval = async (price, address, forsale) => {
 
   price = "0x" + (price * 1000000000000000000).toString(16);
 
-  let tx = false;
+  let tx ;
 
   let allowance = (await JwlTokenContract.methods.allowance(address, spender).call())/1e18
   if(AllowancePrice <= allowance){
-    return true;
+    try {
+      let estimates_gas = await web3js.eth.estimateGas({
+        from: address,
+        to: JwlTokenAddress,
+        data: JwlTokenContract.methods.approve(spender, price).encodeABI(),
+      });
+      let gasLimit = web3js.utils.toHex(estimates_gas * 6);
+      let gasPrice_bal = await web3js.eth.getGasPrice();
+      let gasPrice = web3js.utils.toHex(gasPrice_bal * 2);
+  
+      tx = {
+        from: address,
+        to: JwlTokenAddress,
+        nonce: nonce,
+        gasPrice: gasPrice,
+        gasLimit: gasLimit,
+        //'maxPriorityFeePerGas': 1999999987,
+        data: JwlTokenContract.methods.approve(spender, price).encodeABI(),
+      };
+      return tx;
+    }catch (e) {
+      console.log(e);
+    }
   }
-  try {
-    let estimates_gas = await web3js.eth.estimateGas({
-      from: address,
-      to: JwlTokenAddress,
-      data: JwlTokenContract.methods.approve(spender, price).encodeABI(),
-    });
-    let gasLimit = web3js.utils.toHex(estimates_gas * 6);
-    let gasPrice_bal = await web3js.eth.getGasPrice();
-    let gasPrice = web3js.utils.toHex(gasPrice_bal * 2);
-
-    tx = {
-      from: address,
-      to: JwlTokenAddress,
-      nonce: nonce,
-      gasPrice: gasPrice,
-      gasLimit: gasLimit,
-      //'maxPriorityFeePerGas': 1999999987,
-      data: JwlTokenContract.methods.approve(spender, price).encodeABI(),
-    };
-    return tx;
-  } catch (e) {
-    console.log(e);
-  }
-  return tx;
+   
+  return false;
 };
