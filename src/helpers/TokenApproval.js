@@ -33,10 +33,10 @@ export const TokenApproval = async (price, address, forsale) => {
 
   price = "0x" + (price * 1000000000000000000).toString(16);
 
-  let tx ;
+  let tx;
 
   let allowance = (await JwlTokenContract.methods.allowance(address, spender).call())/1e18
-  if(AllowancePrice <= allowance){
+  if(AllowancePrice >= allowance){
     try {
       let estimates_gas = await web3js.eth.estimateGas({
         from: address,
@@ -63,5 +63,5 @@ export const TokenApproval = async (price, address, forsale) => {
     }
   }
    
-  return false;
+  return true;
 };

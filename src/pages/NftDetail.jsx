@@ -187,10 +187,13 @@ function NftDetail() {
             walletAddress,
             nft.forsale
           );
-          let tx = await Transaction({ tx: approveData });
+          let tx;
+          if(approveData !== false || approveData !== true){
+            tx = await Transaction({ tx: approveData });
+          }
           setCommonModel(false)
           toast.warn("Your Request is Processing Please Wait")
-          if (tx.status) {
+          if (tx.status || tx) {
             let hash = await BuyNFT(
               nft.token_id,
               nft.ipfs,
@@ -282,10 +285,11 @@ function NftDetail() {
           );
           
           console.log("approveData",approveData1);
-          
-          let tx = await Transaction({ tx: approveData1 });
-          
-          if (tx.status) {
+          let tx;
+          if(approveData1 !== false || approveData1 !== true){
+            tx = await Transaction({ tx: approveData1 });
+          }
+          if (tx.status || tx) {
             try {
               let hash = await Sale(walletAddress, nft.token_id, price);
               if (hash) {
