@@ -1,4 +1,5 @@
 import { web3 } from "./Web3Helper";
+import { toast } from "react-toastify";
 
 const NftContract = "0x296F47de09A37f1c67B081afA0F88aed37566d67";
 
@@ -484,6 +485,7 @@ export const CreateReSale = async (selectedAccount, token, price) => {
 
     hash = await web3js.eth.sendTransaction(tx);
   } catch (e) {
+    toast.error(e.message)
     console.log(e);
   }
   return hash;

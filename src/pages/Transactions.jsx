@@ -74,15 +74,15 @@ const[handleTab,setHandleTab] = useState("")
       setIsLoading(true);
       
       let tx = await CreateReSale(walletAddress, saleData.token, minPrice);
-      console.log("this is tx", tx);
+      
       if (tx) {
         let res = await axios.post("/update-content", {
           content_id: saleData.content_id,
           price: minPrice,
           forsale: "yes",
-         
+         hash:tx.transactionHash
         });
-        console.log("api called");
+        
         handleClose();
 
         setIsLoading(false);
@@ -199,20 +199,23 @@ const[handleTab,setHandleTab] = useState("")
   };
 
   const submitWithdrawSale = async () => {
-    console.log({ setSaleData });
+    isLoading(true)
+    
     let hash = await WithdrawSale(walletAddress, saleData.token_id);
-console.log("hash",hash)
+
     if (hash) {
       let res = await axios.post("/cancleSellNFT", {
         content_id: saleData._id,
         status: "sold",
         forsale: "no",
+        hash:hash.transactionHash
       });
 
       setShowSale(false);
 
       toast.success("Transaction submitted successfully!");
       window.location.reload(true);
+      isLoading(false)
     }
   };
   const handleStartAuction = (value) => {
