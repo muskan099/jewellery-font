@@ -254,7 +254,26 @@ function CreateNft() {
       toast.error("Please enter correct quantity!");
     } else if (category == "") {
       toast.error("category is required!");
-    } else {
+    } else if (width == "") {
+      toast.error("width is required!");
+    }else if (height == "") {
+      toast.error("height is required!");
+    }else if (purity == "") {
+      toast.error("purity is required!");
+    }else if (grossWeight == "") {
+      toast.error("grossWeight is required!");
+    }else if (size == "") {
+      toast.error("size is required!");
+    }else if (daimondType == "") {
+      toast.error("daimondType is required!");
+    }else if (settingType == "") {
+      toast.error("settingType is required!");
+    }else if (totalNumber == "") {
+      toast.error("TotalNumber is required!");
+    }else if (totalWeight == "") {
+      toast.error("TotalWeight is required!");
+    }
+    else {
      try 
       {
       setCreateStart(true);

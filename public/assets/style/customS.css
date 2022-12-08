@@ -3292,6 +3292,10 @@ gap: 20px;
     position: absolute;
     border: none;
 }
+.offer-disable{
+    padding: 12px 55px;
+    border-radius: 60px;
+}
  .paginate-right,.pagination{
     float: right;
 }

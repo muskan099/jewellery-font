@@ -72,6 +72,7 @@ const[handleTab,setHandleTab] = useState("")
 
     if (minPrice > 0) {
       setIsLoading(true);
+      
       let tx = await CreateReSale(walletAddress, saleData.token, minPrice);
       console.log("this is tx", tx);
       if (tx) {
@@ -79,6 +80,7 @@ const[handleTab,setHandleTab] = useState("")
           content_id: saleData.content_id,
           price: minPrice,
           forsale: "yes",
+          hash:tx
         });
         console.log("api called");
         handleClose();

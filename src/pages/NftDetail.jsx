@@ -572,7 +572,7 @@ useEffect(() => {
                           setCommonModel(true)
                         }}>   {nft.status == "auction" ? "Wait for Auction To End" : nft.status == "sold" ? "Sold Out" : processOngoing ? "Processing ": "Buy Now"}</button>
 
-                      <button class="border-btn"
+                      <button class={nft.status == "auction" ? "gradient-btn" : "offer-disable"}
                         onClick={() =>
                           nft.status == "auction" ?
                             setOfferStart(true) : ""}
