@@ -230,6 +230,7 @@ function NftDetail() {
               await handleBalance(walletAddress);
               setprocessOngoing(false);
               getData();
+              toast.success("NFT purchased successfully")
               navigate("/collections");
             }
           } else {

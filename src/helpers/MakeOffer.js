@@ -51,9 +51,12 @@ export const MakeOffer = async (minPrice, token, from_account) => {
     };
 
     return tx;
-  } catch (error) {
+  } catch (e) {
     toast.error("Execution reverted");
-    console.log(error)
+    console.log(e.message)
+    console.log(e.message["message"])
+    console.log(e.message.message)
+    console.log(e)
     
   }
   return tx;

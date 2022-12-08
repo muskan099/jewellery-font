@@ -307,7 +307,7 @@ function CreateNft() {
         formData.append("token_id", voucher.tokenId);
         formData.append("user_id", "62733f0715eb380c440489ee");
         dispatch(createNftSaga({ formData, toast , navigate}));
-        // toast.success("Nft Created Succesfully");
+        toast.success("Nft Created Succesfully");
         setCreateStart(false);
         // setTimeout(navigate("/marketplace"));
       }else{

@@ -80,7 +80,7 @@ const[handleTab,setHandleTab] = useState("")
           content_id: saleData.content_id,
           price: minPrice,
           forsale: "yes",
-          hash:tx
+         
         });
         console.log("api called");
         handleClose();
@@ -201,7 +201,7 @@ const[handleTab,setHandleTab] = useState("")
   const submitWithdrawSale = async () => {
     console.log({ setSaleData });
     let hash = await WithdrawSale(walletAddress, saleData.token_id);
-
+console.log("hash",hash)
     if (hash) {
       let res = await axios.post("/cancleSellNFT", {
         content_id: saleData._id,
