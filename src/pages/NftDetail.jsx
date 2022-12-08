@@ -98,6 +98,7 @@ function NftDetail() {
   const [settingType, setSettingType] = useState();
   const [totalNumber, setTotalNumber] = useState();
   const [totalWeight, setTotalWeight] = useState();
+  const[processOngoing,setprocessOngoing] = useState(false)
   // const [nftName , setNftName] = useState("")
   const endBid = moment(new Date(), "YYYY-MM-DD").format();
   const endBidNew = endBid.slice(0, 10)
@@ -171,6 +172,7 @@ function NftDetail() {
 
   const handleBuy = async (e) => {
     try {
+      setprocessOngoing(true);
       let price = parseFloat(nftPrice);
       if (!isAuthenticated) {
         toast.warn("Please connect wallet!");
@@ -226,7 +228,7 @@ function NftDetail() {
                 token: tokenId
               });
               await handleBalance(walletAddress);
-              setBuyStart(false);
+              setprocessOngoing(false);
               getData();
               navigate("/collections");
             }
@@ -313,7 +315,8 @@ function NftDetail() {
 
                 });
                 await handleBalance(walletAddress);
-
+                 toast.success("NFT bought Successfully")
+                 isLoading(false);
                 if (order) {
                   navigate("/collections");
                 }
@@ -384,8 +387,11 @@ function NftDetail() {
         let txra = await Transaction({ tx: approve });
 
         if (txra) {
+          
+          
+          
           let tx = await MakeOffer(offerPrice, nft.token_id, walletAddress); //axios.post('/make-offer',{address:walletAddress,taboo_amount:offerPrice});
-
+         console.log('tx',tx)
           if (tx) {
             let txObj = { tx: tx };
 
@@ -564,7 +570,7 @@ useEffect(() => {
 
                         onClick={() => {
                           setCommonModel(true)
-                        }}>   {nft.status == "auction" ? "Wait for Auction To End" : nft.status == "sold" ? "Sold Out" : "Buy Now"}</button>
+                        }}>   {nft.status == "auction" ? "Wait for Auction To End" : nft.status == "sold" ? "Sold Out" : processOngoing ? "Processing ": "Buy Now"}</button>
 
                       <button class="border-btn"
                         onClick={() =>

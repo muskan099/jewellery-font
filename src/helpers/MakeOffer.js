@@ -1,4 +1,5 @@
 import { web3 } from "./Web3Helper";
+import { toast } from "react-toastify";
 
 const contractAddress = "0xc24d2E07715b11b8E01CA57d3d63a4F6E2F9f3e1";
 
@@ -51,7 +52,8 @@ export const MakeOffer = async (minPrice, token, from_account) => {
 
     return tx;
   } catch (e) {
-    console.log(e);
+    toast.error(e["message"]);
+    
   }
   return tx;
 };

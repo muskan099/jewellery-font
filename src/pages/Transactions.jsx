@@ -321,7 +321,7 @@ const[handleTab,setHandleTab] = useState("")
                                 </div>
                               </td>
                               <td width="10%" className="td-break">{items.nftName}</td>
-                              <td width="15%" className="td-break">{items.total}</td>
+                              <td width="15%" className="td-break">{items.buying_Price}</td>
                               <td width="15%" className="td-break">
                                 {items.wallet_address.slice(0, 3)}....{" "}
                                 {items.wallet_address.slice(-3)}
