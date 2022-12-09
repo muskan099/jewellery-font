@@ -134,9 +134,6 @@ const[handleTab,setHandleTab] = useState("")
         isLoading: true,
         buttonMessage: "Processing Please Wait...",
       }));
-      //let address = walletAddress;
-
-      //let approveToken=await ApproveTabooNFT(ANft.token_id,walletAddress);
 
       console.log("anft", auctionData);
       let tx = await createNFTAuction(
@@ -238,12 +235,12 @@ const[handleTab,setHandleTab] = useState("")
                 <div>
                   <img
                     src="assets/images/ArtistCover_img.png"
-                    class="img-fluid"
+                    className="img-fluid"
                   />
                   <div className="artist-profile-box">
                     <img
                       src="assets/images/image 3.png"
-                      class="img-fluid artist-img"
+                      className="img-fluid artist-img"
                     />
                     <div>
                       <h2>Metamarse</h2>
@@ -266,10 +263,10 @@ const[handleTab,setHandleTab] = useState("")
             <Row>
               <Col>
                 <div id="category">
-                  <div class="tabs">
-                    <div class={handleTab === "" ? 'tab active': "tab "}onClick={() => setHandleTab("")}>Overview</div>
-                    <div class={handleTab === "sold" ? 'tab active': "tab "}  onClick={() => setHandleTab("sold")}>Purchased NFTs</div>
-                    <div class= {handleTab === "active" ? 'tab active': "tab "}  onClick={() => setHandleTab("active")}>On Sell NFTs</div>
+                  <div className="tabs">
+                    <div className={handleTab === "" ? 'tab active': "tab "}onClick={() => setHandleTab("")}>Overview</div>
+                    <div className={handleTab === "sold" ? 'tab active': "tab "}  onClick={() => setHandleTab("sold")}>Purchased NFTs</div>
+                    <div className= {handleTab === "active" ? 'tab active': "tab "}  onClick={() => setHandleTab("active")}>On Sell NFTs</div>
                   </div>
                 </div>
               </Col>
@@ -606,7 +603,7 @@ const[handleTab,setHandleTab] = useState("")
                         <h3 className="modal-header-h3">Create a Sell</h3>
                       </Modal.Header>
                       <Modal.Body className="modal-background">
-                        <div class="bid-modal-box">
+                        <div className="bid-modal-box">
                           <Form>
                             <Form.Group className="mb-3">
                               <Form.Label>Min Price (in jewellery)</Form.Label>
@@ -662,7 +659,7 @@ const[handleTab,setHandleTab] = useState("")
                             </Form.Group>
                           </Form>
 
-                          <div class="btn-sell-container">
+                          <div className="btn-sell-container">
                             <a
                               href="#"
                               className="blue-btn"
@@ -701,7 +698,7 @@ const[handleTab,setHandleTab] = useState("")
                         style={{ zIndex: "10000000" }}
                       ></Modal.Header>
                       <Modal.Body className="modal-background">
-                        <div class="bid-modal-box">
+                        <div className="bid-modal-box">
                           <h3>Create an Auction</h3>
                           <p className="bid-modal-box-p">
                             {" "}
@@ -751,7 +748,7 @@ const[handleTab,setHandleTab] = useState("")
                             </Form.Group>
                           </Form>
 
-                          <div class="btn-sell-container">
+                          <div className="btn-sell-container">
                             <button
                               className="blue-btn"
                               onClick={() => {

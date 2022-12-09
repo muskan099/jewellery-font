@@ -308,7 +308,7 @@ let current_date = current_date1.slice(0,10);
                <h3 className="modal-header-h3">Update Nft</h3>
           </Modal.Header>
           <Modal.Body className="modal-background">
-            <div class="bid-modal-box">
+            <div className="bid-modal-box">
             <Form>
                 <Form.Group className="mb-3">
                   <Form.Label>Id</Form.Label>
@@ -368,7 +368,7 @@ let current_date = current_date1.slice(0,10);
 
             
 
-              <div class="btn-sell-container">
+              <div className="btn-sell-container">
                 <a
                   href="#"
                   className="blue-btn"

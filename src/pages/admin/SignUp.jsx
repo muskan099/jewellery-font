@@ -127,7 +127,7 @@ const Signup = () => {
               <div className="row">
                 <div className="col-md-7">
                   <div className="img">
-                  <img src="assets/images/banner-img.png" class="img-fluid" />
+                  <img src="assets/images/banner-img.png" className="img-fluid" />
                   </div>
                 </div>
                 <div className="col-md-5">
@@ -136,11 +136,11 @@ const Signup = () => {
                     <div className="row">
                     {/* <div className="input-field">
                     <span>Upload File</span>
-                <div class="upload-img-box">
+                <div className="upload-img-box">
                   <div>
                     <div>PNG,JPG,GIF,WEBP or MP4, Max 20mb</div>
-                    <div class="upload-btn-wrapper">
-                      <button class="gradient-btn">Upload</button>
+                    <div className="upload-btn-wrapper">
+                      <button className="gradient-btn">Upload</button>
                       <input
                         type="file"
                         name="file"
@@ -151,7 +151,7 @@ const Signup = () => {
                   </div>
                 </div>
                 </div>
-                <div class="product-list-box create-nft-box">
+                <div className="product-list-box create-nft-box">
                 {photoUrl && (
                   <img className="img-main" src={photo.photoUrl} width={200} />
                 )}

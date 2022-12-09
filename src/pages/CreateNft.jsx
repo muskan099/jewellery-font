@@ -332,9 +332,9 @@ function CreateNft() {
           <Row>
             <Col lg={8}>
               <Form>
-                <ul class="select-transaction-list">
+                <ul className="select-transaction-list">
                   <li>
-                    <div class="radio">
+                    <div className="radio">
                       <label>
                         <input
                           type="radio"
@@ -342,38 +342,38 @@ function CreateNft() {
                           value="lazy"
                           checked
                         />
-                        <span class="cr">
-                          <i class="cr-icon fa fa-check"></i>
+                        <span className="cr">
+                          <i className="cr-icon fa fa-check"></i>
                         </span>
-                        <div class="bsc-block">
+                        <div className="bsc-block">
                           <span>Lazy Minting</span>
                         </div>
                       </label>
                     </div>
                   </li>
                   <li className="d-none">
-                    <div class="radio">
+                    <div className="radio">
                       <label>
                         <input type="radio" name="mint_type" value="normal" />
-                        <span class="cr">
-                          <i class="cr-icon fa fa-check"></i>
+                        <span className="cr">
+                          <i className="cr-icon fa fa-check"></i>
                         </span>
-                        <div class="bsc-block">
+                        <div className="bsc-block">
                           <span>Normal Minting</span>
                         </div>
                       </label>
                     </div>
                   </li>
                 </ul>
-                <ul class="select-transaction-list">
+                <ul className="select-transaction-list">
                   <li>
-                    <div class="radio">
+                    <div className="radio">
                       <label>
                         <input type="radio" onClick={(e) => handleChain(e)} />
-                        <span class="cr">
-                          <i class="cr-icon fa fa-check"></i>
+                        <span className="cr">
+                          <i className="cr-icon fa fa-check"></i>
                         </span>
-                        <div class="bsc-block">
+                        <div className="bsc-block">
                           <img src="assets/images/img-nft/bsc.png" />
                           <span>BSC</span>
                         </div>
@@ -383,11 +383,11 @@ function CreateNft() {
                 </ul>
 
                 <h3>Upload file</h3>
-                <div class="upload-img-box">
+                <div className="upload-img-box">
                   <div>
                     <div>PNG,JPG,GIF,WEBP or MP4, Max 20mb</div>
-                    <div class="upload-btn-wrapper">
-                      <button class="gradient-btn">Upload</button>
+                    <div className="upload-btn-wrapper">
+                      <button className="gradient-btn">Upload</button>
                       <input
                         type="file"
                         name="file"
@@ -591,7 +591,7 @@ function CreateNft() {
               </Form>
             </Col>
             <Col lg={4} sm={6} xs={12}>
-              <div class="product-list-box create-nft-box">
+              <div className="product-list-box create-nft-box">
                 {photoUrl && (
                   <img className="img-main" src={photo.photoUrl} width={200} />
                 )}

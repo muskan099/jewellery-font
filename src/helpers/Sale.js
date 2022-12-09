@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { web3 } from "./Web3Helper";
 
 const NftContract = "0x296F47de09A37f1c67B081afA0F88aed37566d67";
@@ -430,7 +431,7 @@ export const Sale = async (selectedAccount, token, amount) => {
 
   amount = amount * Math.pow(10, 18);
   amount = amount.toFixed(0);
-
+  let obj;
   try {
     let estimates_gas = await web3js.eth.estimateGas({
       from: selectedAccount,
@@ -457,9 +458,19 @@ export const Sale = async (selectedAccount, token, amount) => {
     };
 
     hash = await web3js.eth.sendTransaction(tx);
+    let msg = "Transaction Success";
+    obj = {
+      msg : msg,
+      hash : hash,
+    }
   } catch (e) {
-    console.log(e);
+    const code = e.message.replace('Internal JSON-RPC error.','');
+    let msg = JSON.parse(code).message
     hash = false;
+    obj = {
+      msg : msg,
+      hash : hash,
+    }
   }
-  return hash;
+  return obj;
 };

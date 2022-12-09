@@ -16,7 +16,7 @@ import { updateNftStatusSaga } from "../store/reducers/nftReducer";
 import { Sale } from "../helpers/Sale";
 import { clearNftDetail, getNftDetailSaga } from "../store/reducers/nftReducer";
 import moment from "moment";
-import { ApproveTaboo } from "../helpers/Approve";
+import { Allowance, AllowanceSale, ApproveJWL, ApproveJWL1 } from "../helpers/Approve";
 import { axios } from "../http";
 import FindNFTToken from "../helpers/FindNFTToken";
 import { TabooBalance } from "../helpers/TabooHelper";
@@ -24,24 +24,21 @@ import { loginSaga, logout } from "../store/reducers/authReducer";
 import Connect from "../helpers/Connect";
 import calculateDays from "../helpers/CalculateDays"
 import GraphRepresantation from "../Components/GraphRepresantation";
+
 function NftDetail() {
   const dispatch = useDispatch();
-
   const navigate = useNavigate()
   const JwlPrice = 10;
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
   const [auctionData, setAuctionData] = useState({
     offerPrice: "",
     auctionProcessing: false,
     buttonMessage: "",
   });
-
   const { offerPrice, auctionProcessing, buttonMessage } = auctionData;
   const [offerStart, setOfferStart] = useState(false);
-
   const {
     isAuthenticated,
     walletAddress,
@@ -67,7 +64,6 @@ function NftDetail() {
 
   const getData = () => {
     const data = { id: id };
-
     dispatch(getNftDetailSaga(data));
   };
   const [inputdata, setInputdata] = useState({
@@ -98,7 +94,7 @@ function NftDetail() {
   const [settingType, setSettingType] = useState();
   const [totalNumber, setTotalNumber] = useState();
   const [totalWeight, setTotalWeight] = useState();
-  const[processOngoing,setprocessOngoing] = useState(false)
+  const [processOngoing, setprocessOngoing] = useState(false)
   // const [nftName , setNftName] = useState("")
   const endBid = moment(new Date(), "YYYY-MM-DD").format();
   const endBidNew = endBid.slice(0, 10)
@@ -170,6 +166,86 @@ function NftDetail() {
     window.location.reload(true)
   }
 
+  const buyFunction = async (price) => {
+    const for_sale = nft.forsale === "no" ? true : false;
+    setCommonModel(false)
+    toast.warn("Your Request is Processing Please Wait")
+    let hash = await BuyNFT(
+      nft.token_id,
+      nft.ipfs,
+      price,
+      nft.signature,
+      nft.wallet_address
+    );
+    if (hash) {
+      let tokenId = await FindNFTToken(hash.hash, price);
+      // token=token+1;
+      //toast.success("Order placed successfully!")
+      let hashNFT = hash;
+      let Nft_hash = hash.hash.transactionHash;
+      hash = hash.hash.transactionHash;
+      hash = hash.substring(0, 5) + "....." + hash.substring(38, 42);
+      setNftHash(hash);
+      let orderObj = { id: nft._id, status: "sold" };
+      dispatch(updateNftStatusSaga(orderObj));
+      let order = await axiosMain.post("/transactionCreater", {
+        content_id: nft._id,
+        wallet_address: walletAddress,
+        status: "",
+        refund_status: "",
+        total: price,
+        type: "creator",
+        to_address: "0x9632a9b8afe7CbA98236bCc66b4C019EDC1CD1Cc",
+        hash: Nft_hash,
+        tokenUrl: nft.ipfs,
+        token: tokenId
+      });
+      await handleBalance(walletAddress);
+      setprocessOngoing(false);
+      getData();
+      if (order) {
+        toast.success("NFT purchased successfully")
+        navigate("/collections");
+      }
+    }
+  }
+
+  const sellFunction = async (price) => {
+    let hashobj = await Sale(walletAddress, nft.token_id, "1");
+    let hash = hashobj.hash;
+    let msg = hashobj.msg;
+    if (hash) {
+      setNftHash(hash.transactionHash);
+      let orderObj = { id: nft._id, status: "sold" };
+      let Nft_hash = hash.transactionHash;
+      dispatch(updateNftStatusSaga(orderObj));
+      let order = await axiosMain.post("/transactionCreater", {
+        content_id: nft._id,
+        wallet_address: walletAddress,
+        status: "",
+        refund_status: "",
+        total: price,
+        type: "creator",
+        to_address: "0x9632a9b8afe7CbA98236bCc66b4C019EDC1CD1Cc",
+        // amount: nft.price,
+        // tx_id: Nft_hash,
+        hash: Nft_hash,
+        tokenUrl: nft.ipfs,
+        token: nft.token_id,
+
+      });
+      await handleBalance(walletAddress);
+      if (order) {
+        toast.success("NFT bought Successfully")
+        navigate("/collections");
+      }
+      isLoading(false);
+    } else {
+      setBuyStart(false);
+      toast.error(msg)
+    }
+  }
+
   const handleBuy = async (e) => {
     try {
       setprocessOngoing(true);
@@ -181,197 +257,91 @@ function NftDetail() {
         toast.warn("You don't have sufficient amount");
       }
       else {
-        setBuyStart(true);
-        const for_sale = nft.forsale === "no" ? true : false;
-        if (for_sale) {
-          let approveData = await TokenApproval(
-            price,
-            walletAddress,
-            nft.forsale
-          );
-          
-          let tx;
-          if(approveData !== false ){
-            tx = await Transaction({ tx: approveData });
-          }
-          setCommonModel(false)
+        try {
           toast.warn("Your Request is Processing Please Wait")
-          if (tx) {
-            let hash = await BuyNFT(
-              nft.token_id,
-              nft.ipfs,
-              price,
-              nft.signature,
-              nft.wallet_address
-            );
-            if (hash) {
-              let tokenId = await FindNFTToken(hash.hash, price);
-              // token=token+1;
-              //toast.success("Order placed successfully!")
-              let hashNFT = hash;
-              let Nft_hash = hash.hash.transactionHash;
-              hash = hash.hash.transactionHash;
-              hash = hash.substring(0, 5) + "....." + hash.substring(38, 42);
-              setNftHash(hash);
-              let orderObj = { id: nft._id, status: "sold" };
-              dispatch(updateNftStatusSaga(orderObj));
-              let order = await axiosMain.post("/transactionCreater", {
-                content_id: nft._id,
-                wallet_address: walletAddress,
-                status: "",
-                refund_status: "",
-                total: price,
-                type: "creator",
-                to_address: "0x9632a9b8afe7CbA98236bCc66b4C019EDC1CD1Cc",
-                hash: Nft_hash,
-                tokenUrl: nft.ipfs,
-                token: tokenId
-              });
-              await handleBalance(walletAddress);
-              setprocessOngoing(false);
-              getData();
-              toast.success("NFT purchased successfully")
-              navigate("/collections");
+          setBuyStart(true);
+          const for_sale = nft.forsale === "no" ? true : false;
+          let allowance = await AllowanceSale(walletAddress, nft.forsale);
+          if (for_sale) {
+            if (allowance >= (price+price*0.05)) {
+              buyFunction(price);
+            } else {
+              let approve = await ApproveJWL(price, walletAddress, nft.forsale)
+              if (approve) {
+                buyFunction(price);
+              }
             }
           } else {
-          
-              let taboo_hash = true;
-              if (taboo_hash) {
-                let hash = await BuyNFT(
-                  nft.token_id,
-                  nft.ipfs,
-                  price,
-                  nft.signature,
-                  nft.wallet_address
-                );
-                if (hash) {
-                  let tokenId = await FindNFTToken(hash.hash, price);
-                  // token=token+1;
-                  //toast.success("Order placed successfully!")
-                  let hashNFT = hash;
-                  let Nft_hash = hash.hash.transactionHash;
-                  hash = hash.hash.transactionHash;
-                  hash = hash.substring(0, 5) + "....." + hash.substring(38, 42);
-                  setNftHash(hash);
-                  let orderObj = { id: nft._id, status: "sold" };
-                  dispatch(updateNftStatusSaga(orderObj));
-                  let order = await axiosMain.post("/transactionCreater", {
-                    content_id: nft._id,
-                    wallet_address: walletAddress,
-                    status: "",
-                    refund_status: "",
-                    total: price,
-                    type: "creator",
-                    to_address: "0x9632a9b8afe7CbA98236bCc66b4C019EDC1CD1Cc",
-                    hash: Nft_hash,
-                    tokenUrl: nft.ipfs,
-                    token: tokenId
-
-                  });
-                  await handleBalance(walletAddress);
-                  setBuyStart(false);
-                  getData();
-                  navigate("/collections");
-                }
-              } else if (!tx) {
-                setBuyStart(false);
+            if (allowance >= (price+price*0.05)) {
+              sellFunction(price);
+            } else {
+              let approve = await ApproveJWL(price, walletAddress, nft.forsale)
+              if (approve) {
+                sellFunction(price);
               }
             }
-          
-
-        } else {
-          let approveData1 = await TokenApproval(
-            price,
-            walletAddress,
-            nft.forsale
-          );
-          
-          console.log("approveData",approveData1);
-          let tx = true;
-          if(approveData1 !== false ){
-            tx = await Transaction({ tx: approveData1 });
           }
-          if (tx.status || tx) {
-            try {
-              let hash = await Sale(walletAddress, nft.token_id, "1");
-              if (hash) {
-                setNftHash(hash.transactionHash);
-                let orderObj = { id: nft._id, status: "sold" };
-                let hashNFT = hash;
-                let Nft_hash = hash.transactionHash;
-                dispatch(updateNftStatusSaga(orderObj));
-                let order = await axiosMain.post("/transactionCreater", {
-                  content_id: nft._id,
-                  wallet_address: walletAddress,
-                  status: "",
-                  refund_status: "",
-                  total: price,
-                  type: "creator",
-                  to_address: "0x9632a9b8afe7CbA98236bCc66b4C019EDC1CD1Cc",
-                  // amount: nft.price,
-                  // tx_id: Nft_hash,
-                  hash: Nft_hash,
-                  tokenUrl: nft.ipfs,
-                  token: nft.token_id,
-
-                });
-                await handleBalance(walletAddress);
-                 toast.success("NFT bought Successfully")
-                 isLoading(false);
-                if (order) {
-                  navigate("/collections");
-                }
-              } else {
-                setBuyStart(false);
-                toast.error("Owner cannot purchase his own NFT")
-              }
-            } catch (e) {
-              toast.error("Transaction Failed")
-            }
-          }
-
+        } catch (error) {
+          console.log(error);
+          toast.error("Buy NFT Failed.");
         }
       }
     } catch (e) {
       toast.error("Buying Failed")
     }
   };
+
   const [time, setTime] = useState(false);
   const handleBalance = async (address) => {
     //let address = await Connect();
     let balance = await TabooBalance(address)
     setBalance(balance)
     if (address && address.length) {
-      dispatch(loginSaga({ address: address, balance: balance}));
+      dispatch(loginSaga({ address: address, balance: balance }));
     }
   };
+
   useEffect(() => {
-
-
     if (nft && nft.bid_end) {
       let end_Date = nft.bid_end;
       let current_time = moment(end_Date, "YYYY-MM-DD HH:mm:ss").format();
       current_time = new Date(current_time);
       current_time.setSeconds(current_time.getSeconds() + 600);
       setTime(current_time);
-
     }
-
-
   }, [nft]);
 
+  const makeofferFunction = async() => {
+    let tx = await MakeOffer(offerPrice, nft.token_id, walletAddress); //axios.post('/make-offer',{address:walletAddress,taboo_amount:offerPrice});
+    if (tx) {
+      let txObj = { tx: tx };
 
-  const handleOfferPrice = (e) => {
-    let value = e.target.value;
+      let txdd = await Transaction(txObj);
 
-    if (isNaN(value)) {
-      e.target.value = "";
+      if (txdd) {
+        let res = await axios.post("/createOffer", {
+          content_id: nft._id,
+          wallet_address: walletAddress,
+          price: offerPrice,
+
+        });
+        setAuctionData((p) => ({
+          ...p,
+          auctionProcessing: false,
+          buttonMessage: "",
+        }));
+        getOffers();
+        toast.success("Offer Created");
+
+        setOfferStart(false)
+
+      } else {
+        toast.warn("Transaction Failed!");
+      }
     } else {
-      // setOffferPrice(value);
+      toast.warn("Bidding Failed");
     }
-  };
-
-
+  }
 
   const handleOffer = async () => {
     if (offerPrice == "") {
@@ -382,47 +352,13 @@ function NftDetail() {
         auctionProcessing: true,
         buttonMessage: "Processing Please Wait...",
       }));
-      let approve = await ApproveTaboo(offerPrice, walletAddress);
-
-      if (approve) {
-        let txra = await Transaction({ tx: approve });
-
-        if (txra) {
-          
-          
-          
-          let tx = await MakeOffer(offerPrice, nft.token_id, walletAddress); //axios.post('/make-offer',{address:walletAddress,taboo_amount:offerPrice});
-         console.log('tx',tx)
-          if (tx) {
-            let txObj = { tx: tx };
-
-            let txdd = await Transaction(txObj);
-
-            if (txdd) {
-              let res = await axios.post("/createOffer", {
-                content_id: nft._id,
-                wallet_address: walletAddress,
-                price: offerPrice,
-
-              });
-              setAuctionData((p) => ({
-                ...p,
-                auctionProcessing: false,
-                buttonMessage: "",
-              }));
-              getOffers();
-              toast.success("Offer Created");
-
-              setOfferStart(false)
-
-            } else {
-              toast.warn("Transaction Failed!");
-            }
-          } else {
-            toast.warn("Bidding Failed");
-          }
-        } else {
-          toast.warn("Amount approval failed!");
+      let allowance = await Allowance(walletAddress);
+      if (allowance >= (offerPrice+offerPrice*0.05)) {
+        makeofferFunction();
+      }else{
+        let approve = await ApproveJWL1(offerPrice, walletAddress);
+        if(approve){
+          makeofferFunction();
         }
       }
       setAuctionData((p) => ({
@@ -434,16 +370,18 @@ function NftDetail() {
     }
   };
 
-const updateStatus = async() => {
-  const res = await axios.post('/updateContentStatus',{id: id ,
-    status:'active'})
-}
-useEffect(() => {
-  if(nft.status == 'auction' && calculateDays(nft.bid_end, endBidNew) > 0){
-
-    updateStatus();
+  const updateStatus = async () => {
+    const res = await axios.post('/updateContentStatus', {
+      id: id,
+      status: 'active'
+    })
   }
-},[])
+
+  useEffect(() => {
+    if (nft.status == 'auction' && calculateDays(nft.bid_end, endBidNew) > 0) {
+      updateStatus();
+    }
+  }, [])
 
   return (
     <>
@@ -455,11 +393,11 @@ useEffect(() => {
               <Row className="align-items-center">
                 <Col lg={5} md={6}>
                   <div>
-                    <img src={nftImages} class="img-fluid" />
+                    <img src={nftImages} className="img-fluid" />
                   </div>
                 </Col>
                 <Col lg={6} md={6} className="ms-auto">
-                  <div class="details-side-content">
+                  <div className="details-side-content">
                     <h4>{nftName}</h4>
                     <button className="view-description" onClick={() => setShowDescription(true)}>View Description</button>
                     <Modal
@@ -480,7 +418,7 @@ useEffect(() => {
                       </Modal.Header>
                       <Modal.Body className="modal-background background-color">
 
-                        <div class="bid-modal-box">
+                        <div className="bid-modal-box">
                           <h3 className="modal-header-h3">{nftName}</h3>
                           <Row className="desc-row">
                             <Col lg={5} md={6} className="div-border">
@@ -559,8 +497,8 @@ useEffect(() => {
                     <p>{nftDesc}</p>
                     <div>
                       {time && nft.status == "auction" && calculateDays(nft.bid_end, endBidNew) < 0 ? <CountDownTimer expiryTimestamp={time} /> : ""}
-                    
-                      <button class="gradient-btn"
+
+                      <button className="gradient-btn"
                         disabled={
                           isLoading ||
                             nft.status == "sold" ||
@@ -571,9 +509,9 @@ useEffect(() => {
 
                         onClick={() => {
                           setCommonModel(true)
-                        }}>   {nft.status == "auction" ? "Wait for Auction To End" : nft.status == "sold" ? "Sold Out" : processOngoing ? "Processing ": "Buy Now"}</button>
+                        }}>   {nft.status == "auction" ? "Wait for Auction To End" : nft.status == "sold" ? "Sold Out" : processOngoing ? "Processing " : "Buy Now"}</button>
 
-                      <button class={nft.status == "auction" ? "gradient-btn" : "offer-disable"}
+                      <button className={nft.status == "auction" ? "gradient-btn" : "offer-disable"}
                         onClick={() =>
                           nft.status == "auction" ?
                             setOfferStart(true) : ""}
@@ -596,7 +534,7 @@ useEffect(() => {
                       </Modal.Body>
                     </Modal>
                     <h5>About Creator :</h5>
-                    <div class="fex-box-user">
+                    <div className="fex-box-user">
                       <img src="assets/images/img-nft/user.png" />
                       <div>
                         {/* <h6>{nftName}</h6> */}
@@ -612,9 +550,9 @@ useEffect(() => {
             <Container>
               <Row>
                 <Col md={12}>
-                  <h3 class="heading-box-new"><span>Current offers</span> <a href="">See all <img src="assets/images/img-nft/arrow-gred.png" /></a></h3>
-                  <div class="table-responsive">
-                    <table class="table table-details">
+                  <h3 className="heading-box-new"><span>Current offers</span> <a href="">See all <img src="assets/images/img-nft/arrow-gred.png" /></a></h3>
+                  <div className="table-responsive">
+                    <table className="table table-details">
                       <thead>
                         <tr>
                           <th>Wallet Address</th>
@@ -643,8 +581,8 @@ useEffect(() => {
             <Container>
               <Row>
                 <Col md={12}>
-                  <h3 class="heading-box-new"><span>Pricing History</span> </h3>
-                  <div class="graph-dimensions">
+                  <h3 className="heading-box-new"><span>Pricing History</span> </h3>
+                  <div className="graph-dimensions">
 
                     {nftId ? <GraphRepresantation id={nftId} /> : ""}
                   </div>
@@ -654,21 +592,21 @@ useEffect(() => {
           </section>
           <section className="details-table-sec product-list-sec ">
             <Container>
-              <h3 class="heading-box-new"><span>Releted NFTs</span> <a href="/marketplace">See all <img src="assets/images/img-nft/arrow-gred.png" /></a></h3>
+              <h3 className="heading-box-new"><span>Releted NFTs</span> <a href="/marketplace">See all <img src="assets/images/img-nft/arrow-gred.png" /></a></h3>
               <Row>
                 {relatedNFT ? relatedNFT.map((items, index) => {
                   return (
                     <Col lg={3} md={6} key={index}>
-                      <div class="product-list-box">
+                      <div className="product-list-box">
                         <div onClick={() => {
                           single_nft_data(items)
                         }}>
-                          <img src={items.images} class="img-fluid img-main-box" />
+                          <img src={items.images} className="img-fluid img-main-box" />
                         </div>
                         <div>
                           <h5>{items.name}</h5>
 
-                          <div class="d-flex justify-content-between">
+                          <div className="d-flex justify-content-between">
                             <h6>Price:   {items.price}JWL (${parseFloat(items.price) * 0.01})</h6>
 
                           </div>
@@ -694,7 +632,7 @@ useEffect(() => {
             >
               <Modal.Header style={{ borderBottom: "1px solid #a77327" }} closeButton={handleCommonModel}></Modal.Header>
               <Modal.Body>
-                <div class="bid-modal-box">
+                <div className="bid-modal-box">
                   <h3>Checkout</h3>
                   <br />
                   <Table className="table-your-balance">
@@ -725,12 +663,12 @@ useEffect(() => {
                     </tbody>
                   </Table>
                   <div style={{ display: "flex", justifyContent: "center" }}>
-                    <a class="gradient-btn1 m-1" disabled={buyStart ? true : false} onClick={() => {
+                    <a className="gradient-btn1 m-1" disabled={buyStart ? true : false} onClick={() => {
                       handleBuy()
                     }}>{buyStart ? "Processing" : "Continue"}</a>
-                    <a class="gradient-btn1 m-1" onClick={() => {
+                    <a className="gradient-btn1 m-1" onClick={() => {
                       setCommonModel(false)
-                    }}>cancel</a>
+                    }}>Cancel</a>
                   </div>
                 </div>
               </Modal.Body>
@@ -747,7 +685,7 @@ useEffect(() => {
             >
               <Modal.Header style={{ borderBottom: "1px solid #a77327" }} closeButton={handleCommonModel}></Modal.Header>
               <Modal.Body>
-                <div class="bid-modal-box">
+                <div className="bid-modal-box">
                   <h3>Checkout</h3>
                   <br />
                   <Table className="table-your-balance">
@@ -778,12 +716,12 @@ useEffect(() => {
                     </tbody>
                   </Table>
                   <div style={{ display: "flex", justifyContent: "center" }}>
-                    <a class="gradient-btn1 m-1" onClick={() => {
+                    <a className="gradient-btn1 m-1" onClick={() => {
                       toast.warn("Coming Soon")
-                    }}> continue</a>
-                    <a class="gradient-btn1 m-1" onClick={() => {
+                    }}> Continue</a>
+                    <a className="gradient-btn1 m-1" onClick={() => {
                       setCommonModel1(false)
-                    }}>cancel</a>
+                    }}>Cancel</a>
                   </div>
                 </div>
               </Modal.Body>
@@ -802,7 +740,7 @@ useEffect(() => {
                 style={{ borderBottom: "1px solid #a77327" }}
               ></Modal.Header>
               <Modal.Body>
-                <div class="bid-modal-box">
+                <div className="bid-modal-box">
                   <h3>Create an Offer</h3>
                   <p className="about-bid-pera">You are about to place a bid for </p>
                   <Form>
@@ -836,9 +774,9 @@ useEffect(() => {
                       <a href="" className="gradient-btn1 m-1" onClick={handleOfferStart}>
                         Cancel
                       </a>
-                  </div>
+                    </div>
                   </Form>
-                
+
                 </div>
               </Modal.Body>
             </Modal>

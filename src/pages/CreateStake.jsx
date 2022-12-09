@@ -241,7 +241,7 @@ function CreateStake() {
 
                                                 <Form.Label>Select Duration</Form.Label>
                                                 <div className="radio-check-time">
-                                                <div class="radio">
+                                                <div className="radio">
                                                     <label>
                                                     <input
                                                         type="radio"
@@ -250,15 +250,15 @@ function CreateStake() {
                                                         checked={stakeTime==3?true:false}
                                                         onChange={(e)=>handleStakeTime(e)}
                                                       />
-                                                      <span class="cr">
-                                                        <i class="cr-icon fa fa-check"></i>
+                                                      <span className="cr">
+                                                        <i className="cr-icon fa fa-check"></i>
                                                       </span>
-                                                      <div class="bsc-block">
+                                                      <div className="bsc-block">
                                                         <span>3 Month</span>
                                                       </div>
                                                     </label>
                                                   </div>
-                                                  <div class="radio">
+                                                  <div className="radio">
                                                     <label>
                                                     <input
                                                         type="radio"
@@ -268,15 +268,15 @@ function CreateStake() {
                                                         onChange={(e)=>handleStakeTime(e)}
                                                         
                                                       />
-                                                      <span class="cr">
-                                                        <i class="cr-icon fa fa-check"></i>
+                                                      <span className="cr">
+                                                        <i className="cr-icon fa fa-check"></i>
                                                       </span>
-                                                      <div class="bsc-block">
+                                                      <div className="bsc-block">
                                                         <span>6 Month</span>
                                                       </div>
                                                     </label>
                                                   </div>
-                                                  <div class="radio">
+                                                  <div className="radio">
                                                     <label>
                                                     <input
                                                         type="radio"
@@ -286,10 +286,10 @@ function CreateStake() {
                                                         onChange={(e)=>handleStakeTime(e)}
                                                         
                                                       />
-                                                      <span class="cr">
-                                                        <i class="cr-icon fa fa-check"></i>
+                                                      <span className="cr">
+                                                        <i className="cr-icon fa fa-check"></i>
                                                       </span>
-                                                      <div class="bsc-block">
+                                                      <div className="bsc-block">
                                                         <span>12 Month</span>
                                                       </div>
                                                     </label>
