@@ -27,9 +27,9 @@ const StoreOverview = () => {
               <Row>
                   <Col>
                      <div>
-                        <img src="assets/images/ArtistCover_img.png" class="img-fluid" />
+                        <img src="assets/images/ArtistCover_img.png" className="img-fluid" />
                         <div className="artist-profile-box">
-                           <img src="assets/images/image 3.png" class="img-fluid artist-img" />
+                           <img src="assets/images/image 3.png" className="img-fluid artist-img" />
                            <div>
                               <h2>Metamarse</h2>
                               <p>@marse_meta00</p>
@@ -51,140 +51,140 @@ const StoreOverview = () => {
                             >
                               <Tab eventKey="Overview" title="Overview">
                                  <div>
-                                 <h3 class="heading-box-new"><span>Overview Tranding NFT</span> <a href="">See all <img src="assets/images/img-nft/arrow-gred.png" /></a></h3>
+                                 <h3 className="heading-box-new"><span>Overview Tranding NFT</span> <a href="">See all <img src="assets/images/img-nft/arrow-gred.png" /></a></h3>
                                     <Row>
                                       <Col lg={3} md={6} sm={6}>
-                                         <div class="product-list-box">
-                                            <img src="assets/images/img-nft/list-img.png" class="img-fluid" />
+                                         <div className="product-list-box">
+                                            <img src="assets/images/img-nft/list-img.png" className="img-fluid" />
                                             <div>
                                               <h5>Azuki 3D </h5>
                                               <p>AZUKI.JP</p>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <h6>1.5 ETH</h6>
                                                 <h6>$1907</h6>
                                               </div>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <p>Floor Price </p>
-                                                <p class="green-color"><span>+1.6%</span></p>
+                                                <p className="green-color"><span>+1.6%</span></p>
                                               </div>
                                             </div>
                                           </div>
                                       </Col>
                                       <Col lg={3} md={6} sm={6}>
-                                         <div class="product-list-box">
-                                            <img src="assets/images/img-nft/list-img.png" class="img-fluid" />
+                                         <div className="product-list-box">
+                                            <img src="assets/images/img-nft/list-img.png" className="img-fluid" />
                                             <div>
                                               <h5>Azuki 3D </h5>
                                               <p>AZUKI.JP</p>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <h6>1.5 ETH</h6>
                                                 <h6>$1907</h6>
                                               </div>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <p>Floor Price </p>
-                                                <p class="red-text">+1.6%</p>
+                                                <p className="red-text">+1.6%</p>
                                               </div>
                                             </div>
                                           </div>
                                       </Col>
                                       <Col lg={3} md={6} sm={6}>
-                                         <div class="product-list-box">
-                                            <img src="assets/images/img-nft/list-img.png" class="img-fluid" />
+                                         <div className="product-list-box">
+                                            <img src="assets/images/img-nft/list-img.png" className="img-fluid" />
                                             <div>
                                               <h5>Azuki 3D </h5>
                                               <p>AZUKI.JP</p>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <h6>1.5 ETH</h6>
                                                 <h6>$1907</h6>
                                               </div>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <p>Floor Price </p>
-                                                <p class="green-text"><span>+1.6%</span></p>
+                                                <p className="green-text"><span>+1.6%</span></p>
                                               </div>
                                             </div>
                                           </div>
                                       </Col>
                                       <Col lg={3} md={6} sm={6}>
-                                         <div class="product-list-box">
-                                            <img src="assets/images/img-nft/list-img.png" class="img-fluid" />
+                                         <div className="product-list-box">
+                                            <img src="assets/images/img-nft/list-img.png" className="img-fluid" />
                                             <div>
                                               <h5>Azuki 3D </h5>
                                               <p>AZUKI.JP</p>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <h6>1.5 ETH</h6>
                                                 <h6>$1907</h6>
                                               </div>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <p>Floor Price </p>
-                                                <p class="green-color"><span>+1.6%</span></p>
+                                                <p className="green-color"><span>+1.6%</span></p>
                                               </div>
                                             </div>
                                           </div>
                                       </Col>
                                       <Col lg={3} md={6} sm={6}>
-                                         <div class="product-list-box">
-                                            <img src="assets/images/img-nft/list-img.png" class="img-fluid" />
+                                         <div className="product-list-box">
+                                            <img src="assets/images/img-nft/list-img.png" className="img-fluid" />
                                             <div>
                                               <h5>Azuki 3D </h5>
                                               <p>AZUKI.JP</p>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <h6>1.5 ETH</h6>
                                                 <h6>$1907</h6>
                                               </div>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <p>Floor Price </p>
-                                                <p class="green-color"><span>+1.6%</span></p>
+                                                <p className="green-color"><span>+1.6%</span></p>
                                               </div>
                                             </div>
                                           </div>
                                       </Col>
                                       <Col lg={3} md={6} sm={6}>
-                                         <div class="product-list-box">
-                                            <img src="assets/images/img-nft/list-img.png" class="img-fluid" />
+                                         <div className="product-list-box">
+                                            <img src="assets/images/img-nft/list-img.png" className="img-fluid" />
                                             <div>
                                               <h5>Azuki 3D </h5>
                                               <p>AZUKI.JP</p>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <h6>1.5 ETH</h6>
                                                 <h6>$1907</h6>
                                               </div>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <p>Floor Price </p>
-                                                <p class="green-color"><span>+1.6%</span></p>
+                                                <p className="green-color"><span>+1.6%</span></p>
                                               </div>
                                             </div>
                                           </div>
                                       </Col>
                                       <Col lg={3} md={6} sm={6}>
-                                         <div class="product-list-box">
-                                            <img src="assets/images/img-nft/list-img.png" class="img-fluid" />
+                                         <div className="product-list-box">
+                                            <img src="assets/images/img-nft/list-img.png" className="img-fluid" />
                                             <div>
                                               <h5>Azuki 3D </h5>
                                               <p>AZUKI.JP</p>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <h6>1.5 ETH</h6>
                                                 <h6>$1907</h6>
                                               </div>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <p>Floor Price </p>
-                                                <p class="green-color"><span>+1.6%</span></p>
+                                                <p className="green-color"><span>+1.6%</span></p>
                                               </div>
                                             </div>
                                           </div>
                                       </Col>
                                       <Col lg={3} md={6} sm={6}>
-                                         <div class="product-list-box">
-                                            <img src="assets/images/img-nft/list-img.png" class="img-fluid" />
+                                         <div className="product-list-box">
+                                            <img src="assets/images/img-nft/list-img.png" className="img-fluid" />
                                             <div>
                                               <h5>Azuki 3D </h5>
                                               <p>AZUKI.JP</p>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <h6>1.5 ETH</h6>
                                                 <h6>$1907</h6>
                                               </div>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <p>Floor Price </p>
-                                                <p class="green-color"><span>+1.6%</span></p>
+                                                <p className="green-color"><span>+1.6%</span></p>
                                               </div>
                                             </div>
                                           </div>
@@ -194,140 +194,140 @@ const StoreOverview = () => {
                               </Tab>
                               <Tab eventKey="Purchased NFTs" title="Purchased NFTs">
                               <div>
-                              <h3 class="heading-box-new"><span>Purchased Tranding NFT</span> <a href="">See all <img src="assets/images/img-nft/arrow-gred.png" /></a></h3>
+                              <h3 className="heading-box-new"><span>Purchased Tranding NFT</span> <a href="">See all <img src="assets/images/img-nft/arrow-gred.png" /></a></h3>
                                     <Row>
                                       <Col lg={3} md={6} sm={6}>
-                                         <div class="product-list-box">
-                                            <img src="assets/images/img-nft/list-img.png" class="img-fluid" />
+                                         <div className="product-list-box">
+                                            <img src="assets/images/img-nft/list-img.png" className="img-fluid" />
                                             <div>
                                               <h5>Azuki 3D </h5>
                                               <p>AZUKI.JP</p>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <h6>1.5 ETH</h6>
                                                 <h6>$1907</h6>
                                               </div>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <p>Floor Price </p>
-                                                <p class="green-color"><span>+1.6%</span></p>
+                                                <p className="green-color"><span>+1.6%</span></p>
                                               </div>
                                             </div>
                                           </div>
                                       </Col>
                                       <Col lg={3} md={6} sm={6}>
-                                         <div class="product-list-box">
-                                            <img src="assets/images/img-nft/list-img.png" class="img-fluid" />
+                                         <div className="product-list-box">
+                                            <img src="assets/images/img-nft/list-img.png" className="img-fluid" />
                                             <div>
                                               <h5>Azuki 3D </h5>
                                               <p>AZUKI.JP</p>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <h6>1.5 ETH</h6>
                                                 <h6>$1907</h6>
                                               </div>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <p>Floor Price </p>
-                                                <p class="red-text">+1.6%</p>
+                                                <p className="red-text">+1.6%</p>
                                               </div>
                                             </div>
                                           </div>
                                       </Col>
                                       <Col lg={3} md={6} sm={6}>
-                                         <div class="product-list-box">
-                                            <img src="assets/images/img-nft/list-img.png" class="img-fluid" />
+                                         <div className="product-list-box">
+                                            <img src="assets/images/img-nft/list-img.png" className="img-fluid" />
                                             <div>
                                               <h5>Azuki 3D </h5>
                                               <p>AZUKI.JP</p>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <h6>1.5 ETH</h6>
                                                 <h6>$1907</h6>
                                               </div>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <p>Floor Price </p>
-                                                <p class="green-text"><span>+1.6%</span></p>
+                                                <p className="green-text"><span>+1.6%</span></p>
                                               </div>
                                             </div>
                                           </div>
                                       </Col>
                                       <Col lg={3} md={6} sm={6}>
-                                         <div class="product-list-box">
-                                            <img src="assets/images/img-nft/list-img.png" class="img-fluid" />
+                                         <div className="product-list-box">
+                                            <img src="assets/images/img-nft/list-img.png" className="img-fluid" />
                                             <div>
                                               <h5>Azuki 3D </h5>
                                               <p>AZUKI.JP</p>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <h6>1.5 ETH</h6>
                                                 <h6>$1907</h6>
                                               </div>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <p>Floor Price </p>
-                                                <p class="green-color"><span>+1.6%</span></p>
+                                                <p className="green-color"><span>+1.6%</span></p>
                                               </div>
                                             </div>
                                           </div>
                                       </Col>
                                       <Col lg={3} md={6} sm={6}>
-                                         <div class="product-list-box">
-                                            <img src="assets/images/img-nft/list-img.png" class="img-fluid" />
+                                         <div className="product-list-box">
+                                            <img src="assets/images/img-nft/list-img.png" className="img-fluid" />
                                             <div>
                                               <h5>Azuki 3D </h5>
                                               <p>AZUKI.JP</p>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <h6>1.5 ETH</h6>
                                                 <h6>$1907</h6>
                                               </div>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <p>Floor Price </p>
-                                                <p class="green-color"><span>+1.6%</span></p>
+                                                <p className="green-color"><span>+1.6%</span></p>
                                               </div>
                                             </div>
                                           </div>
                                       </Col>
                                       <Col lg={3} md={6} sm={6}>
-                                         <div class="product-list-box">
-                                            <img src="assets/images/img-nft/list-img.png" class="img-fluid" />
+                                         <div className="product-list-box">
+                                            <img src="assets/images/img-nft/list-img.png" className="img-fluid" />
                                             <div>
                                               <h5>Azuki 3D </h5>
                                               <p>AZUKI.JP</p>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <h6>1.5 ETH</h6>
                                                 <h6>$1907</h6>
                                               </div>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <p>Floor Price </p>
-                                                <p class="green-color"><span>+1.6%</span></p>
+                                                <p className="green-color"><span>+1.6%</span></p>
                                               </div>
                                             </div>
                                           </div>
                                       </Col>
                                       <Col lg={3} md={6} sm={6}>
-                                         <div class="product-list-box">
-                                            <img src="assets/images/img-nft/list-img.png" class="img-fluid" />
+                                         <div className="product-list-box">
+                                            <img src="assets/images/img-nft/list-img.png" className="img-fluid" />
                                             <div>
                                               <h5>Azuki 3D </h5>
                                               <p>AZUKI.JP</p>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <h6>1.5 ETH</h6>
                                                 <h6>$1907</h6>
                                               </div>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <p>Floor Price </p>
-                                                <p class="green-color"><span>+1.6%</span></p>
+                                                <p className="green-color"><span>+1.6%</span></p>
                                               </div>
                                             </div>
                                           </div>
                                       </Col>
                                       <Col lg={3} md={6} sm={6}>
-                                         <div class="product-list-box">
-                                            <img src="assets/images/img-nft/list-img.png" class="img-fluid" />
+                                         <div className="product-list-box">
+                                            <img src="assets/images/img-nft/list-img.png" className="img-fluid" />
                                             <div>
                                               <h5>Azuki 3D </h5>
                                               <p>AZUKI.JP</p>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <h6>1.5 ETH</h6>
                                                 <h6>$1907</h6>
                                               </div>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <p>Floor Price </p>
-                                                <p class="green-color"><span>+1.6%</span></p>
+                                                <p className="green-color"><span>+1.6%</span></p>
                                               </div>
                                             </div>
                                           </div>
@@ -337,140 +337,140 @@ const StoreOverview = () => {
                               </Tab>
                               <Tab eventKey="On Sell NFTs" title="On Sell NFTs">
                               <div>
-                              <h3 class="heading-box-new"><span>On Sell Tranding NFT</span> <a href="">See all <img src="assets/images/img-nft/arrow-gred.png" /></a></h3>
+                              <h3 className="heading-box-new"><span>On Sell Tranding NFT</span> <a href="">See all <img src="assets/images/img-nft/arrow-gred.png" /></a></h3>
                                     <Row>
                                       <Col lg={3} md={6} sm={6}>
-                                         <div class="product-list-box">
-                                            <img src="assets/images/img-nft/list-img.png" class="img-fluid" />
+                                         <div className="product-list-box">
+                                            <img src="assets/images/img-nft/list-img.png" className="img-fluid" />
                                             <div>
                                               <h5>Azuki 3D </h5>
                                               <p>AZUKI.JP</p>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <h6>1.5 ETH</h6>
                                                 <h6>$1907</h6>
                                               </div>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <p>Floor Price </p>
-                                                <p class="green-color"><span>+1.6%</span></p>
+                                                <p className="green-color"><span>+1.6%</span></p>
                                               </div>
                                             </div>
                                           </div>
                                       </Col>
                                       <Col lg={3} md={6} sm={6}>
-                                         <div class="product-list-box">
-                                            <img src="assets/images/img-nft/list-img.png" class="img-fluid" />
+                                         <div className="product-list-box">
+                                            <img src="assets/images/img-nft/list-img.png" className="img-fluid" />
                                             <div>
                                               <h5>Azuki 3D </h5>
                                               <p>AZUKI.JP</p>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <h6>1.5 ETH</h6>
                                                 <h6>$1907</h6>
                                               </div>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <p>Floor Price </p>
-                                                <p class="red-text">+1.6%</p>
+                                                <p className="red-text">+1.6%</p>
                                               </div>
                                             </div>
                                           </div>
                                       </Col>
                                       <Col lg={3} md={6} sm={6}>
-                                         <div class="product-list-box">
-                                            <img src="assets/images/img-nft/list-img.png" class="img-fluid" />
+                                         <div className="product-list-box">
+                                            <img src="assets/images/img-nft/list-img.png" className="img-fluid" />
                                             <div>
                                               <h5>Azuki 3D </h5>
                                               <p>AZUKI.JP</p>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <h6>1.5 ETH</h6>
                                                 <h6>$1907</h6>
                                               </div>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <p>Floor Price </p>
-                                                <p class="green-text"><span>+1.6%</span></p>
+                                                <p className="green-text"><span>+1.6%</span></p>
                                               </div>
                                             </div>
                                           </div>
                                       </Col>
                                       <Col lg={3} md={6} sm={6}>
-                                         <div class="product-list-box">
-                                            <img src="assets/images/img-nft/list-img.png" class="img-fluid" />
+                                         <div className="product-list-box">
+                                            <img src="assets/images/img-nft/list-img.png" className="img-fluid" />
                                             <div>
                                               <h5>Azuki 3D </h5>
                                               <p>AZUKI.JP</p>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <h6>1.5 ETH</h6>
                                                 <h6>$1907</h6>
                                               </div>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <p>Floor Price </p>
-                                                <p class="green-color"><span>+1.6%</span></p>
+                                                <p className="green-color"><span>+1.6%</span></p>
                                               </div>
                                             </div>
                                           </div>
                                       </Col>
                                       <Col lg={3} md={6} sm={6}>
-                                         <div class="product-list-box">
-                                            <img src="assets/images/img-nft/list-img.png" class="img-fluid" />
+                                         <div className="product-list-box">
+                                            <img src="assets/images/img-nft/list-img.png" className="img-fluid" />
                                             <div>
                                               <h5>Azuki 3D </h5>
                                               <p>AZUKI.JP</p>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <h6>1.5 ETH</h6>
                                                 <h6>$1907</h6>
                                               </div>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <p>Floor Price </p>
-                                                <p class="green-color"><span>+1.6%</span></p>
+                                                <p className="green-color"><span>+1.6%</span></p>
                                               </div>
                                             </div>
                                           </div>
                                       </Col>
                                       <Col lg={3} md={6} sm={6}>
-                                         <div class="product-list-box">
-                                            <img src="assets/images/img-nft/list-img.png" class="img-fluid" />
+                                         <div className="product-list-box">
+                                            <img src="assets/images/img-nft/list-img.png" className="img-fluid" />
                                             <div>
                                               <h5>Azuki 3D </h5>
                                               <p>AZUKI.JP</p>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <h6>1.5 ETH</h6>
                                                 <h6>$1907</h6>
                                               </div>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <p>Floor Price </p>
-                                                <p class="green-color"><span>+1.6%</span></p>
+                                                <p className="green-color"><span>+1.6%</span></p>
                                               </div>
                                             </div>
                                           </div>
                                       </Col>
                                       <Col lg={3} md={6} sm={6}>
-                                         <div class="product-list-box">
-                                            <img src="assets/images/img-nft/list-img.png" class="img-fluid" />
+                                         <div className="product-list-box">
+                                            <img src="assets/images/img-nft/list-img.png" className="img-fluid" />
                                             <div>
                                               <h5>Azuki 3D </h5>
                                               <p>AZUKI.JP</p>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <h6>1.5 ETH</h6>
                                                 <h6>$1907</h6>
                                               </div>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <p>Floor Price </p>
-                                                <p class="green-color"><span>+1.6%</span></p>
+                                                <p className="green-color"><span>+1.6%</span></p>
                                               </div>
                                             </div>
                                           </div>
                                       </Col>
                                       <Col lg={3} md={6} sm={6}>
-                                         <div class="product-list-box">
-                                            <img src="assets/images/img-nft/list-img.png" class="img-fluid" />
+                                         <div className="product-list-box">
+                                            <img src="assets/images/img-nft/list-img.png" className="img-fluid" />
                                             <div>
                                               <h5>Azuki 3D </h5>
                                               <p>AZUKI.JP</p>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <h6>1.5 ETH</h6>
                                                 <h6>$1907</h6>
                                               </div>
-                                              <div class="d-flex justify-content-between">
+                                              <div className="d-flex justify-content-between">
                                                 <p>Floor Price </p>
-                                                <p class="green-color"><span>+1.6%</span></p>
+                                                <p className="green-color"><span>+1.6%</span></p>
                                               </div>
                                             </div>
                                           </div>
@@ -491,17 +491,17 @@ const StoreOverview = () => {
               <Row>
                   <Col>
                      <div className="">
-                     <h3 class="heading-box-new"><span>Top Collections</span> <a href="">See all <img src="assets/images/img-nft/arrow-gred.png" /></a></h3>
+                     <h3 className="heading-box-new"><span>Top Collections</span> <a href="">See all <img src="assets/images/img-nft/arrow-gred.png" /></a></h3>
                          <Row>
                              <Col lg={4} md={6} sm={6}>
                                 <div className="category-slider">
                                     <div className="cat-slide-inner">
                                        <div className="left-box">
-                                            <img src="assets/images/image 8.png" class="img-fluid first-box" />
-                                            <img src="assets/images/image 6.png" class="img-fluid second-box" />
+                                            <img src="assets/images/image 8.png" className="img-fluid first-box" />
+                                            <img src="assets/images/image 6.png" className="img-fluid second-box" />
                                        </div>
                                        <div className="right-box">
-                                       <img src="assets/images/image 14.png" class="img-fluid right-img" />
+                                       <img src="assets/images/image 14.png" className="img-fluid right-img" />
                                        </div>
                                     </div>
                                     <h5>Golden Necklace</h5>
@@ -511,11 +511,11 @@ const StoreOverview = () => {
                                  <div className="category-slider">
                                     <div className="cat-slide-inner">
                                        <div className="left-box">
-                                            <img src="assets/images/image 13.png" class="img-fluid first-box" />
-                                            <img src="assets/images/image 12.png" class="img-fluid second-box" />
+                                            <img src="assets/images/image 13.png" className="img-fluid first-box" />
+                                            <img src="assets/images/image 12.png" className="img-fluid second-box" />
                                        </div>
                                        <div className="right-box">
-                                       <img src="assets/images/nft-image-1.png" class="img-fluid right-img" />
+                                       <img src="assets/images/nft-image-1.png" className="img-fluid right-img" />
                                        </div>
                                     </div>
                                     <h5>Golden Necklace</h5>
@@ -525,11 +525,11 @@ const StoreOverview = () => {
                                 <div className="category-slider">
                                     <div className="cat-slide-inner">
                                        <div className="left-box">
-                                            <img src="assets/images/image 11.png" class="img-fluid first-box" />
-                                            <img src="assets/images/image 10.png" class="img-fluid second-box" />
+                                            <img src="assets/images/image 11.png" className="img-fluid first-box" />
+                                            <img src="assets/images/image 10.png" className="img-fluid second-box" />
                                        </div>
                                        <div className="right-box">
-                                       <img src="assets/images/image 9.png" class="img-fluid right-img" />
+                                       <img src="assets/images/image 9.png" className="img-fluid right-img" />
                                        </div>
                                     </div>
                                     <h5>Golden Necklace</h5>

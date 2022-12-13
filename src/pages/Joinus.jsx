@@ -187,11 +187,11 @@ function Joinus() {
 
 
                                 <h3>Upload file</h3>
-                                <div class="upload-img-box">
+                                <div className="upload-img-box">
                                     <div>
                                         <div>PNG,JPG,GIF,WEBP or MP4, Max 20mb</div>
-                                        <div class="upload-btn-wrapper">
-                                            <button class="gradient-btn">Upload</button>
+                                        <div className="upload-btn-wrapper">
+                                            <button className="gradient-btn">Upload</button>
                                             <input
                                                 type="file"
                                                 name="file"
@@ -276,7 +276,7 @@ function Joinus() {
                             </Form>
                         </Col>
                         <Col lg={4} sm={6} xs={12}>
-                            <div class="product-list-box create-nft-box img-join-box">
+                            <div className="product-list-box create-nft-box img-join-box">
 
                                 <img className="img-main" src="assets/images/dummy-post.jpg" width={200} />
                                 {photoUrl && (

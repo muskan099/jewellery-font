@@ -86,7 +86,7 @@ const Signin = () => {
             <div className="row">
               <div className="col-md-7">
                 <div className="img">
-                <img src="assets/images/banner-img.png" class="img-fluid" />
+                <img src="assets/images/banner-img.png" className="img-fluid" />
                 </div>
               </div>
               <div className="col-md-5">

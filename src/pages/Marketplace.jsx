@@ -293,7 +293,7 @@ const Marketplace = () => {
                     <Col md="6" sm="6">
                       <h2 className="market-head">
                         <a>
-                          <i class="fa fa-arrow-left"></i>
+                          <i className="fa fa-arrow-left"></i>
                         </a>
                         Marketplace
                       </h2>
@@ -312,7 +312,7 @@ const Marketplace = () => {
                             variant="outline-secondary"
                             id="button-addon2"
                           >
-                            <i class="fa fa-search" aria-hidden="true"></i>
+                            <i className="fa fa-search" aria-hidden="true"></i>
                           </Button>
                         </InputGroup>
                       </div>
@@ -442,8 +442,8 @@ const Marketplace = () => {
                       </Accordion.Item>
                       <div className="status">
                         <label className="sidebar_names sidebar-names-border">Price</label>
-                        <div class="slider-box">
-                          <div id="slider-range" class="slider"></div>
+                        <div className="slider-box">
+                          <div id="slider-range" className="slider"></div>
                           <p>
                             <input
                               type="text"
@@ -635,10 +635,10 @@ const Marketplace = () => {
                     ? nft.map((item, index) => (
                       <Col lg={4} md={6} key={index}>
                         {/* <Link to="/nft-detail"> */}
-                        <div class="product-list-box" onClick={() => {
+                        <div className="product-list-box" onClick={() => {
                           single_nft_data(item)
                         }}>
-                          <img src={`https://jewellery.donative.in/NFTImages/${item.images}`} class="img-fluid img-main-box" onError={({ currentTarget }) => {
+                          <img src={`https://jewellery.donative.in/NFTImages/${item.images}`} className="img-fluid img-main-box" onError={({ currentTarget }) => {
                             currentTarget.onerror = null; // prevents looping
                             currentTarget.src = "assets/images/img-nft/list-img.png";
                           }} />
@@ -646,14 +646,14 @@ const Marketplace = () => {
                           <div>
                             <h5> </h5>
                             <p>{item.name}</p>
-                            <div class="d-flex justify-content-between">
+                            <div className="d-flex justify-content-between">
                               {/* <h6>{item}</h6> */}
                               <h6>Price: {(item?.price).toFixed(2)} JWL (${item.price/JwlPrice})</h6>
                               <h6>{item.status}</h6>
                             </div>
-                            {/* <div class="d-flex justify-content-between">
+                            {/* <div className="d-flex justify-content-between">
                                 <p>Floor Price </p>
-                                <p class="red-text"><span>+1.6%</span></p>
+                                <p className="red-text"><span>+1.6%</span></p>
                               </div> */}
                           </div>
                         </div>

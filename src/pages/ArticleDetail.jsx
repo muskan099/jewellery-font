@@ -16,7 +16,6 @@ import { updateNftStatusSaga } from "../store/reducers/nftReducer";
 import { Sale } from "../helpers/Sale";
 import { clearNftDetail, getNftDetailSaga } from "../store/reducers/nftReducer";
 import moment from "moment";
-import { ApproveTaboo } from "../helpers/Approve";
 import { axios } from "../http";
 
 function NftDetail() {
@@ -123,12 +122,12 @@ useEffect(()=>{
               <Row className="align-items-center">
                 <Col lg={5} md={6}>
                   <div>
-                    <img src={`https://jewellery.donative.in/Artical/${nftImages}`} class="img-fluid" alt="image"/>
+                    <img src={`https://jewellery.donative.in/Artical/${nftImages}`} className="img-fluid" alt="image"/>
                     {console.log(nftImages)}
                   </div>
                 </Col>
                 <Col lg={6} md={6} className="ms-auto">
-                  <div class="details-side-content">
+                  <div className="details-side-content">
                     <h4>{nftTitle}</h4>
                    <p>{nftDesc}</p>
                   

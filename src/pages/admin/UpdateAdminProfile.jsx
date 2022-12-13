@@ -176,11 +176,11 @@ formData.append("id", user._id);
               <Form>
              
                 <h3>Upload file</h3>
-                <div class="upload-img-box">
+                <div className="upload-img-box">
                   <div>
                     <div>PNG,JPG,GIF,WEBP or MP4, Max 20mb</div>
-                    <div class="upload-btn-wrapper">
-                      <button class="gradient-btn">Upload</button>
+                    <div className="upload-btn-wrapper">
+                      <button className="gradient-btn">Upload</button>
                       <input
                         type="file"
                         name="file"
@@ -234,20 +234,20 @@ formData.append("id", user._id);
               </Form>
             </Col>
             <Col lg={4} sm={6} xs={12}>
-              <div class="product-list-box create-nft-box">
+              <div className="product-list-box create-nft-box">
                 {photoUrl && (
                   <img className="img-main" src={photo.photoUrl} width={200} />
                 )}
                 <div>
                   <h5>Azuki 3D </h5>
                   <p>AZUKI.JP</p>*{" "}
-                  <div class="d-flex justify-content-between">
+                  <div className="d-flex justify-content-between">
                     <h6>1.5 ETH</h6>
                     <h6>$1907</h6>
                   </div>
-                  <div class="d-flex justify-content-between">
+                  <div className="d-flex justify-content-between">
                     <p>Floor Price </p>
-                    <p class="green-color">
+                    <p className="green-color">
                       <span>+1.6%</span>
                     </p>
                   </div>

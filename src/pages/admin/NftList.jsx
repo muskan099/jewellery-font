@@ -271,7 +271,7 @@ function Transactions() {
                                 variant="outline-secondary"
                                 id="button-addon2"
                               >
-                                <i class="fa fa-search" aria-hidden="true"></i>
+                                <i className="fa fa-search" aria-hidden="true"></i>
                               </Button>
                             </InputGroup>
                           </div>
@@ -373,7 +373,7 @@ function Transactions() {
                               <h3 className="modal-header-h3">Update Nft</h3>
                             </Modal.Header>
                             <Modal.Body className="modal-background">
-                              <div class="bid-modal-box">
+                              <div className="bid-modal-box">
                                 <Form>
                                   <Form.Group className="mb-3">
                                     <Form.Label>Id</Form.Label>
@@ -425,7 +425,7 @@ function Transactions() {
                                   </Form.Group>
                                 </Form>
 
-                                <div class="btn-sell-container">
+                                <div className="btn-sell-container">
                                   <a
                                     href="#"
                                     className="blue-btn"

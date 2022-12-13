@@ -185,7 +185,7 @@ function Transactions() {
                                   id="button-addon2"
                                 >
                                   <i
-                                    class="fa fa-search"
+                                    className="fa fa-search"
                                     aria-hidden="true"
                                   ></i>
                                 </Button>

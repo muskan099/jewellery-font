@@ -280,7 +280,7 @@ const movetodetail=(dataid)=>{
                 </Col>
                 <Col lg={7} md={6}>
                   <div>
-                    <img src="assets/images/banner-img.png" class="img-fluid" />
+                    <img src="assets/images/banner-img.png" className="img-fluid" />
                   </div>
                 </Col>
               </Row>
@@ -570,17 +570,17 @@ const movetodetail=(dataid)=>{
                             <div className="left-box">
                               <img
                                 src="assets/images/image 8.png"
-                                class="img-fluid first-box"
+                                className="img-fluid first-box"
                               />
                               <img
                                 src="assets/images/image 6.png"
-                                class="img-fluid second-box"
+                                className="img-fluid second-box"
                               />
                             </div>
                             <div className="right-box">
                               <img
                                 src="assets/images/image 14.png"
-                                class="img-fluid right-img"
+                                className="img-fluid right-img"
                               />
                             </div>
                           </div>
@@ -593,17 +593,17 @@ const movetodetail=(dataid)=>{
                             <div className="left-box">
                               <img
                                 src="assets/images/image 13.png"
-                                class="img-fluid first-box"
+                                className="img-fluid first-box"
                               />
                               <img
                                 src="assets/images/image 12.png"
-                                class="img-fluid second-box"
+                                className="img-fluid second-box"
                               />
                             </div>
                             <div className="right-box">
                               <img
                                 src="assets/images/nft-image-1.png"
-                                class="img-fluid right-img"
+                                className="img-fluid right-img"
                               />
                             </div>
                           </div>
@@ -616,17 +616,17 @@ const movetodetail=(dataid)=>{
                             <div className="left-box">
                               <img
                                 src="assets/images/image 11.png"
-                                class="img-fluid first-box"
+                                className="img-fluid first-box"
                               />
                               <img
                                 src="assets/images/image 10.png"
-                                class="img-fluid second-box"
+                                className="img-fluid second-box"
                               />
                             </div>
                             <div className="right-box">
                               <img
                                 src="assets/images/image 9.png"
-                                class="img-fluid right-img"
+                                className="img-fluid right-img"
                               />
                             </div>
                           </div>
@@ -639,17 +639,17 @@ const movetodetail=(dataid)=>{
                             <div className="left-box">
                               <img
                                 src="assets/images/image 8.png"
-                                class="img-fluid first-box"
+                                className="img-fluid first-box"
                               />
                               <img
                                 src="assets/images/image 6.png"
-                                class="img-fluid second-box"
+                                className="img-fluid second-box"
                               />
                             </div>
                             <div className="right-box">
                               <img
                                 src="assets/images/image 14.png"
-                                class="img-fluid right-img"
+                                className="img-fluid right-img"
                               />
                             </div>
                           </div>
@@ -662,17 +662,17 @@ const movetodetail=(dataid)=>{
                             <div className="left-box">
                               <img
                                 src="assets/images/image 13.png"
-                                class="img-fluid first-box"
+                                className="img-fluid first-box"
                               />
                               <img
                                 src="assets/images/image 12.png"
-                                class="img-fluid second-box"
+                                className="img-fluid second-box"
                               />
                             </div>
                             <div className="right-box">
                               <img
                                 src="assets/images/nft-image-1.png"
-                                class="img-fluid right-img"
+                                className="img-fluid right-img"
                               />
                             </div>
                           </div>
@@ -685,17 +685,17 @@ const movetodetail=(dataid)=>{
                             <div className="left-box">
                               <img
                                 src="assets/images/image 11.png"
-                                class="img-fluid first-box"
+                                className="img-fluid first-box"
                               />
                               <img
                                 src="assets/images/image 10.png"
-                                class="img-fluid second-box"
+                                className="img-fluid second-box"
                               />
                             </div>
                             <div className="right-box">
                               <img
                                 src="assets/images/image 9.png"
-                                class="img-fluid right-img"
+                                className="img-fluid right-img"
                               />
                             </div>
                           </div>
@@ -785,22 +785,22 @@ const movetodetail=(dataid)=>{
                               return (
 
                                 <Col lg={3} md={6} sm={6} >
-                                  <div class="product-list-box">
+                                  <div className="product-list-box">
                                     <img onClick={()=>movetodetail(items._id)}
                                      
                                       src={items.images}
-                                      class="img-fluid img-fluid img-main-box"
+                                      className="img-fluid img-fluid img-main-box"
                                     />
                                     <div>
                                       <h5>{items.name} </h5>
                                       {/* <p>AZUKI.JP</p> */}
-                                      <div class="d-flex justify-content-between">
+                                      <div className="d-flex justify-content-between">
                                         <h6>Price</h6>
                                         <h6>{items.price}JWL (${parseInt(items.price)*0.01})</h6>
                                       </div>
-                                      <div class="d-flex justify-content-between">
+                                      <div className="d-flex justify-content-between">
                                         {/* <p>Floor Price </p> */}
-                                        {/* <p class="green-color">
+                                        {/* <p className="green-color">
                                 <span>+1.6%</span>
                               </p> */}
                                       </div>
@@ -823,23 +823,23 @@ const movetodetail=(dataid)=>{
                               return (
 
                                 <Col lg={3} md={6} sm={6} >
-                                  <div class="product-list-box">
+                                  <div className="product-list-box">
                                     <img
                                     onClick={()=>movetodetail(items._id)}
                                       style={{ width: '100%' }}
                                       src={items.images}
-                                      class="img-fluid"
+                                      className="img-fluid"
                                     />
                                     <div>
                                       <h5>{items.name} </h5>
                                       {/* <p>AZUKI.JP</p> */}
-                                      <div class="d-flex justify-content-between">
+                                      <div className="d-flex justify-content-between">
                                         <h6>Price</h6>
                                         <h6>{items.price} Jwl</h6>
                                       </div>
-                                      <div class="d-flex justify-content-between">
+                                      <div className="d-flex justify-content-between">
                                         {/* <p>Floor Price </p> */}
-                                        {/* <p class="green-color">
+                                        {/* <p className="green-color">
          <span>+1.6%</span>
        </p> */}
                                       </div>
@@ -862,23 +862,23 @@ const movetodetail=(dataid)=>{
                               return (
 
                                 <Col lg={3} md={6} sm={6} >
-                                  <div class="product-list-box">
+                                  <div className="product-list-box">
                                     <img
                                     onClick={()=>movetodetail(items._id)}
                                       style={{ width: '100%' }}
                                       src={items.images}
-                                      class="img-fluid"
+                                      className="img-fluid"
                                     />
                                     <div>
                                       <h5>{items.name} </h5>
                                       {/* <p>AZUKI.JP</p> */}
-                                      <div class="d-flex justify-content-between">
+                                      <div className="d-flex justify-content-between">
                                         <h6>Price</h6>
                                         <h6>{items.price} Jwl</h6>
                                       </div>
-                                      <div class="d-flex justify-content-between">
+                                      <div className="d-flex justify-content-between">
                                         {/* <p>Floor Price </p> */}
-                                        {/* <p class="green-color">
+                                        {/* <p className="green-color">
          <span>+1.6%</span>
        </p> */}
                                       </div>
@@ -902,23 +902,23 @@ const movetodetail=(dataid)=>{
                               return (
 
                                 <Col lg={3} md={6} sm={6} >
-                                  <div class="product-list-box">
+                                  <div className="product-list-box">
                                     <img
                                     onClick={()=>movetodetail(items._id)}
                                       style={{ width: '100%' }}
                                       src={items.images}
-                                      class="img-fluid"
+                                      className="img-fluid"
                                     />
                                     <div>
                                       <h5>{items.name} </h5>
                                       {/* <p>AZUKI.JP</p> */}
-                                      <div class="d-flex justify-content-between">
+                                      <div className="d-flex justify-content-between">
                                         <h6>Price</h6>
                                         <h6>{items.price} Jwl</h6>
                                       </div>
-                                      <div class="d-flex justify-content-between">
+                                      <div className="d-flex justify-content-between">
                                         {/* <p>Floor Price </p> */}
-                                        {/* <p class="green-color">
+                                        {/* <p className="green-color">
     <span>+1.6%</span>
   </p> */}
                                       </div>
@@ -942,23 +942,23 @@ const movetodetail=(dataid)=>{
                               return (
 
                                 <Col lg={3} md={6} sm={6} >
-                                  <div class="product-list-box">
+                                  <div className="product-list-box">
                                     <img
                                     onClick={()=>movetodetail(items._id)}
                                       style={{ width: '100%' }}
                                       src={items.images}
-                                      class="img-fluid"
+                                      className="img-fluid"
                                     />
                                     <div>
                                       <h5>{items.name} </h5>
                                       {/* <p>AZUKI.JP</p> */}
-                                      <div class="d-flex justify-content-between">
+                                      <div className="d-flex justify-content-between">
                                         <h6>Price</h6>
                                         <h6>{items.price} Jwl</h6>
                                       </div>
-                                      <div class="d-flex justify-content-between">
+                                      <div className="d-flex justify-content-between">
                                         {/* <p>Floor Price </p> */}
-                                        {/* <p class="green-color">
+                                        {/* <p className="green-color">
     <span>+1.6%</span>
   </p> */}
                                       </div>
@@ -976,21 +976,21 @@ const movetodetail=(dataid)=>{
                         <div> */}
                       {/* <Row>
                             <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
+                              <div className="product-list-box">
                                 <img
                                   src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
+                                  className="img-fluid"
                                 />
                                 <div>
                                   <h5>Azuki 3D </h5>
                                   <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
+                                  <div className="d-flex justify-content-between">
                                     <h6>1.5 ETH</h6>
                                     <h6>$1907</h6>
                                   </div>
-                                  <div class="d-flex justify-content-between">
+                                  <div className="d-flex justify-content-between">
                                     <p>Floor Price </p>
-                                    <p class="green-color">
+                                    <p className="green-color">
                                       <span>+1.6%</span>
                                     </p>
                                   </div>
@@ -998,41 +998,41 @@ const movetodetail=(dataid)=>{
                               </div>
                             </Col>
                             <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
+                              <div className="product-list-box">
                                 <img
                                   src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
+                                  className="img-fluid"
                                 />
                                 <div>
                                   <h5>Azuki 3D </h5>
                                   <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
+                                  <div className="d-flex justify-content-between">
                                     <h6>1.5 ETH</h6>
                                     <h6>$1907</h6>
                                   </div>
-                                  <div class="d-flex justify-content-between">
+                                  <div className="d-flex justify-content-between">
                                     <p>Floor Price </p>
-                                    <p class="red-text">+1.6%</p>
+                                    <p className="red-text">+1.6%</p>
                                   </div>
                                 </div>
                               </div>
                             </Col>
                             <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
+                              <div className="product-list-box">
                                 <img
                                   src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
+                                  className="img-fluid"
                                 />
                                 <div>
                                   <h5>Azuki 3D </h5>
                                   <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
+                                  <div className="d-flex justify-content-between">
                                     <h6>1.5 ETH</h6>
                                     <h6>$1907</h6>
                                   </div>
-                                  <div class="d-flex justify-content-between">
+                                  <div className="d-flex justify-content-between">
                                     <p>Floor Price </p>
-                                    <p class="green-text">
+                                    <p className="green-text">
                                       <span>+1.6%</span>
                                     </p>
                                   </div>
@@ -1040,21 +1040,21 @@ const movetodetail=(dataid)=>{
                               </div>
                             </Col>
                             <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
+                              <div className="product-list-box">
                                 <img
                                   src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
+                                  className="img-fluid"
                                 />
                                 <div>
                                   <h5>Azuki 3D </h5>
                                   <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
+                                  <div className="d-flex justify-content-between">
                                     <h6>1.5 ETH</h6>
                                     <h6>$1907</h6>
                                   </div>
-                                  <div class="d-flex justify-content-between">
+                                  <div className="d-flex justify-content-between">
                                     <p>Floor Price </p>
-                                    <p class="green-color">
+                                    <p className="green-color">
                                       <span>+1.6%</span>
                                     </p>
                                   </div>
@@ -1062,21 +1062,21 @@ const movetodetail=(dataid)=>{
                               </div>
                             </Col>
                             <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
+                              <div className="product-list-box">
                                 <img
                                   src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
+                                  className="img-fluid"
                                 />
                                 <div>
                                   <h5>Azuki 3D </h5>
                                   <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
+                                  <div className="d-flex justify-content-between">
                                     <h6>1.5 ETH</h6>
                                     <h6>$1907</h6>
                                   </div>
-                                  <div class="d-flex justify-content-between">
+                                  <div className="d-flex justify-content-between">
                                     <p>Floor Price </p>
-                                    <p class="green-color">
+                                    <p className="green-color">
                                       <span>+1.6%</span>
                                     </p>
                                   </div>
@@ -1084,21 +1084,21 @@ const movetodetail=(dataid)=>{
                               </div>
                             </Col>
                             <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
+                              <div className="product-list-box">
                                 <img
                                   src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
+                                  className="img-fluid"
                                 />
                                 <div>
                                   <h5>Azuki 3D </h5>
                                   <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
+                                  <div className="d-flex justify-content-between">
                                     <h6>1.5 ETH</h6>
                                     <h6>$1907</h6>
                                   </div>
-                                  <div class="d-flex justify-content-between">
+                                  <div className="d-flex justify-content-between">
                                     <p>Floor Price </p>
-                                    <p class="green-color">
+                                    <p className="green-color">
                                       <span>+1.6%</span>
                                     </p>
                                   </div>
@@ -1106,21 +1106,21 @@ const movetodetail=(dataid)=>{
                               </div>
                             </Col>
                             <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
+                              <div className="product-list-box">
                                 <img
                                   src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
+                                  className="img-fluid"
                                 />
                                 <div>
                                   <h5>Azuki 3D </h5>
                                   <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
+                                  <div className="d-flex justify-content-between">
                                     <h6>1.5 ETH</h6>
                                     <h6>$1907</h6>
                                   </div>
-                                  <div class="d-flex justify-content-between">
+                                  <div className="d-flex justify-content-between">
                                     <p>Floor Price </p>
-                                    <p class="green-color">
+                                    <p className="green-color">
                                       <span>+1.6%</span>
                                     </p>
                                   </div>
@@ -1128,21 +1128,21 @@ const movetodetail=(dataid)=>{
                               </div>
                             </Col>
                             <Col lg={3} md={6} sm={6}>
-                              <div class="product-list-box">
+                              <div className="product-list-box">
                                 <img
                                   src="assets/images/img-nft/list-img.png"
-                                  class="img-fluid"
+                                  className="img-fluid"
                                 />
                                 <div>
                                   <h5>Azuki 3D </h5>
                                   <p>AZUKI.JP</p>
-                                  <div class="d-flex justify-content-between">
+                                  <div className="d-flex justify-content-between">
                                     <h6>1.5 ETH</h6>
                                     <h6>$1907</h6>
                                   </div>
-                                  <div class="d-flex justify-content-between">
+                                  <div className="d-flex justify-content-between">
                                     <p>Floor Price </p>
-                                    <p class="green-color">
+                                    <p className="green-color">
                                       <span>+1.6%</span>
                                     </p>
                                   </div>
