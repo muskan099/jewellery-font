@@ -301,8 +301,9 @@ const[handleTab,setHandleTab] = useState("")
                         </tr>
                       </thead>
                       <tbody>
-                        {console.log({handleTab})}
-                        {handleTab == "active" ? data.filter((item) => item.contentInfo.forsale == "yes" ).map((items, index) => {
+                        {console.log("this is my data",data.length)}
+                        {data.length == 0 ? <div className="text-center">No Record Found</div> : 
+                        handleTab == "active" ? data.filter((item) => item.contentInfo.forsale == "yes" ).map((items, index) => {
                           return (
                             <tr className="for-body-tr" key={index}>
                               <td width="5%" className="td-break">{index + 1}</td>
@@ -588,6 +589,8 @@ const[handleTab,setHandleTab] = useState("")
                             </tr>
                           );
                         })}
+                        {console.log({handleTab})}
+                        
                       </tbody>
                     </table>
                     <Modal
